@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "ソフトウェアエンジニア",
     "研究者",
   ],
-  authors: [{ name: "Keigo Minamida", url: "https://your-domain.com" }],
+  authors: [{ name: "Keigo Minamida", url: "https://keigominamidapage2.vercel.app/" }],
   creator: "Keigo Minamida",
   openGraph: {
     type: "website",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Keigo Minamida | 南田桂吾 - Portfolio",
     description: "Welcome to Keigo Minamida (南田桂吾)'s portfolio website. Explore my work, projects, and professional experience.",
-    creator: "@YourTwitterHandle",
+    creator: "@mKeigo1110",
   },
   robots: {
     index: true,
