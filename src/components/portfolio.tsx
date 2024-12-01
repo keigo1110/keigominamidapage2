@@ -49,7 +49,6 @@ export function PortfolioComponent() {
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="#home" className="text-2xl font-bold">Keigo Minamida | 南田桂吾</a>
           <div className="flex items-center space-x-4">
-            <LanguageSwitch />
             <div className="md:hidden">
               <button onClick={toggleMenu} className="text-white focus:outline-none">
                 {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -68,6 +67,7 @@ export function PortfolioComponent() {
                 </a>
               ))}
             </div>
+            <LanguageSwitch />
           </div>
         </nav>
       </header>
@@ -326,13 +326,13 @@ export function PortfolioComponent() {
               <li>{t('award2')}</li>
               <li>
                 <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className="text-blue-400 hover:underline">
-                  {t('award3')}
+                  {t('award3no1')}
                 </a>
                 ・
                 <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className="text-blue-400 hover:underline">
-                  {t('award4no1')}
+                  {t('award3no2')}
                 </a>
-                {t('award4no2')}
+                {t('award3no3')}
               </li>
             </ul>
           </div>
@@ -340,8 +340,16 @@ export function PortfolioComponent() {
       </main>
 
       <footer className="bg-gray-900 py-8">
+        <div className="text-center">
+          <a
+            href="mailto:keigo-minamida@g.ecc.u-tokyo.ac.jp"
+            className="text-sky-100 hover:text-sky-200 transition-colors inline-block"
+            >
+            mkeigo1110@gmail.com
+          </a>
+        </div>
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Keigo Minamida</p>
+          <p>&copy; {new Date().getFullYear()}  Keigo Minamida</p>
         </div>
       </footer>
     </div>
