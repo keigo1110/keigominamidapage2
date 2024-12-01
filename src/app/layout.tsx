@@ -15,8 +15,52 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Keigo Minamida | 南田桂吾",
-  description: "Keigo Minamida's portfolio, 南田桂吾のポートフォリオ",
+  title: "Keigo Minamida | 南田桂吾 - Portfolio",
+  description: "Welcome to Keigo Minamida (南田桂吾)'s portfolio website. Explore my work, projects, and professional experience. ポートフォリオサイトへようこそ。",
+  keywords: [
+    "Keigo Minamida",
+    "南田桂吾",
+    "portfolio",
+    "ポートフォリオ",
+    "web developer",
+    "software engineer",
+    "researcher",
+    "ウェブ開発者",
+    "ソフトウェアエンジニア",
+    "研究者",
+  ],
+  authors: [{ name: "Keigo Minamida", url: "https://your-domain.com" }],
+  creator: "Keigo Minamida",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "ja_JP",
+    title: "Keigo Minamida | 南田桂吾 - Portfolio",
+    description: "Welcome to Keigo Minamida (南田桂吾)'s portfolio website. Explore my work, projects, and professional experience. ポートフォリオサイトへようこそ。",
+    siteName: "Keigo Minamida Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Keigo Minamida | 南田桂吾 - Portfolio",
+    description: "Welcome to Keigo Minamida (南田桂吾)'s portfolio website. Explore my work, projects, and professional experience.",
+    creator: "@YourTwitterHandle",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    languages: {
+      'en-US': '/en',
+      'ja-JP': '/ja',
+    },
+  },
 };
 
 export default function RootLayout({
