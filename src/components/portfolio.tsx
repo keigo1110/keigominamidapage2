@@ -10,9 +10,17 @@ import { LanguageSwitch } from '../components/LanguageSwitch'
 export function PortfolioComponent() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState<"home" | "projects" | "artwork" | "startup" | "experience" | "awards">('home');
 
-  const sections = ['home', 'projects', 'artwork', 'startup', 'experience', 'awards'];
+  // sections の型を明示的に定義
+  const sections: Array<"home" | "projects" | "artwork" | "startup" | "experience" | "awards"> = [
+    'home',
+    'projects',
+    'artwork',
+    'startup',
+    'experience',
+    'awards'
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
