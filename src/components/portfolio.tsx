@@ -191,20 +191,20 @@ export function PortfolioComponent() {
               <ArtworkCard
                 title={t('artwork1Title')}
                 description={t('artwork1Description')}
-                image="/images/iii.jpg"
-                link="https://www.instagram.com/p/artwork1/"
+                image="/images/geo.jpeg"
+                link="https://geohp.vercel.app/"
               />
               <ArtworkCard
                 title={t('artwork2Title')}
                 description={t('artwork2Description')}
-                image="/images/iii.jpg"
-                link="https://www.instagram.com/p/artwork2/"
+                image="/images/proto.jpeg"
+                link="https://protophysicahp.vercel.app/"
               />
               <ArtworkCard
                 title={t('artwork3Title')}
                 description={t('artwork3Description')}
-                image="/images/iii.jpg"
-                link="https://www.instagram.com/p/artwork3/"
+                image="/images/cotton.jpeg"
+                link="https://cotton-sketch-pen-hp.vercel.app/"
               />
             </div>
           </div>

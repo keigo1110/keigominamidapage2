@@ -13,7 +13,7 @@ export const translations = {
         otherProjects: 'Other Projects',
         startupMission: 'Mission',
         startupAchievements: 'Achievements',
-        viewOnInstagram: 'View on Instagram',
+        viewOnInstagram: 'View on Website',
         visitWebsite: 'Visit Website',
 
         // about me
@@ -108,7 +108,7 @@ export const translations = {
         otherProjects: 'その他のプロジェクト',
         startupMission: 'ミッション',
         startupAchievements: '実績',
-        viewOnInstagram: 'Instagramで見る',
+        viewOnInstagram: 'プロジェクトサイトを見る',
         visitWebsite: 'ウェブサイトを見る',
 
         // about me
