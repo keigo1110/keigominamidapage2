@@ -127,6 +127,7 @@ export const translations = {
         department: '近畿大学 理工学部 機械工学科 卒業',
 
         // 研究プロジェクト
+        IGSDescription: '現実世界の変化に適応して徐々に3D再構築するためのシステム',
         recertifDescription: 'ロボットの作業状況をロボットの方を向くだけで確認可能なシステム',
         fstlDescription: '枝刈り技術の改善（スライドは藤崎が作成）',
         paper: '論文',
