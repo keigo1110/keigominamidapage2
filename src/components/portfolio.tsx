@@ -165,6 +165,14 @@ export function PortfolioComponent() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">{t('researchProjects')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ProjectCard
+                title="Incremental Gaussian Splatting"
+                description={t('IGSDescription')}
+                image="/images/sigasi.jpg"
+                links={[
+                  { icon: <FaFileAlt />, text: t('siggraphasia'), url: 'https://asia.siggraph.org/2024/presentation/?id=pos_232&sess=sess198' },
+                ]}
+              />
               <ProjectCard
                 title="Recertif"
                 description={t('recertifDescription')}

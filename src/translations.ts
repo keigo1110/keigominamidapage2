@@ -15,6 +15,7 @@ export const translations = {
         startupAchievements: 'Achievements',
         viewOnInstagram: 'View on Website',
         visitWebsite: 'Visit Website',
+        siggraphasia: 'SIGGRAPH Asia 2024',
 
         // about me
         name: 'Keigo Minamida',
@@ -29,6 +30,7 @@ export const translations = {
         department: 'Department of Mechanical Engineering, KINDAI UNIVERSITY',
 
         // research projects
+        IGSDescription: 'Gradual 3D Reconstruction from a Monocular Camera Following Physical World Changes.',
         recertifDescription: 'A system that shows the robot\'s work status simply by directing attention to the robot.',
         fstlDescription: 'Improved branch trimming techniques.(Slide made by Fujisaki)',
         paper: 'Paper',
@@ -110,6 +112,7 @@ export const translations = {
         startupAchievements: '実績',
         viewOnInstagram: 'プロジェクトサイトを見る',
         visitWebsite: 'ウェブサイトを見る',
+        siggraphasia: 'SIGGRAPH Asia 2024',
 
         // about me
         name: '南田桂吾',
