@@ -171,6 +171,7 @@ export function PortfolioComponent() {
                 image="/images/sigasi.jpg"
                 links={[
                   { icon: <FaFileAlt />, text: t('siggraphasia'), url: 'https://asia.siggraph.org/2024/presentation/?id=pos_232&sess=sess198' },
+                  { icon: <FaFileAlt />, text: t('paper'), url: 'https://doi.org/10.1145/3681756.3697913' }
                 ]}
               />
               <ProjectCard
