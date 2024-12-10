@@ -215,6 +215,24 @@ export function PortfolioComponent() {
                 image="/images/cotton.jpeg"
                 link="https://cotton-sketch-pen-hp.vercel.app/"
               />
+              <ArtworkCard
+                title={t('artwork4Title')}
+                description={t('artwork4Description')}
+                image="/images/met.jpeg"
+                link="https://metransferhp.vercel.app/"
+              />
+              <ArtworkCard
+                title={t('artwork5Title')}
+                description={t('artwork5Description')}
+                image="/images/puf.jpeg"
+                link="https://puflicahp.vercel.app/"
+              />
+              <ArtworkCard
+                title={t('artwork6Title')}
+                description={t('artwork6Description')}
+                image="/images/nozo.jpeg"
+                link="https://nozohp.vercel.app/"
+              />
             </div>
           </div>
         </section>

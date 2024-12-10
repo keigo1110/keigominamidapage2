@@ -43,6 +43,12 @@ export const translations = {
         artwork2Description: 'Expanding the possibilities of creation using supercapacitors.',
         artwork3Title: 'CottonSketchPen',
         artwork3Description: 'Create what you need when you need it with plastic cotton.',
+        artwork4Title: 'Metransfer',
+        artwork4Description: 'Metamorphose between liquid and foam, repeatedly shaping and collapsing into different three-dimensional objects one after the other.',
+        artwork5Title: 'Puflica',
+        artwork5Description: 'Dosun, Boom, Ston, Puka-puka.',
+        artwork6Title: 'Nozokō ',
+        artwork6Description: 'Extend aroma by applying controlled heat.',
 
         // startup
         Companyname: 'Wakabar K.K.',
@@ -140,6 +146,12 @@ export const translations = {
         artwork2Description: 'スーパーキャパシタでエネルギーを自在に使った制作の可能性を広げる',
         artwork3Title: 'CottonSketchPen',
         artwork3Description: 'プラスチックのわたで必要な時に必要なものを創る',
+        artwork4Title: 'Metransfer',
+        artwork4Description: '液体と泡沫を行き来して、次々と異なる立体物として形を現しては崩してを繰り返す、メタモルフォーゼする',
+        artwork5Title: 'Puflica',
+        artwork5Description: 'ドスン，ビュン，ストン，プカプカ．',
+        artwork6Title: '覗香',
+        artwork6Description: '香りを拡張する',
 
         // スタートアップ
         Companyname: 'Wakabar株式会社',
