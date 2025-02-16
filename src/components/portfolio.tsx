@@ -178,7 +178,10 @@ export function PortfolioComponent() {
                 title="Recertif"
                 description={t('recertifDescription')}
                 image="/images/Recertif.png"
-                links={[{ icon: <FaYoutube />, text: 'Demo', url: 'https://www.youtube.com/watch?v=RC4FkGJv0MU' }]}
+                links={[
+                  { icon: <FaFileAlt />, text: t('paper'), url: 'https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202402256126174476' },
+                  { icon: <FaYoutube />, text: 'Demo', url: 'https://www.youtube.com/watch?v=RC4FkGJv0MU' }
+                ]}
               />
               <ProjectCard
                 title="FSTL"
