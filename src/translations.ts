@@ -102,6 +102,10 @@ export const translations = {
         award3no1: '律相院賞',
         award3no2: '析匠賞',
         award3no3: ' from ISIS editing school 15th[離] (November, 2022)',
+        award4no1: 'The Grand Prize and the \"Hosii-ne\" Award ',
+        award4no2: 'from GUGEN2024 [',
+        award4no3: '4ZIGEN',
+        award4no4: '] (December, 2024)',
     },
     ja: {
         home: 'ホーム',
@@ -205,6 +209,10 @@ export const translations = {
         award3no1: '律相院賞',
         award3no2: '析匠賞',
         award3no3: 'イシス編集学校 15季[離]（2022年11月）',
+        award4no1: '大賞・ほしいね賞',
+        award4no2: ' GUGEN2024 [',
+        award4no3: '4ZIGEN',
+        award4no4: '] (2024年12月)',
     }
   } as const;
 

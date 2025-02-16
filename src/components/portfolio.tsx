@@ -352,6 +352,16 @@ export function PortfolioComponent() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">{t('awards')}</h2>
             <ul className="space-y-4 list-disc list-inside">
+              <li>
+                <a href="https://gugen.jp/result/2024.html" className="text-blue-400 hover:underline">
+                  {t('award4no1')}
+                </a>
+                {t('award4no2')}
+                <a href="https://4zigenhp.vercel.app/" className="text-blue-400 hover:underline">
+                  {t('award4no3')}
+                </a>
+                {t('award4no4')}
+              </li>
               <li>{t('award1')}</li>
               <li>{t('award2')}</li>
               <li>
