@@ -1,6 +1,7 @@
 import { TranslationProvider } from '../contexts/TranslationContext'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -81,6 +82,7 @@ export default function RootLayout({
         <TranslationProvider>
           {children}
         </TranslationProvider>
+        <Analytics />
       </body>
     </html>
   );
