@@ -3,10 +3,9 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaTwitter, FaFacebookF, FaGithub, FaPencilAlt, FaYoutube, FaFileAlt, FaWindowMaximize, FaGlobe, FaInstagram, FaBars, FaTimes } from 'react-icons/fa'
+import { FaTwitter, FaFacebookF, FaGithub, FaPencilAlt, FaYoutube, FaFileAlt, FaWindowMaximize, FaGlobe, FaInstagram, FaBars, FaTimes, FaLinkedin } from 'react-icons/fa'
 import { useTranslation } from '../contexts/TranslationContext'
 import { LanguageSwitch } from '../components/LanguageSwitch'
-
 export function PortfolioComponent() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -136,6 +135,12 @@ export function PortfolioComponent() {
               <div className="flex space-x-4 mb-8">
                 <a href="https://twitter.com/mKeigo1110" className="text-2xl hover:text-blue-400 transition-colors" aria-label="Twitter">
                   <FaTwitter />
+                </a>
+                <a href="https://www.instagram.com/namida1110/" className="text-2xl hover:text-blue-400 transition-colors" aria-label="Instagram">
+                  <FaInstagram />
+                </a>
+                <a href="https://www.linkedin.com/in/keigominamida/" className="text-2xl hover:text-blue-400 transition-colors" aria-label="LinkedIn">
+                  <FaLinkedin />
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=100053066043602" className="text-2xl hover:text-blue-400 transition-colors" aria-label="Facebook">
                   <FaFacebookF />

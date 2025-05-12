@@ -72,6 +72,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://keigominamida.com/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body

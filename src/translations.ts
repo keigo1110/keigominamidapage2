@@ -19,7 +19,7 @@ export const translations = {
 
         // about me
         name: 'Keigo Minamida',
-        roll: 'First-year Master student',
+        roll: 'Second-year Master student',
         school: 'The University of Tokyo III/GSII',
         Lab: 'Rekimoto Lab',
         statement: 'I am passionate about pioneering new ways for humans to interact with robots and real-world objects, aiming to expand human freedom and editing capabilities. My current research focuses on developing effective methods to process and utilize real-world information to achieve these interactions.',
@@ -120,13 +120,14 @@ export const translations = {
         otherProjects: 'その他のプロジェクト',
         startupMission: 'ミッション',
         startupAchievements: '実績',
-        viewOnInstagram: 'プロジェクトサイトを見る',
+        viewOnInstagram: '作品サイトを見る',
+        Teamsite: 'チームサイト',
         visitWebsite: 'ウェブサイトを見る',
         siggraphasia: 'SIGGRAPH Asia 2024',
 
         // about me
         name: '南田桂吾',
-        roll: '修士1年',
+        roll: '修士2年',
         school: '東京大学大学院情報学環学際情報学府',
         Lab: '暦本研究室',
         statement: '私は、人間が情報をどのようにやり取りするかを開拓することに情熱を持っており、人間の自由度と編集能力を拡大することを目指しています。現在の研究は、これらのやり取りを実現するための効果的な方法を開発することに焦点を当てています。',
