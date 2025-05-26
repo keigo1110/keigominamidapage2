@@ -1,6 +1,7 @@
 export const ja = {
     home: 'ホーム',
     projects: 'プロジェクト',
+    research: '研究',
     artwork: '作品',
     startup: 'スタートアップ',
     experience: '経歴',
@@ -106,7 +107,7 @@ export const ja = {
     award4no3: '4ZIGEN',
     award4no4: '] (2024年12月)',
     contact: 'お問い合わせ',
-    
+
     // Missing translations
     profileAlt: '南田圭吾のプロフィール写真',
     university: '東京大学',

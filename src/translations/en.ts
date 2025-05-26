@@ -2,6 +2,7 @@ export const en = {
     // Translation keys
     home: 'Home',
     projects: 'Projects',
+    research: 'Research',
     artwork: 'Artwork',
     startup: 'Startup',
     experience: 'Experience',
@@ -106,7 +107,7 @@ export const en = {
     award4no3: '4ZIGEN',
     award4no4: '] (December, 2024)',
     contact: 'Contact',
-    
+
     // Missing translations
     profileAlt: 'Keigo Minamida Profile Picture',
     university: 'The University of Tokyo',

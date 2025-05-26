@@ -1,74 +1,192 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaFileAlt, FaYoutube } from 'react-icons/fa'
+import { ExternalLink, FileText, Video, Presentation } from 'lucide-react'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
-import { ProjectCard } from '../cards/ProjectCard'
+import Image from 'next/image'
 
 export function ProjectsSection() {
-  const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const { t } = useTranslation()
+  const { isDark } = useTheme()
 
-  const projects = [
+  const researchProjects = [
     {
       title: "Incremental Gaussian Splatting",
       description: t('IGSDescription'),
       image: "/images/sigasi.jpg",
+      venue: "SIGGRAPH Asia 2024",
+      date: "2024.12",
       links: [
-        { icon: <FaFileAlt />, text: t('siggraphasia'), url: 'https://asia.siggraph.org/2024/presentation/?id=pos_232&sess=sess198' },
-        { icon: <FaFileAlt />, text: t('paper'), url: 'https://doi.org/10.1145/3681756.3697913' }
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://doi.org/10.1145/3681756.3697913'
+        },
+        {
+          type: 'venue',
+          icon: <Presentation className="w-3.5 h-3.5" />,
+          text: 'SIGGRAPH Asia',
+          url: 'https://asia.siggraph.org/2024/presentation/?id=pos_232&sess=sess198'
+        }
       ]
     },
     {
       title: "Recertif",
       description: t('recertifDescription'),
       image: "/images/Recertif.png",
+      venue: "SI2023",
+      date: "2024.03",
       links: [
-        { icon: <FaFileAlt />, text: t('paper'), url: 'https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202402256126174476' },
-        { icon: <FaYoutube />, text: 'Demo', url: 'https://www.youtube.com/watch?v=RC4FkGJv0MU' }
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202402256126174476'
+        },
+        {
+          type: 'demo',
+          icon: <Video className="w-3.5 h-3.5" />,
+          text: 'Demo',
+          url: 'https://www.youtube.com/watch?v=RC4FkGJv0MU'
+        }
       ]
     },
     {
-      title: "FSTL",
+      title: "FSTL - Forest Segmentation & Trimming Learning",
       description: t('fstlDescription'),
       image: "/images/FSTL.png",
+      venue: "JSAI 2023",
+      date: "2023.06",
       links: [
-        { icon: <FaFileAlt />, text: t('paper'), url: 'https://www.jstage.jst.go.jp/article/pjsai/JSAI2023/0/JSAI2023_1G5OS21b04/_article/-char/ja/' },
-        { icon: <FaWindowMaximize />, text: t('slide'), url: 'https://www.docswell.com/s/weblab/56Y6VX-2023-10-23-111938' }
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://www.jstage.jst.go.jp/article/pjsai/JSAI2023/0/JSAI2023_1G5OS21b04/_article/-char/ja/'
+        },
+        {
+          type: 'slides',
+          icon: <Presentation className="w-3.5 h-3.5" />,
+          text: 'Slides',
+          url: 'https://www.docswell.com/s/weblab/56Y6VX-2023-10-23-111938'
+        }
       ]
     }
-  ];
+  ]
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/60 via-blue-50/40 to-slate-100/60 dark:from-slate-900/60 dark:via-blue-900/40 dark:to-slate-950/60"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.h2
-          className={`text-5xl font-bold mb-12 text-center bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-600 to-blue-800'} bg-clip-text text-transparent`}
+    <section id="projects" className="py-24 relative">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          {t('researchProjects')}
-        </motion.h2>
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, staggerChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
+          <h2 className={`text-4xl md:text-5xl font-light mb-6 tracking-tight ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+            {t('researchProjects')}
+          </h2>
+          <div className="w-24 h-0.5 bg-gray-300 dark:bg-gray-700 mx-auto" />
         </motion.div>
+
+        {/* Research Grid */}
+        <div className="space-y-8">
+          {researchProjects.map((project, index) => (
+            <motion.article
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`group ${isDark ? 'bg-gray-900/30' : 'bg-white/50'} backdrop-blur-sm rounded-lg overflow-hidden border ${
+                isDark ? 'border-gray-800' : 'border-gray-200'
+              } hover:shadow-lg transition-all duration-300`}
+            >
+              <div className="flex flex-col md:flex-row">
+                {/* Image */}
+                <div className="md:w-1/3 relative overflow-hidden">
+                  <div className="aspect-video md:aspect-auto md:h-full">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  {/* Venue Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${
+                      isDark ? 'bg-gray-900/90 text-gray-300' : 'bg-white/90 text-gray-700'
+                    } backdrop-blur-sm`}>
+                      {project.venue}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="md:w-2/3 p-6 md:p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className={`text-xl md:text-2xl font-medium mb-2 ${
+                        isDark ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {project.title}
+                      </h3>
+                      <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                        {project.date}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className={`mb-6 leading-relaxed ${
+                    isDark ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
+                    {project.description}
+                  </p>
+
+                  {/* Links */}
+                  <div className="flex flex-wrap gap-3">
+                    {project.links.map((link) => (
+                      <motion.a
+                        key={link.text}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                          link.type === 'paper'
+                            ? isDark
+                              ? 'bg-blue-900/20 text-blue-400 hover:bg-blue-900/30'
+                              : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                            : link.type === 'demo' || link.type === 'slides'
+                            ? isDark
+                              ? 'bg-green-900/20 text-green-400 hover:bg-green-900/30'
+                              : 'bg-green-50 text-green-600 hover:bg-green-100'
+                            : isDark
+                              ? 'bg-gray-800/50 text-gray-400 hover:bg-gray-800/70'
+                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        {link.icon}
+                        <span>{link.text}</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function FaWindowMaximize({ className }: { className?: string }) {
-  return <svg className={className} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-16 160H64v-84c0-6.6 5.4-12 12-12h360c6.6 0 12 5.4 12 12v84z"></path></svg>;
+  )
 }

@@ -8,7 +8,7 @@ import { ProjectsSection } from './sections/ProjectsSection'
 import { ArtworkSection } from './sections/ArtworkSection'
 import { StartupSection } from './sections/StartupSection'
 import { OtherProjectsSection } from './sections/OtherProjectsSection'
-import { ExperienceSection } from './sections/ExperienceSection'
+import { ProfessionalExperienceSection } from './sections/ProfessionalExperienceSection'
 import { AwardsSection } from './sections/AwardsSection'
 import { Footer } from './layout/Footer'
 import { SkipLink } from './SkipLink'
@@ -47,7 +47,7 @@ export function PortfolioComponent() {
         <ArtworkSection />
         <StartupSection />
         <OtherProjectsSection />
-        <ExperienceSection />
+        <ProfessionalExperienceSection />
         <AwardsSection />
       </main>
 
