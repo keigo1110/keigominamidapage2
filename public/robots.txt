@@ -1,0 +1,42 @@
+# Robots.txt for keigominamida.com
+
+# Allow all robots
+User-agent: *
+Allow: /
+
+# Disallow crawling of private or sensitive directories
+Disallow: /api/
+Disallow: /.next/
+Disallow: /node_modules/
+Disallow: /_next/static/
+Disallow: /admin/
+Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://keigominamida.com/sitemap.xml
+
+# Crawl-delay for specific bots (optional)
+User-agent: bingbot
+Crawl-delay: 1
+
+User-agent: Slurp
+Crawl-delay: 1
+
+# Allow Google to crawl all content
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Allow archive crawlers
+User-agent: ia_archiver
+Allow: /

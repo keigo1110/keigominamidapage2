@@ -105,4 +105,25 @@ export const ja = {
     award4no2: ' GUGEN2024 [',
     award4no3: '4ZIGEN',
     award4no4: '] (2024年12月)',
+    contact: 'お問い合わせ',
+    
+    // Missing translations
+    profileAlt: '南田圭吾のプロフィール写真',
+    university: '東京大学',
+    location: '東京, 日本',
+    academicYear: '修士2年',
+    homeTitle: 'ホーム',
+    projectsTitle: 'プロジェクト',
+    projectsDescription: 'ロボティクスとヒューマンインタラクションの交差点で革新的なソリューションを構築',
+    uniLidarSubtitle: 'リアルタイムLiDAR可視化',
+    uniLidarDescription: 'RVizを使用せずにUnitree L1 LiDARを可視化するWebベースのツール、リアルタイム3Dポイントクラウドレンダリング機能付き',
+    bodyOptimizationTitle: '身体最適化プラットフォーム',
+    bodyOptimizationSubtitle: 'AI駆動の健康分析',
+    bodyOptimizationDescription: '体組成分析と個別化された健康最適化の推奨事項を提供する包括的なプラットフォーム',
+    robotCompetitionTitle: 'ロボット競技システム',
+    robotCompetitionSubtitle: '自律ナビゲーション',
+    robotCompetitionDescription: '競技ナビゲーションと物体操作のための受賞歴のある自律ロボットシステム',
+    viewMoreProjects: 'その他のプロジェクトを見る',
+    allRightsReserved: 'All rights reserved',
+    builtWith: 'Built with'
 };

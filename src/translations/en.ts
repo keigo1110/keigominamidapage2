@@ -105,4 +105,25 @@ export const en = {
     award4no2: 'from GUGEN2024 [',
     award4no3: '4ZIGEN',
     award4no4: '] (December, 2024)',
+    contact: 'Contact',
+    
+    // Missing translations
+    profileAlt: 'Keigo Minamida Profile Picture',
+    university: 'The University of Tokyo',
+    location: 'Tokyo, Japan',
+    academicYear: 'Master\'s 2nd Year',
+    homeTitle: 'Home',
+    projectsTitle: 'Projects',
+    projectsDescription: 'Building innovative solutions at the intersection of robotics and human interaction',
+    uniLidarSubtitle: 'Real-time LiDAR Visualization',
+    uniLidarDescription: 'Web-based visualization tool for Unitree L1 LiDAR without using RViz, featuring real-time 3D point cloud rendering',
+    bodyOptimizationTitle: 'Body Optimization Platform',
+    bodyOptimizationSubtitle: 'AI-Powered Health Analysis',
+    bodyOptimizationDescription: 'Comprehensive platform for body composition analysis and personalized health optimization recommendations',
+    robotCompetitionTitle: 'Robot Competition System',
+    robotCompetitionSubtitle: 'Autonomous Navigation',
+    robotCompetitionDescription: 'Award-winning autonomous robot system for competitive navigation and object manipulation',
+    viewMoreProjects: 'View More Projects',
+    allRightsReserved: 'All rights reserved',
+    builtWith: 'Built with'
 };
