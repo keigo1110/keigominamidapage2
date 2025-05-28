@@ -22,16 +22,34 @@ export const en = {
     roll: 'Second-year Master student',
     school: 'The University of Tokyo III/GSII',
     Lab: 'Rekimoto Lab',
-    statement: 'I am passionate about pioneering new ways for humans to interact with robots and real-world objects, aiming to expand human freedom and editing capabilities. My current research focuses on developing effective methods to process and utilize real-world information to achieve these interactions.',
-    statement2: 'I am interested in liberating people\'s creativity through technology and exploring new forms of expression. By merging physical materials with digital technology, I aim to innovate traditional creative processes and build environments where everyone can participate in creative activities.',
-    statement3: 'I work on presenting complex information in intuitively understandable forms to augment human cognitive abilities. By combining visual feedback, haptic interfaces, and spatial interactions, I strive to create richer information experiences.',
-    statementTab1: 'Research Philosophy',
-    statementTab2: 'Liberating Creativity',
-    statementTab3: 'Augmenting Cognition',
-    interest1: 'Human-robot interaction',
-    interest2: 'Augmented reality',
-    interest3: 'Computer vision',
-    interest4: 'Machine learning',
+    statement: 'I explore the expansion of human freedom in meaning-generation by supporting the inherent human editorial acts of "segmentation, relationalization, structuralization, and representation" at the level of media and tools in contemporary society where information technology (IT) digitizes all subjects. In our highly informatized society, a future is imminent where everything is captured as data and reconstructed as digital twins in virtual space. This digitalization trend is certainly heading toward a definitive endpoint. However, to derive value from informatized data, human editorial intervention—reinterpretation and reconstitution of information—is indispensable. My life theme lies in "editing as software" that goes beyond mere information collection and generation, enabling humans to freely and flexibly re-edit information. From an HCI (Human-Computer Interaction) perspective, I develop technical methods and interface designs that allow humans to freely re-edit information, proposing a new practical learning approach of "reading, writing, AI" in high-speed, high-volume information environments. This is an attempt to connect the information editing practices that humanity has historically accumulated to the present as "information cultural technology."',
+    statement2: `AI has emerged for the first time in human history as an "external automatic editing organ" capable of generating language and meaning. However, this characteristic of "automatic editing" carries the risk of depriving humans of the practice of information editing and converging all possibilities into "homogeneous and fixed solutions."
+
+Reading — Techniques for segmenting the sea of information and creating singular points
+ - Reading "between the lines," "silence," and "contradictions"
+ - Deciphering "perception," "context," and "history" lurking behind data
+ - Cultivating critical literacy to perceive the world "differently"
+
+Writing — Techniques for reconstructing meaning and forming new worldviews
+ - Expressing "hesitation," "deviation," and "leaps"
+ - Utilizing prompts as a new literary form to drive inquiry
+ - Externalizing the editing process itself into shareable descriptions
+
+AI — Techniques for role-sharing and parallel operation with external automatic editing power
+ - Handling information in large volumes, at high speed, and all at once
+ - Instantly grasping and comprehensively covering central existing scenarios
+ - Rapidly extracting insights from unstructured data
+
+"Reading, writing, AI" is a democratic technique that allows not only technical elites but all people to become editorial subjects in the information society. Precisely because we live in an era where digital twins reproduce reality and AI supplements and substitutes human thinking, humans must continue to give "different meanings" to the world as "editors." This is not the pursuit of efficiency or optimization, but rather the practice of continuously opening up "alternative possibilities."
+In the future where informatization progresses, what we face is whether to be swallowed by the sea of continuously informatized data or to continue creating new meanings through editing. We are standing at this very crossroads. Through the practical learning of "reading, writing, AI," we must actively carve out humanity's editorially possible future in the information society.`,
+    statement3: '[Under Construction] Hardware Informatization (Information Technology) and Software Editorialization (Cultural Technology)',
+    statementTab1: 'Life Theme',
+    statementTab2: 'Reading, Writing, AI',
+    statementTab3: 'Information Cultural Technology',
+    interest1: 'Human-Computer Interaction',
+    interest2: 'Augmented Humans',
+    interest3: 'Artificial Intelligence',
+    interest4: 'Computer Vision',
     department: 'Department of Mechanical Engineering, KINDAI UNIVERSITY',
 
     // research projects
