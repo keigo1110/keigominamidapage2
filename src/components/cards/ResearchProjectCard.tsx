@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, Users, ExternalLink, FileText, Video, Presentation } from 'lucide-react'
+import { Calendar, Users, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import { useTheme } from '../../contexts/ThemeContext'
 
@@ -39,22 +39,22 @@ export function ResearchProjectCard({
 }: ResearchProjectCardProps) {
   const { isDark } = useTheme()
 
-  const getLinkStyle = (type: string) => {
-    const styles = {
-      paper: isDark 
-        ? 'bg-red-900/20 text-red-400 hover:bg-red-900/30 border-red-800/50' 
+    const getLinkStyle = (type: string) => {
+    const styles: Record<string, string> = {
+      paper: isDark
+        ? 'bg-red-900/20 text-red-400 hover:bg-red-900/30 border-red-800/50'
         : 'bg-red-50 text-red-600 hover:bg-red-100 border-red-200',
-      demo: isDark 
-        ? 'bg-green-900/20 text-green-400 hover:bg-green-900/30 border-green-800/50' 
+      demo: isDark
+        ? 'bg-green-900/20 text-green-400 hover:bg-green-900/30 border-green-800/50'
         : 'bg-green-50 text-green-600 hover:bg-green-100 border-green-200',
-      slide: isDark 
-        ? 'bg-orange-900/20 text-orange-400 hover:bg-orange-900/30 border-orange-800/50' 
+      slide: isDark
+        ? 'bg-orange-900/20 text-orange-400 hover:bg-orange-900/30 border-orange-800/50'
         : 'bg-orange-50 text-orange-600 hover:bg-orange-100 border-orange-200',
-      conference: isDark 
-        ? 'bg-blue-900/20 text-blue-400 hover:bg-blue-900/30 border-blue-800/50' 
+      conference: isDark
+        ? 'bg-blue-900/20 text-blue-400 hover:bg-blue-900/30 border-blue-800/50'
         : 'bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-200',
-      github: isDark 
-        ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-800/70 border-gray-700' 
+      github: isDark
+        ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-800/70 border-gray-700'
         : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300'
     }
     return styles[type] || styles.paper
@@ -83,7 +83,7 @@ export function ResearchProjectCard({
           <div className={`absolute inset-0 bg-gradient-to-t ${
             isDark ? 'from-gray-900' : 'from-white'
           } via-transparent to-transparent opacity-60`} />
-          
+
           {/* Conference Badge */}
           <div className="absolute top-4 left-4">
             <span className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
@@ -126,8 +126,8 @@ export function ResearchProjectCard({
               <span
                 key={keyword}
                 className={`px-2 py-0.5 rounded text-xs font-medium ${
-                  isDark 
-                    ? 'bg-gray-800/50 text-gray-400' 
+                  isDark
+                    ? 'bg-gray-800/50 text-gray-400'
                     : 'bg-gray-100 text-gray-600'
                 }`}
               >
@@ -188,7 +188,7 @@ export function ResearchProjectCard({
           <div className={`absolute inset-0 bg-gradient-to-r ${
             isDark ? 'from-gray-900/50' : 'from-white/50'
           } to-transparent`} />
-          
+
           {/* Conference Badge */}
           <div className="absolute top-4 left-4">
             <span className={`px-4 py-2 rounded-full text-sm font-semibold ${
@@ -238,8 +238,8 @@ export function ResearchProjectCard({
               <span
                 key={keyword}
                 className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  isDark 
-                    ? 'bg-gray-800/50 text-gray-400 border border-gray-700' 
+                  isDark
+                    ? 'bg-gray-800/50 text-gray-400 border border-gray-700'
                     : 'bg-gray-100 text-gray-600 border border-gray-200'
                 }`}
               >

@@ -5,13 +5,27 @@ import { motion } from 'framer-motion'
 import { useTheme } from '../contexts/ThemeContext'
 import { MousePosition } from '../types'
 
-// 背景の粒子数を削減（15から8へ）
-const PARTICLE_COUNT = 8;
+// 固定された粒子位置でHydrationエラーを防ぐ
+const PARTICLE_POSITIONS = [
+  { x: 15, y: 25 },
+  { x: 35, y: 60 },
+  { x: 70, y: 15 },
+  { x: 85, y: 45 },
+  { x: 25, y: 80 },
+  { x: 60, y: 75 },
+  { x: 45, y: 30 },
+  { x: 90, y: 70 }
+];
 
 export function DynamicBackground() {
   const { isDark } = useTheme();
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
   const lastExecTime = useRef(0);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const currentTime = Date.now();
@@ -28,28 +42,47 @@ export function DynamicBackground() {
     };
   }, [handleMouseMove]);
 
+  if (!isClient) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute inset-0">
+          {PARTICLE_POSITIONS.map((position, i) => (
+            <div
+              key={i}
+              className={`absolute w-1 h-1 ${isDark ? 'bg-gradient-to-r from-blue-400/20 to-blue-600/20' : 'bg-gradient-to-r from-blue-300/20 to-blue-500/20'} rounded-full`}
+              style={{
+                left: `${position.x}%`,
+                top: `${position.y}%`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div className="absolute inset-0">
-        {[...Array(PARTICLE_COUNT)].map((_, i) => (
+        {PARTICLE_POSITIONS.map((position, i) => (
           <motion.div
             key={i}
             className={`absolute w-1 h-1 ${isDark ? 'bg-gradient-to-r from-blue-400/20 to-blue-600/20' : 'bg-gradient-to-r from-blue-300/20 to-blue-500/20'} rounded-full`}
             animate={{
-              x: [0, Math.random() * 100, 0],
-              y: [0, Math.random() * 100, 0],
+              x: [0, (i % 2 === 0 ? 50 : -50) + Math.sin(i) * 30, 0],
+              y: [0, (i % 3 === 0 ? 40 : -40) + Math.cos(i) * 25, 0],
               scale: [1, 1.5, 1],
               opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: Math.random() * 20 + 15,
+              duration: 20 + (i * 2.5),
               repeat: Infinity,
               ease: "easeInOut"
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              willChange: 'transform, opacity', // パフォーマンス最適化
+              left: `${position.x}%`,
+              top: `${position.y}%`,
+              willChange: 'transform, opacity',
             }}
           />
         ))}

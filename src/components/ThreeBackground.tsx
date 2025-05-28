@@ -220,8 +220,9 @@ export function ThreeBackground() {
         cancelAnimationFrame(animationRef.current);
       }
 
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+      const currentMount = mountRef.current;
+      if (currentMount && renderer.domElement) {
+        currentMount.removeChild(renderer.domElement);
       }
 
       // Dispose of materials

@@ -9,7 +9,7 @@ import { RefinedProjectsSection } from './sections/RefinedProjectsSection'
 import { RefinedArtworkSection } from './sections/RefinedArtworkSection'
 import { RefinedStartupSection } from './sections/RefinedStartupSection'
 import { RefinedOtherProjectsSection } from './sections/RefinedOtherProjectsSection'
-import { RefinedExperienceSection } from './sections/RefinedExperienceSection'
+import { ExperienceSection } from './sections/ExperienceSection'
 import { RefinedAwardsSection } from './sections/RefinedAwardsSection'
 import { RefinedFooter } from './layout/RefinedFooter'
 import { SkipLink } from './SkipLink'
@@ -43,20 +43,20 @@ export function RefinedPortfolio() {
     <div className={`min-h-screen ${isDark ? 'bg-gray-950' : 'bg-gray-50'} transition-colors duration-500`}>
       <SkipLink />
       <FocusIndicator />
-      
+
       {/* Refined Three.js background */}
       <div className="opacity-30">
         <ThreeBackground />
       </div>
-      
+
       {/* Subtle gradient overlay */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className={`absolute inset-0 bg-gradient-to-br ${
-          isDark 
-            ? 'from-indigo-950/20 via-transparent to-purple-950/20' 
+          isDark
+            ? 'from-indigo-950/20 via-transparent to-purple-950/20'
             : 'from-indigo-50/40 via-transparent to-purple-50/40'
         }`} />
-        
+
         {/* Interactive glow */}
         <div
           className={`absolute w-96 h-96 rounded-full blur-3xl transition-all duration-1000 ${
@@ -68,19 +68,19 @@ export function RefinedPortfolio() {
           }}
         />
       </div>
-      
+
       <RefinedNavigation activeSection={activeSection} sections={SECTIONS} />
-      
+
       <main id="main-content" className="relative z-10">
         <RefinedHomeSection />
         <RefinedProjectsSection />
         <RefinedArtworkSection />
         <RefinedStartupSection />
         <RefinedOtherProjectsSection />
-        <RefinedExperienceSection />
+        <ExperienceSection />
         <RefinedAwardsSection />
       </main>
-      
+
       <RefinedFooter />
     </div>
   );

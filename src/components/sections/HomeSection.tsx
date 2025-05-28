@@ -1,11 +1,22 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
+import {
+  GlassmorphismHome,
+  BrutalistHome,
+  MinimalistHome,
+  CyberpunkHome,
+  MagazineHome,
+  RetroSynthwaveHome,
+  LuxuryPremiumHome,
+  OrganicBiomorphicHome
+} from './HomeSectionVariants'
 
 const socialLinks: SocialLink[] = [
   { icon: FaTwitter, url: "https://twitter.com/mKeigo1110", style: "bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/25" },
@@ -16,11 +27,32 @@ const socialLinks: SocialLink[] = [
   { icon: FaPencilAlt, url: "https://qiita.com/keigo1110", style: "bg-green-500 hover:bg-green-600 text-white shadow-green-500/25" }
 ];
 
-export function HomeSection() {
+// Array of all design variants
+const HOME_VARIANTS = [
+  GlassmorphismHome,
+  BrutalistHome,
+  MinimalistHome,
+  CyberpunkHome,
+  MagazineHome,
+  RetroSynthwaveHome,
+  LuxuryPremiumHome,
+  OrganicBiomorphicHome,
+  DefaultHome // We'll keep the original as one of the options
+];
+
+// Original Home Section as Default
+function DefaultHome() {
   const { t } = useTranslation();
   const { isDark } = useTheme();
+  const [activeTab, setActiveTab] = useState(0);
 
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
+
+  const statementTabs = [
+    { id: 0, label: t('statementTab1'), content: t('statement') },
+    { id: 1, label: t('statementTab2'), content: t('statement2') },
+    { id: 2, label: t('statementTab3'), content: t('statement3') }
+  ];
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative">
@@ -85,16 +117,16 @@ export function HomeSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            <a 
-              href="https://www.iii.u-tokyo.ac.jp/" 
+            <a
+              href="https://www.iii.u-tokyo.ac.jp/"
               className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block mb-2 text-lg font-medium`}
               target="_blank"
               rel="noopener noreferrer"
             >
               {t('school')}
             </a>
-            <a 
-              href="https://lab.rekimoto.org/" 
+            <a
+              href="https://lab.rekimoto.org/"
               className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-lg font-medium`}
               target="_blank"
               rel="noopener noreferrer"
@@ -110,7 +142,7 @@ export function HomeSection() {
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             {socialLinks.map((social, index) => {
-              const style = social.style === 'dynamic' 
+              const style = social.style === 'dynamic'
                 ? `${isDark ? 'bg-gray-800 hover:bg-gray-700 text-white shadow-gray-800/25' : 'bg-gray-900 hover:bg-gray-800 text-white shadow-gray-900/25'}`
                 : social.style;
 
@@ -140,9 +172,32 @@ export function HomeSection() {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="space-y-6"
           >
-            <p className={`text-lg mb-6 ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
-              {t('statement')}
-            </p>
+            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {statementTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? `${isDark ? 'bg-blue-500 text-white' : 'bg-blue-600 text-white'} shadow-lg`
+                        : `${isDark ? 'bg-slate-700/50 text-gray-300 hover:bg-slate-700' : 'bg-gray-200/50 text-gray-600 hover:bg-gray-300'}`
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+              <motion.p
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className={`text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
+              >
+                {statementTabs[activeTab]?.content || ''}
+              </motion.p>
+            </div>
 
             <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
               <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
@@ -176,5 +231,48 @@ export function HomeSection() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+export function HomeSection() {
+  const [variantIndex, setVariantIndex] = useState<number>(() => {
+    // Use a default index for SSR compatibility
+    return 0;
+  });
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Only run on client side
+    setIsClient(true);
+
+    // Check if there's a stored variant for this session
+    const storedVariant = sessionStorage.getItem('homeSectionVariant');
+    if (storedVariant === null) {
+      // If no stored variant, select a random one
+      const randomIndex = Math.floor(Math.random() * HOME_VARIANTS.length);
+      setVariantIndex(randomIndex);
+      sessionStorage.setItem('homeSectionVariant', randomIndex.toString());
+    } else {
+      // Use the stored variant
+      const index = parseInt(storedVariant, 10);
+      if (index >= 0 && index < HOME_VARIANTS.length) {
+        setVariantIndex(index);
+      }
+    }
+  }, []);
+
+    // Get the current component based on variant index
+  const SelectedVariant = isClient ? (HOME_VARIANTS[variantIndex] || DefaultHome) : DefaultHome;
+
+  return (
+    <motion.div
+      key={`variant-${variantIndex}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <SelectedVariant />
+    </motion.div>
   );
 }

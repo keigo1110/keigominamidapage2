@@ -23,6 +23,11 @@ export const en = {
     school: 'The University of Tokyo III/GSII',
     Lab: 'Rekimoto Lab',
     statement: 'I am passionate about pioneering new ways for humans to interact with robots and real-world objects, aiming to expand human freedom and editing capabilities. My current research focuses on developing effective methods to process and utilize real-world information to achieve these interactions.',
+    statement2: 'I am interested in liberating people\'s creativity through technology and exploring new forms of expression. By merging physical materials with digital technology, I aim to innovate traditional creative processes and build environments where everyone can participate in creative activities.',
+    statement3: 'I work on presenting complex information in intuitively understandable forms to augment human cognitive abilities. By combining visual feedback, haptic interfaces, and spatial interactions, I strive to create richer information experiences.',
+    statementTab1: 'Research Philosophy',
+    statementTab2: 'Liberating Creativity',
+    statementTab3: 'Augmenting Cognition',
     interest1: 'Human-robot interaction',
     interest2: 'Augmented reality',
     interest3: 'Computer vision',
@@ -95,6 +100,16 @@ export const en = {
     experience4Link1: 'Class name: ルイジ・ソージ教室',
     experience4Link2: 'commemorative completion book "Broken Stars" (Ken Liu [ed.]/Hayakawa Bunko)',
     experience4Link3: 'Class scene',
+
+    // New experiences
+    experience5: '1000sen team',
+    experience5Description: 'Diagram composition & Editing',
+    experience5Date: 'May 2025 - December 2025',
+    experience5Link1: '1000nights Reading System',
+    experience6: '4ZIGEN',
+    experience6Description: 'Hardware & Software Development',
+    experience6Date: 'May 2024 - December 2025',
+    experience6Link1: '4ZIGEN Official Website',
 
     // awards
     award1: 'Best presentation award from KINDAI UNIVERSITY faculty of Science and Engineering department of Mechanical Engineering(March, 2024)',
