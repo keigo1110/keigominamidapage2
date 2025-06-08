@@ -50,6 +50,11 @@ export function RefinedArtworkSection() {
       title: t('artwork6Title'),
       image: '/images/nozo.jpeg',
       description: t('artwork6Description')
+    },
+    {
+      title: t('artwork7Title'),
+      image: '/images/Protozoa.png',
+      description: t('artwork7Description')
     }
   ]
 
@@ -84,7 +89,7 @@ export function RefinedArtworkSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-${colors.primary[500]} to-${colors.secondary[500]} bg-clip-text text-transparent`}>
+                    <h2 className={`text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent`}>
             {t('artwork')}
           </h2>
           <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
@@ -121,7 +126,7 @@ export function RefinedArtworkSection() {
                 <div className={`absolute inset-0 bg-gradient-to-t ${
                   isDark ? 'from-gray-900' : 'from-white'
                 } to-transparent opacity-60 group-hover:opacity-40 transition-opacity`} />
-                
+
                 {/* Hover overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className={`p-3 rounded-full ${

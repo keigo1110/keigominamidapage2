@@ -2,7 +2,7 @@ export const ja = {
     home: 'ホーム',
     projects: 'プロジェクト',
     research: '研究',
-    artwork: '作品',
+    artwork: '制作',
     startup: 'スタートアップ',
     experience: '経歴',
     awards: '受賞',
@@ -12,7 +12,7 @@ export const ja = {
     otherProjects: 'その他のプロジェクト',
     startupMission: 'ミッション',
     startupAchievements: '実績',
-    viewOnInstagram: '作品サイトを見る',
+    viewOnInstagram: '制作サイトを見る',
     Teamsite: 'チームサイト',
     visitWebsite: 'ウェブサイトを見る',
     siggraphasia: 'SIGGRAPH Asia 2024',
@@ -59,7 +59,7 @@ export const ja = {
     paper: '論文',
     slide: 'スライド',
 
-    // アート作品
+    // 制作作品（アートと制作の両方）
     artwork1Title: 'Geocussion',
     artwork1Description: '砂を叩き押し固めてオブジェクトを作り出し、砂の形を変えれば異なるを鳴らせる砂場上の楽器',
     artwork2Title: 'Protophysica',
@@ -72,13 +72,41 @@ export const ja = {
     artwork5Description: 'ドスン，ビュン，ストン，プカプカ．',
     artwork6Title: '覗香',
     artwork6Description: '香りを拡張する',
+    artwork7Title: 'Protozoa',
+    artwork7Description: '触れることで動き出す原生機械生物群',
+
+    // 制作品共通情報
+    artworkTeam: '4ZIGEN',
+    artworkTeamDescription: 'チーム制作',
+    createdBy: '制作',
 
     // スタートアップ
     Companyname: 'Wakabar株式会社',
-    wakabarDescription: '自転車走行時の安全行動を支援する',
-    startupMissionDescription: 'IoTを駆使して自転車の交通事故をゼロに',
-    achivement1: '自治体とパートナー提携',
-    achivement2: 'iOSアプリケーションを用いた実証実験',
+    wakabarDescription: '事前に危険な地点を知らせて自転車事故を防止する',
+    startupMissionDescription: '位置情報を活用し自転車事故をゼロにする',
+    achivement1: '守山市をはじめ複数の自治体とパートナー提携',
+    achivement2: 'IoTデバイスとアプリの連携による実証実験を実施',
+
+    // 新しい翻訳データ
+    wakabarMainSite: 'メインサイト',
+    wakabarTourSite: 'セルフツアー',
+    wakabarAppSite: 'アプリケーション',
+    audioWarningSystem: '音声警告システム',
+    audioWarningDescription: '危険地点に近づくと、自動的に音声で注意を促します',
+    realtimeTracking: '危険地点データ基盤',
+    realtimeTrackingDescription: '危険地点を基盤にしたセルフツアーサービスなどへの展開',
+    dataAnalysis: '走行履歴と分析',
+    dataAnalysisDescription: '過去の走行データを保存し、危険な行動パターンを分析',
+    safetyEducation: '安全教育支援',
+    safetyEducationDescription: '記録された走行データをもとに、安全な走り方を学べます',
+    partnershipWithCities: '自治体連携',
+    partnershipDescription: '京都・滋賀・大阪の複数の自治体にて官民連携を推進',
+    dataProvision: 'データ提供サービス',
+    dataProvisionDescription: '企業・自治体への安全走行データの提供',
+    subscriptionService: 'サブスクリプション',
+    subscriptionDescription: '専用デバイス込みのオールインワン月額プラン',
+    guaranteeService: '90日間返金保証',
+    guaranteeDescription: '安心してお試しいただける保証制度',
 
     // その他のプロジェクト
     oProject1: '入退室自動管理',
@@ -123,7 +151,7 @@ export const ja = {
     experience5: '1000sen team',
     experience5Description: '図版構成・編集',
     experience5Date: '2025年5月 - 2025年12月',
-    experience5Link1: '1000夜 読書システム',
+    experience5Link1: '千夜千冊',
     experience6: '4ZIGEN',
     experience6Description: 'ハードウェア・ソフトウェア開発',
     experience6Date: '2024年5月 - 2025年12月',

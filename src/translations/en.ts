@@ -72,13 +72,41 @@ In the future where informatization progresses, what we face is whether to be sw
     artwork5Description: 'Dosun, Boom, Ston, Puka-puka.',
     artwork6Title: 'Nozokō ',
     artwork6Description: 'Extend aroma by applying controlled heat.',
+    artwork7Title: 'Protozoa',
+    artwork7Description: 'Primitive mechanical organisms that come to life through touch',
+
+    // Artwork common information
+    artworkTeam: '4ZIGEN',
+    artworkTeamDescription: 'Team Production',
+    createdBy: 'Created by',
 
     // startup
     Companyname: 'Wakabar K.K.',
-    wakabarDescription: 'Supporting safe behavior while cycling.',
-    startupMissionDescription: 'Zero traffic accidents on bicycles using IoT',
-    achivement1: 'Partnership with local governments',
-    achivement2: 'Demonstration experiment using iOS application',
+    wakabarDescription: 'Supporting safe cycling for children',
+    startupMissionDescription: 'Predicting dangerous locations and preventing bicycle accidents with just opening the app',
+    achivement1: 'Partnership with multiple local governments including Moriyama City',
+    achivement2: 'Conducting demonstration experiments with IoT device and app integration',
+
+    // New startup translations
+    wakabarMainSite: 'Main Site',
+    wakabarTourSite: 'Self Tour',
+    wakabarAppSite: 'Application',
+    audioWarningSystem: 'Audio Warning System',
+    audioWarningDescription: 'Automatically alerts with voice warnings when approaching dangerous locations',
+    realtimeTracking: 'Real-time Location Tracking',
+    realtimeTrackingDescription: 'Monitor your child\'s current location in real-time',
+    dataAnalysis: 'Riding History & Analysis',
+    dataAnalysisDescription: 'Save past riding data and analyze dangerous behavior patterns',
+    safetyEducation: 'Safety Education Support',
+    safetyEducationDescription: 'Learn safe riding practices with your child based on recorded riding data',
+    partnershipWithCities: 'Municipal Partnership',
+    partnershipDescription: 'Promoting public-private partnerships in multiple municipalities across Kyoto, Shiga, and Osaka',
+    dataProvision: 'Data Provision Service',
+    dataProvisionDescription: 'Providing safe riding data to companies and municipalities',
+    subscriptionService: 'Subscription Service',
+    subscriptionDescription: 'All-in-one monthly plan including dedicated device',
+    guaranteeService: '90-day Money Back Guarantee',
+    guaranteeDescription: 'Secure guarantee system for peace of mind trial',
 
     // other projects
     oProject1: 'Automatic entrance and exit management',

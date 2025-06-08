@@ -89,6 +89,16 @@ export function ArtworkSection() {
       year: '2024',
       materials: ['Heat Control System', 'Aromatics'],
       dimensions: '25cm × 25cm × 15cm'
+    },
+    {
+      id: 'protozoa',
+      title: t('artwork7Title'),
+      description: t('artwork7Description'),
+      image: "/images/Protozoa.png",
+      link: "https://protozoahp.vercel.app/",
+      year: '2025',
+      materials: ['スーパーキャパシタ', 'アクチュエータ'],
+      dimensions: '可変'
     }
   ], [t])
 
@@ -197,7 +207,7 @@ export function ArtworkSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-light mb-6 tracking-tight ${
+                    <h2 className={`text-4xl md:text-5xl font-light mb-6 tracking-tight ${
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
             {t('artwork')}
@@ -541,6 +551,19 @@ export function ArtworkSection() {
                         <p className={`${isDark ? 'text-white' : 'text-gray-900'}`}>
                           {filteredArtworks[selectedArtwork]?.year}
                         </p>
+                      </div>
+
+                      {/* Created by 4ZIGEN */}
+                      <div>
+                        <h5 className={`font-medium mb-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                          {t('createdBy')}
+                        </h5>
+                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${
+                          isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-700'
+                        }`}>
+                          <span className="font-medium">{t('artworkTeam')}</span>
+                          <span className="text-xs opacity-75">{t('artworkTeamDescription')}</span>
+                        </div>
                       </div>
 
                       {filteredArtworks[selectedArtwork]?.materials && (

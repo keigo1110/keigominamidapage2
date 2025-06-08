@@ -9,7 +9,6 @@ import { useState, useEffect, useRef } from 'react'
 interface TimelineChartProps {
   experiences: ProcessedExperience[]
   timelineBounds: TimelineBounds
-  currentTimePosition: number
   hoveredProject: string | null
   onProjectHover: (id: string | null) => void
   isDark: boolean
@@ -18,7 +17,6 @@ interface TimelineChartProps {
 export function TimelineChart({
   experiences,
   timelineBounds,
-  currentTimePosition,
   hoveredProject,
   onProjectHover,
   isDark
@@ -26,50 +24,67 @@ export function TimelineChart({
   const [isClient, setIsClient] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showCard, setShowCard] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
   const hoverTimeoutRef = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
     setIsClient(true)
+    const checkMobile = () => setIsMobile(window.innerWidth < 640)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // シンプルなホバー処理
+  // 最適化されたホバー処理
   const handleProjectHover = (projectId: string | null, event?: React.MouseEvent) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
     }
 
     if (projectId && event) {
-      // マウス位置を記録
+      // マウス位置を記録 (デバウンス処理)
       setMousePosition({ x: event.clientX, y: event.clientY })
 
-      // 短い遅延でカード表示
+      // モバイルでは即座に表示、デスクトップでは短い遅延
+      const delay = isMobile ? 0 : 200
       hoverTimeoutRef.current = setTimeout(() => {
         onProjectHover(projectId)
         setShowCard(true)
-      }, 300)
+      }, delay)
     } else {
-      // ホバー終了処理
+      // ホバー終了処理 - モバイルでは長めの遅延
+      const exitDelay = isMobile ? 500 : 150
       hoverTimeoutRef.current = setTimeout(() => {
         onProjectHover(null)
         setShowCard(false)
-      }, 150)
+      }, exitDelay)
     }
   }
 
-  // カードエリアホバー処理
+  // 最適化されたカードエリアホバー処理
   const handleCardHover = (isEntering: boolean) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
     }
 
     if (!isEntering) {
+      const exitDelay = isMobile ? 300 : 150
       hoverTimeoutRef.current = setTimeout(() => {
         onProjectHover(null)
         setShowCard(false)
-      }, 150)
+      }, exitDelay)
     }
   }
+
+  // クリーンアップ
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+    }
+  }, [])
 
   // プロジェクトのグループ化
   const groupedExperiences = groupExperiences(experiences)
@@ -89,16 +104,21 @@ export function TimelineChart({
   const yearLabels = generateTimeLabels()
 
   return (
-    <div className="relative w-full">
-      {/* 年表示ヘッダー - クリーンなデザイン */}
-      <div className="flex justify-between items-center pb-6 mb-8 border-b border-gray-200/20 dark:border-gray-700/20">
+    <div
+      className="relative w-full"
+      role="region"
+      aria-label="経歴タイムライン"
+      tabIndex={0}
+    >
+      {/* 年表示ヘッダー - レスポンシブ対応 */}
+      <div className="flex justify-between items-center pb-4 sm:pb-6 mb-6 sm:mb-8 border-b border-gray-200/20 dark:border-gray-700/20">
         {yearLabels.map((label, index) => {
           const isCurrentYear = label.year === new Date().getFullYear()
 
           return (
             <motion.div
               key={label.year}
-              className={`text-center ${
+              className={`text-center flex-1 ${
                 isCurrentYear
                   ? isDark ? 'text-blue-400 font-bold' : 'text-blue-600 font-bold'
                   : isDark ? 'text-gray-400' : 'text-gray-600'
@@ -107,10 +127,10 @@ export function TimelineChart({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className="text-lg lg:text-xl font-semibold">{label.year}</div>
+              <div className="text-sm sm:text-base lg:text-xl font-semibold">{label.year}</div>
               {isCurrentYear && (
                 <motion.div
-                  className="w-2 h-2 bg-blue-500 rounded-full mx-auto mt-2"
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full mx-auto mt-1 sm:mt-2"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
@@ -126,7 +146,7 @@ export function TimelineChart({
         ref={timelineRef}
         className="relative"
         style={{
-          minHeight: `${groupedExperiences.length * 80 + 40}px`
+          minHeight: `${groupedExperiences.length * (isMobile ? 60 : 80) + 40}px`
         }}
       >
         {/* 背景グリッド */}
@@ -145,9 +165,9 @@ export function TimelineChart({
         </div>
 
         {/* プロジェクトバー */}
-        <div className="relative z-10 py-4">
+        <div className="relative z-10 py-2 sm:py-4">
           {groupedExperiences.map((group, groupIndex) => {
-            const rowHeight = 80
+            const rowHeight = isMobile ? 60 : 80
             const projectPositions = calculateGroupProjectPositions(group, timelineBounds)
 
             const representative = group.experiences[0]
@@ -160,16 +180,16 @@ export function TimelineChart({
                 className="relative flex items-center"
                 style={{
                   height: `${rowHeight}px`,
-                  marginBottom: '4px'
+                  marginBottom: isMobile ? '2px' : '4px'
                 }}
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: groupIndex * 0.05 }}
               >
-                {/* プロジェクト情報 */}
-                <div className="w-48 lg:w-56 flex-shrink-0 pr-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg overflow-hidden shadow-sm border border-white/20">
+                {/* プロジェクト情報 - モバイル対応 */}
+                <div className="w-32 sm:w-40 lg:w-56 flex-shrink-0 pr-2 sm:pr-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg overflow-hidden shadow-sm border border-white/20">
                       <Image
                         src={group.logo}
                         alt={displayTitle}
@@ -179,49 +199,61 @@ export function TimelineChart({
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className={`text-sm lg:text-base font-semibold truncate flex items-center gap-2 ${
+                      <div className={`text-xs sm:text-sm lg:text-base font-semibold truncate flex items-center gap-1 sm:gap-2 ${
                         isDark ? 'text-white' : 'text-gray-900'
                       }`}>
-                        {displayTitle}
-                        {group.experiences.length > 1 && (
+                        {isMobile ? displayTitle.slice(0, 8) + (displayTitle.length > 8 ? '...' : '') : displayTitle}
+                        {group.experiences.length > 1 && !isMobile && (
                           <GitBranch className="w-3 h-3 opacity-60 flex-shrink-0" />
                         )}
                       </div>
-                      <div className={`text-xs lg:text-sm ${
-                        isDark ? 'text-gray-400' : 'text-gray-600'
-                      }`}>
-                        {group.experiences.length > 1
-                          ? `${group.experiences.length}期間`
-                          : representative.displayDate
-                        }
-                      </div>
+                      {!isMobile && (
+                        <div className={`text-xs lg:text-sm ${
+                          isDark ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          {group.experiences.length > 1
+                            ? `${group.experiences.length}期間`
+                            : representative.displayDate
+                          }
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* タイムラインバー領域 */}
-                <div className="flex-1 relative" style={{ height: '40px' }}>
-                  {projectPositions.map((projectPos, posIndex) => {
+                <div className="flex-1 relative" style={{ height: isMobile ? '30px' : '40px' }}>
+                                    {projectPositions.map((projectPos, posIndex) => {
                     const isHovered = hoveredProject === projectPos.experience.id
 
                     return (
                       <div key={projectPos.experience.id} className="absolute inset-0">
-                        {/* シンプルなホバー領域 */}
+                        {/* アクセシブルなホバー領域 */}
                         <div
-                          className="absolute z-30 cursor-pointer"
+                          className="absolute z-30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 rounded"
                           style={{
-                            left: `${Math.max(0, projectPos.leftPercent - 1)}%`,
-                            width: `${Math.min(100, projectPos.widthPercent + 2)}%`,
-                            top: '-8px',
-                            bottom: '-8px'
+                            left: `${Math.max(0, projectPos.leftPercent - (isMobile ? 2 : 1))}%`,
+                            width: `${Math.min(100, projectPos.widthPercent + (isMobile ? 4 : 2))}%`,
+                            top: isMobile ? '-12px' : '-8px',
+                            bottom: isMobile ? '-12px' : '-8px'
                           }}
-                          onMouseEnter={(e) => handleProjectHover(projectPos.experience.id, e)}
-                          onMouseLeave={() => handleProjectHover(null)}
+                          role="button"
+                          tabIndex={0}
+                          aria-label={`${projectPos.experience.title} の詳細を表示`}
+                          onMouseEnter={!isMobile ? (e) => handleProjectHover(projectPos.experience.id, e) : undefined}
+                          onMouseLeave={!isMobile ? () => handleProjectHover(null) : undefined}
+                          onClick={isMobile ? (e) => handleProjectHover(projectPos.experience.id, e) : undefined}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault()
+                              handleProjectHover(projectPos.experience.id, e)
+                            }
+                          }}
                         />
 
                         {/* プロジェクトバー */}
                         <div
-                          className={`absolute top-1/2 -translate-y-1/2 h-7 border border-white/20 transition-all duration-200 ${
+                          className={`absolute top-1/2 -translate-y-1/2 ${isMobile ? 'h-5' : 'h-7'} border border-white/20 transition-all duration-200 ease-out ${
                             isHovered ? 'shadow-lg transform scale-105 z-20' : 'shadow-sm z-10'
                           } ${
                             projectPos.isOngoing ? 'rounded-l-lg' : 'rounded-lg'
@@ -230,7 +262,8 @@ export function TimelineChart({
                             left: `${projectPos.leftPercent}%`,
                             width: `${projectPos.widthPercent}%`,
                             backgroundColor: group.color,
-                            opacity: isHovered ? 0.9 : (posIndex === 0 ? 0.8 : 0.6)
+                            opacity: isHovered ? 0.9 : (posIndex === 0 ? 0.8 : 0.6),
+                            willChange: isHovered ? 'transform, box-shadow' : 'auto'
                           }}
                         >
                           {/* 進捗表示 */}
@@ -248,7 +281,7 @@ export function TimelineChart({
 
                           {/* ステータスインジケータ */}
                           {posIndex === 0 && (
-                            <div className={`absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm transition-all duration-200 ${
+                            <div className={`absolute ${isMobile ? '-left-1.5' : '-left-2'} top-1/2 -translate-y-1/2 ${isMobile ? 'w-3 h-3' : 'w-4 h-4'} rounded-full border-2 border-white shadow-sm transition-all duration-200 ${
                               projectPos.experience.status === 'completed' ? 'bg-green-500' :
                               projectPos.experience.status === 'ongoing' ? 'bg-blue-500' :
                               projectPos.isOngoing ? 'bg-orange-500' : 'bg-gray-400'
@@ -256,10 +289,10 @@ export function TimelineChart({
                           )}
 
                           {/* プロジェクトタイトル */}
-                          {posIndex === 0 && projectPos.widthPercent > 15 && (
-                            <div className="absolute inset-0 flex items-center px-3 text-white text-xs lg:text-sm font-medium truncate">
-                              {displayTitle}
-                              {projectPos.isOngoing && (
+                          {posIndex === 0 && projectPos.widthPercent > (isMobile ? 20 : 15) && (
+                            <div className={`absolute inset-0 flex items-center ${isMobile ? 'px-2' : 'px-3'} text-white ${isMobile ? 'text-xs' : 'text-xs lg:text-sm'} font-medium truncate`}>
+                              {isMobile ? displayTitle.slice(0, 6) + (displayTitle.length > 6 ? '..' : '') : displayTitle}
+                              {projectPos.isOngoing && !isMobile && (
                                 <span className="ml-2 text-xs opacity-75">継続中</span>
                               )}
                             </div>
@@ -276,8 +309,13 @@ export function TimelineChart({
 
         {/* 現在時刻インジケータ */}
         <CurrentTimeIndicator
-          position={currentTimePosition}
+          timelineBounds={timelineBounds}
           isDark={isDark}
+          experiences={experiences.map(exp => ({
+            startDate: exp.startDate,
+            endDate: exp.endDate,
+            status: exp.status
+          }))}
         />
       </div>
 
@@ -301,31 +339,36 @@ export function TimelineChart({
 
           const hoveredExperience = (hoveredProjectPos as ProjectPosition).experience
 
-          // 動的カードサイズ計算
-          const baseCardWidth = 360
-          const baseCardHeight = 240
+          // 動的カードサイズ計算 - モバイル対応
+          const baseCardWidth = isMobile ? Math.min(320, window.innerWidth - 32) : 360
+          const baseCardHeight = isMobile ? 200 : 240
           const linkCount = hoveredExperience.links.length
           const hasProgress = (hoveredProjectPos as ProjectPosition).isActive && !(hoveredProjectPos as ProjectPosition).isOngoing
 
           // リンク数に応じた高さ調整
-          const linkAreaHeight = Math.min(linkCount * 44 + 40, 180) // 最大180px
+          const linkAreaHeight = Math.min(linkCount * (isMobile ? 36 : 44) + 40, isMobile ? 120 : 180)
           const cardHeight = baseCardHeight + (linkCount > 0 ? linkAreaHeight : 0) + (hasProgress ? 40 : 0)
 
-          // カード位置の計算
-          let cardX = mousePosition.x - baseCardWidth / 2
-          let cardY = mousePosition.y - cardHeight - 20
+          // カード位置の計算 - モバイル対応
+          let cardX = isMobile ? 16 : mousePosition.x - baseCardWidth / 2
+          let cardY = isMobile ? 100 : mousePosition.y - cardHeight - 20
 
           // 画面端調整
           const padding = 16
-          if (cardX < padding) cardX = padding
-          if (cardX + baseCardWidth > window.innerWidth - padding) cardX = window.innerWidth - baseCardWidth - padding
-          if (cardY < padding) cardY = mousePosition.y + 20
-          if (cardY + cardHeight > window.innerHeight - padding) cardY = window.innerHeight - cardHeight - padding
+          if (!isMobile) {
+            if (cardX < padding) cardX = padding
+            if (cardX + baseCardWidth > window.innerWidth - padding) cardX = window.innerWidth - baseCardWidth - padding
+            if (cardY < padding) cardY = mousePosition.y + 20
+            if (cardY + cardHeight > window.innerHeight - padding) cardY = window.innerHeight - cardHeight - padding
+          }
 
           return (
             <motion.div
               key={hoveredProject}
-              className={`fixed z-50 rounded-xl shadow-2xl border backdrop-blur-sm ${
+              role="dialog"
+              aria-labelledby={`project-title-${hoveredProject}`}
+              aria-describedby={`project-content-${hoveredProject}`}
+              className={`fixed z-50 rounded-xl shadow-2xl border backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${
                 isDark
                   ? 'bg-gray-800/95 text-white border-gray-600/80'
                   : 'bg-white/95 text-gray-900 border-gray-200/80'
@@ -356,7 +399,10 @@ export function TimelineChart({
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-lg line-clamp-1 mb-1">
+                    <h4
+                      id={`project-title-${hoveredProject}`}
+                      className="font-semibold text-lg line-clamp-1 mb-1"
+                    >
                       {hoveredExperience.title}
                     </h4>
                     <p className="text-sm opacity-70 line-clamp-1">
@@ -375,7 +421,10 @@ export function TimelineChart({
               </div>
 
               {/* メインコンテンツエリア */}
-              <div className="p-4 space-y-4">
+              <div
+                id={`project-content-${hoveredProject}`}
+                className="p-4 space-y-4"
+              >
                 {/* 期間とステータス */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className={`p-3 rounded-lg ${isDark ? 'bg-gray-700/50' : 'bg-gray-100/50'}`}>

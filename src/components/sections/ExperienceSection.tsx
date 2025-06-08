@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { Briefcase } from 'lucide-react'
 
 // 新しいコンポーネント
 import { TimelineChart } from './experience/TimelineChart'
@@ -19,7 +18,6 @@ export function ExperienceSection() {
   const {
     experiences,
     timelineBounds,
-    currentTimePosition,
     hoveredProject,
     setHoveredProject
   } = useExperienceData()
@@ -37,22 +35,26 @@ export function ExperienceSection() {
 
       {/* フルワイドコンテナ */}
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
-        {/* ヘッダー - シンプル版 */}
+        {/* ヘッダー - 統一デザイン */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Briefcase className={`w-8 h-8 lg:w-10 lg:h-10 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
-            <h2 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold ${
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
               {t('experience')}
             </h2>
           </div>
+          <div className={`w-20 h-1 mx-auto rounded-full ${
+            isDark
+              ? 'bg-gradient-to-r from-blue-400 to-blue-500'
+              : 'bg-gradient-to-r from-blue-500 to-blue-600'
+          }`} />
         </motion.div>
 
         {/* タイムラインチャート */}
@@ -61,20 +63,28 @@ export function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className={`p-6 lg:p-8 xl:p-10 rounded-3xl border ${
+          className={`p-4 sm:p-6 lg:p-8 xl:p-10 rounded-2xl sm:rounded-3xl border ${
             isDark
-              ? 'bg-gray-900/60 border-gray-800/50'
-              : 'bg-white/80 border-gray-200/50'
-          } backdrop-blur-sm shadow-2xl`}
+              ? 'bg-gray-900/80 border-gray-700/50 shadow-2xl shadow-blue-500/10'
+              : 'bg-white/90 border-gray-200/50 shadow-2xl shadow-blue-500/10'
+          } backdrop-blur-sm relative overflow-hidden`}
         >
-          <TimelineChart
-            experiences={experiences}
-            timelineBounds={timelineBounds}
-            currentTimePosition={currentTimePosition}
-            hoveredProject={hoveredProject}
-            onProjectHover={setHoveredProject}
-            isDark={isDark}
-          />
+          {/* 装飾的な背景グラデーション */}
+          <div className={`absolute inset-0 opacity-[0.02] ${
+            isDark
+              ? 'bg-gradient-to-br from-blue-400 via-transparent to-purple-400'
+              : 'bg-gradient-to-br from-blue-300 via-transparent to-purple-300'
+          }`} />
+
+          <div className="relative z-10">
+            <TimelineChart
+              experiences={experiences}
+              timelineBounds={timelineBounds}
+              hoveredProject={hoveredProject}
+              onProjectHover={setHoveredProject}
+              isDark={isDark}
+            />
+          </div>
         </motion.div>
       </div>
     </section>

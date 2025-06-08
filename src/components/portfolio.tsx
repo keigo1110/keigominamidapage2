@@ -6,7 +6,7 @@ import { Navigation } from './layout/Navigation'
 import { HomeSection } from './sections/HomeSection'
 import { ProjectsSection } from './sections/ProjectsSection'
 import { ArtworkSection } from './sections/ArtworkSection'
-import { StartupSection } from './sections/StartupSection'
+import { RefinedStartupSection } from './sections/RefinedStartupSection'
 import { OtherProjectsSection } from './sections/OtherProjectsSection'
 import { ExperienceSection } from './sections/ExperienceSection'
 import { AwardsSection } from './sections/AwardsSection'
@@ -45,7 +45,7 @@ export function PortfolioComponent() {
         <HomeSection />
         <ProjectsSection />
         <ArtworkSection />
-        <StartupSection />
+        <RefinedStartupSection />
         <OtherProjectsSection />
         <ExperienceSection />
         <AwardsSection />

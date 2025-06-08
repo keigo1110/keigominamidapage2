@@ -3,8 +3,7 @@ import { getExperiences } from '../data/experiences'
 import { useTranslation } from '../contexts/TranslationContext'
 import {
   calculateTimelineBounds,
-  calculateTimelineStats,
-  calculateCurrentTimePosition
+  calculateTimelineStats
 } from '../utils/experienceProcessor'
 
 export function useExperienceData() {
@@ -36,10 +35,7 @@ export function useExperienceData() {
     })
   }, [experiences, selectedYear])
 
-  // 現在時刻位置
-  const currentTimePosition = useMemo(() =>
-    calculateCurrentTimePosition(timelineBounds), [timelineBounds]
-  )
+
 
   // 年リスト
   const availableYears = useMemo(() => {
@@ -61,7 +57,6 @@ export function useExperienceData() {
     timelineBounds,
     timelineStats,
     availableYears,
-    currentTimePosition,
 
     // 状態
     selectedYear,

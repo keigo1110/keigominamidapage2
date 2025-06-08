@@ -3,49 +3,62 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
-import { Rocket, Target, Users, TrendingUp, ExternalLink } from 'lucide-react'
-import { colors } from '../../utils/refined-styles'
-
-interface Startup {
-  name: string
-  logo?: string
-  description: string
-  mission?: string
-  achievements: string[]
-  link?: string
-}
+import { MapPin, BarChart3, GraduationCap, ExternalLink, Play } from 'lucide-react'
+import Image from 'next/image'
 
 export function RefinedStartupSection() {
   const { t } = useTranslation()
   const { isDark } = useTheme()
 
-  const startup: Startup = {
-    name: t('Companyname'),
-    logo: '/images/startup-logo.png',
-    description: t('wakabarDescription'),
-    mission: t('startupMissionDescription'),
-    achievements: [
-      t('achivement1'),
-      t('achivement2')
-    ],
-    link: 'https://wakabar.com'
-  }
+  // 主要サービス・機能
+  const coreFeatures = [
+    {
+      icon: Play,
+      title: t('audioWarningSystem'),
+      description: t('audioWarningDescription'),
+      color: 'from-red-500 to-orange-500'
+    },
+    {
+      icon: MapPin,
+      title: t('realtimeTracking'),
+      description: t('realtimeTrackingDescription'),
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      icon: BarChart3,
+      title: t('dataAnalysis'),
+      description: t('dataAnalysisDescription'),
+      color: 'from-emerald-500 to-teal-500'
+    },
+    {
+      icon: GraduationCap,
+      title: t('safetyEducation'),
+      description: t('safetyEducationDescription'),
+      color: 'from-purple-500 to-violet-500'
+    }
+  ]
 
-  const features = [
+
+
+  // Wakabarのサイト情報
+  const wakabarSites = [
     {
-      icon: Target,
-      title: 'Mission',
-      description: startup.mission || ''
+      name: t('wakabarMainSite'),
+      url: 'https://www.wakabar-cycle.com/',
+      description: 'コーポレートサイト・サービス詳細',
+      isPrimary: true
     },
     {
-      icon: Users,
-      title: 'Team',
-      description: 'Dedicated team of engineers and designers'
+      name: t('wakabarTourSite'),
+      url: 'https://wakabar-tour.com/',
+      description: 'セルフツアー・体験',
+      isPrimary: false
     },
     {
-      icon: TrendingUp,
-      title: 'Growth',
-      description: 'Expanding to multiple cities across Japan'
+      name: t('wakabarAppSite'),
+      url: 'https://wakabar.net/',
+      description: 'アプリケーション',
+      isPrimary: false
     }
   ]
 
@@ -54,174 +67,270 @@ export function RefinedStartupSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
+        duration: 0.6,
+        ease: "easeOut"
       }
     }
   }
 
   return (
-    <section id="startup" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="startup" className="py-24 relative overflow-hidden">
+      {/* 背景グラデーション */}
+      <div className="absolute inset-0">
+        <div className={`absolute inset-0 bg-gradient-to-br ${
+          isDark
+            ? 'from-slate-950 via-blue-950/50 to-emerald-950/30'
+            : 'from-blue-50/80 via-emerald-50/60 to-cyan-50/40'
+        }`} />
+
+        {/* 装飾的要素 */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className={`absolute -top-40 -right-40 w-80 h-80 rounded-full ${
+            isDark ? 'bg-emerald-500/5' : 'bg-emerald-400/10'
+          } blur-3xl`} />
+          <div className={`absolute -bottom-40 -left-40 w-96 h-96 rounded-full ${
+            isDark ? 'bg-blue-500/5' : 'bg-blue-400/10'
+          } blur-3xl`} />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* ヘッダーセクション */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-${colors.primary[500]} to-${colors.secondary[500]} bg-clip-text text-transparent`}>
+          <h2 className={`text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${
+            isDark
+              ? 'from-emerald-400 via-blue-400 to-cyan-400'
+              : 'from-emerald-600 via-blue-600 to-cyan-600'
+          } bg-clip-text text-transparent`}>
             {t('startup')}
           </h2>
-          <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
-            Building innovative solutions for a safer world
+          <p className={`text-xl font-light ${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          } max-w-3xl mx-auto leading-relaxed`}>
+            自転車事故をゼロにする
           </p>
         </motion.div>
 
-        {/* Main startup card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className={`relative overflow-hidden rounded-2xl ${
-            isDark ? 'bg-gray-900/50' : 'bg-white/70'
-          } backdrop-blur-sm border ${
-            isDark ? 'border-gray-800' : 'border-gray-200'
-          } mb-12`}
-        >
-          {/* Background gradient */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-${colors.primary[500]}/5 to-${colors.secondary[500]}/5`} />
-
-          <div className="relative p-8 md:p-12">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              {/* Logo/Icon */}
-              <div className="flex-shrink-0">
-                <div className={`w-24 h-24 rounded-2xl bg-gradient-to-r from-${colors.primary[500]} to-${colors.secondary[500]} p-0.5`}>
-                  <div className={`w-full h-full rounded-2xl ${
-                    isDark ? 'bg-gray-900' : 'bg-white'
-                  } flex items-center justify-center`}>
-                    <Rocket className="w-12 h-12 text-indigo-500" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="flex-grow text-center md:text-left">
-                <h3 className={`text-3xl font-bold mb-2 ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}>
-                  {startup.name}
-                </h3>
-                <p className={`text-lg mb-4 ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  {startup.description}
-                </p>
-                
-                {startup.link && (
-                  <motion.a
-                    href={startup.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
-                      isDark 
-                        ? 'bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30' 
-                        : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
-                    }`}
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                    Visit Website
-                  </motion.a>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Features grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 mb-12"
+          className="space-y-16"
         >
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                className={`p-6 rounded-xl ${
-                  isDark ? 'bg-gray-900/50' : 'bg-white/70'
-                } backdrop-blur-sm border ${
-                  isDark ? 'border-gray-800' : 'border-gray-200'
-                } group transition-all duration-300`}
-              >
-                <Icon className={`w-8 h-8 mb-4 ${
-                  isDark ? 'text-indigo-400' : 'text-indigo-600'
-                } group-hover:scale-110 transition-transform`} />
-                <h4 className={`text-lg font-semibold mb-2 ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}>
-                  {feature.title}
-                </h4>
-                <p className={`text-sm ${
-                  isDark ? 'text-gray-400' : 'text-gray-600'
-                }`}>
-                  {feature.description}
-                </p>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+          {/* メイン企業カード */}
+          <motion.div
+            variants={itemVariants}
+            className={`relative overflow-hidden rounded-3xl ${
+              isDark
+                ? 'bg-gray-900/40 border-gray-700/30'
+                : 'bg-white/70 border-gray-200/30'
+            } backdrop-blur-xl border shadow-2xl`}
+          >
+            {/* 背景グラデーション */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-blue-500/5 to-cyan-500/5" />
 
-        {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className={`p-8 rounded-xl ${
-            isDark ? 'bg-gray-800/30' : 'bg-gray-50/50'
-          } backdrop-blur-sm`}
-        >
-          <h4 className={`text-xl font-semibold mb-6 text-center ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>
-            Key Achievements
-          </h4>
-          <div className="grid md:grid-cols-2 gap-4">
-            {startup.achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className={`flex items-start gap-3 ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}
-              >
-                <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 bg-gradient-to-r from-${colors.primary[500]} to-${colors.secondary[500]}`} />
-                <span>{achievement}</span>
-              </motion.div>
-            ))}
-          </div>
+            <div className="relative p-8 md:p-12">
+              <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+                {/* 企業情報 */}
+                <div className="lg:col-span-2 order-1 lg:order-1">
+                  <div className="flex items-center gap-6 mb-8">
+                    {/* ロゴ */}
+                    <div className={`w-20 h-20 rounded-2xl ${
+                      isDark ? 'bg-white/10' : 'bg-white/90'
+                    } flex items-center justify-center shadow-lg backdrop-blur-sm border ${
+                      isDark ? 'border-gray-700/30' : 'border-gray-200/30'
+                    } overflow-hidden`}>
+                      <Image
+                        src="/images/wakabar.png"
+                        alt="Wakabar Logo"
+                        width={56}
+                        height={56}
+                        className="object-contain"
+                      />
+                    </div>
+
+                    <div>
+                      <h3 className={`text-3xl md:text-4xl font-bold ${
+                        isDark ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {t('Companyname')}
+                      </h3>
+                      <p className={`text-lg ${
+                        isDark ? 'text-emerald-400' : 'text-emerald-600'
+                      } font-medium`}>
+                        位置情報を活用した事故防止
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className={`text-xl font-light mb-8 ${
+                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  } leading-relaxed`}>
+                    {t('wakabarDescription')}
+                  </p>
+
+                  <div className={`p-6 rounded-2xl ${
+                    isDark ? 'bg-gray-800/30' : 'bg-gray-50/50'
+                  } backdrop-blur-sm border ${
+                    isDark ? 'border-gray-700/30' : 'border-gray-200/30'
+                  } mb-8`}>
+                    <h4 className={`text-lg font-semibold mb-3 ${
+                      isDark ? 'text-white' : 'text-gray-900'
+                    }`}>
+                      {t('startupMission')}
+                    </h4>
+                    <p className={`${
+                      isDark ? 'text-gray-300' : 'text-gray-600'
+                    } leading-relaxed`}>
+                      {t('startupMissionDescription')}
+                    </p>
+                  </div>
+
+                  {/* サイトリンク */}
+                  <div className="space-y-3">
+                    {wakabarSites.map((site, index) => (
+                      <motion.a
+                        key={index}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02, x: 4 }}
+                        whileTap={{ scale: 0.98 }}
+                        className={`flex items-center justify-between p-4 rounded-xl w-full ${
+                          site.isPrimary
+                            ? isDark
+                              ? 'bg-emerald-600/20 border-emerald-500/30 hover:bg-emerald-600/30'
+                              : 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100'
+                            : isDark
+                              ? 'bg-gray-800/30 border-gray-700/30 hover:bg-gray-800/50'
+                              : 'bg-gray-50/50 border-gray-200/30 hover:bg-gray-100/70'
+                        } border backdrop-blur-sm transition-all duration-300 group`}
+                      >
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-1">
+                            <span className={`font-semibold text-lg ${
+                              site.isPrimary
+                                ? isDark ? 'text-emerald-400' : 'text-emerald-600'
+                                : isDark ? 'text-white' : 'text-gray-900'
+                            }`}>
+                              {site.name}
+                            </span>
+                            {site.isPrimary && (
+                              <span className={`px-2 py-1 text-xs rounded-full ${
+                                isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'
+                              }`}>
+                                メイン
+                              </span>
+                            )}
+                          </div>
+                          <p className={`text-sm ${
+                            isDark ? 'text-gray-400' : 'text-gray-600'
+                          }`}>
+                            {site.description}
+                          </p>
+                        </div>
+                        <ExternalLink className={`w-5 h-5 ml-4 ${
+                          site.isPrimary
+                            ? isDark ? 'text-emerald-400' : 'text-emerald-600'
+                            : isDark ? 'text-gray-400' : 'text-gray-600'
+                        } group-hover:translate-x-1 transition-transform`} />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* サービスデモ */}
+                <div className="lg:col-span-3 order-2 lg:order-2">
+                  <div className={`p-4 rounded-2xl ${
+                    isDark ? 'bg-gray-800/30' : 'bg-gray-50/50'
+                  } backdrop-blur-sm border ${
+                    isDark ? 'border-gray-700/30' : 'border-gray-200/30'
+                  }`}>
+                    <h4 className={`text-lg font-semibold mb-4 ${
+                      isDark ? 'text-white' : 'text-gray-900'
+                    }`}>
+                      サービスデモ
+                    </h4>
+                    <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
+                      <iframe
+                        src="https://www.youtube.com/embed/C9rNbZwhLqE"
+                        title="Wakabar サービスデモ動画"
+                        className="w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* コア機能セクション */}
+          <motion.div variants={itemVariants}>
+            <h3 className={`text-3xl font-bold text-center mb-12 ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+              主要サービス・機能
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {coreFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`p-6 rounded-2xl ${
+                    isDark
+                      ? 'bg-gray-900/40 border-gray-700/30'
+                      : 'bg-white/70 border-gray-200/30'
+                  } backdrop-blur-xl border shadow-lg group`}
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${feature.color} p-0.5 mb-4`}>
+                    <div className={`w-full h-full rounded-xl ${
+                      isDark ? 'bg-gray-900' : 'bg-white'
+                    } flex items-center justify-center`}>
+                      <feature.icon className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  <h4 className={`text-lg font-semibold mb-3 ${
+                    isDark ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {feature.title}
+                  </h4>
+                  <p className={`text-sm ${
+                    isDark ? 'text-gray-400' : 'text-gray-600'
+                  } leading-relaxed`}>
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+
         </motion.div>
       </div>
     </section>

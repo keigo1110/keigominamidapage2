@@ -52,13 +52,18 @@ export function calculateTimelineBounds(experiences: ProcessedExperience[]): Tim
   const startDate = new Date(Math.min(...dates.map(d => d.getTime())))
   const endDate = new Date(Math.max(...dates.map(d => d.getTime())))
 
-  // 現在日も日数レベルの精度で設定（時間を00:00:00に設定）
+  // 現在日も日数レベルの精度で設定（時間を00:00:00に設定、タイムゾーン影響なし）
   const now = new Date()
-  const currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)
 
-  // 表示用に少し余白を追加（日数レベル）
-  const displayStart = new Date(startDate.getFullYear(), startDate.getMonth() - 1, 1)
-  const displayEnd = new Date(endDate.getFullYear(), endDate.getMonth() + 2, 0)
+    // 表示用に少し余白を追加（より安全な計算）
+  const displayStart = new Date(startDate)
+  displayStart.setMonth(displayStart.getMonth() - 1)
+  displayStart.setDate(1)
+
+  const displayEnd = new Date(endDate)
+  displayEnd.setMonth(displayEnd.getMonth() + 2)
+  displayEnd.setDate(0) // 前月の最終日
 
   const totalMonths = Math.round(
     (displayEnd.getTime() - displayStart.getTime()) / (30.44 * 24 * 60 * 60 * 1000)
@@ -130,6 +135,8 @@ export function calculateProjectPosition(
   const progress = DateUtils.getProgress(experience.startDate, experience.endDate)
   const isActive = DateUtils.isCurrentlyActive(experience.startDate, experience.endDate)
 
+
+
   return {
     leftPercent,
     widthPercent,
@@ -142,11 +149,11 @@ export function calculateProjectPosition(
  * 現在時刻インジケータの位置計算
  */
 export function calculateCurrentTimePosition(bounds: TimelineBounds): number {
-  // 日数レベルでの完全精度保証
+  // ローカル時間での現在日付取得（タイムゾーン影響なし）
   const now = new Date()
   const currentDayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0)
 
-  const totalTime = bounds.endDate.getTime() - bounds.startDate.getTime()
+    const totalTime = bounds.endDate.getTime() - bounds.startDate.getTime()
   const currentTime = currentDayStart.getTime() - bounds.startDate.getTime()
 
   // 日数レベルでの正確な位置計算

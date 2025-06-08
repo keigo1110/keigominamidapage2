@@ -21,7 +21,7 @@ export function MinimalExperienceSection() {
       ]
     },
     {
-      logo: "/images/startup-logo.png",
+      logo: "/images/wakabar.png",
       title: t('Companyname'),
       position: "Co-founder & CTO",
       date: "2023 - Present",
@@ -48,13 +48,13 @@ export function MinimalExperienceSection() {
             Building innovative solutions and contributing to cutting-edge research.
           </p>
         </motion.div>
-        
+
         <div className="grid gap-6 max-w-3xl">
           {experiences.map((experience, index) => (
             <MinimalExperienceCard key={index} {...experience} />
           ))}
         </div>
-        
+
         {/* Awards section - minimal style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
