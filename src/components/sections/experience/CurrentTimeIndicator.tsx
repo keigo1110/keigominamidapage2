@@ -44,8 +44,18 @@ export function CurrentTimeIndicator({
   const currentTimeData = useMemo(() => {
     const currentDayStart = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 0, 0, 0)
 
+    // TimelineBounds形式に変換
+    const fullBounds = {
+      startDate: timelineBounds.startDate,
+      endDate: timelineBounds.endDate,
+      currentDate: currentDayStart,
+      totalMonths: Math.round(
+        (timelineBounds.endDate.getTime() - timelineBounds.startDate.getTime()) / (30.44 * 24 * 60 * 60 * 1000)
+      )
+    }
+
     // 既存の統一された位置計算関数を使用
-    const position = calculateCurrentTimePosition(timelineBounds)
+    const position = calculateCurrentTimePosition(fullBounds)
 
     // 進行中プロジェクトの検出
     const ongoingExperiences = experiences.filter(exp =>

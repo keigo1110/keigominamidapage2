@@ -221,9 +221,10 @@ export function ThreeBackground() {
         cancelAnimationFrame(animationRef.current);
       }
 
+      // mountRef.currentをクリーンアップ関数内でコピーして使用
       const currentMount = mountRef.current;
-      if (currentMount && renderer.domElement) {
-        currentMount.removeChild(renderer.domElement);
+      if (currentMount && rendererRef.current?.domElement) {
+        currentMount.removeChild(rendererRef.current.domElement);
       }
 
       // Dispose of materials

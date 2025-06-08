@@ -22,6 +22,7 @@ import {
 
 import { ProcessedExperience } from '../../types/experience'
 import { professionalDesign } from '../../utils/professional-design-system'
+import { useTranslation } from '../../contexts/TranslationContext'
 
 interface ProfessionalExperienceCardProps {
   experience: ProcessedExperience
@@ -38,6 +39,7 @@ export function ProfessionalExperienceCard({
   isHovered,
   onHover
 }: ProfessionalExperienceCardProps) {
+  const { t } = useTranslation()
   const isDark = true // ダークモード固定
   const [isExpanded, setIsExpanded] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)

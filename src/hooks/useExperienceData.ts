@@ -32,8 +32,11 @@ export function useExperienceData() {
       }
 
                   // 翻訳対応の日付フォーマット（シンプルで確実な方式）
-      const formatLocalizedPeriod = (period: typeof period) => {
-        const { start, end } = period
+      const formatLocalizedPeriod = (periodData: {
+        start: { year: number; month: number; day: number }
+        end: { year: number; month: number; day: number }
+      }) => {
+        const { start, end } = periodData
 
         // Check if we're in English mode (use language directly)
         const isEnglish = language === 'en'

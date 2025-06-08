@@ -249,7 +249,7 @@ export function TimelineChart({
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault()
-                              handleProjectHover(projectPos.experience.id, e)
+                              handleProjectHover(projectPos.experience.id)
                             }
                           }}
                         />

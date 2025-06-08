@@ -258,11 +258,10 @@ export function ProfessionalExperienceSection() {
                 placeholder={t('searchProjectsPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-xl border bg-transparent transition-all duration-200 focus:outline-none focus:ring-2"
+                className="w-full pl-12 pr-4 py-3 rounded-xl border bg-transparent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 style={{
                   borderColor: sectionTheme.border,
-                  color: sectionTheme.textPrimary,
-                  focusRingColor: sectionTheme.accent
+                  color: sectionTheme.textPrimary
                 }}
               />
             </div>

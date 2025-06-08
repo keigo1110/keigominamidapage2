@@ -22,7 +22,7 @@ export const useOptimizedFiltering = (
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase()
       const searchTerms = query.split(' ').filter(term => term.length > 0)
-      
+
       filtered = filtered.filter(exp => {
         const searchText = exp.searchableText
         return searchTerms.every(term => searchText.includes(term))
@@ -84,8 +84,11 @@ export const useIntersectionObserver = (
     if (!target) return
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsIntersecting(entry.isIntersecting)
+      (entries) => {
+        const entry = entries[0]
+        if (entry) {
+          setIsIntersecting(entry.isIntersecting)
+        }
       },
       {
         threshold: 0.1,
@@ -155,13 +158,12 @@ export const usePerformanceMetrics = () => {
 }
 
 // デバウンス最適化
-export const useOptimizedDebounce = <T extends (...args: any[]) => any>(
+export const useOptimizedDebounce = <T extends (...args: unknown[]) => unknown>(
   callback: T,
   delay: number,
   maxWait?: number
 ) => {
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const maxTimeoutRef = useRef<NodeJS.Timeout>()
   const lastCallTimeRef = useRef<number>(0)
 
   return useCallback(
@@ -206,16 +208,16 @@ export const generateAriaAttributes = (
     'aria-describedby': `experience-${experience.id}-description`,
     'aria-posinset': index + 1,
     'aria-setsize': total,
-    
+
     // 状態属性
     'aria-expanded': isExpanded,
     'aria-selected': isFocused,
     'aria-current': experience.isActive ? 'page' : undefined,
-    
+
     // 対話属性
     tabIndex: isFocused ? 0 : -1,
     'aria-keyshortcuts': 'Enter Space',
-    
+
     // 追加情報
     'aria-label-extended': [
       `${experience.title}`,
@@ -238,7 +240,7 @@ export const generateKeyboardNavigationAttributes = (
   isLast: boolean
 ) => {
   const shortcuts = []
-  
+
   if (hasPrevious) shortcuts.push('ArrowUp: 前の項目')
   if (hasNext) shortcuts.push('ArrowDown: 次の項目')
   if (isFirst) shortcuts.push('End: 最後の項目へ')
@@ -318,19 +320,19 @@ export const useLiveRegion = () => {
   const [politeness, setPoliteness] = useState<'polite' | 'assertive'>('polite')
 
   const announce = useCallback((
-    text: string, 
+    text: string,
     priority: 'polite' | 'assertive' = 'polite',
     delay: number = 100
   ) => {
     // 前のメッセージをクリア
     setMessage('')
     setPoliteness(priority)
-    
+
     // 短い遅延後にメッセージを設定（スクリーンリーダーが確実に読み取るため）
     setTimeout(() => {
       setMessage(text)
     }, delay)
-    
+
     // 一定時間後にメッセージをクリア
     setTimeout(() => {
       setMessage('')
@@ -338,14 +340,14 @@ export const useLiveRegion = () => {
   }, [])
 
   const announceSearchResults = useCallback((count: number, query: string) => {
-    const message = query.trim() 
+    const message = query.trim()
       ? `検索結果: "${query}" で ${count} 件の経歴が見つかりました`
       : `${count} 件の経歴を表示しています`
     announce(message, 'polite')
   }, [announce])
 
   const announceFilterResults = useCallback((count: number, filters: string[]) => {
-    const filterText = filters.length > 0 
+    const filterText = filters.length > 0
       ? `フィルター "${filters.join(', ')}" で`
       : ''
     const message = `${filterText} ${count} 件の経歴を表示しています`
@@ -392,31 +394,32 @@ export const validateColorContrast = (
   // 相対輝度を計算
   const getLuminance = (rgb: { r: number; g: number; b: number }) => {
     const { r, g, b } = rgb
-    const [rs, gs, bs] = [r, g, b].map(c => {
+    const values = [r, g, b].map(c => {
       c = c / 255
       return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
     })
+    const [rs = 0, gs = 0, bs = 0] = values
     return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
   }
 
   try {
     const fgLum = getLuminance(getRGB(foreground))
     const bgLum = getLuminance(getRGB(background))
-    
+
     const contrast = (Math.max(fgLum, bgLum) + 0.05) / (Math.min(fgLum, bgLum) + 0.05)
-    
+
     const requirements = {
       AA: 4.5,
       AAA: 7
     }
-    
+
     return {
       ratio: contrast,
       passes: contrast >= requirements[level],
       level,
       grade: contrast >= 7 ? 'AAA' : contrast >= 4.5 ? 'AA' : 'Fail'
     }
-  } catch (error) {
+  } catch {
     return {
       ratio: 0,
       passes: false,
@@ -456,7 +459,7 @@ export const performanceAccessibility = {
   useIntersectionObserver,
   usePerformanceMetrics,
   useOptimizedDebounce,
-  
+
   // アクセシビリティ
   generateAriaAttributes,
   generateKeyboardNavigationAttributes,
