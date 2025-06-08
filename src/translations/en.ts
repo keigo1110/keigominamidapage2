@@ -187,5 +187,132 @@ In the future where informatization progresses, what we face is whether to be sw
     robotCompetitionDescription: 'Award-winning autonomous robot system for competitive navigation and object manipulation',
     viewMoreProjects: 'View More Projects',
     allRightsReserved: 'All rights reserved',
-    builtWith: 'Built with'
+    builtWith: 'Built with',
+
+    // Hardcoded Japanese text translations
+    bicycleAccidentPrevention: 'Zero bicycle accidents',
+    locationBasedAccidentPrevention: 'Location-based accident prevention',
+    mainSite: 'Main',
+    corporateSiteDescription: 'Corporate site & service details',
+    selfTourDescription: 'Self tour & experience',
+    applicationDescription: 'Application',
+    serviceDemo: 'Service Demo',
+    serviceDemoVideoTitle: 'Wakabar Service Demo Video',
+    coreServices: 'Core Services & Features',
+
+    // ProfessionalExperienceSection
+    technicalInnovationDescription: 'Building human-centered solutions through technological innovation and creative problem solving.',
+    projectsLabel: 'Projects',
+    ongoingLabel: 'Ongoing',
+    totalDurationLabel: 'Total Duration',
+    featuredProjectsLabel: 'Featured Projects',
+    searchProjectsPlaceholder: 'Search projects...',
+
+    // Units
+    projectsUnit: ' projects',
+    yearsUnit: ' years',
+    monthsUnit: ' months',
+
+    // Project related
+    projectOverview: 'Project Overview',
+    projectGoals: 'Project Goals',
+    coreSkills: 'Core Skills',
+    relatedLinks: 'Related Links',
+    progress: 'Progress',
+
+    // Timeline Controls
+    standardMode: 'Standard (1min)',
+    standardModeDescription: 'Updates every minute, power saving',
+    highPrecisionMode: 'High Precision (1sec)',
+    highPrecisionModeDescription: 'Updates every second, real-time',
+    realTimeDisplay: 'Real-time',
+    staticDisplay: 'Static Display',
+    realTimeUpdate: 'Real-time Update',
+    enableRealTimeDescription: 'When enabled, the current time indicator updates automatically',
+    updatePrecision: 'Update Precision',
+    batteryWarning: '⚠️ High precision mode may increase battery consumption',
+
+    // Experience Filter
+    projectAnalysis: 'Project Analysis',
+    totalProjects: 'Total Projects',
+    yearProjectAnalysis: ' Project Analysis',
+    projectsInPeriod: ' projects',
+    projectsInTimeframe: 'Projects in Period',
+
+    // Filter Options
+    allFilter: 'All',
+    featuredFilter: 'Featured',
+    ongoingFilter: 'Ongoing',
+    completedFilter: 'Completed',
+    researchFilter: 'Research',
+    startupFilter: 'Startup',
+    exhibitionFilter: 'Exhibition',
+
+    // Sort Options
+    dateSort: 'By Date',
+    prioritySort: 'By Priority',
+    durationSort: 'By Duration',
+    impactSort: 'By Impact',
+
+    // Language Switch
+    switchToEnglish: 'English',
+    switchToJapanese: '日本語',
+
+    // Artwork Section
+    viewFullDetails: 'View Full Details',
+    viewDetails: 'View Details',
+    aboutThisWork: 'About this work',
+    year: 'Year',
+    keywords: 'Keywords',
+    visitProjectWebsite: 'Visit Project Website',
+
+    // Professional Experience Card
+    link: 'link',
+    links: 'links',
+    achievement: 'achievement',
+    achievements: 'achievements',
+    member: 'member',
+    members: 'members',
+    more: 'More',
+    less: 'Less',
+    primary: 'Primary',
+
+    // Status Labels
+    completed: 'Completed',
+    ongoing: 'Ongoing',
+    planned: 'Planned',
+    continuing: 'Continuing',
+
+    // Timeline Labels
+    duration: 'Duration',
+    status: 'Status',
+    relatedLinksWithCount: 'Related Links',
+    periodsLabel: ' periods',
+    items: 'items',
+    progressStatus: 'Progress',
+
+    // Date Formatting
+    yearSuffix: '',
+    monthSuffix: '',
+    dateTo: ' - ',
+
+    // Month names
+    month1: 'Jan',
+    month2: 'Feb',
+    month3: 'Mar',
+    month4: 'Apr',
+    month5: 'May',
+    month6: 'Jun',
+    month7: 'Jul',
+    month8: 'Aug',
+    month9: 'Sep',
+    month10: 'Oct',
+    month11: 'Nov',
+    month12: 'Dec',
+
+    // Experience Filter additional keys
+    completionRate: 'completion rate',
+    filterByYear: 'Filter by Year',
+    overallPercentage: 'Overall Percentage',
+    statisticsAndFiltering: 'Statistics & Filtering'
 };

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { useTheme } from '../contexts/ThemeContext';
+// ダークモード固定
 
 export function MinimalThemeSwitch() {
   const { setTheme, isDark } = useTheme();

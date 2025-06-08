@@ -1,5 +1,4 @@
 import { TranslationProvider } from '../contexts/TranslationContext'
-import { ThemeProvider } from '../contexts/ThemeContext'
 import { StructuredData } from '../components/StructuredData'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -23,8 +22,8 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://keigominamida.com'),
   title: {
-    default: "Keigo Minamida | 南田桂吾 - Researcher, Entrepreneur & Software Developer",
-    template: "%s | Keigo Minamida Portfolio"
+    default: "Keigo Minamida | 南田桂吾",
+    template: "%s | Keigo Minamida | 南田桂吾"
   },
   description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction and real-world object manipulation. Explore cutting-edge research, innovative artworks, and entrepreneurial ventures.",
   keywords: [
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: ["ja_JP"],
-    title: "Keigo Minamida | 南田桂吾 - Researcher, Entrepreneur & Software Developer",
+    title: "Keigo Minamida | 南田桂吾",
     description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction and real-world object manipulation.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
@@ -86,7 +85,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keigo Minamida | 南田桂吾 - Researcher, Entrepreneur & Software Developer",
+    title: "Keigo Minamida | 南田桂吾",
     description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction.",
     creator: "@mKeigo1110",
     site: "@mKeigo1110",
@@ -158,13 +157,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//github.com" />
       </head>
       <body
-        className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${geistMono.variable} font-sans antialiased bg-slate-900 text-white dark`}
       >
-        <ThemeProvider>
-          <TranslationProvider>
-            {children}
-          </TranslationProvider>
-        </ThemeProvider>
+        <TranslationProvider>
+          {children}
+        </TranslationProvider>
         <Analytics />
       </body>
     </html>

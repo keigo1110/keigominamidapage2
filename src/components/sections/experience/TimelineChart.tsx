@@ -5,22 +5,25 @@ import { CurrentTimeIndicator } from './CurrentTimeIndicator'
 import { Calendar, Clock, ExternalLink, Activity, GitBranch } from 'lucide-react'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
+import { useTranslation } from '../../../contexts/TranslationContext'
+
 
 interface TimelineChartProps {
   experiences: ProcessedExperience[]
   timelineBounds: TimelineBounds
   hoveredProject: string | null
   onProjectHover: (id: string | null) => void
-  isDark: boolean
 }
 
 export function TimelineChart({
   experiences,
   timelineBounds,
   hoveredProject,
-  onProjectHover,
-  isDark
+  onProjectHover
 }: TimelineChartProps) {
+  const { t } = useTranslation()
+  // ダークモード固定
+  const isDark = true
   const [isClient, setIsClient] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showCard, setShowCard] = useState(false)
@@ -172,7 +175,7 @@ export function TimelineChart({
 
             const representative = group.experiences[0]
             if (!representative) return null
-            const displayTitle = representative.title || `プロジェクト ${groupIndex + 1}`
+                            const displayTitle = representative.title || `${t('projectsLabel')} ${groupIndex + 1}`
 
             return (
               <motion.div
@@ -212,7 +215,7 @@ export function TimelineChart({
                           isDark ? 'text-gray-400' : 'text-gray-600'
                         }`}>
                           {group.experiences.length > 1
-                            ? `${group.experiences.length}期間`
+                            ? `${group.experiences.length}${t('periodsLabel')}`
                             : representative.displayDate
                           }
                         </div>
@@ -293,7 +296,7 @@ export function TimelineChart({
                             <div className={`absolute inset-0 flex items-center ${isMobile ? 'px-2' : 'px-3'} text-white ${isMobile ? 'text-xs' : 'text-xs lg:text-sm'} font-medium truncate`}>
                               {isMobile ? displayTitle.slice(0, 6) + (displayTitle.length > 6 ? '..' : '') : displayTitle}
                               {projectPos.isOngoing && !isMobile && (
-                                <span className="ml-2 text-xs opacity-75">継続中</span>
+                                <span className="ml-2 text-xs opacity-75">{t('continuing')}</span>
                               )}
                             </div>
                           )}
@@ -310,7 +313,6 @@ export function TimelineChart({
         {/* 現在時刻インジケータ */}
         <CurrentTimeIndicator
           timelineBounds={timelineBounds}
-          isDark={isDark}
           experiences={experiences.map(exp => ({
             startDate: exp.startDate,
             endDate: exp.endDate,
@@ -430,7 +432,7 @@ export function TimelineChart({
                   <div className={`p-3 rounded-lg ${isDark ? 'bg-gray-700/50' : 'bg-gray-100/50'}`}>
                     <div className="flex items-center gap-2 mb-1">
                       <Calendar className="w-4 h-4 opacity-70" />
-                      <span className="text-xs font-medium opacity-80">期間</span>
+                      <span className="text-xs font-medium opacity-80">{t('duration')}</span>
                     </div>
                     <div className="text-sm font-semibold">
                       {hoveredExperience.displayDate}
@@ -440,7 +442,7 @@ export function TimelineChart({
                   <div className={`p-3 rounded-lg ${isDark ? 'bg-gray-700/50' : 'bg-gray-100/50'}`}>
                     <div className="flex items-center gap-2 mb-1">
                       <Activity className="w-4 h-4 opacity-70" />
-                      <span className="text-xs font-medium opacity-80">ステータス</span>
+                      <span className="text-xs font-medium opacity-80">{t('status')}</span>
                     </div>
                     <div className={`text-sm font-semibold flex items-center gap-2 ${
                       (hoveredProjectPos as ProjectPosition).isOngoing ? 'text-orange-400' :
@@ -454,9 +456,9 @@ export function TimelineChart({
                         hoveredExperience.status === 'ongoing' ? 'bg-blue-400' :
                         'bg-gray-400'
                       }`} />
-                      {(hoveredProjectPos as ProjectPosition).isOngoing ? '継続中' :
-                       hoveredExperience.status === 'completed' ? '完了' :
-                       hoveredExperience.status === 'ongoing' ? '進行中' : '予定'}
+                                              {(hoveredProjectPos as ProjectPosition).isOngoing ? t('continuing') :
+                                       hoveredExperience.status === 'completed' ? t('completed') :
+                hoveredExperience.status === 'ongoing' ? t('ongoing') : t('planned')}
                     </div>
                   </div>
                 </div>
@@ -467,7 +469,7 @@ export function TimelineChart({
                     <div className="flex items-center justify-between text-sm mb-2">
                       <div className="flex items-center gap-2 font-medium">
                         <Clock className="w-4 h-4" />
-                        進捗状況
+                        {t('progressStatus')}
                       </div>
                       <span className="font-bold text-blue-500">
                         {Math.round((hoveredProjectPos as ProjectPosition).progress)}%
@@ -489,7 +491,7 @@ export function TimelineChart({
                   <div>
                     <div className="flex items-center gap-2 text-sm font-medium mb-3">
                       <ExternalLink className="w-4 h-4 opacity-70" />
-                      <span>関連リンク ({hoveredExperience.links.length}件)</span>
+                      <span>{t('relatedLinksWithCount')} ({hoveredExperience.links.length}{t('items')})</span>
                     </div>
 
                     {/* スクロール可能なリンクエリア */}

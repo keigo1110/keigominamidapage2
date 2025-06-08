@@ -29,7 +29,7 @@ export function Footer() {
         <p className="text-gray-400">
           &copy; {new Date().getFullYear()} Keigo Minamida.
           <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent ml-2">
-            Crafted with passion and innovation.
+            Created on the shoulders of history.
           </span>
         </p>
       </motion.div>

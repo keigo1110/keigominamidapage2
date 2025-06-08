@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
 
 const socialLinks: SocialLink[] = [
@@ -20,7 +19,7 @@ const socialLinks: SocialLink[] = [
 // Design Pattern 1: Glassmorphism with floating cards
 export function GlassmorphismHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -241,7 +240,7 @@ export function GlassmorphismHome() {
 // Design Pattern 2: Brutalist with bold typography
 export function BrutalistHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [glitchText, setGlitchText] = useState(false);
 
@@ -431,7 +430,7 @@ export function BrutalistHome() {
 // Design Pattern 3: Minimalist with subtle animations
 export function MinimalistHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [hoveredInterest, setHoveredInterest] = useState<number | null>(null);
 
@@ -817,7 +816,7 @@ export function CyberpunkHome() {
 // Design Pattern 5: Magazine-style editorial layout
 export function MagazineHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
 
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
@@ -1018,7 +1017,7 @@ export function MagazineHome() {
 // Design Pattern 6: Retro Synthwave - 80s retrowave aesthetic
 export function RetroSynthwaveHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [glowIntensity, setGlowIntensity] = useState(1);
 
@@ -1272,7 +1271,7 @@ export function RetroSynthwaveHome() {
 // Design Pattern 7: Luxury Premium - Elegant and sophisticated
 export function LuxuryPremiumHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -1539,7 +1538,7 @@ export function LuxuryPremiumHome() {
 // Design Pattern 8: Organic Biomorphic - Natural and fluid design
 export function OrganicBiomorphicHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
   const [blobPosition, setBlobPosition] = useState({ x: 50, y: 50 });
 

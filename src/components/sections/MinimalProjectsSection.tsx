@@ -3,13 +3,12 @@
 import { motion } from 'framer-motion'
 import { FaFileAlt, FaYoutube, FaGithub } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { MinimalProjectCard } from '../cards/MinimalProjectCard'
 import { minimalStyles } from '../../utils/minimal-styles'
 
 export function MinimalProjectsSection() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   const projects = [
     {

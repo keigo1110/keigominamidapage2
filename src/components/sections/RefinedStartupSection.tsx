@@ -2,13 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { MapPin, BarChart3, GraduationCap, ExternalLink, Play } from 'lucide-react'
 import Image from 'next/image'
 
 export function RefinedStartupSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
   // 主要サービス・機能
   const coreFeatures = [
@@ -45,19 +44,19 @@ export function RefinedStartupSection() {
     {
       name: t('wakabarMainSite'),
       url: 'https://www.wakabar-cycle.com/',
-      description: 'コーポレートサイト・サービス詳細',
+              description: t('corporateSiteDescription'),
       isPrimary: true
     },
     {
       name: t('wakabarTourSite'),
       url: 'https://wakabar-tour.com/',
-      description: 'セルフツアー・体験',
+              description: t('selfTourDescription'),
       isPrimary: false
     },
     {
       name: t('wakabarAppSite'),
       url: 'https://wakabar.net/',
-      description: 'アプリケーション',
+              description: t('applicationDescription'),
       isPrimary: false
     }
   ]
@@ -125,7 +124,7 @@ export function RefinedStartupSection() {
           <p className={`text-xl font-light ${
             isDark ? 'text-gray-300' : 'text-gray-600'
           } max-w-3xl mx-auto leading-relaxed`}>
-            自転車事故をゼロにする
+            {t('bicycleAccidentPrevention')}
           </p>
         </motion.div>
 
@@ -177,7 +176,7 @@ export function RefinedStartupSection() {
                       <p className={`text-lg ${
                         isDark ? 'text-emerald-400' : 'text-emerald-600'
                       } font-medium`}>
-                        位置情報を活用した事故防止
+                        {t('locationBasedAccidentPrevention')}
                       </p>
                     </div>
                   </div>
@@ -238,7 +237,7 @@ export function RefinedStartupSection() {
                               <span className={`px-2 py-1 text-xs rounded-full ${
                                 isDark ? 'bg-emerald-500/20 text-emerald-400' : 'bg-emerald-100 text-emerald-700'
                               }`}>
-                                メイン
+                                {t('mainSite')}
                               </span>
                             )}
                           </div>
@@ -268,12 +267,12 @@ export function RefinedStartupSection() {
                     <h4 className={`text-lg font-semibold mb-4 ${
                       isDark ? 'text-white' : 'text-gray-900'
                     }`}>
-                      サービスデモ
+                      {t('serviceDemo')}
                     </h4>
                     <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
                       <iframe
                         src="https://www.youtube.com/embed/C9rNbZwhLqE"
-                        title="Wakabar サービスデモ動画"
+                        title={t('serviceDemoVideoTitle')}
                         className="w-full h-full"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -291,7 +290,7 @@ export function RefinedStartupSection() {
             <h3 className={`text-3xl font-bold text-center mb-12 ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
-              主要サービス・機能
+              {t('coreServices')}
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {coreFeatures.map((feature, index) => (

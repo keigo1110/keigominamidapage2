@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSun, FaMoon, FaDesktop } from 'react-icons/fa';
-import { useTheme } from '../contexts/ThemeContext';
+// ダークモード固定
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();

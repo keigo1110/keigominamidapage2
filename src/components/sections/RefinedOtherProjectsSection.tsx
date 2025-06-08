@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ExternalLink, Github, Zap } from 'lucide-react'
 import { colors } from '../../utils/refined-styles'
 
@@ -19,7 +18,7 @@ interface Project {
 
 export function RefinedOtherProjectsSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
   const projects: Project[] = [
     {

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from '../contexts/TranslationContext';
 
 export function LanguageSwitch() {
-  const { language, setLanguage } = useTranslation();
+  const { language, setLanguage, t } = useTranslation();
 
   return (
     <div className="flex justify-end">
@@ -18,7 +18,7 @@ export function LanguageSwitch() {
         transition={{ duration: 0.5 }}
       >
         <span className="relative z-10">
-          {language === 'ja' ? 'English' : '日本語'}
+          {language === 'ja' ? t('switchToEnglish') : t('switchToJapanese')}
         </span>
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-lg"

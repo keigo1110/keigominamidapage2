@@ -187,5 +187,132 @@ export const ja = {
     robotCompetitionDescription: '競技ナビゲーションと物体操作のための受賞歴のある自律ロボットシステム',
     viewMoreProjects: 'その他のプロジェクトを見る',
     allRightsReserved: 'All rights reserved',
-    builtWith: 'Built with'
+    builtWith: 'Built with',
+
+    // ハードコーディングされた日本語テキスト
+    bicycleAccidentPrevention: '自転車事故をゼロにする',
+    locationBasedAccidentPrevention: '位置情報を活用した事故防止',
+    mainSite: 'メイン',
+    corporateSiteDescription: 'コーポレートサイト・サービス詳細',
+    selfTourDescription: 'セルフツアー・体験',
+    applicationDescription: 'アプリケーション',
+    serviceDemo: 'サービスデモ',
+    serviceDemoVideoTitle: 'Wakabar サービスデモ動画',
+    coreServices: '主要サービス・機能',
+
+    // ProfessionalExperienceSection
+    technicalInnovationDescription: '技術革新とクリエイティブな問題解決を通じて、人間中心のソリューションを構築しています。',
+    projectsLabel: 'プロジェクト',
+    ongoingLabel: '進行中',
+    totalDurationLabel: '累計期間',
+    featuredProjectsLabel: '注目プロジェクト',
+    searchProjectsPlaceholder: 'プロジェクトを検索...',
+
+    // 単位
+    projectsUnit: '件',
+    yearsUnit: '年',
+    monthsUnit: 'ヶ月',
+
+    // プロジェクト関連
+    projectOverview: 'プロジェクト概要',
+    projectGoals: 'プロジェクト目標',
+    coreSkills: '主要スキル',
+    relatedLinks: '関連リンク',
+    progress: '進捗',
+
+    // Timeline Controls
+    standardMode: '標準 (1分)',
+    standardModeDescription: '1分ごとに更新、省電力',
+    highPrecisionMode: '高精度 (1秒)',
+    highPrecisionModeDescription: '1秒ごとに更新、リアルタイム',
+    realTimeDisplay: 'リアルタイム',
+    staticDisplay: '静的表示',
+    realTimeUpdate: 'リアルタイム更新',
+    enableRealTimeDescription: '有効にすると現在時刻インジケーターが自動的に更新されます',
+    updatePrecision: '更新精度',
+    batteryWarning: '⚠️ 高精度モードはバッテリー消費が増加する可能性があります',
+
+    // Experience Filter
+    projectAnalysis: 'プロジェクト分析',
+    totalProjects: '総プロジェクト',
+    yearProjectAnalysis: 'のプロジェクト分析',
+    projectsInPeriod: '件のプロジェクト',
+    projectsInTimeframe: '期間内プロジェクト',
+
+    // Filter Options
+    allFilter: 'すべて',
+    featuredFilter: '注目',
+    ongoingFilter: '進行中',
+    completedFilter: '完了',
+    researchFilter: '研究',
+    startupFilter: 'スタートアップ',
+    exhibitionFilter: '展示',
+
+    // Sort Options
+    dateSort: '日付順',
+    prioritySort: '優先度順',
+    durationSort: '期間順',
+    impactSort: 'インパクト順',
+
+    // Language Switch
+    switchToEnglish: 'English',
+    switchToJapanese: '日本語',
+
+    // Artwork Section
+    viewFullDetails: '詳細を見る',
+    viewDetails: '詳細を見る',
+    aboutThisWork: 'この作品について',
+    year: '制作年',
+    keywords: 'キーワード',
+    visitProjectWebsite: 'プロジェクトサイトを見る',
+
+    // Professional Experience Card
+    link: 'リンク',
+    links: 'リンク',
+    achievement: '実績',
+    achievements: '実績',
+    member: 'メンバー',
+    members: 'メンバー',
+    more: '詳細',
+    less: '閉じる',
+    primary: 'メイン',
+
+    // Status Labels
+    completed: '完了',
+    ongoing: '進行中',
+    planned: '予定',
+    continuing: '継続中',
+
+    // Timeline Labels
+    duration: '期間',
+    status: 'ステータス',
+    relatedLinksWithCount: '関連リンク',
+    periodsLabel: '期間',
+    items: '件',
+    progressStatus: '進捗状況',
+
+    // Date Formatting
+    yearSuffix: '年',
+    monthSuffix: '月',
+    dateTo: '〜',
+
+    // Month names (for Japanese, we use numbers)
+    month1: '1',
+    month2: '2',
+    month3: '3',
+    month4: '4',
+    month5: '5',
+    month6: '6',
+    month7: '7',
+    month8: '8',
+    month9: '9',
+    month10: '10',
+    month11: '11',
+    month12: '12',
+
+    // Experience Filter additional keys
+    completionRate: '完了率',
+    filterByYear: '年で絞り込み',
+    overallPercentage: '全体に占める割合',
+    statisticsAndFiltering: '統計とフィルタリング'
 };

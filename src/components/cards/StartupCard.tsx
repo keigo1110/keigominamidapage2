@@ -4,12 +4,11 @@ import { motion } from 'framer-motion'
 import { OptimizedImage } from '../common/OptimizedImage'
 import { FaGlobe } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { StartupCardProps } from '../../types'
 
 export function StartupCard({ name, description, logo, website }: StartupCardProps) {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <motion.div

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTheme } from '../contexts/ThemeContext'
 import { ThreeBackground } from './ThreeBackground'
 import { RefinedNavigation } from './layout/RefinedNavigation'
 import { RefinedHomeSection } from './sections/RefinedHomeSection'
@@ -27,7 +26,7 @@ const SECTIONS = [
 
 export function RefinedPortfolio() {
   const activeSection = useScrollSection(SECTIONS);
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {

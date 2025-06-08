@@ -138,7 +138,7 @@ const EXPERIENCE_DATA: Experience[] = [
     ],
 
     skills: [
-      ...COMMON_SKILLS.design,
+      ...(COMMON_SKILLS.design || []),
       { name: '編集技術', category: 'research', proficiency: 'advanced', primary: true },
       { name: '情報設計', category: 'design', proficiency: 'advanced', primary: true },
       { name: '知識体系化', category: 'research', proficiency: 'intermediate', primary: false }
@@ -206,9 +206,9 @@ const EXPERIENCE_DATA: Experience[] = [
     ],
 
     skills: [
-      ...COMMON_SKILLS.frontend,
-      ...COMMON_SKILLS.hardware,
-      ...COMMON_SKILLS.management,
+      ...(COMMON_SKILLS.frontend || []),
+      ...(COMMON_SKILLS.hardware || []),
+      ...(COMMON_SKILLS.management || []),
       { name: 'プロダクト開発', category: 'technical', proficiency: 'advanced', primary: true },
       { name: 'ハードウェア設計', category: 'technical', proficiency: 'intermediate', primary: true }
     ],
@@ -264,6 +264,8 @@ const EXPERIENCE_DATA: Experience[] = [
     },
     color: '#2563EB', // 中間のブルー
     status: 'completed',
+    priority: 'high',
+    category: 'exhibition',
     links: [
       { text: "", url: 'https://www.iiiexhibition.com/', type: 'website', primary: true },
       { text: "", url: 'https://iii-exhibition-2024-web.vercel.app/', type: 'demo', primary: false }
@@ -280,6 +282,8 @@ const EXPERIENCE_DATA: Experience[] = [
     },
     color: '#3B82F6', // 標準ブルー
     status: 'completed',
+    priority: 'medium',
+    category: 'research',
     projectGroup: '1000ya',
     links: [
       { text: "", url: 'https://1000ya.isis.ne.jp/1850.html', type: 'publication', primary: true },
@@ -300,6 +304,8 @@ const EXPERIENCE_DATA: Experience[] = [
     },
     color: '#1D4ED8', // 深いブルー
     status: 'completed',
+    priority: 'medium',
+    category: 'education',
     links: [
       { text: "", url: 'https://edist.ne.jp/list/82kanmon_51ha_shusseuo/', type: 'publication', primary: true },
       { text: "", url: 'https://edist.ne.jp/list/83kanmon_51ha_book/', type: 'publication', primary: false },
@@ -317,6 +323,8 @@ const EXPERIENCE_DATA: Experience[] = [
     },
     color: '#1E3A8A', // 最も深いブルー
     status: 'completed',
+    priority: 'low',
+    category: 'education',
     links: [
       { text: "", url: 'https://edist.ne.jp/list/81kanmon_51shu_names/', type: 'publication', primary: true },
       { text: "", url: 'https://edist.ne.jp/list/82kanmon_51shu_book/', type: 'publication', primary: false },
@@ -333,17 +341,7 @@ export const DateUtils = {
     return date
   },
 
-  formatPeriod(period: Experience['period']): string {
-    const { start, end } = period
-    // データの月はcreateDate関数で-1される前の値（つまり1ベース）なので、そのまま使用
-    if (start.year === end.year && start.month === end.month) {
-      return `${start.year}年${start.month}月`
-    }
-    if (start.year === end.year) {
-      return `${start.year}年${start.month}月〜${end.month}月`
-    }
-    return `${start.year}年${start.month}月〜${end.year}年${end.month}月`
-  },
+
 
   calculateDurationInMonths(start: Date, end: Date): number {
     const yearDiff = end.getFullYear() - start.getFullYear()
@@ -371,15 +369,7 @@ export const DateUtils = {
     return end > now
   },
 
-  formatDuration(years: number, months: number): string {
-    if (years === 0) {
-      return `${months}ヶ月`
-    } else if (months === 0) {
-      return `${years}年`
-    } else {
-      return `${years}年${months}ヶ月`
-    }
-  },
+
 
   getRelativeTimePhrase(start: Date, end: Date): string {
     const now = new Date()
@@ -479,7 +469,7 @@ export function getExperiences(t: (key: TranslationKey) => string): ProcessedExp
         position: mapping ? t(mapping.position as TranslationKey) : experience.position,
 
         // 計算されたフィールド
-        displayDate: DateUtils.formatPeriod(experience.period),
+        displayDate: '', // useExperienceDataフックで動的に設定
         startDate,
         endDate,
         duration: {

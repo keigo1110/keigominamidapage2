@@ -2,11 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 
 export function AwardsSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
   const awards = [
     {

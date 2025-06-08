@@ -2,16 +2,16 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { 
-  Clock, 
-  Activity, 
+import {
+  Clock,
+  Activity,
   Settings,
   ChevronDown,
   Timer,
   Zap,
   Battery
 } from 'lucide-react'
-import { useTheme } from '../../contexts/ThemeContext'
+import { useTranslation } from '../../contexts/TranslationContext'
 
 interface TimelineControlsProps {
   highPrecisionTime: boolean
@@ -26,36 +26,28 @@ export function TimelineControls({
   isRealTimeEnabled,
   onRealTimeToggle
 }: TimelineControlsProps) {
-  const { isDark } = useTheme()
+  const { t } = useTranslation()
   const [isExpanded, setIsExpanded] = useState(false)
 
   const controlTheme = {
-    background: isDark 
-      ? 'rgba(15, 23, 42, 0.95)' 
-      : 'rgba(255, 255, 255, 0.95)',
-    border: isDark 
-      ? 'rgba(71, 85, 105, 0.3)' 
-      : 'rgba(226, 232, 240, 0.5)',
-    text: isDark 
-      ? 'rgb(248, 250, 252)' 
-      : 'rgb(15, 23, 42)',
-    textMuted: isDark 
-      ? 'rgb(148, 163, 184)' 
-      : 'rgb(100, 116, 139)'
+    background: 'rgba(15, 23, 42, 0.95)',
+    border: 'rgba(71, 85, 105, 0.3)',
+    text: 'rgb(248, 250, 252)',
+    textMuted: 'rgb(148, 163, 184)'
   }
 
   const precisionModes = [
     {
       key: 'standard',
-      label: '標準 (1分)',
-      description: '1分ごとに更新、省電力',
+      label: t('standardMode'),
+      description: t('standardModeDescription'),
       icon: Battery,
       enabled: !highPrecisionTime
     },
     {
       key: 'high',
-      label: '高精度 (1秒)',
-      description: '1秒ごとに更新、リアルタイム',
+      label: t('highPrecisionMode'),
+      description: t('highPrecisionModeDescription'),
       icon: Zap,
       enabled: highPrecisionTime
     }
@@ -87,10 +79,10 @@ export function TimelineControls({
             <Clock className="w-4 h-4 text-gray-400" />
           )}
           <span className="text-sm font-medium">
-            {isRealTimeEnabled ? 'リアルタイム' : '静的表示'}
+            {isRealTimeEnabled ? t('realTimeDisplay') : t('staticDisplay')}
           </span>
         </div>
-        
+
         <motion.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.2 }}
@@ -102,7 +94,7 @@ export function TimelineControls({
       {/* 展開コントロールパネル */}
       <motion.div
         initial={{ opacity: 0, height: 0, y: 10 }}
-        animate={{ 
+        animate={{
           opacity: isExpanded ? 1 : 0,
           height: isExpanded ? 'auto' : 0,
           y: isExpanded ? 0 : 10
@@ -110,7 +102,7 @@ export function TimelineControls({
         transition={{ duration: 0.3 }}
         className="mt-3 overflow-hidden"
       >
-        <div 
+        <div
           className="p-4 rounded-xl border backdrop-blur-sm shadow-lg"
           style={{
             background: controlTheme.background,
@@ -120,12 +112,12 @@ export function TimelineControls({
           {/* リアルタイム切り替え */}
           <div className="mb-4">
             <div className="flex items-center justify-between mb-3">
-              <label 
+              <label
                 className="text-sm font-medium flex items-center gap-2"
                 style={{ color: controlTheme.text }}
               >
                 <Settings className="w-4 h-4" />
-                リアルタイム更新
+                {t('realTimeUpdate')}
               </label>
               <button
                 onClick={() => onRealTimeToggle(!isRealTimeEnabled)}
@@ -140,25 +132,25 @@ export function TimelineControls({
                 />
               </button>
             </div>
-            <p 
+            <p
               className="text-xs leading-relaxed"
               style={{ color: controlTheme.textMuted }}
             >
-              有効にすると現在時刻インジケーターが自動的に更新されます
+              {t('enableRealTimeDescription')}
             </p>
           </div>
 
           {/* 精度モード選択 */}
           {isRealTimeEnabled && (
             <div>
-              <h4 
+              <h4
                 className="text-sm font-medium mb-3 flex items-center gap-2"
                 style={{ color: controlTheme.text }}
               >
                 <Timer className="w-4 h-4" />
-                更新精度
+                {t('updatePrecision')}
               </h4>
-              
+
               <div className="space-y-2">
                 {precisionModes.map((mode) => {
                   const Icon = mode.icon
@@ -167,33 +159,33 @@ export function TimelineControls({
                       key={mode.key}
                       onClick={() => onHighPrecisionChange(mode.key === 'high')}
                       className={`w-full p-3 rounded-lg border transition-all duration-200 text-left ${
-                        mode.enabled 
-                          ? 'ring-2 ring-blue-500 border-blue-500' 
+                        mode.enabled
+                          ? 'ring-2 ring-blue-500 border-blue-500'
                           : 'hover:border-gray-400'
                       }`}
                       style={{
-                        background: mode.enabled 
-                          ? isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)'
+                        background: mode.enabled
+                          ? 'rgba(59, 130, 246, 0.1)'
                           : 'transparent',
-                        borderColor: mode.enabled 
-                          ? 'rgb(59, 130, 246)' 
+                        borderColor: mode.enabled
+                          ? 'rgb(59, 130, 246)'
                           : controlTheme.border
                       }}
                     >
                       <div className="flex items-start gap-3">
-                        <Icon 
+                        <Icon
                           className={`w-4 h-4 mt-0.5 ${
                             mode.enabled ? 'text-blue-500' : 'text-gray-400'
-                          }`} 
+                          }`}
                         />
                         <div>
-                          <div 
+                          <div
                             className="text-sm font-medium"
                             style={{ color: controlTheme.text }}
                           >
                             {mode.label}
                           </div>
-                          <div 
+                          <div
                             className="text-xs mt-1"
                             style={{ color: controlTheme.textMuted }}
                           >
@@ -205,17 +197,17 @@ export function TimelineControls({
                   )
                 })}
               </div>
-              
+
               {/* 注意事項 */}
               {highPrecisionTime && (
-                <div 
+                <div
                   className="mt-3 p-2 rounded-lg text-xs"
-                  style={{ 
-                    background: isDark ? 'rgba(245, 158, 11, 0.1)' : 'rgba(245, 158, 11, 0.05)',
-                    color: 'rgb(245, 158, 11)' 
+                  style={{
+                    background: 'rgba(245, 158, 11, 0.1)',
+                    color: 'rgb(245, 158, 11)'
                   }}
                 >
-                  ⚠️ 高精度モードはバッテリー消費が増加する可能性があります
+                  {t('batteryWarning')}
                 </div>
               )}
             </div>

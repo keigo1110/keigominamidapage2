@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { useTheme } from '../contexts/ThemeContext';
+
 
 // 共通のジオメトリを再利用
 const sharedGeometries = {
@@ -17,7 +17,8 @@ export function ThreeBackground() {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const animationRef = useRef<number | null>(null);
   const materialsRef = useRef<THREE.MeshBasicMaterial[]>([]);
-  const { isDark } = useTheme();
+  // ダークモード固定
+  const isDark = true;
 
   // マウス位置のthrottling
   const mousePosition = useRef({ x: 0, y: 0 });

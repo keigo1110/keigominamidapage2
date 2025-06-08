@@ -3,12 +3,11 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, FileText, Video, Presentation } from 'lucide-react'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import Image from 'next/image'
 
 export function ProjectsSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
   const researchProjects = [
     {

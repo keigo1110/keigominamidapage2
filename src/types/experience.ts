@@ -83,19 +83,19 @@ export interface Experience {
   position: string
   organization?: string
   location?: string
-  
+
   // 期間
   period: DatePeriod
-  
+
   // ステータス
   status: 'completed' | 'ongoing' | 'planned' | 'paused'
   priority: 'critical' | 'high' | 'medium' | 'low'
-  
+
   // カテゴリとグループ
   category: 'exhibition' | 'startup' | 'research' | 'commercial' | 'academic' | 'education' | 'volunteer'
   projectGroup?: string
   tags?: string[]
-  
+
   // 視覚的表現
   color: string
   highlight?: string
@@ -103,31 +103,31 @@ export interface Experience {
     from: string
     to: string
   }
-  
+
   // コンテンツ
   description?: string
   shortDescription?: string
   objectives?: string[]
-  
+
   // 成果と詳細
   achievements?: Achievement[]
   skills?: Skill[]
   technologies?: string[]
-  
+
   // 関係者
   collaborators?: Collaboration[]
   team?: {
     size: number
     roles: string[]
   }
-  
+
   // メディアとリンク
   links: ExperienceLink[]
   media?: MediaAttachment[]
-  
+
   // 進捗（進行中のプロジェクト用）
   progress?: ProgressInfo
-  
+
   // メタデータ
   featured?: boolean
   confidential?: boolean
@@ -145,12 +145,12 @@ export interface ProcessedExperience extends Experience {
     months: number
     totalMonths: number
   }
-  
+
   // 表示用
   displayOrder: number
   isActive: boolean
   progressPercentage: number
-  
+
   // グループ化情報
   groupInfo?: {
     groupId: string
@@ -158,7 +158,7 @@ export interface ProcessedExperience extends Experience {
     position: number
     total: number
   }
-  
+
   // 検索とフィルタリング
   searchableText: string
   primarySkills: string[]

@@ -2,12 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { OptimizedImage } from '../common/OptimizedImage'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ExperienceCardProps } from '../../types'
 import { minimalStyles } from '../../utils/minimal-styles'
 
 export function MinimalExperienceCard({ logo, title, position, date, links }: ExperienceCardProps) {
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <motion.article

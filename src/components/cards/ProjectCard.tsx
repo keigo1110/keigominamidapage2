@@ -2,11 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { OptimizedImage } from '../common/OptimizedImage'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ProjectCardProps } from '../../types'
 
 export function ProjectCard({ title, description, image, links }: ProjectCardProps) {
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   const getButtonStyle = (text: string, index: number) => {
     // ボタンの種類に応じてスタイルを変更

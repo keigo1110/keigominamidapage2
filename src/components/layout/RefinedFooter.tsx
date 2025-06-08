@@ -1,13 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { Heart, Code, Coffee } from 'lucide-react'
 import { colors } from '../../utils/refined-styles'
 
 export function RefinedFooter() {
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
 

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { Trophy, Award, Star, Calendar } from 'lucide-react'
 import { colors } from '../../utils/refined-styles'
 
@@ -14,7 +13,7 @@ interface AwardItem {
 
 export function RefinedAwardsSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
   const awards: AwardItem[] = [
     {

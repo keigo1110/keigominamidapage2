@@ -1,11 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from '../../contexts/ThemeContext'
 import { minimalStyles } from '../../utils/minimal-styles'
 
 export function MinimalFooter() {
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <footer id="contact" className={`${isDark ? 'bg-gray-950 border-t border-gray-800' : 'bg-gray-50 border-t border-gray-200'}`}>

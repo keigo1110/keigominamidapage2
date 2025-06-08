@@ -1,11 +1,10 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { useTheme } from '../contexts/ThemeContext'
 
 export function MinimalBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   
   useEffect(() => {
     const canvas = canvasRef.current;

@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { LanguageSwitch } from '../LanguageSwitch'
-import { ThemeSwitch } from '../ThemeSwitch'
 import { SectionType } from '../../types'
 
 interface NavigationProps {
@@ -16,7 +14,6 @@ interface NavigationProps {
 
 export function Navigation({ activeSection, sections }: NavigationProps) {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -35,11 +32,11 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 ${isDark ? 'bg-slate-900/80' : 'bg-white/80'} backdrop-blur-lg border-b ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} transition-all duration-300`}>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-blue-500/20 transition-all duration-300">
         <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
           <motion.a
             href="#home"
-            className={`text-3xl font-bold bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-600 to-blue-800'} bg-clip-text text-transparent`}
+            className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             aria-label="Go to home"
@@ -50,7 +47,7 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
             <div className="md:hidden">
               <button 
                 onClick={toggleMenu} 
-                className={`${isDark ? 'text-white' : 'text-gray-900'} focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-2`}
+                className="text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-2"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
               >
@@ -64,8 +61,8 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
                   href={`#${section}`}
                   className={`relative px-3 py-2 rounded-lg transition-all duration-300 ${
                     activeSection === section
-                      ? `${isDark ? 'text-blue-400 bg-blue-900/30' : 'text-blue-600 bg-blue-100/50'}`
-                      : `${isDark ? 'hover:text-blue-400 hover:bg-blue-900/20' : 'hover:text-blue-600 hover:bg-blue-100/30'}`
+                      ? 'text-blue-400 bg-blue-900/30'
+                      : 'hover:text-blue-400 hover:bg-blue-900/20'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -74,7 +71,7 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
                   {t(section)}
                   {activeSection === section && (
                     <motion.div
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-600 to-blue-800'}`}
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"
                       layoutId="activeTab"
                     />
                   )}
@@ -82,7 +79,6 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
               ))}
             </div>
             <div className="flex items-center space-x-3">
-              <ThemeSwitch />
               <LanguageSwitch />
             </div>
           </div>
@@ -95,14 +91,14 @@ export function Navigation({ activeSection, sections }: NavigationProps) {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            className={`fixed inset-0 z-40 ${isDark ? 'bg-slate-900/95' : 'bg-white/95'} backdrop-blur-lg md:hidden`}
+            className="fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-lg md:hidden"
           >
             <div className="flex flex-col items-center justify-center h-full">
               {sections.map((section) => (
                 <motion.a
                   key={section}
                   href={`#${section}`}
-                  className={`text-2xl py-4 ${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors`}
+                  className="text-2xl py-4 hover:text-blue-400 transition-colors"
                   onClick={() => {
                     setIsMenuOpen(false);
                   }}

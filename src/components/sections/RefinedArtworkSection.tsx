@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { X, ZoomIn } from 'lucide-react'
 import { colors } from '../../utils/refined-styles'
 
@@ -17,7 +16,7 @@ interface Artwork {
 
 export function RefinedArtworkSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const [selectedArtwork, setSelectedArtwork] = useState<number | null>(null)
 
   const artworks: Artwork[] = [

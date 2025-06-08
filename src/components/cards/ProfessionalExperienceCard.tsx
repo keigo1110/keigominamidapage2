@@ -3,12 +3,12 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef } from 'react'
 import Image from 'next/image'
-import { 
-  Calendar, 
-  MapPin, 
-  ExternalLink, 
-  Award, 
-  Users, 
+import {
+  Calendar,
+  MapPin,
+  ExternalLink,
+  Award,
+  Users,
   TrendingUp,
   Clock,
   Tag,
@@ -21,7 +21,6 @@ import {
 } from 'lucide-react'
 
 import { ProcessedExperience } from '../../types/experience'
-import { useTheme } from '../../contexts/ThemeContext'
 import { professionalDesign } from '../../utils/professional-design-system'
 
 interface ProfessionalExperienceCardProps {
@@ -31,7 +30,7 @@ interface ProfessionalExperienceCardProps {
   onHover: (id: string | null) => void
 }
 
-const { colors, typography, spacing, borderRadius, shadows, animations } = professionalDesign
+  const { colors, shadows } = professionalDesign
 
 export function ProfessionalExperienceCard({
   experience,
@@ -39,17 +38,17 @@ export function ProfessionalExperienceCard({
   isHovered,
   onHover
 }: ProfessionalExperienceCardProps) {
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const [isExpanded, setIsExpanded] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   // カラーテーマ
   const cardTheme = {
-    background: isDark 
-      ? 'rgba(15, 23, 42, 0.95)' 
+    background: isDark
+      ? 'rgba(15, 23, 42, 0.95)'
       : 'rgba(255, 255, 255, 0.95)',
-    border: isDark 
-      ? 'rgba(71, 85, 105, 0.2)' 
+    border: isDark
+      ? 'rgba(71, 85, 105, 0.2)'
       : 'rgba(226, 232, 240, 0.5)',
     accent: experience.gradient?.from || experience.color,
     textPrimary: isDark ? colors.secondary[50] : colors.secondary[900],
@@ -80,13 +79,13 @@ export function ProfessionalExperienceCard({
 
   // アニメーション設定
   const cardAnimations = {
-    initial: { 
-      opacity: 0, 
+    initial: {
+      opacity: 0,
       y: 30,
       scale: 0.95
     },
-    animate: { 
-      opacity: 1, 
+    animate: {
+      opacity: 1,
       y: 0,
       scale: 1,
       transition: {
@@ -128,10 +127,10 @@ export function ProfessionalExperienceCard({
         }}
       >
         {/* 背景グラデーション */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            background: experience.gradient 
+            background: experience.gradient
               ? `linear-gradient(135deg, ${experience.gradient.from}, ${experience.gradient.to})`
               : `linear-gradient(135deg, ${experience.color}, ${experience.color}90)`
           }}
@@ -140,7 +139,7 @@ export function ProfessionalExperienceCard({
         {/* フィーチャードバッジ */}
         {experience.featured && (
           <div className="absolute top-4 right-4 z-10">
-            <div 
+            <div
               className="px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1"
               style={{
                 background: `linear-gradient(135deg, ${colors.accent[500]}, ${colors.accent[600]})`,
@@ -158,7 +157,7 @@ export function ProfessionalExperienceCard({
           <div className="flex items-start gap-4">
             {/* ロゴ */}
             <div className="relative flex-shrink-0">
-              <div 
+              <div
                 className="w-16 h-16 rounded-xl overflow-hidden border shadow-md"
                 style={{
                   borderColor: cardTheme.border
@@ -172,9 +171,9 @@ export function ProfessionalExperienceCard({
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* ステータスインジケーター */}
-              <div 
+              <div
                 className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center"
                 style={{
                   backgroundColor: getStatusColor(),
@@ -191,22 +190,22 @@ export function ProfessionalExperienceCard({
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
-                  <h3 
+                  <h3
                     className="text-lg font-bold truncate mb-1"
                     style={{ color: cardTheme.textPrimary }}
                   >
                     {experience.title}
                   </h3>
-                  <p 
+                  <p
                     className="text-sm font-medium truncate"
                     style={{ color: cardTheme.textSecondary }}
                   >
                     {experience.position}
                   </p>
                 </div>
-                
+
                 {/* プライオリティアイコン */}
-                <div 
+                <div
                   className="p-1.5 rounded-lg"
                   style={{
                     backgroundColor: isDark ? colors.secondary[800] : colors.secondary[100],
@@ -249,8 +248,8 @@ export function ProfessionalExperienceCard({
                   <Clock className="w-3 h-3" />
                   <span style={{ color: cardTheme.textMuted }}>
                     {professionalDesign.utils.responsiveSpacing(
-                      `${experience.duration.totalMonths}ヶ月`,
-                      `${experience.duration.years}年${experience.duration.months}ヶ月`
+                                      `${experience.duration.totalMonths}${t('monthsUnit')}`,
+                `${experience.duration.years}${t('yearsUnit')}${experience.duration.months}${t('monthsUnit')}`
                     )}
                   </span>
                 </div>
@@ -262,7 +261,7 @@ export function ProfessionalExperienceCard({
         {/* 説明文 */}
         {experience.shortDescription && (
           <div className="px-6 pb-4">
-            <p 
+            <p
               className="text-sm line-clamp-2 leading-relaxed"
               style={{ color: cardTheme.textSecondary }}
             >
@@ -307,15 +306,15 @@ export function ProfessionalExperienceCard({
         {experience.isActive && experience.progressPercentage > 0 && (
           <div className="px-6 pb-4">
             <div className="flex items-center justify-between text-xs mb-2">
-              <span style={{ color: cardTheme.textMuted }}>進捗</span>
-              <span 
+                              <span style={{ color: cardTheme.textMuted }}>{t('progress')}</span>
+              <span
                 className="font-semibold"
                 style={{ color: cardTheme.accent }}
               >
                 {Math.round(experience.progressPercentage)}%
               </span>
             </div>
-            <div 
+            <div
               className="w-full h-2 rounded-full overflow-hidden"
               style={{
                 backgroundColor: isDark ? colors.secondary[800] : colors.secondary[200]
@@ -344,7 +343,7 @@ export function ProfessionalExperienceCard({
                 <div className="flex items-center gap-1 text-xs">
                   <ExternalLink className="w-3 h-3" />
                   <span style={{ color: cardTheme.textMuted }}>
-                    {experience.links.length} link{experience.links.length > 1 ? 's' : ''}
+                    {experience.links.length} {experience.links.length === 1 ? t('link') : t('links')}
                   </span>
                 </div>
               )}
@@ -354,7 +353,7 @@ export function ProfessionalExperienceCard({
                 <div className="flex items-center gap-1 text-xs">
                   <Award className="w-3 h-3" />
                   <span style={{ color: cardTheme.textMuted }}>
-                    {experience.achievements.length} achievement{experience.achievements.length > 1 ? 's' : ''}
+                    {experience.achievements.length} {experience.achievements.length === 1 ? t('achievement') : t('achievements')}
                   </span>
                 </div>
               )}
@@ -364,7 +363,7 @@ export function ProfessionalExperienceCard({
                 <div className="flex items-center gap-1 text-xs">
                   <Users className="w-3 h-3" />
                   <span style={{ color: cardTheme.textMuted }}>
-                    {experience.team.size} member{experience.team.size > 1 ? 's' : ''}
+                    {experience.team.size} {experience.team.size === 1 ? t('member') : t('members')}
                   </span>
                 </div>
               )}
@@ -379,18 +378,18 @@ export function ProfessionalExperienceCard({
                 setIsExpanded(!isExpanded)
               }}
             >
-              {isExpanded ? 'Less' : 'More'}
-              <ChevronRight 
+              {isExpanded ? t('less') : t('more')}
+              <ChevronRight
                 className={`w-3 h-3 transition-transform duration-200 ${
                   isExpanded ? 'rotate-90' : ''
-                }`} 
+                }`}
               />
             </button>
           </div>
         </div>
 
         {/* ホバーオーバーレイ */}
-        <div 
+        <div
           className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
           style={{
             background: `linear-gradient(135deg, ${cardTheme.accent}08, ${cardTheme.accent}04)`
@@ -408,7 +407,7 @@ export function ProfessionalExperienceCard({
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <div 
+            <div
               className="mt-4 p-6 rounded-2xl border backdrop-blur-sm"
               style={{
                 background: cardTheme.background,
@@ -419,13 +418,13 @@ export function ProfessionalExperienceCard({
               {/* 詳細説明 */}
               {experience.description && (
                 <div className="mb-6">
-                  <h4 
+                  <h4
                     className="text-sm font-semibold mb-3"
                     style={{ color: cardTheme.textPrimary }}
                   >
-                    プロジェクト概要
+                    {t('projectOverview')}
                   </h4>
-                  <p 
+                  <p
                     className="text-sm leading-relaxed"
                     style={{ color: cardTheme.textSecondary }}
                   >
@@ -437,15 +436,15 @@ export function ProfessionalExperienceCard({
               {/* 目標 */}
               {experience.objectives && experience.objectives.length > 0 && (
                 <div className="mb-6">
-                  <h4 
+                  <h4
                     className="text-sm font-semibold mb-3"
                     style={{ color: cardTheme.textPrimary }}
                   >
-                    プロジェクト目標
+                    {t('projectGoals')}
                   </h4>
                   <ul className="space-y-2">
                     {experience.objectives.map((objective, objIndex) => (
-                      <li 
+                      <li
                         key={objIndex}
                         className="flex items-start gap-2 text-sm"
                         style={{ color: cardTheme.textSecondary }}
@@ -461,11 +460,11 @@ export function ProfessionalExperienceCard({
               {/* スキル */}
               {experience.primarySkills.length > 0 && (
                 <div className="mb-6">
-                  <h4 
+                  <h4
                     className="text-sm font-semibold mb-3"
                     style={{ color: cardTheme.textPrimary }}
                   >
-                    主要スキル
+                    {t('coreSkills')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {experience.primarySkills.map((skill, skillIndex) => (
@@ -488,11 +487,11 @@ export function ProfessionalExperienceCard({
               {/* リンク */}
               {experience.links.length > 0 && (
                 <div>
-                  <h4 
+                  <h4
                     className="text-sm font-semibold mb-3"
                     style={{ color: cardTheme.textPrimary }}
                   >
-                    関連リンク
+                    {t('relatedLinks')}
                   </h4>
                   <div className="grid gap-2">
                     {experience.links.map((link, linkIndex) => (
@@ -512,14 +511,14 @@ export function ProfessionalExperienceCard({
                           {link.text || new URL(link.url).hostname}
                         </span>
                         {link.primary && (
-                          <span 
+                          <span
                             className="px-2 py-0.5 rounded text-xs font-medium"
                             style={{
                               backgroundColor: cardTheme.accent,
                               color: colors.secondary[50]
                             }}
                           >
-                            Primary
+                            {t('primary')}
                           </span>
                         )}
                       </a>

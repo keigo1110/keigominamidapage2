@@ -1,14 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { Mail, Github, Twitter, Linkedin, Globe, Calendar, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import { colors } from '../../utils/refined-styles'
 
 export function RefinedHomeSection() {
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const { t } = useTranslation()
 
   const socialLinks = [

@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
@@ -15,7 +14,7 @@ interface RefinedNavigationProps {
 }
 
 export function RefinedNavigation({ activeSection, sections }: RefinedNavigationProps) {
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 

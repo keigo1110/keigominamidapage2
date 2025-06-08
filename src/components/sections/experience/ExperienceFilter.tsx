@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Filter, X, BarChart3, TrendingUp, Clock } from 'lucide-react'
+import { useTranslation } from '../../../contexts/TranslationContext'
 import { TimelineStats } from '../../../utils/experienceProcessor'
 
 interface ExperienceFilterProps {
@@ -17,6 +18,7 @@ export function ExperienceFilter({
   timelineStats,
   isDark
 }: ExperienceFilterProps) {
+  const { t } = useTranslation()
   return (
     <div className={`p-6 lg:p-8 rounded-2xl border ${
       isDark
@@ -38,10 +40,10 @@ export function ExperienceFilter({
           </motion.div>
           <div>
             <h3 className={`text-xl lg:text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              プロジェクト分析
+              {t('projectAnalysis')}
             </h3>
             <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              統計とフィルタリング
+              {t('statisticsAndFiltering')}
             </p>
           </div>
         </div>
@@ -74,7 +76,7 @@ export function ExperienceFilter({
           <div className="flex items-center gap-3 mb-2">
             <BarChart3 className={`w-5 h-5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
             <div className={`text-xs font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              総プロジェクト
+              {t('totalProjects')}
             </div>
           </div>
           <div className={`text-3xl lg:text-4xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -92,7 +94,7 @@ export function ExperienceFilter({
           <div className="flex items-center gap-3 mb-2">
             <Clock className="w-5 h-5 text-blue-500" />
             <div className={`text-xs font-medium ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-              進行中
+              {t('ongoing')}
             </div>
           </div>
           <div className="text-3xl lg:text-4xl font-bold text-blue-500">
@@ -117,14 +119,14 @@ export function ExperienceFilter({
           <div className="flex items-center gap-3 mb-2">
             <TrendingUp className="w-5 h-5 text-green-500" />
             <div className={`text-xs font-medium ${isDark ? 'text-green-300' : 'text-green-700'}`}>
-              完了
+              {t('completed')}
             </div>
           </div>
           <div className="text-3xl lg:text-4xl font-bold text-green-500">
             {timelineStats.completedProjects}
           </div>
           <div className={`text-xs mt-1 ${isDark ? 'text-green-400' : 'text-green-600'}`}>
-            {Math.round((timelineStats.completedProjects / timelineStats.totalProjects) * 100)}% 完了率
+            {Math.round((timelineStats.completedProjects / timelineStats.totalProjects) * 100)}% {t('completionRate')}
           </div>
         </motion.div>
 
@@ -138,7 +140,7 @@ export function ExperienceFilter({
           <div className="flex items-center gap-3 mb-2">
             <Filter className="w-5 h-5 text-gray-500" />
             <div className={`text-xs font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              予定
+              {t('planned')}
             </div>
           </div>
           <div className="text-3xl lg:text-4xl font-bold text-gray-500">
@@ -152,7 +154,7 @@ export function ExperienceFilter({
         <div className={`text-base lg:text-lg font-semibold mb-4 ${
           isDark ? 'text-gray-300' : 'text-gray-700'
         }`}>
-          年で絞り込み
+          {t('filterByYear')}
         </div>
 
         <div className="flex flex-wrap gap-3">
@@ -170,7 +172,7 @@ export function ExperienceFilter({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            すべて
+            {t('allFilter')}
             <span className={`ml-2 text-xs ${
               !selectedYear
                 ? 'text-blue-200'
@@ -245,10 +247,10 @@ export function ExperienceFilter({
             </div>
             <div>
               <div className={`text-lg font-bold ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-                {selectedYear}年のプロジェクト分析
+                {selectedYear}{t('yearProjectAnalysis')}
               </div>
               <div className={`text-sm ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                {timelineStats.yearRanges.find(r => r.year.toString() === selectedYear)?.count || 0}件のプロジェクト
+                {timelineStats.yearRanges.find(r => r.year.toString() === selectedYear)?.count || 0}{t('projectsInPeriod')}
               </div>
             </div>
           </div>
@@ -258,7 +260,7 @@ export function ExperienceFilter({
               isDark ? 'bg-blue-800/30' : 'bg-blue-100/50'
             }`}>
               <div className={`text-xs font-medium mb-1 ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-                期間内プロジェクト
+                {t('projectsInTimeframe')}
               </div>
               <div className={`text-2xl font-bold ${isDark ? 'text-blue-200' : 'text-blue-800'}`}>
                 {timelineStats.yearRanges.find(r => r.year.toString() === selectedYear)?.count || 0}
@@ -268,7 +270,7 @@ export function ExperienceFilter({
               isDark ? 'bg-blue-800/30' : 'bg-blue-100/50'
             }`}>
               <div className={`text-xs font-medium mb-1 ${isDark ? 'text-blue-300' : 'text-blue-700'}`}>
-                全体に占める割合
+                {t('overallPercentage')}
               </div>
               <div className={`text-2xl font-bold ${isDark ? 'text-blue-200' : 'text-blue-800'}`}>
                 {Math.round(((timelineStats.yearRanges.find(r => r.year.toString() === selectedYear)?.count || 0) / timelineStats.totalProjects) * 100)}%

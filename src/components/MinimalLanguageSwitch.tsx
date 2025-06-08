@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useTranslation } from '../contexts/TranslationContext';
-import { useTheme } from '../contexts/ThemeContext';
+// ダークモード固定
 
 export function MinimalLanguageSwitch() {
   const { language, setLanguage } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <motion.button

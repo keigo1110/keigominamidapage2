@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Calendar, Users, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
-import { useTheme } from '../../contexts/ThemeContext'
 
 interface ResearchProjectCardProps {
   title: string
@@ -37,7 +36,7 @@ export function ResearchProjectCard({
   highlights = [],
   layout = 'horizontal'
 }: ResearchProjectCardProps) {
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
 
     const getLinkStyle = (type: string) => {
     const styles: Record<string, string> = {

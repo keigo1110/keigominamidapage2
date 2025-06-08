@@ -4,12 +4,11 @@ import { motion } from 'framer-motion'
 import { OptimizedImage } from '../common/OptimizedImage'
 import { FaInstagram } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ArtworkCardProps } from '../../types'
 
 export function ArtworkCard({ title, description, image, link }: ArtworkCardProps) {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <motion.div

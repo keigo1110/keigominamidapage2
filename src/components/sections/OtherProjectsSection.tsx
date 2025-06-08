@@ -3,12 +3,11 @@
 import { motion } from 'framer-motion'
 import { FaYoutube, FaGithub } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ProjectCard } from '../cards/ProjectCard'
 
 export function OtherProjectsSection() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   const otherProjects = [
     {

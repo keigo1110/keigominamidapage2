@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { MinimalLanguageSwitch } from '../MinimalLanguageSwitch'
 import { MinimalThemeSwitch } from '../MinimalThemeSwitch'
 import { minimalStyles } from '../../utils/minimal-styles'
@@ -16,7 +15,7 @@ interface MinimalNavigationProps {
 
 export function MinimalNavigation({ activeSection, sections }: MinimalNavigationProps) {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (

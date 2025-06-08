@@ -9,7 +9,6 @@ import { MinimalFooter } from './layout/MinimalFooter'
 import { SkipLink } from './SkipLink'
 import { FocusIndicator } from './FocusIndicator'
 import { useScrollSection } from '../hooks/useScrollSection'
-import { useTheme } from '../contexts/ThemeContext'
 
 const SECTIONS = [
   'home',
@@ -20,7 +19,7 @@ const SECTIONS = [
 
 export function MinimalPortfolio() {
   const activeSection = useScrollSection(SECTIONS);
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <div className={`min-h-screen ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} transition-colors duration-300`}>

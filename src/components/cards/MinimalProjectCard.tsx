@@ -2,13 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { OptimizedImage } from '../common/OptimizedImage'
-import { useTheme } from '../../contexts/ThemeContext'
 import { ProjectCardProps } from '../../types'
 import { minimalStyles } from '../../utils/minimal-styles'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 
 export function MinimalProjectCard({ title, description, image, links }: ProjectCardProps) {
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <motion.article

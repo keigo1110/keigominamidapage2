@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { useTheme } from '../contexts/ThemeContext'
 import { MousePosition } from '../types'
 
 // 固定された粒子位置でHydrationエラーを防ぐ
@@ -18,7 +17,6 @@ const PARTICLE_POSITIONS = [
 ];
 
 export function DynamicBackground() {
-  const { isDark } = useTheme();
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [isClient, setIsClient] = useState(false);
   const lastExecTime = useRef(0);
@@ -49,7 +47,7 @@ export function DynamicBackground() {
           {PARTICLE_POSITIONS.map((position, i) => (
             <div
               key={i}
-              className={`absolute w-1 h-1 ${isDark ? 'bg-gradient-to-r from-blue-400/20 to-blue-600/20' : 'bg-gradient-to-r from-blue-300/20 to-blue-500/20'} rounded-full`}
+              className="absolute w-1 h-1 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full"
               style={{
                 left: `${position.x}%`,
                 top: `${position.y}%`,
@@ -67,7 +65,7 @@ export function DynamicBackground() {
         {PARTICLE_POSITIONS.map((position, i) => (
           <motion.div
             key={i}
-            className={`absolute w-1 h-1 ${isDark ? 'bg-gradient-to-r from-blue-400/20 to-blue-600/20' : 'bg-gradient-to-r from-blue-300/20 to-blue-500/20'} rounded-full`}
+            className="absolute w-1 h-1 bg-gradient-to-r from-blue-400/20 to-blue-600/20 rounded-full"
             animate={{
               x: [0, (i % 2 === 0 ? 50 : -50) + Math.sin(i) * 30, 0],
               y: [0, (i % 3 === 0 ? 40 : -40) + Math.cos(i) * 25, 0],
@@ -90,7 +88,7 @@ export function DynamicBackground() {
 
       {/* Interactive Cursor Effect with reduced size */}
       <motion.div
-        className={`absolute w-64 h-64 ${isDark ? 'bg-gradient-to-r from-blue-400/3 to-blue-600/3' : 'bg-gradient-to-r from-blue-300/8 to-blue-500/8'} rounded-full blur-3xl`}
+        className="absolute w-64 h-64 bg-gradient-to-r from-blue-400/3 to-blue-600/3 rounded-full blur-3xl"
         animate={{
           x: mousePosition.x - 128,
           y: mousePosition.y - 128,

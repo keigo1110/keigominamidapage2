@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
 import {
   GlassmorphismHome,
@@ -43,7 +42,7 @@ const HOME_VARIANTS = [
 // Original Home Section as Default
 function DefaultHome() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
   const [activeTab, setActiveTab] = useState(0);
 
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];

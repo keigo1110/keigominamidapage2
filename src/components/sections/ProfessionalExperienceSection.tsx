@@ -2,11 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
-import { 
-  Briefcase, 
-  Filter, 
-  Search, 
-  Grid3X3, 
+import {
+  Briefcase,
+  Search,
+  Grid3X3,
   List,
   Calendar,
   Award,
@@ -16,13 +15,10 @@ import {
 } from 'lucide-react'
 
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { useExperienceData } from '../../hooks/useExperienceData'
 import { ProfessionalExperienceCard } from '../cards/ProfessionalExperienceCard'
 import { professionalDesign } from '../../utils/professional-design-system'
-import { ProcessedExperience } from '../../types/experience'
-
-const { colors, typography, spacing, borderRadius, shadows, animations } = professionalDesign
+const { colors } = professionalDesign
 
 type ViewMode = 'grid' | 'list'
 type FilterMode = 'all' | 'featured' | 'ongoing' | 'completed' | 'research' | 'startup' | 'exhibition'
@@ -30,9 +26,9 @@ type SortMode = 'date' | 'priority' | 'duration' | 'impact'
 
 export function ProfessionalExperienceSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const { experiences } = useExperienceData()
-  
+
   // ステート管理
   const [searchQuery, setSearchQuery] = useState('')
   const [filterMode, setFilterMode] = useState<FilterMode>('all')
@@ -42,7 +38,7 @@ export function ProfessionalExperienceSection() {
 
   // テーマカラー
   const sectionTheme = {
-    background: isDark 
+    background: isDark
       ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.90) 100%)'
       : 'linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.90) 100%)',
     textPrimary: isDark ? colors.secondary[50] : colors.secondary[900],
@@ -58,7 +54,7 @@ export function ProfessionalExperienceSection() {
 
     // 検索フィルター
     if (searchQuery) {
-      filtered = filtered.filter(exp => 
+      filtered = filtered.filter(exp =>
         exp.searchableText.includes(searchQuery.toLowerCase())
       )
     }
@@ -119,25 +115,25 @@ export function ProfessionalExperienceSection() {
 
   // フィルターオプション
   const filterOptions = [
-    { key: 'all', label: 'すべて', icon: Grid3X3, count: stats.total },
-    { key: 'featured', label: '注目', icon: Sparkles, count: stats.featured },
-    { key: 'ongoing', label: '進行中', icon: TrendingUp, count: stats.ongoing },
-    { key: 'completed', label: '完了', icon: Award, count: stats.completed },
-    { key: 'research', label: '研究', icon: Briefcase, count: experiences.filter(e => e.category === 'research').length },
-    { key: 'startup', label: 'スタートアップ', icon: Users, count: experiences.filter(e => e.category === 'startup').length },
-    { key: 'exhibition', label: '展示', icon: Calendar, count: experiences.filter(e => e.category === 'exhibition').length }
+    { key: 'all', label: t('allFilter'), icon: Grid3X3, count: stats.total },
+    { key: 'featured', label: t('featuredFilter'), icon: Sparkles, count: stats.featured },
+    { key: 'ongoing', label: t('ongoingFilter'), icon: TrendingUp, count: stats.ongoing },
+    { key: 'completed', label: t('completedFilter'), icon: Award, count: stats.completed },
+    { key: 'research', label: t('researchFilter'), icon: Briefcase, count: experiences.filter(e => e.category === 'research').length },
+    { key: 'startup', label: t('startupFilter'), icon: Users, count: experiences.filter(e => e.category === 'startup').length },
+    { key: 'exhibition', label: t('exhibitionFilter'), icon: Calendar, count: experiences.filter(e => e.category === 'exhibition').length }
   ] as const
 
   // ソートオプション
   const sortOptions = [
-    { key: 'date', label: '日付順' },
-    { key: 'priority', label: '優先度順' },
-    { key: 'duration', label: '期間順' },
-    { key: 'impact', label: 'インパクト順' }
+    { key: 'date', label: t('dateSort') },
+    { key: 'priority', label: t('prioritySort') },
+    { key: 'duration', label: t('durationSort') },
+    { key: 'impact', label: t('impactSort') }
   ] as const
 
   return (
-    <section 
+    <section
       className="relative py-16 lg:py-24 overflow-hidden"
       style={{
         background: sectionTheme.background
@@ -146,8 +142,8 @@ export function ProfessionalExperienceSection() {
       {/* 背景装飾 */}
       <div className="absolute inset-0">
         <div className={`absolute inset-0 opacity-[0.02] ${
-          isDark 
-            ? 'bg-gradient-to-br from-blue-400 via-transparent to-purple-400' 
+          isDark
+            ? 'bg-gradient-to-br from-blue-400 via-transparent to-purple-400'
             : 'bg-gradient-to-br from-blue-300 via-transparent to-purple-300'
         }`} />
       </div>
@@ -162,26 +158,26 @@ export function ProfessionalExperienceSection() {
           className="text-center mb-12 lg:mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div 
+            <div
               className="p-3 rounded-2xl border"
               style={{
                 backgroundColor: isDark ? colors.primary[900] : colors.primary[50],
                 borderColor: isDark ? colors.primary[700] : colors.primary[200]
               }}
             >
-              <Briefcase 
+              <Briefcase
                 className="w-8 h-8 lg:w-10 lg:h-10"
                 style={{ color: sectionTheme.accent }}
               />
             </div>
             <div>
-              <h2 
+              <h2
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight"
                 style={{ color: sectionTheme.textPrimary }}
               >
                 {t('experience')}
               </h2>
-              <div 
+              <div
                 className="mt-3 w-24 h-1 mx-auto rounded-full"
                 style={{
                   background: `linear-gradient(90deg, ${colors.primary[500]}, ${colors.primary[600]})`
@@ -189,12 +185,12 @@ export function ProfessionalExperienceSection() {
               />
             </div>
           </div>
-          
-          <p 
+
+          <p
             className="text-lg max-w-3xl mx-auto leading-relaxed"
             style={{ color: sectionTheme.textSecondary }}
           >
-            技術革新とクリエイティブな問題解決を通じて、人間中心のソリューションを構築しています。
+            {t('technicalInnovationDescription')}
           </p>
         </motion.div>
 
@@ -207,10 +203,10 @@ export function ProfessionalExperienceSection() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
         >
           {[
-            { label: 'プロジェクト', value: stats.total, suffix: '件' },
-            { label: '進行中', value: stats.ongoing, suffix: '件' },
-            { label: '累計期間', value: Math.round(stats.totalMonths / 12 * 10) / 10, suffix: '年' },
-            { label: '注目プロジェクト', value: stats.featured, suffix: '件' }
+            { label: t('projectsLabel'), value: stats.total, suffix: t('projectsUnit') },
+            { label: t('ongoingLabel'), value: stats.ongoing, suffix: t('projectsUnit') },
+            { label: t('totalDurationLabel'), value: Math.round(stats.totalMonths / 12 * 10) / 10, suffix: t('yearsUnit') },
+            { label: t('featuredProjectsLabel'), value: stats.featured, suffix: t('projectsUnit') }
           ].map((stat, index) => (
             <div
               key={index}
@@ -220,13 +216,13 @@ export function ProfessionalExperienceSection() {
                 borderColor: sectionTheme.border
               }}
             >
-              <div 
+              <div
                 className="text-2xl font-bold mb-1"
                 style={{ color: sectionTheme.accent }}
               >
                 {stat.value}{stat.suffix}
               </div>
-              <div 
+              <div
                 className="text-sm"
                 style={{ color: sectionTheme.textMuted }}
               >
@@ -244,7 +240,7 @@ export function ProfessionalExperienceSection() {
           viewport={{ once: true }}
           className="mb-8"
         >
-          <div 
+          <div
             className="p-6 rounded-2xl border backdrop-blur-sm"
             style={{
               backgroundColor: isDark ? colors.secondary[900] : colors.secondary[50],
@@ -253,13 +249,13 @@ export function ProfessionalExperienceSection() {
           >
             {/* 検索バー */}
             <div className="relative mb-6">
-              <Search 
+              <Search
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5"
                 style={{ color: sectionTheme.textMuted }}
               />
               <input
                 type="text"
-                placeholder="プロジェクトを検索..."
+                placeholder={t('searchProjectsPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-xl border bg-transparent transition-all duration-200 focus:outline-none focus:ring-2"
@@ -278,7 +274,7 @@ export function ProfessionalExperienceSection() {
                 {filterOptions.map((option) => {
                   const Icon = option.icon
                   const isActive = filterMode === option.key
-                  
+
                   return (
                     <button
                       key={option.key}
@@ -287,24 +283,24 @@ export function ProfessionalExperienceSection() {
                         isActive ? 'shadow-md' : 'hover:shadow-sm'
                       }`}
                       style={{
-                        backgroundColor: isActive 
-                          ? sectionTheme.accent 
+                        backgroundColor: isActive
+                          ? sectionTheme.accent
                           : isDark ? colors.secondary[800] : colors.secondary[100],
-                        color: isActive 
-                          ? colors.secondary[50] 
+                        color: isActive
+                          ? colors.secondary[50]
                           : sectionTheme.textSecondary
                       }}
                     >
                       <Icon className="w-4 h-4" />
                       {option.label}
-                      <span 
+                      <span
                         className="px-1.5 py-0.5 rounded text-xs"
                         style={{
-                          backgroundColor: isActive 
-                            ? colors.secondary[50] 
+                          backgroundColor: isActive
+                            ? colors.secondary[50]
                             : isDark ? colors.secondary[700] : colors.secondary[200],
-                          color: isActive 
-                            ? sectionTheme.accent 
+                          color: isActive
+                            ? sectionTheme.accent
                             : sectionTheme.textMuted
                         }}
                       >
@@ -337,18 +333,18 @@ export function ProfessionalExperienceSection() {
                   {(['grid', 'list'] as const).map((mode) => {
                     const Icon = mode === 'grid' ? Grid3X3 : List
                     const isActive = viewMode === mode
-                    
+
                     return (
                       <button
                         key={mode}
                         onClick={() => setViewMode(mode)}
                         className="p-2 transition-all duration-200"
                         style={{
-                          backgroundColor: isActive 
-                            ? sectionTheme.accent 
+                          backgroundColor: isActive
+                            ? sectionTheme.accent
                             : 'transparent',
-                          color: isActive 
-                            ? colors.secondary[50] 
+                          color: isActive
+                            ? colors.secondary[50]
                             : sectionTheme.textMuted
                         }}
                       >
@@ -396,24 +392,24 @@ export function ProfessionalExperienceSection() {
             transition={{ duration: 0.4 }}
             className="text-center py-16"
           >
-            <div 
+            <div
               className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
               style={{
                 backgroundColor: isDark ? colors.secondary[800] : colors.secondary[100]
               }}
             >
-              <Search 
+              <Search
                 className="w-8 h-8"
                 style={{ color: sectionTheme.textMuted }}
               />
             </div>
-            <h3 
+            <h3
               className="text-xl font-semibold mb-2"
               style={{ color: sectionTheme.textPrimary }}
             >
               結果が見つかりませんでした
             </h3>
-            <p 
+            <p
               className="text-sm max-w-md mx-auto"
               style={{ color: sectionTheme.textSecondary }}
             >

@@ -3,7 +3,6 @@
 import { useState, useCallback, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { X, ExternalLink, ChevronLeft, ChevronRight, Grid3X3, LayoutGrid, Maximize2, Play, Pause, ZoomIn } from 'lucide-react'
 import Image from 'next/image'
 
@@ -14,8 +13,7 @@ interface Artwork {
   image: string
   link?: string
   year: string
-  materials?: string[]
-  dimensions?: string
+  keywords?: string[]
   awards?: string[]
 }
 
@@ -23,7 +21,7 @@ type ViewMode = 'minimal' | 'grid' | 'masonry'
 
 export function ArtworkSection() {
   const { t } = useTranslation()
-  const { isDark } = useTheme()
+  const isDark = true // ダークモード固定
   const [selectedArtwork, setSelectedArtwork] = useState<number | null>(null)
   const [viewMode, setViewMode] = useState<ViewMode>('minimal')
   const [isAutoPlay, setIsAutoPlay] = useState(false)
@@ -37,8 +35,7 @@ export function ArtworkSection() {
       image: "/images/geo.jpeg",
       link: "https://geohp.vercel.app/",
       year: '2024',
-      materials: ['Sand', 'Sensors', 'Audio System'],
-      dimensions: '120cm × 80cm × 15cm'
+      keywords: ['Interactive', 'Sound', 'Sensor', 'Physical Computing']
     },
     {
       id: 'protophysica',
@@ -47,8 +44,7 @@ export function ArtworkSection() {
       image: "/images/proto.jpeg",
       link: "https://protophysicahp.vercel.app/",
       year: '2024',
-      materials: ['Supercapacitors', 'Electronics', 'Mixed Media'],
-      dimensions: 'Variable'
+      keywords: ['Energy', 'Electronics', 'Sustainable Design']
     },
     {
       id: 'cotton-sketch-pen',
@@ -57,8 +53,7 @@ export function ArtworkSection() {
       image: "/images/cotton.jpeg",
       link: "https://cotton-sketch-pen-hp.vercel.app/",
       year: '2024',
-      materials: ['Plastic Cotton', 'Electronics'],
-      dimensions: '15cm × 3cm × 3cm'
+      keywords: ['3D Printing', 'Portable', 'Creative Tools']
     },
     {
       id: 'metransfer',
@@ -67,8 +62,7 @@ export function ArtworkSection() {
       image: "/images/met.jpeg",
       link: "https://metransfer.vercel.app/",
       year: '2024',
-      materials: ['Liquid Materials', 'Foam', 'Transformation System'],
-      dimensions: '200cm × 150cm × 100cm'
+      keywords: ['Transformation', 'Liquid', 'Dynamic Form']
     },
     {
       id: 'puflica',
@@ -77,8 +71,7 @@ export function ArtworkSection() {
       image: "/images/puf.jpeg",
       link: "https://puflica.vercel.app/",
       year: '2024',
-      materials: ['Interactive Elements', 'Sound System'],
-      dimensions: '80cm × 60cm × 40cm'
+      keywords: ['Interactive', 'Sound', 'Playful Design']
     },
     {
       id: 'nozoko',
@@ -87,8 +80,7 @@ export function ArtworkSection() {
       image: "/images/nozo.jpeg",
       link: "https://nozoko.vercel.app/",
       year: '2024',
-      materials: ['Heat Control System', 'Aromatics'],
-      dimensions: '25cm × 25cm × 15cm'
+      keywords: ['Aroma', 'Heat Control', 'Sensory Experience']
     },
     {
       id: 'protozoa',
@@ -97,8 +89,7 @@ export function ArtworkSection() {
       image: "/images/Protozoa.png",
       link: "https://protozoahp.vercel.app/",
       year: '2025',
-      materials: ['スーパーキャパシタ', 'アクチュエータ'],
-      dimensions: '可変'
+      keywords: ['Biomimetic', 'Touch', 'Responsive Technology']
     }
   ], [t])
 
@@ -213,9 +204,6 @@ export function ArtworkSection() {
             {t('artwork')}
           </h2>
           <div className="w-24 h-0.5 bg-blue-600 mx-auto mb-6" />
-          <p className={`text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} max-w-3xl mx-auto leading-relaxed font-light`}>
-            Exploring the intersection of technology and art through interactive installations
-          </p>
         </motion.div>
 
         {/* View Mode Toggle */}
@@ -345,17 +333,17 @@ export function ArtworkSection() {
                         </p>
                       </div>
 
-                      {artwork.materials && (
+                      {artwork.keywords && (
                         <div>
                           <h4 className={`text-sm font-medium mb-2 ${
                             isDark ? 'text-gray-300' : 'text-gray-700'
                           }`}>
-                            Materials
+                            {t('keywords')}
                           </h4>
                           <p className={`text-sm ${
                             isDark ? 'text-gray-500' : 'text-gray-500'
                           }`}>
-                            {artwork.materials.join(' • ')}
+                            {artwork.keywords.join(' • ')}
                           </p>
                         </div>
                       )}
@@ -367,7 +355,7 @@ export function ArtworkSection() {
                           isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
                         } transition-colors`}
                       >
-                        View Full Details
+                        {t('viewFullDetails')}
                         <ChevronRight className="w-4 h-4" />
                       </motion.button>
                     </div>
@@ -418,7 +406,7 @@ export function ArtworkSection() {
                           {artwork.description}
                         </p>
                         <div className="flex items-center gap-2 mt-4 text-white/90">
-                          <span className="text-xs">View Details</span>
+                          <span className="text-xs">{t('viewDetails')}</span>
                           <ChevronRight className="w-3 h-3" />
                         </div>
                       </motion.div>
@@ -536,7 +524,7 @@ export function ArtworkSection() {
                     <div className="space-y-8">
                       <div>
                         <h4 className={`text-lg font-light mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                          About this work
+                          {t('aboutThisWork')}
                         </h4>
                         <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed text-lg font-light`}>
                           {filteredArtworks[selectedArtwork]?.description}
@@ -546,7 +534,7 @@ export function ArtworkSection() {
                       {/* Year */}
                       <div>
                         <h5 className={`font-medium mb-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                          Year
+                          {t('year')}
                         </h5>
                         <p className={`${isDark ? 'text-white' : 'text-gray-900'}`}>
                           {filteredArtworks[selectedArtwork]?.year}
@@ -566,34 +554,23 @@ export function ArtworkSection() {
                         </div>
                       </div>
 
-                      {filteredArtworks[selectedArtwork]?.materials && (
+                      {filteredArtworks[selectedArtwork]?.keywords && (
                         <div>
                           <h5 className={`font-medium mb-3 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                            Materials & Media
+                            {t('keywords')}
                           </h5>
                           <div className="flex flex-wrap gap-2">
-                            {filteredArtworks[selectedArtwork]?.materials?.map((material, idx) => (
+                            {filteredArtworks[selectedArtwork]?.keywords?.map((keyword: string, idx: number) => (
                               <span
                                 key={idx}
                                 className={`px-4 py-2 rounded-full text-sm font-light ${
                                   isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-700'
                                 }`}
                               >
-                                {material}
+                                {keyword}
                               </span>
                             ))}
                           </div>
-                        </div>
-                      )}
-
-                      {filteredArtworks[selectedArtwork]?.dimensions && (
-                        <div>
-                          <h5 className={`font-medium mb-2 text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                            Dimensions
-                          </h5>
-                          <p className={`${isDark ? 'text-white' : 'text-gray-900'}`}>
-                            {filteredArtworks[selectedArtwork]?.dimensions}
-                          </p>
                         </div>
                       )}
 
@@ -608,7 +585,7 @@ export function ArtworkSection() {
                           className="inline-flex items-center gap-3 px-6 py-3 bg-black text-white rounded-full font-light hover:bg-gray-900 transition-colors"
                         >
                           <ExternalLink className="w-5 h-5" />
-                          Visit Project Website
+                          {t('visitProjectWebsite')}
                         </motion.a>
                       )}
                     </div>

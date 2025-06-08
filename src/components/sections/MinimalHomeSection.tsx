@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { minimalStyles } from '../../utils/minimal-styles'
 
 const socialLinks = [
@@ -15,7 +14,7 @@ const socialLinks = [
 
 export function MinimalHomeSection() {
   const { t } = useTranslation();
-  const { isDark } = useTheme();
+  const isDark = true; // ダークモード固定
 
   return (
     <section id="home" className="min-h-screen flex items-center">
