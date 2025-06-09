@@ -1,6 +1,6 @@
 import { TranslationProvider } from '../contexts/TranslationContext'
 import { StructuredData } from '../components/StructuredData'
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -10,6 +10,7 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  preload: true,
 });
 
 const geistMono = localFont({
@@ -19,13 +20,22 @@ const geistMono = localFont({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+  ],
+  colorScheme: 'dark light',
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://keigominamida.com'),
-  title: {
-    default: "Keigo Minamida | 南田桂吾",
-    template: "%s | Keigo Minamida | 南田桂吾"
-  },
-  description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction and real-world object manipulation. Explore cutting-edge research, innovative artworks, and entrepreneurial ventures.",
+  title: 'Keigo Minamida | HCI Researcher & Creative Technologist',
+  description: 'Keigo Minamida is a Master\'s student at The University of Tokyo, specializing in Human-Computer Interaction, Augmented Humans, AI, and Computer Vision. Explore his research projects, creative works, and innovative solutions.',
   keywords: [
     "Keigo Minamida",
     "南田桂吾",
@@ -50,7 +60,14 @@ export const metadata: Metadata = {
     "IoT",
     "bicycle safety",
     "interactive art",
-    "GUGEN2024"
+    "GUGEN2024",
+    "HCI",
+    "Human-Computer Interaction",
+    "Augmented Humans",
+    "AI",
+    "Research",
+    "Creative Technology",
+    "Portfolio"
   ],
   authors: [{
     name: "Keigo Minamida",
@@ -58,14 +75,14 @@ export const metadata: Metadata = {
   }],
   creator: "Keigo Minamida",
   publisher: "Keigo Minamida",
-  category: "Portfolio",
-  classification: "Personal Website",
+  category: "technology",
+  classification: "portfolio",
   openGraph: {
     type: "website",
     locale: "en_US",
     alternateLocale: ["ja_JP"],
-    title: "Keigo Minamida | 南田桂吾",
-    description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction and real-world object manipulation.",
+    title: "Keigo Minamida | HCI Researcher & Creative Technologist",
+    description: "Explore the innovative research and creative works of Keigo Minamida, specializing in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
     images: [
@@ -73,20 +90,22 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Keigo Minamida - Researcher, Entrepreneur & Software Developer"
+        alt: "Keigo Minamida Portfolio - HCI Research and Creative Technology",
+        type: "image/jpeg"
       },
       {
-        url: "/images/myface.jpg",
-        width: 400,
-        height: 400,
-        alt: "Keigo Minamida Profile Photo"
+        url: "/images/og-image-square.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Keigo Minamida Profile",
+        type: "image/jpeg"
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keigo Minamida | 南田桂吾",
-    description: "Portfolio of Keigo Minamida (南田桂吾) - A passionate researcher and entrepreneur at The University of Tokyo, pioneering human-robot interaction.",
+    title: "Keigo Minamida | HCI Researcher & Creative Technologist",
+    description: "Innovative research in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
     creator: "@mKeigo1110",
     site: "@mKeigo1110",
     images: ["/images/og-image.jpg"],
@@ -94,71 +113,80 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-      "max-video-preview": -1,
     },
   },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
-    canonical: "https://keigominamida.com/",
+    canonical: "/",
     languages: {
-      'en': 'https://keigominamida.com/',
-      'ja': 'https://keigominamida.com/',
+      'en': '/en',
+      'ja': '/ja',
     },
   },
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#8b5cf6' },
+    ],
+  },
+  manifest: '/manifest.json',
   other: {
     "theme-color": "#0f172a",
     "color-scheme": "dark light",
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Keigo Minamida",
     "application-name": "Keigo Minamida Portfolio",
-    "msapplication-TileColor": "#0f172a",
+    "msapplication-TileColor": "#8b5cf6",
     "msapplication-config": "/browserconfig.xml"
   }
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
-        <StructuredData />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="canonical" href="https://keigominamida.com/" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-
-        {/* Preconnect to external domains */}
+        {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-        {/* DNS prefetch for performance */}
-        <link rel="dns-prefetch" href="//www.iii.u-tokyo.ac.jp" />
-        <link rel="dns-prefetch" href="//lab.rekimoto.org" />
-        <link rel="dns-prefetch" href="//twitter.com" />
-        <link rel="dns-prefetch" href="//instagram.com" />
-        <link rel="dns-prefetch" href="//linkedin.com" />
-        <link rel="dns-prefetch" href="//github.com" />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+        {/* Structured Data */}
+        <StructuredData />
+
+        {/* Additional performance hints */}
+        <link rel="prefetch" href="/images/myface.jpg" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body
-        className={`${inter.variable} ${geistMono.variable} font-sans antialiased bg-slate-900 text-white dark`}
-      >
+      <body className={`${inter.className} ${geistMono.variable} font-sans antialiased bg-slate-900 text-white dark`} suppressHydrationWarning>
         <TranslationProvider>
           {children}
         </TranslationProvider>

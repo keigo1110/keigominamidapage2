@@ -1,21 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { SocialLink } from '../../types'
-import {
-  GlassmorphismHome,
-  BrutalistHome,
-  MinimalistHome,
-  CyberpunkHome,
-  MagazineHome,
-  RetroSynthwaveHome,
-  LuxuryPremiumHome,
-  OrganicBiomorphicHome
-} from './HomeSectionVariants'
+// import {
+//   GlassmorphismHome,
+//   BrutalistHome,
+//   MinimalistHome,
+//   CyberpunkHome,
+//   MagazineHome,
+//   RetroSynthwaveHome,
+//   LuxuryPremiumHome,
+//   OrganicBiomorphicHome
+// } from './HomeSectionVariants'
 
 const socialLinks: SocialLink[] = [
   { icon: FaTwitter, url: "https://twitter.com/mKeigo1110", style: "bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/25" },
@@ -26,18 +26,18 @@ const socialLinks: SocialLink[] = [
   { icon: FaPencilAlt, url: "https://qiita.com/keigo1110", style: "bg-green-500 hover:bg-green-600 text-white shadow-green-500/25" }
 ];
 
-// Array of all design variants
-const HOME_VARIANTS = [
-  GlassmorphismHome,
-  BrutalistHome,
-  MinimalistHome,
-  CyberpunkHome,
-  MagazineHome,
-  RetroSynthwaveHome,
-  LuxuryPremiumHome,
-  OrganicBiomorphicHome,
-  DefaultHome // We'll keep the original as one of the options
-];
+// Array of all design variants (commented out for future use)
+// const HOME_VARIANTS = [
+//   GlassmorphismHome,
+//   BrutalistHome,
+//   MinimalistHome,
+//   CyberpunkHome,
+//   MagazineHome,
+//   RetroSynthwaveHome,
+//   LuxuryPremiumHome,
+//   OrganicBiomorphicHome,
+//   DefaultHome // We'll keep the original as one of the options
+// ];
 
 // Original Home Section as Default
 function DefaultHome() {
@@ -54,15 +54,15 @@ function DefaultHome() {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative">
-      <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center relative z-10">
+    <section id="home" className="min-h-screen flex items-center justify-center relative safe-area-top safe-area-bottom">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-          className="md:w-1/3 mb-8 md:mb-0 relative"
+          className="w-full lg:w-1/3 mb-8 lg:mb-0 relative flex justify-center"
         >
-          <div className="relative">
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
             <motion.div
               className={`absolute inset-0 bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-400 to-blue-500'} rounded-full blur-2xl opacity-30`}
               animate={{
@@ -75,14 +75,16 @@ function DefaultHome() {
                 ease: "easeInOut"
               }}
             />
-            <Image
-              src="/images/myface.jpg"
-              alt="Keigo Minamida"
-              width={300}
-              height={300}
-              className={`rounded-full shadow-2xl relative z-10 border-4 ${isDark ? 'border-blue-400/30' : 'border-blue-300/50'}`}
-              priority
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src="/images/myface.jpg"
+                alt={t('profileAlt')}
+                fill
+                sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
+                className={`rounded-full shadow-2xl object-cover border-4 ${isDark ? 'border-blue-400/30' : 'border-blue-300/50'}`}
+                priority
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -90,10 +92,10 @@ function DefaultHome() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="md:w-2/3 md:pl-12"
+          className="w-full lg:w-2/3 lg:pl-8 xl:pl-12 text-center lg:text-left"
         >
           <motion.h1
-            className={`text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${isDark ? 'from-blue-400 via-blue-500 to-blue-600' : 'from-blue-600 via-blue-700 to-blue-800'} bg-clip-text text-transparent`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r ${isDark ? 'from-blue-400 via-blue-500 to-blue-600' : 'from-blue-600 via-blue-700 to-blue-800'} bg-clip-text text-transparent leading-tight`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -102,7 +104,7 @@ function DefaultHome() {
           </motion.h1>
 
           <motion.p
-            className={`text-xl mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
+            className={`text-lg sm:text-xl mb-6 sm:mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
@@ -111,14 +113,14 @@ function DefaultHome() {
           </motion.p>
 
           <motion.div
-            className="mb-8"
+            className="mb-6 sm:mb-8 space-y-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <a
               href="https://www.iii.u-tokyo.ac.jp/"
-              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block mb-2 text-lg font-medium`}
+              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 focus:ring-blue-400/50 rounded-lg px-2 py-1 inline-block`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -126,7 +128,7 @@ function DefaultHome() {
             </a>
             <a
               href="https://lab.rekimoto.org/"
-              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-lg font-medium`}
+              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 focus:ring-blue-400/50 rounded-lg px-2 py-1 inline-block`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -135,7 +137,7 @@ function DefaultHome() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap gap-4 mb-8"
+            className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.1 }}
@@ -149,7 +151,7 @@ function DefaultHome() {
                 <motion.a
                   key={index}
                   href={social.url}
-                  className={`p-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 ${style}`}
+                  className={`p-3 sm:p-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${style}`}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -157,9 +159,9 @@ function DefaultHome() {
                   transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visit ${social.url}`}
+                  aria-label={`Visit ${social.url.split('/').pop() || social.url} profile`}
                 >
-                  <social.icon className="text-xl" />
+                  <social.icon className="text-lg sm:text-xl" />
                 </motion.a>
               );
             })}
@@ -171,13 +173,13 @@ function DefaultHome() {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="space-y-6"
           >
-            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
+            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-4 sm:p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
               <div className="flex flex-wrap gap-2 mb-4">
                 {statementTabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${
                       activeTab === tab.id
                         ? `${isDark ? 'bg-blue-500 text-white' : 'bg-blue-600 text-white'} shadow-lg`
                         : `${isDark ? 'bg-slate-700/50 text-gray-300 hover:bg-slate-700' : 'bg-gray-200/50 text-gray-600 hover:bg-gray-300'}`
@@ -187,45 +189,45 @@ function DefaultHome() {
                   </button>
                 ))}
               </div>
-              <motion.p
+              <motion.div
                 key={activeTab}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
+                className={`text-sm sm:text-base lg:text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed max-h-96 overflow-y-auto`}
               >
-                {statementTabs[activeTab]?.content || ''}
-              </motion.p>
+                {statementTabs[activeTab]?.content.split('\n').map((paragraph, index) => (
+                  <p key={index} className="mb-4 last:mb-0">
+                    {paragraph}
+                  </p>
+                ))}
+              </motion.div>
             </div>
 
-            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
-              <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+            {/* Research Interests */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.7 }}
+              className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-4 sm:p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}
+            >
+              <h3 className={`text-lg sm:text-xl font-semibold mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
                 {t('interests')}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {interests.map((interest, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors duration-200"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 1.7 + index * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className={`p-3 rounded-lg transition-all duration-300 ${isDark ? 'bg-slate-700/50 hover:bg-slate-700' : 'bg-gray-200/50 hover:bg-gray-300'}`}
                   >
-                    <div className={`w-2 h-2 bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-600 to-blue-800'} rounded-full flex-shrink-0`} />
-                    <span className="text-sm">{interest}</span>
+                    <span className={`text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                      {interest}
+                    </span>
                   </motion.div>
                 ))}
               </div>
-            </div>
-
-            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
-              <h3 className={`text-2xl font-semibold mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
-                {t('education')}
-              </h3>
-              <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                {t('department')}
-              </p>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
@@ -233,45 +235,19 @@ function DefaultHome() {
   );
 }
 
+// Switch to render a random variant (or keep using DefaultHome)
 export function HomeSection() {
-  const [variantIndex, setVariantIndex] = useState<number>(() => {
-    // Use a default index for SSR compatibility
-    return 0;
-  });
+  // For now, we'll use the DefaultHome.
+  // You can uncomment the lines below to enable random variants
 
-  const [isClient, setIsClient] = useState(false);
+  // const [selectedVariant, setSelectedVariant] = useState(0);
 
-  useEffect(() => {
-    // Only run on client side
-    setIsClient(true);
+  // useEffect(() => {
+  //   setSelectedVariant(Math.floor(Math.random() * HOME_VARIANTS.length));
+  // }, []);
 
-    // Check if there's a stored variant for this session
-    const storedVariant = sessionStorage.getItem('homeSectionVariant');
-    if (storedVariant === null) {
-      // If no stored variant, select a random one
-      const randomIndex = Math.floor(Math.random() * HOME_VARIANTS.length);
-      setVariantIndex(randomIndex);
-      sessionStorage.setItem('homeSectionVariant', randomIndex.toString());
-    } else {
-      // Use the stored variant
-      const index = parseInt(storedVariant, 10);
-      if (index >= 0 && index < HOME_VARIANTS.length) {
-        setVariantIndex(index);
-      }
-    }
-  }, []);
+  // const SelectedHomeComponent = HOME_VARIANTS[selectedVariant];
+  // return <SelectedHomeComponent />;
 
-    // Get the current component based on variant index
-  const SelectedVariant = isClient ? (HOME_VARIANTS[variantIndex] || DefaultHome) : DefaultHome;
-
-  return (
-    <motion.div
-      key={`variant-${variantIndex}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <SelectedVariant />
-    </motion.div>
-  );
+  return <DefaultHome />;
 }
