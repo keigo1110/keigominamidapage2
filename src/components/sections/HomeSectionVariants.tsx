@@ -8,7 +8,7 @@ import { useTranslation } from '../../contexts/TranslationContext'
 import { SocialLink } from '../../types'
 
 const socialLinks: SocialLink[] = [
-  { icon: FaTwitter, url: "https://twitter.com/mKeigo1110", style: "bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/25" },
+  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/25" },
   { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-blue-500/25" },
   { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/25" },
   { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "bg-blue-700 hover:bg-blue-800 text-white shadow-blue-700/25" },

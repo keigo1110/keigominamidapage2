@@ -7,7 +7,7 @@ import { useTranslation } from '../../contexts/TranslationContext'
 import { minimalStyles } from '../../utils/minimal-styles'
 
 const socialLinks = [
-  { icon: FaTwitter, url: "https://twitter.com/mKeigo1110", label: "Twitter" },
+  { icon: FaTwitter, url: "https://twitter.com/keigominamida", label: "Twitter" },
   { icon: FaGithub, url: "https://github.com/keigo1110", label: "GitHub" },
   { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", label: "LinkedIn" },
 ];
@@ -30,13 +30,13 @@ export function MinimalHomeSection() {
             <h1 className={`${minimalStyles.heading.h1(isDark)} mb-6`}>
               {t('name')}
             </h1>
-            
+
             <p className={`${minimalStyles.text.body(isDark)} text-lg mb-8 leading-relaxed`}>
               {t('roll')}
             </p>
-            
+
             <div className="space-y-2 mb-8">
-              <a 
+              <a
                 href="https://www.iii.u-tokyo.ac.jp/"
                 className={minimalStyles.link.default(isDark)}
                 target="_blank"
@@ -45,7 +45,7 @@ export function MinimalHomeSection() {
                 {t('school')}
               </a>
               <br />
-              <a 
+              <a
                 href="https://lab.rekimoto.org/"
                 className={minimalStyles.link.default(isDark)}
                 target="_blank"
@@ -54,7 +54,7 @@ export function MinimalHomeSection() {
                 {t('Lab')}
               </a>
             </div>
-            
+
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -71,7 +71,7 @@ export function MinimalHomeSection() {
               ))}
             </div>
           </motion.div>
-          
+
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}

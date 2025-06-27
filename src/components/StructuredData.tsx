@@ -7,7 +7,7 @@ export function StructuredData() {
     "@type": "Person",
     "@id": "https://keigominamida.com/#person",
     "name": "Keigo Minamida",
-    "alternateName": "南田桂吾",
+    "alternateName": ["南田桂吾", "みなみだけいご", "けいごみなみだ"],
     "url": "https://keigominamida.com/",
     "image": "https://keigominamida.com/images/myface.jpg",
     "description": "A passionate researcher and entrepreneur focused on pioneering new ways for humans to interact with robots and real-world objects. Second-year Master student at The University of Tokyo.",
@@ -36,7 +36,7 @@ export function StructuredData() {
       "Entrepreneurship"
     ],
     "sameAs": [
-      "https://twitter.com/mKeigo1110",
+      "https://twitter.com/keigominamida",
       "https://www.instagram.com/namida1110/",
       "https://www.linkedin.com/in/keigominamida/",
       "https://www.facebook.com/profile.php?id=100053066043602",

@@ -35,10 +35,12 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://keigominamida.com'),
   title: 'Keigo Minamida | HCI Researcher & Creative Technologist',
-  description: 'Keigo Minamida is a Master\'s student at The University of Tokyo, specializing in Human-Computer Interaction, Augmented Humans, AI, and Computer Vision. Explore his research projects, creative works, and innovative solutions.',
+  description: 'Keigo Minamida (南田桂吾, みなみだけいご, けいごみなみだ) is a Master\'s student at The University of Tokyo, specializing in Human-Computer Interaction, Augmented Humans, AI, and Computer Vision. Explore his research projects, creative works, and innovative solutions.',
   keywords: [
     "Keigo Minamida",
     "南田桂吾",
+    "みなみだけいご",
+    "けいごみなみだ",
     "University of Tokyo",
     "Rekimoto Lab",
     "human-robot interaction",
@@ -106,8 +108,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Keigo Minamida | HCI Researcher & Creative Technologist",
     description: "Innovative research in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
-    creator: "@mKeigo1110",
-    site: "@mKeigo1110",
+    creator: "@keigominamida",
+    site: "@keigominamida",
     images: ["/images/og-image.jpg"],
   },
   robots: {
