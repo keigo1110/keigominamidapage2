@@ -118,6 +118,10 @@ In the future where informatization progresses, what we face is whether to be sw
     oProject2Description: 'Move Turtlebot3 by body operation.',
     oProject3: 'Visualization of Unitree L1 LiDAR',
     oProject3Description: 'Display Unitree L1 LiDAR without using Rviz.',
+    oProject4: 'MiniChro',
+    oProject4Description: 'Generate timelines from Excel',
+    demo: 'Demo',
+    usageGuide: 'Usage Guide',
     repository: 'Repository',
 
     // Professional Experience

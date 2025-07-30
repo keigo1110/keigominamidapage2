@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaYoutube, FaGithub } from 'react-icons/fa'
+import { FaYoutube, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { ProjectCard } from '../cards/ProjectCard'
 
@@ -31,6 +31,16 @@ export function OtherProjectsSection() {
       description: t('oProject3Description'),
       image: "/images/unilidar.png",
       links: [{ icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/unilidar_sdk' }]
+    },
+    {
+      title: t('oProject4'),
+      description: t('oProject4Description'),
+      image: "/images/minikuro-title.jpg",
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('demo'), url: 'https://myminichronology.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('usageGuide'), url: 'https://note.com/namida1110/n/nfd97132121ef' },
+        { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/myminichronology' }
+      ]
     }
   ];
 

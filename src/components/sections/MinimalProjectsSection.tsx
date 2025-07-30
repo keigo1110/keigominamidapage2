@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaFileAlt, FaYoutube, FaGithub } from 'react-icons/fa'
+import { FaFileAlt, FaYoutube, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { MinimalProjectCard } from '../cards/MinimalProjectCard'
 import { minimalStyles } from '../../utils/minimal-styles'
@@ -35,6 +35,16 @@ export function MinimalProjectsSection() {
       links: [
         { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/unilidar_sdk' }
       ]
+    },
+    {
+      title: t('oProject4'),
+      description: t('oProject4Description'),
+      image: "/images/minikuro-title.jpg",
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('demo'), url: 'https://myminichronology.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('usageGuide'), url: 'https://note.com/namida1110/n/nfd97132121ef' },
+        { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/myminichronology' }
+      ]
     }
   ];
 
@@ -55,7 +65,7 @@ export function MinimalProjectsSection() {
             Exploring the boundaries of human-computer interaction through innovative research and development.
           </p>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <MinimalProjectCard key={index} {...project} />

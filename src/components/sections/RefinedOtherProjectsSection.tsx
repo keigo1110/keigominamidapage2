@@ -43,6 +43,15 @@ export function RefinedOtherProjectsSection() {
       github: 'https://github.com/keigo9/unitree-lidar-viz',
       link: 'https://keigo9.github.io/Uni-lidar-web/',
       demo: t('repository')
+    },
+    {
+      title: t('oProject4'),
+      description: t('oProject4Description'),
+      technologies: ['React', 'Next.js', 'TypeScript', 'Excel'],
+      github: 'https://github.com/keigo1110/myminichronology',
+      link: 'https://myminichronology.vercel.app/',
+      demo: t('usageGuide'),
+      featured: true
     }
   ]
 
@@ -123,7 +132,7 @@ export function RefinedOtherProjectsSection() {
                   } group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r from-${colors.primary[500]} to-${colors.secondary[500]} transition-all duration-300`}>
                     {project.title}
                   </h3>
-                  
+
                   <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} text-sm leading-relaxed`}>
                     {project.description}
                   </p>
@@ -135,8 +144,8 @@ export function RefinedOtherProjectsSection() {
                     <span
                       key={techIndex}
                       className={`px-3 py-1 text-xs rounded-full ${
-                        isDark 
-                          ? 'bg-gray-800 text-gray-300' 
+                        isDark
+                          ? 'bg-gray-800 text-gray-300'
                           : 'bg-gray-100 text-gray-700'
                       }`}
                     >

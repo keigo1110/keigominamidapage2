@@ -118,6 +118,10 @@ export const ja = {
     oProject2Description: 'Turtlebot3を身体操作で動かす',
     oProject3: 'Unitree L1 LiDARの可視化',
     oProject3Description: 'Unitree L1のLiDARをRvizを使わずに表示する',
+    oProject4: 'ミニクロ',
+    oProject4Description: 'Excelから年表を生成する',
+    demo: 'デモ',
+    usageGuide: '使用ガイド',
     repository: 'Repository',
 
     // 経歴
