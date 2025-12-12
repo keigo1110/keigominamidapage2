@@ -1,0 +1,6001 @@
+{
+  "schemaVersion": 1,
+  "projectPath": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+  "projectRootName": "keigominamidapage2",
+  "graphRenderingMode": "multi-agent",
+  "linkDisplayMode": "all",
+  "graphStats": {
+    "totalNodes": 150,
+    "folders": 27,
+    "files": 123,
+    "images": 26,
+    "videos": 0,
+    "audio": 0,
+    "code": 76,
+    "text": 5,
+    "html": 0,
+    "yaml": 1,
+    "json": 6,
+    "other": 9,
+    "totalLines": 0,
+    "maxLines": 0
+  },
+  "directoryTree": {
+    "name": "keigominamidapage2",
+    "type": "directory",
+    "path": "keigominamidapage2",
+    "children": [
+      {
+        "name": ".claude",
+        "type": "directory",
+        "path": ".claude",
+        "children": [],
+        "hasMore": true
+      },
+      {
+        "name": ".kamui",
+        "type": "directory",
+        "path": ".kamui",
+        "children": [],
+        "hasMore": true
+      },
+      {
+        "name": ".next",
+        "type": "directory",
+        "path": ".next",
+        "children": [],
+        "hasMore": true
+      },
+      {
+        "name": "logmd",
+        "type": "directory",
+        "path": "logmd",
+        "children": [
+          {
+            "name": "logfile.md",
+            "type": "file",
+            "path": "logmd/logfile.md"
+          },
+          {
+            "name": "nextdevelop.yaml",
+            "type": "file",
+            "path": "logmd/nextdevelop.yaml"
+          }
+        ]
+      },
+      {
+        "name": "node_modules",
+        "type": "directory",
+        "path": "node_modules",
+        "children": [],
+        "hasMore": true
+      },
+      {
+        "name": "public",
+        "type": "directory",
+        "path": "public",
+        "children": [
+          {
+            "name": "images",
+            "type": "directory",
+            "path": "public/images",
+            "children": [
+              {
+                "name": "1000ya.png",
+                "type": "file",
+                "path": "public/images/1000ya.png"
+              },
+              {
+                "name": "4ZIGEN.png",
+                "type": "file",
+                "path": "public/images/4ZIGEN.png"
+              },
+              {
+                "name": "bodyop.png",
+                "type": "file",
+                "path": "public/images/bodyop.png"
+              },
+              {
+                "name": "cotton.jpeg",
+                "type": "file",
+                "path": "public/images/cotton.jpeg"
+              },
+              {
+                "name": "FSTL.png",
+                "type": "file",
+                "path": "public/images/FSTL.png"
+              },
+              {
+                "name": "geo.jpeg",
+                "type": "file",
+                "path": "public/images/geo.jpeg"
+              },
+              {
+                "name": "ha.png",
+                "type": "file",
+                "path": "public/images/ha.png"
+              },
+              {
+                "name": "iii.jpg",
+                "type": "file",
+                "path": "public/images/iii.jpg"
+              },
+              {
+                "name": "met.jpeg",
+                "type": "file",
+                "path": "public/images/met.jpeg"
+              },
+              {
+                "name": "minikuro-title.jpg",
+                "type": "file",
+                "path": "public/images/minikuro-title.jpg"
+              },
+              {
+                "name": "myface.jpg",
+                "type": "file",
+                "path": "public/images/myface.jpg"
+              },
+              {
+                "name": "nozo.jpeg",
+                "type": "file",
+                "path": "public/images/nozo.jpeg"
+              },
+              {
+                "name": "proto.jpeg",
+                "type": "file",
+                "path": "public/images/proto.jpeg"
+              },
+              {
+                "name": "Protozoa.png",
+                "type": "file",
+                "path": "public/images/Protozoa.png"
+              },
+              {
+                "name": "puf.jpeg",
+                "type": "file",
+                "path": "public/images/puf.jpeg"
+              },
+              {
+                "name": "Recertif.png",
+                "type": "file",
+                "path": "public/images/Recertif.png"
+              },
+              {
+                "name": "robot_room.png",
+                "type": "file",
+                "path": "public/images/robot_room.png"
+              },
+              {
+                "name": "shu.png",
+                "type": "file",
+                "path": "public/images/shu.png"
+              },
+              {
+                "name": "sigasi.jpg",
+                "type": "file",
+                "path": "public/images/sigasi.jpg"
+              },
+              {
+                "name": "unilidar.png",
+                "type": "file",
+                "path": "public/images/unilidar.png"
+              },
+              {
+                "name": "wakabar.png",
+                "type": "file",
+                "path": "public/images/wakabar.png"
+              }
+            ]
+          },
+          {
+            "name": "favicon.ico",
+            "type": "file",
+            "path": "public/favicon.ico"
+          },
+          {
+            "name": "file.svg",
+            "type": "file",
+            "path": "public/file.svg"
+          },
+          {
+            "name": "globe.svg",
+            "type": "file",
+            "path": "public/globe.svg"
+          },
+          {
+            "name": "manifest.json",
+            "type": "file",
+            "path": "public/manifest.json"
+          },
+          {
+            "name": "next.svg",
+            "type": "file",
+            "path": "public/next.svg"
+          },
+          {
+            "name": "robots.txt",
+            "type": "file",
+            "path": "public/robots.txt"
+          },
+          {
+            "name": "sitemap.xml",
+            "type": "file",
+            "path": "public/sitemap.xml"
+          },
+          {
+            "name": "vercel.svg",
+            "type": "file",
+            "path": "public/vercel.svg"
+          },
+          {
+            "name": "window.svg",
+            "type": "file",
+            "path": "public/window.svg"
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "directory",
+        "path": "src",
+        "children": [
+          {
+            "name": "app",
+            "type": "directory",
+            "path": "src/app",
+            "children": [
+              {
+                "name": "fonts",
+                "type": "directory",
+                "path": "src/app/fonts",
+                "children": [
+                  {
+                    "name": "GeistMonoVF.woff",
+                    "type": "file",
+                    "path": "src/app/fonts/GeistMonoVF.woff"
+                  },
+                  {
+                    "name": "GeistVF.woff",
+                    "type": "file",
+                    "path": "src/app/fonts/GeistVF.woff"
+                  }
+                ]
+              },
+              {
+                "name": "globals.css",
+                "type": "file",
+                "path": "src/app/globals.css"
+              },
+              {
+                "name": "layout.tsx",
+                "type": "file",
+                "path": "src/app/layout.tsx"
+              },
+              {
+                "name": "page.tsx",
+                "type": "file",
+                "path": "src/app/page.tsx"
+              }
+            ]
+          },
+          {
+            "name": "components",
+            "type": "directory",
+            "path": "src/components",
+            "children": [
+              {
+                "name": "cards",
+                "type": "directory",
+                "path": "src/components/cards",
+                "children": [
+                  {
+                    "name": "ArtworkCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/ArtworkCard.tsx"
+                  },
+                  {
+                    "name": "ExperienceCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/ExperienceCard.tsx"
+                  },
+                  {
+                    "name": "MinimalExperienceCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/MinimalExperienceCard.tsx"
+                  },
+                  {
+                    "name": "MinimalProjectCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/MinimalProjectCard.tsx"
+                  },
+                  {
+                    "name": "ProfessionalExperienceCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/ProfessionalExperienceCard.tsx"
+                  },
+                  {
+                    "name": "ProjectCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/ProjectCard.tsx"
+                  },
+                  {
+                    "name": "ResearchProjectCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/ResearchProjectCard.tsx"
+                  },
+                  {
+                    "name": "StartupCard.tsx",
+                    "type": "file",
+                    "path": "src/components/cards/StartupCard.tsx"
+                  }
+                ]
+              },
+              {
+                "name": "common",
+                "type": "directory",
+                "path": "src/components/common",
+                "children": [
+                  {
+                    "name": "OptimizedImage.tsx",
+                    "type": "file",
+                    "path": "src/components/common/OptimizedImage.tsx"
+                  }
+                ]
+              },
+              {
+                "name": "controls",
+                "type": "directory",
+                "path": "src/components/controls",
+                "children": [
+                  {
+                    "name": "TimelineControls.tsx",
+                    "type": "file",
+                    "path": "src/components/controls/TimelineControls.tsx"
+                  }
+                ]
+              },
+              {
+                "name": "layout",
+                "type": "directory",
+                "path": "src/components/layout",
+                "children": [
+                  {
+                    "name": "Footer.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/Footer.tsx"
+                  },
+                  {
+                    "name": "MinimalFooter.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/MinimalFooter.tsx"
+                  },
+                  {
+                    "name": "MinimalNavigation.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/MinimalNavigation.tsx"
+                  },
+                  {
+                    "name": "Navigation.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/Navigation.tsx"
+                  },
+                  {
+                    "name": "RefinedFooter.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/RefinedFooter.tsx"
+                  },
+                  {
+                    "name": "RefinedNavigation.tsx",
+                    "type": "file",
+                    "path": "src/components/layout/RefinedNavigation.tsx"
+                  }
+                ]
+              },
+              {
+                "name": "sections",
+                "type": "directory",
+                "path": "src/components/sections",
+                "children": [
+                  {
+                    "name": "experience",
+                    "type": "directory",
+                    "path": "src/components/sections/experience",
+                    "children": [
+                      {
+                        "name": "CurrentTimeIndicator.tsx",
+                        "type": "file",
+                        "path": "src/components/sections/experience/CurrentTimeIndicator.tsx"
+                      },
+                      {
+                        "name": "ExperienceFilter.tsx",
+                        "type": "file",
+                        "path": "src/components/sections/experience/ExperienceFilter.tsx"
+                      },
+                      {
+                        "name": "TimelineChart.tsx",
+                        "type": "file",
+                        "path": "src/components/sections/experience/TimelineChart.tsx"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ArtworkSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/ArtworkSection.tsx"
+                  },
+                  {
+                    "name": "AwardsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/AwardsSection.tsx"
+                  },
+                  {
+                    "name": "ExperienceSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/ExperienceSection.tsx"
+                  },
+                  {
+                    "name": "HomeSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/HomeSection.tsx"
+                  },
+                  {
+                    "name": "HomeSectionVariants.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/HomeSectionVariants.tsx"
+                  },
+                  {
+                    "name": "MinimalExperienceSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/MinimalExperienceSection.tsx"
+                  },
+                  {
+                    "name": "MinimalHomeSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/MinimalHomeSection.tsx"
+                  },
+                  {
+                    "name": "MinimalProjectsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/MinimalProjectsSection.tsx"
+                  },
+                  {
+                    "name": "OtherProjectsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/OtherProjectsSection.tsx"
+                  },
+                  {
+                    "name": "ProfessionalExperienceSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/ProfessionalExperienceSection.tsx"
+                  },
+                  {
+                    "name": "ProjectsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/ProjectsSection.tsx"
+                  },
+                  {
+                    "name": "RefinedArtworkSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedArtworkSection.tsx"
+                  },
+                  {
+                    "name": "RefinedAwardsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedAwardsSection.tsx"
+                  },
+                  {
+                    "name": "RefinedHomeSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedHomeSection.tsx"
+                  },
+                  {
+                    "name": "RefinedOtherProjectsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedOtherProjectsSection.tsx"
+                  },
+                  {
+                    "name": "RefinedProjectsSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedProjectsSection.tsx"
+                  },
+                  {
+                    "name": "RefinedStartupSection.tsx",
+                    "type": "file",
+                    "path": "src/components/sections/RefinedStartupSection.tsx"
+                  }
+                ]
+              },
+              {
+                "name": "DynamicBackground.tsx",
+                "type": "file",
+                "path": "src/components/DynamicBackground.tsx"
+              },
+              {
+                "name": "FocusIndicator.tsx",
+                "type": "file",
+                "path": "src/components/FocusIndicator.tsx"
+              },
+              {
+                "name": "LanguageSwitch.tsx",
+                "type": "file",
+                "path": "src/components/LanguageSwitch.tsx"
+              },
+              {
+                "name": "MinimalBackground.tsx",
+                "type": "file",
+                "path": "src/components/MinimalBackground.tsx"
+              },
+              {
+                "name": "MinimalLanguageSwitch.tsx",
+                "type": "file",
+                "path": "src/components/MinimalLanguageSwitch.tsx"
+              },
+              {
+                "name": "MinimalPortfolio.tsx",
+                "type": "file",
+                "path": "src/components/MinimalPortfolio.tsx"
+              },
+              {
+                "name": "MinimalThemeSwitch.tsx",
+                "type": "file",
+                "path": "src/components/MinimalThemeSwitch.tsx"
+              },
+              {
+                "name": "portfolio.tsx",
+                "type": "file",
+                "path": "src/components/portfolio.tsx"
+              },
+              {
+                "name": "RefinedPortfolio.tsx",
+                "type": "file",
+                "path": "src/components/RefinedPortfolio.tsx"
+              },
+              {
+                "name": "SkipLink.tsx",
+                "type": "file",
+                "path": "src/components/SkipLink.tsx"
+              },
+              {
+                "name": "StructuredData.tsx",
+                "type": "file",
+                "path": "src/components/StructuredData.tsx"
+              },
+              {
+                "name": "ThemeSwitch.tsx",
+                "type": "file",
+                "path": "src/components/ThemeSwitch.tsx"
+              },
+              {
+                "name": "ThreeBackground.tsx",
+                "type": "file",
+                "path": "src/components/ThreeBackground.tsx"
+              }
+            ]
+          },
+          {
+            "name": "constants",
+            "type": "directory",
+            "path": "src/constants",
+            "children": []
+          },
+          {
+            "name": "contexts",
+            "type": "directory",
+            "path": "src/contexts",
+            "children": [
+              {
+                "name": "ThemeContext.tsx",
+                "type": "file",
+                "path": "src/contexts/ThemeContext.tsx"
+              },
+              {
+                "name": "TranslationContext.tsx",
+                "type": "file",
+                "path": "src/contexts/TranslationContext.tsx"
+              }
+            ]
+          },
+          {
+            "name": "data",
+            "type": "directory",
+            "path": "src/data",
+            "children": [
+              {
+                "name": "experiences.ts",
+                "type": "file",
+                "path": "src/data/experiences.ts"
+              }
+            ]
+          },
+          {
+            "name": "docs",
+            "type": "directory",
+            "path": "src/docs",
+            "children": [
+              {
+                "name": "professional-experience-guide.md",
+                "type": "file",
+                "path": "src/docs/professional-experience-guide.md"
+              }
+            ]
+          },
+          {
+            "name": "hooks",
+            "type": "directory",
+            "path": "src/hooks",
+            "children": [
+              {
+                "name": "useExperienceData.ts",
+                "type": "file",
+                "path": "src/hooks/useExperienceData.ts"
+              },
+              {
+                "name": "useRealTimePosition.ts",
+                "type": "file",
+                "path": "src/hooks/useRealTimePosition.ts"
+              },
+              {
+                "name": "useScrollSection.ts",
+                "type": "file",
+                "path": "src/hooks/useScrollSection.ts"
+              },
+              {
+                "name": "useThrottle.ts",
+                "type": "file",
+                "path": "src/hooks/useThrottle.ts"
+              }
+            ]
+          },
+          {
+            "name": "lib",
+            "type": "directory",
+            "path": "src/lib",
+            "children": [
+              {
+                "name": "refined-styles.ts",
+                "type": "file",
+                "path": "src/lib/refined-styles.ts"
+              },
+              {
+                "name": "utils.ts",
+                "type": "file",
+                "path": "src/lib/utils.ts"
+              }
+            ]
+          },
+          {
+            "name": "translations",
+            "type": "directory",
+            "path": "src/translations",
+            "children": [
+              {
+                "name": "en.ts",
+                "type": "file",
+                "path": "src/translations/en.ts"
+              },
+              {
+                "name": "ja.ts",
+                "type": "file",
+                "path": "src/translations/ja.ts"
+              }
+            ]
+          },
+          {
+            "name": "types",
+            "type": "directory",
+            "path": "src/types",
+            "children": [
+              {
+                "name": "experience.ts",
+                "type": "file",
+                "path": "src/types/experience.ts"
+              },
+              {
+                "name": "index.ts",
+                "type": "file",
+                "path": "src/types/index.ts"
+              }
+            ]
+          },
+          {
+            "name": "utils",
+            "type": "directory",
+            "path": "src/utils",
+            "children": [
+              {
+                "name": "design-system.ts",
+                "type": "file",
+                "path": "src/utils/design-system.ts"
+              },
+              {
+                "name": "experienceProcessor.ts",
+                "type": "file",
+                "path": "src/utils/experienceProcessor.ts"
+              },
+              {
+                "name": "minimal-styles.ts",
+                "type": "file",
+                "path": "src/utils/minimal-styles.ts"
+              },
+              {
+                "name": "performance-accessibility.ts",
+                "type": "file",
+                "path": "src/utils/performance-accessibility.ts"
+              },
+              {
+                "name": "professional-animations.ts",
+                "type": "file",
+                "path": "src/utils/professional-animations.ts"
+              },
+              {
+                "name": "professional-design-system.ts",
+                "type": "file",
+                "path": "src/utils/professional-design-system.ts"
+              },
+              {
+                "name": "refined-styles.ts",
+                "type": "file",
+                "path": "src/utils/refined-styles.ts"
+              },
+              {
+                "name": "styles.ts",
+                "type": "file",
+                "path": "src/utils/styles.ts"
+              }
+            ]
+          },
+          {
+            "name": "translations.ts",
+            "type": "file",
+            "path": "src/translations.ts"
+          }
+        ]
+      },
+      {
+        "name": ".DS_Store",
+        "type": "file",
+        "path": ".DS_Store"
+      },
+      {
+        "name": ".eslintrc.json",
+        "type": "file",
+        "path": ".eslintrc.json"
+      },
+      {
+        "name": ".gitignore",
+        "type": "file",
+        "path": ".gitignore"
+      },
+      {
+        "name": "components.json",
+        "type": "file",
+        "path": "components.json"
+      },
+      {
+        "name": "memo.txt",
+        "type": "file",
+        "path": "memo.txt"
+      },
+      {
+        "name": "next-env.d.ts",
+        "type": "file",
+        "path": "next-env.d.ts"
+      },
+      {
+        "name": "next.config.ts",
+        "type": "file",
+        "path": "next.config.ts"
+      },
+      {
+        "name": "package-lock.json",
+        "type": "file",
+        "path": "package-lock.json"
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "path": "package.json"
+      },
+      {
+        "name": "postcss.config.mjs",
+        "type": "file",
+        "path": "postcss.config.mjs"
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "path": "README.md"
+      },
+      {
+        "name": "tailwind.config.ts",
+        "type": "file",
+        "path": "tailwind.config.ts"
+      },
+      {
+        "name": "tsconfig.json",
+        "type": "file",
+        "path": "tsconfig.json"
+      },
+      {
+        "name": "tsconfig.tsbuildinfo",
+        "type": "file",
+        "path": "tsconfig.tsbuildinfo"
+      }
+    ]
+  },
+  "graphData": {
+    "nodes": [
+      {
+        "id": "keigominamidapage2",
+        "name": "keigominamidapage2",
+        "path": "keigominamidapage2",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": null,
+        "childFileCount": 14,
+        "x": 128.63950884273035,
+        "y": 161.8460971763315,
+        "z": -109.74250922370994,
+        "vx": -1.4539729562708137e-11,
+        "vy": -2.6194636165613892e-12,
+        "vz": -5.781074247735647e-12
+      },
+      {
+        "id": "keigominamidapage2/.claude",
+        "name": ".claude",
+        "path": "keigominamidapage2/.claude",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 174.56783198399248,
+        "y": 155.89105168636195,
+        "z": -103.27103629722205,
+        "vx": -7.921718838528228e-12,
+        "vy": 5.84772280809958e-12,
+        "vz": -7.540819843800422e-12
+      },
+      {
+        "id": "keigominamidapage2/.kamui",
+        "name": ".kamui",
+        "path": "keigominamidapage2/.kamui",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 154.4325146077537,
+        "y": 139.9545044196894,
+        "z": -142.31880254332236,
+        "vx": -9.970627766906324e-12,
+        "vy": 3.64315054691768e-12,
+        "vz": -5.995872971262649e-12
+      },
+      {
+        "id": "keigominamidapage2/.next",
+        "name": ".next",
+        "path": "keigominamidapage2/.next",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 156.4976931295925,
+        "y": 167.871574274838,
+        "z": -73.43246870411976,
+        "vx": -9.457478593888037e-12,
+        "vy": 7.467099448136025e-12,
+        "vz": -4.285052675563596e-12
+      },
+      {
+        "id": "keigominamidapage2/logmd",
+        "name": "logmd",
+        "path": "keigominamidapage2/logmd",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 2,
+        "x": 227.5021418345521,
+        "y": 168.652753796408,
+        "z": -113.62507345493627,
+        "vx": -9.042144831122844e-12,
+        "vy": 1.0203553203805661e-11,
+        "vz": -9.010153031983356e-12
+      },
+      {
+        "id": "keigominamidapage2/logmd/logfile.md",
+        "name": "logfile.md",
+        "path": "keigominamidapage2/logmd/logfile.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/logmd",
+        "childFileCount": 0,
+        "x": 271.6421249759407,
+        "y": 175.13800577633484,
+        "z": -103.14329901983345,
+        "vx": -4.139849482955658e-12,
+        "vy": 1.3747665082516241e-11,
+        "vz": -1.1569486821781324e-11
+      },
+      {
+        "id": "keigominamidapage2/logmd/nextdevelop.yaml",
+        "name": "nextdevelop.yaml",
+        "path": "keigominamidapage2/logmd/nextdevelop.yaml",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#f1c40f",
+        "originalColor": "#f1c40f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/logmd",
+        "childFileCount": 0,
+        "x": 271.7381613955889,
+        "y": 166.89852391365218,
+        "z": -126.23072923678443,
+        "vx": -1.0208392122462247e-11,
+        "vy": 1.3077511882016631e-11,
+        "vz": -1.2303981090003764e-11
+      },
+      {
+        "id": "keigominamidapage2/node_modules",
+        "name": "node_modules",
+        "path": "keigominamidapage2/node_modules",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 162.1029767284612,
+        "y": 131.2778827371214,
+        "z": -109.40939639794242,
+        "vx": -6.908750392036536e-12,
+        "vy": 1.938807949910252e-12,
+        "vz": -5.911941632163836e-12
+      },
+      {
+        "id": "keigominamidapage2/public",
+        "name": "public",
+        "path": "keigominamidapage2/public",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 9,
+        "x": 65.55002755034235,
+        "y": 319.6765992666024,
+        "z": -92.40200902004585,
+        "vx": -4.565981574579808e-13,
+        "vy": 8.251717749690809e-12,
+        "vz": -2.9591323110804388e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images",
+        "name": "images",
+        "path": "keigominamidapage2/public/images",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 21,
+        "x": -37.97966017691302,
+        "y": 425.4991268933701,
+        "z": -67.27880402593516,
+        "vx": 1.763394977181196e-11,
+        "vy": 1.8202347743081864e-11,
+        "vz": -7.46963804156365e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/1000ya.png",
+        "name": "1000ya.png",
+        "path": "keigominamidapage2/public/images/1000ya.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -20.64513928174685,
+        "y": 438.22090678896654,
+        "z": -104.94462586823344,
+        "vx": 1.5916063493457723e-11,
+        "vy": 2.1451814593753502e-11,
+        "vz": -3.042433317663229e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/4ZIGEN.png",
+        "name": "4ZIGEN.png",
+        "path": "keigominamidapage2/public/images/4ZIGEN.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -40.21775307626119,
+        "y": 413.34814846133605,
+        "z": -108.91978546451989,
+        "vx": 1.562410310544683e-11,
+        "vy": 1.805244554344563e-11,
+        "vz": -3.036183613894584e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/bodyop.png",
+        "name": "bodyop.png",
+        "path": "keigominamidapage2/public/images/bodyop.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -22.456068505326346,
+        "y": 463.6426415072527,
+        "z": -86.76527982396307,
+        "vx": 1.8844744241143888e-11,
+        "vy": 1.1928539621905211e-11,
+        "vz": -4.109167558103214e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/cotton.jpeg",
+        "name": "cotton.jpeg",
+        "path": "keigominamidapage2/public/images/cotton.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -79.16487835273814,
+        "y": 444.8914693060669,
+        "z": -85.03365234321194,
+        "vx": 1.934911810855958e-11,
+        "vy": 2.012608574669784e-11,
+        "vz": -2.0226166516180568e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/FSTL.png",
+        "name": "FSTL.png",
+        "path": "keigominamidapage2/public/images/FSTL.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -32.35125964588977,
+        "y": 470.7342247162948,
+        "z": -54.920498576423746,
+        "vx": 2.2958429741180598e-11,
+        "vy": 1.6402265138276224e-11,
+        "vz": -6.301506056489002e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/geo.jpeg",
+        "name": "geo.jpeg",
+        "path": "keigominamidapage2/public/images/geo.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -42.06187981459665,
+        "y": 394.01424308517556,
+        "z": -41.14610485213779,
+        "vx": 1.8940556465351704e-11,
+        "vy": 2.7423645843196375e-11,
+        "vz": 4.9584881636973285e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/ha.png",
+        "name": "ha.png",
+        "path": "keigominamidapage2/public/images/ha.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -54.111796825402145,
+        "y": 390.91232966688517,
+        "z": -83.11512227327094,
+        "vx": 1.6802067726114445e-11,
+        "vy": 2.5188965196354472e-11,
+        "vz": -1.08408955647679e-11
+      },
+      {
+        "id": "keigominamidapage2/public/images/iii.jpg",
+        "name": "iii.jpg",
+        "path": "keigominamidapage2/public/images/iii.jpg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -55.83772092361756,
+        "y": 466.37578534565233,
+        "z": -48.28311807268631,
+        "vx": 2.0121160721239473e-11,
+        "vy": 1.7965777875825468e-11,
+        "vz": -8.650763364469328e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/met.jpeg",
+        "name": "met.jpeg",
+        "path": "keigominamidapage2/public/images/met.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -27.681857092844773,
+        "y": 415.63565727911174,
+        "z": -25.968173266724783,
+        "vx": 2.4452957305880722e-11,
+        "vy": 1.6307326964619473e-11,
+        "vz": -8.253527244753327e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/minikuro-title.jpg",
+        "name": "minikuro-title.jpg",
+        "path": "keigominamidapage2/public/images/minikuro-title.jpg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -8.76078657623424,
+        "y": 453.5147205452661,
+        "z": -49.256017600242885,
+        "vx": 1.304649895624693e-11,
+        "vy": 1.7388318815941793e-11,
+        "vz": -4.544846255713087e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/myface.jpg",
+        "name": "myface.jpg",
+        "path": "keigominamidapage2/public/images/myface.jpg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -72.60884201931063,
+        "y": 405.13547401080655,
+        "z": -44.52437952751967,
+        "vx": 1.92048972622301e-11,
+        "vy": 7.468950055605117e-12,
+        "vz": -1.1403873978823751e-11
+      },
+      {
+        "id": "keigominamidapage2/public/images/nozo.jpeg",
+        "name": "nozo.jpeg",
+        "path": "keigominamidapage2/public/images/nozo.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -84.74044647850552,
+        "y": 430.23323124107554,
+        "z": -53.78672587009898,
+        "vx": 1.8875448753027612e-11,
+        "vy": 2.2590575565120626e-11,
+        "vz": -9.028395765919454e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/proto.jpeg",
+        "name": "proto.jpeg",
+        "path": "keigominamidapage2/public/images/proto.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -53.79356423999334,
+        "y": 469.0416725814671,
+        "z": -82.52177450982893,
+        "vx": 2.350019134346219e-11,
+        "vy": 1.63665231564279e-11,
+        "vz": -8.90139238885003e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/Protozoa.png",
+        "name": "Protozoa.png",
+        "path": "keigominamidapage2/public/images/Protozoa.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": 1.7159964943165857,
+        "y": 436.6996103209643,
+        "z": -72.18600443831002,
+        "vx": 1.1399615699522536e-11,
+        "vy": 2.4196349930634864e-11,
+        "vz": -9.133150475774493e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/puf.jpeg",
+        "name": "puf.jpeg",
+        "path": "keigominamidapage2/public/images/puf.jpeg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -64.76765047242336,
+        "y": 424.551375552505,
+        "z": -28.80605113292001,
+        "vx": 2.1970516816879493e-11,
+        "vy": 1.8347344879920778e-11,
+        "vz": -4.319486902587907e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/Recertif.png",
+        "name": "Recertif.png",
+        "path": "keigominamidapage2/public/images/Recertif.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -69.742956718068,
+        "y": 420.0972355155863,
+        "z": -100.69299606799068,
+        "vx": 2.4689538716258545e-11,
+        "vy": 1.61524747245598e-11,
+        "vz": -7.757018750986685e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/robot_room.png",
+        "name": "robot_room.png",
+        "path": "keigominamidapage2/public/images/robot_room.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -53.448329175786256,
+        "y": 450.10502880145276,
+        "z": -104.2495740676745,
+        "vx": 1.644910598826988e-11,
+        "vy": 1.8383187052875566e-11,
+        "vz": -4.865140253965506e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/shu.png",
+        "name": "shu.png",
+        "path": "keigominamidapage2/public/images/shu.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -82.02396857604282,
+        "y": 410.6037682949259,
+        "z": -76.35411838817325,
+        "vx": 2.1968205181215207e-11,
+        "vy": 1.625073488895012e-11,
+        "vz": -6.860821959117365e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/sigasi.jpg",
+        "name": "sigasi.jpg",
+        "path": "keigominamidapage2/public/images/sigasi.jpg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -24.951438515330526,
+        "y": 444.57323233015745,
+        "z": -28.420376690962957,
+        "vx": 1.591645813104952e-11,
+        "vy": 2.1189277010434657e-11,
+        "vz": -6.694938118453527e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/unilidar.png",
+        "name": "unilidar.png",
+        "path": "keigominamidapage2/public/images/unilidar.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -54.20415863592409,
+        "y": 448.4925128864118,
+        "z": -28.26840700954892,
+        "vx": 1.6673422674958003e-11,
+        "vy": 1.744547655887355e-11,
+        "vz": -4.829867134310036e-12
+      },
+      {
+        "id": "keigominamidapage2/public/images/wakabar.png",
+        "name": "wakabar.png",
+        "path": "keigominamidapage2/public/images/wakabar.png",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public/images",
+        "childFileCount": 0,
+        "x": -77.08112179958121,
+        "y": 455.0796464448651,
+        "z": -59.88382238629116,
+        "vx": 2.0112554880925587e-11,
+        "vy": 1.901045083229506e-11,
+        "vz": -7.230401404981519e-12
+      },
+      {
+        "id": "keigominamidapage2/public/favicon.ico",
+        "name": "favicon.ico",
+        "path": "keigominamidapage2/public/favicon.ico",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 104.51705946867874,
+        "y": 329.7876751606536,
+        "z": -105.90404577045373,
+        "vx": 1.1943010225381718e-12,
+        "vy": 8.327151376227552e-12,
+        "vz": -1.7894858175772868e-12
+      },
+      {
+        "id": "keigominamidapage2/public/file.svg",
+        "name": "file.svg",
+        "path": "keigominamidapage2/public/file.svg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 69.67053708800046,
+        "y": 329.4532483073521,
+        "z": -54.005423973118916,
+        "vx": -4.697733489723609e-12,
+        "vy": 5.8804554089643796e-12,
+        "vz": -6.562554787371301e-14
+      },
+      {
+        "id": "keigominamidapage2/public/globe.svg",
+        "name": "globe.svg",
+        "path": "keigominamidapage2/public/globe.svg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 85.25051283267013,
+        "y": 324.1673487817454,
+        "z": -128.69482350350393,
+        "vx": -6.640727514376473e-13,
+        "vy": 1.0544583496539696e-11,
+        "vz": -4.645760425177156e-12
+      },
+      {
+        "id": "keigominamidapage2/public/manifest.json",
+        "name": "manifest.json",
+        "path": "keigominamidapage2/public/manifest.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 33.36150394684716,
+        "y": 312.4544039638601,
+        "z": -109.28257603573726,
+        "vx": -4.049403534810239e-13,
+        "vy": 1.1577207027566185e-11,
+        "vz": -4.065555933141101e-12
+      },
+      {
+        "id": "keigominamidapage2/public/next.svg",
+        "name": "next.svg",
+        "path": "keigominamidapage2/public/next.svg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 72.29707796540934,
+        "y": 357.0674493049996,
+        "z": -77.66768693432094,
+        "vx": 4.853351761850674e-12,
+        "vy": 6.8052575916862155e-12,
+        "vz": 3.016979960394066e-12
+      },
+      {
+        "id": "keigominamidapage2/public/robots.txt",
+        "name": "robots.txt",
+        "path": "keigominamidapage2/public/robots.txt",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#95a5a6",
+        "originalColor": "#95a5a6",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 97.32672214393247,
+        "y": 349.7555138282279,
+        "z": -89.80606698250287,
+        "vx": 4.4597294836996965e-12,
+        "vy": 4.7994598845723745e-12,
+        "vz": -3.893643621389401e-12
+      },
+      {
+        "id": "keigominamidapage2/public/sitemap.xml",
+        "name": "sitemap.xml",
+        "path": "keigominamidapage2/public/sitemap.xml",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 58.5803696393511,
+        "y": 332.94098928704176,
+        "z": -130.60953495852456,
+        "vx": 3.0865788032876327e-12,
+        "vy": 5.968811268871782e-12,
+        "vz": -4.665833654541891e-12
+      },
+      {
+        "id": "keigominamidapage2/public/vercel.svg",
+        "name": "vercel.svg",
+        "path": "keigominamidapage2/public/vercel.svg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 99.69207714108259,
+        "y": 325.0430932428523,
+        "z": -70.07191146339552,
+        "vx": -5.266659469977854e-13,
+        "vy": 1.2447691769990078e-11,
+        "vz": -7.186995414283972e-13
+      },
+      {
+        "id": "keigominamidapage2/public/window.svg",
+        "name": "window.svg",
+        "path": "keigominamidapage2/public/window.svg",
+        "type": "file",
+        "lines": 0,
+        "val": 4,
+        "color": "#2c3038",
+        "baseColor": "#ffb347",
+        "originalColor": "#ffb347",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/public",
+        "childFileCount": 0,
+        "x": 74.35352166626953,
+        "y": 355.7725823390341,
+        "z": -113.61844379537132,
+        "vx": -6.382740240220216e-13,
+        "vy": 8.088689257967808e-12,
+        "vz": -3.892938860897022e-12
+      },
+      {
+        "id": "keigominamidapage2/src",
+        "name": "src",
+        "path": "keigominamidapage2/src",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 1,
+        "x": -28.078624482257123,
+        "y": -40.72369239825374,
+        "z": -92.01297228016782,
+        "vx": -1.28443778730572e-12,
+        "vy": -9.765474696374255e-12,
+        "vz": -1.1729433758623655e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app",
+        "name": "app",
+        "path": "keigominamidapage2/src/app",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 3,
+        "x": 20.909078252812684,
+        "y": 9.79909323193894,
+        "z": 17.160559973684148,
+        "vx": -7.727539848107104e-12,
+        "vy": -1.669883184494137e-11,
+        "vz": -8.27016921613729e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/fonts",
+        "name": "fonts",
+        "path": "keigominamidapage2/src/app/fonts",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app",
+        "childFileCount": 2,
+        "x": 58.747676088793376,
+        "y": 46.42212579117678,
+        "z": 94.59633776336338,
+        "vx": -1.0679972193077652e-11,
+        "vy": -1.6105608568608122e-11,
+        "vz": -7.7051112085872e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/fonts/GeistMonoVF.woff",
+        "name": "GeistMonoVF.woff",
+        "path": "keigominamidapage2/src/app/fonts/GeistMonoVF.woff",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app/fonts",
+        "childFileCount": 0,
+        "x": 64.73403715405763,
+        "y": 71.78819244142942,
+        "z": 128.36536520670796,
+        "vx": -1.1909587787016446e-11,
+        "vy": -1.5592323732207432e-11,
+        "vz": -4.998087813300997e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/fonts/GeistVF.woff",
+        "name": "GeistVF.woff",
+        "path": "keigominamidapage2/src/app/fonts/GeistVF.woff",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app/fonts",
+        "childFileCount": 0,
+        "x": 85.9279472607118,
+        "y": 53.84122449288478,
+        "z": 126.66557109676704,
+        "vx": -1.0275429081063728e-11,
+        "vy": -1.423052450371212e-11,
+        "vz": -6.572603354886468e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/globals.css",
+        "name": "globals.css",
+        "path": "keigominamidapage2/src/app/globals.css",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#1572b6",
+        "originalColor": "#1572b6",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app",
+        "childFileCount": 0,
+        "x": 9.838716471212846,
+        "y": 20.51647395461124,
+        "z": 54.12653395305401,
+        "vx": -8.488529542455785e-12,
+        "vy": -1.7987518761898022e-11,
+        "vz": -8.572871563316946e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/layout.tsx",
+        "name": "layout.tsx",
+        "path": "keigominamidapage2/src/app/layout.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app",
+        "childFileCount": 0,
+        "x": 33.03207489672463,
+        "y": 40.79319330628266,
+        "z": 38.64326337248544,
+        "vx": -8.335051246003664e-12,
+        "vy": -1.7011491345182265e-11,
+        "vz": -8.598474887413216e-12
+      },
+      {
+        "id": "keigominamidapage2/src/app/page.tsx",
+        "name": "page.tsx",
+        "path": "keigominamidapage2/src/app/page.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/app",
+        "childFileCount": 0,
+        "x": 48.75160123650419,
+        "y": 7.446889708681653,
+        "z": 45.4699675520129,
+        "vx": -7.47239220547483e-12,
+        "vy": -1.688418932493945e-11,
+        "vz": -8.733591700645345e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components",
+        "name": "components",
+        "path": "keigominamidapage2/src/components",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 13,
+        "x": 3.5242163666357262,
+        "y": -268.02287710761544,
+        "z": 62.649971978851525,
+        "vx": 4.77900707860465e-13,
+        "vy": -1.2477522181189496e-11,
+        "vz": 3.813307174393964e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards",
+        "name": "cards",
+        "path": "keigominamidapage2/src/components/cards",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 8,
+        "x": -17.053131015602073,
+        "y": -408.88343341448103,
+        "z": 90.99384440322157,
+        "vx": -2.0805371715894026e-13,
+        "vy": -1.5189778646706847e-11,
+        "vz": 4.260402640683222e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/ArtworkCard.tsx",
+        "name": "ArtworkCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/ArtworkCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": 13.501204430686537,
+        "y": -435.6406836300607,
+        "z": 83.45050684038779,
+        "vx": -8.419719553640121e-13,
+        "vy": -1.583530623691821e-11,
+        "vz": 3.311459275561508e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/ExperienceCard.tsx",
+        "name": "ExperienceCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/ExperienceCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -28.046092978701566,
+        "y": -450.9918637524936,
+        "z": 99.93058510315933,
+        "vx": -2.1678666854415455e-12,
+        "vy": -1.6147039505267765e-11,
+        "vz": 2.1160220084624265e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/MinimalExperienceCard.tsx",
+        "name": "MinimalExperienceCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/MinimalExperienceCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -54.37571734954099,
+        "y": -427.6420811501117,
+        "z": 89.17214888544338,
+        "vx": -3.34677459134323e-13,
+        "vy": -1.5922665982962803e-11,
+        "vz": 2.933415166015782e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/MinimalProjectCard.tsx",
+        "name": "MinimalProjectCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/MinimalProjectCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -10.781961797732713,
+        "y": -425.9041454463749,
+        "z": 128.2536582266408,
+        "vx": 1.4357079130546932e-12,
+        "vy": -1.5993667981302938e-11,
+        "vz": 3.9206794765707505e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/ProfessionalExperienceCard.tsx",
+        "name": "ProfessionalExperienceCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/ProfessionalExperienceCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -12.034886187690496,
+        "y": -450.1575159282683,
+        "z": 77.91602214462294,
+        "vx": -3.727627923318416e-12,
+        "vy": -1.870180534628541e-11,
+        "vz": 9.367407404622849e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/ProjectCard.tsx",
+        "name": "ProjectCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/ProjectCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -33.40145911596678,
+        "y": -439.5113618570268,
+        "z": 67.14121149791032,
+        "vx": 3.934197479716482e-12,
+        "vy": -2.1355202530806494e-11,
+        "vz": 7.926089567048635e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/ResearchProjectCard.tsx",
+        "name": "ResearchProjectCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/ResearchProjectCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": 3.886164102227415,
+        "y": -441.4150033193772,
+        "z": 110.22537032817685,
+        "vx": -3.992877195465781e-12,
+        "vy": -1.749913322382293e-11,
+        "vz": 6.223026784848865e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/cards/StartupCard.tsx",
+        "name": "StartupCard.tsx",
+        "path": "keigominamidapage2/src/components/cards/StartupCard.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/cards",
+        "childFileCount": 0,
+        "x": -41.38960782149746,
+        "y": -428.4425104624411,
+        "z": 119.45443811028328,
+        "vx": -2.91248564600388e-12,
+        "vy": -1.3212106872717173e-11,
+        "vz": 3.3999577015553272e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/common",
+        "name": "common",
+        "path": "keigominamidapage2/src/components/common",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 1,
+        "x": -31.398032188144484,
+        "y": -307.7196520219931,
+        "z": 22.88930048718214,
+        "vx": -2.592286154688178e-12,
+        "vy": -1.3358031863486051e-11,
+        "vz": 8.817245879210935e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/common/OptimizedImage.tsx",
+        "name": "OptimizedImage.tsx",
+        "path": "keigominamidapage2/src/components/common/OptimizedImage.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/common",
+        "childFileCount": 0,
+        "x": -55.674431879891536,
+        "y": -335.1283070586897,
+        "z": -3.9820096357866497,
+        "vx": -4.896461237887016e-12,
+        "vy": -1.5989359191004433e-11,
+        "vz": 9.078442676021155e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/controls",
+        "name": "controls",
+        "path": "keigominamidapage2/src/components/controls",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 1,
+        "x": 52.78350295928128,
+        "y": -296.8247960852753,
+        "z": 98.50421169175478,
+        "vx": 4.179691545236289e-12,
+        "vy": -1.0723166371964416e-11,
+        "vz": 1.989635987841992e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/controls/TimelineControls.tsx",
+        "name": "TimelineControls.tsx",
+        "path": "keigominamidapage2/src/components/controls/TimelineControls.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/controls",
+        "childFileCount": 0,
+        "x": 86.49572481794877,
+        "y": -316.35624106205967,
+        "z": 122.95308367188986,
+        "vx": 8.60635920538988e-12,
+        "vy": -1.12741041039079e-11,
+        "vz": 1.4265191225846087e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout",
+        "name": "layout",
+        "path": "keigominamidapage2/src/components/layout",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 6,
+        "x": 79.66665627667973,
+        "y": -335.0603452838217,
+        "z": -16.93310427112519,
+        "vx": 3.832534988406015e-12,
+        "vy": -1.564231190240325e-11,
+        "vz": 1.178278858853084e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/Footer.tsx",
+        "name": "Footer.tsx",
+        "path": "keigominamidapage2/src/components/layout/Footer.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 83.06087946358427,
+        "y": -338.41803149267594,
+        "z": -58.83655720203532,
+        "vx": 8.461479887604292e-12,
+        "vy": -1.8661398569967582e-11,
+        "vz": 1.0961129049430573e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/MinimalFooter.tsx",
+        "name": "MinimalFooter.tsx",
+        "path": "keigominamidapage2/src/components/layout/MinimalFooter.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 94.28236894003834,
+        "y": -374.4023165475246,
+        "z": -18.277123652473804,
+        "vx": 6.09170638658722e-12,
+        "vy": -1.6335703954011156e-11,
+        "vz": 1.4178498818196848e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/MinimalNavigation.tsx",
+        "name": "MinimalNavigation.tsx",
+        "path": "keigominamidapage2/src/components/layout/MinimalNavigation.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 120.11644861582914,
+        "y": -346.0759672215464,
+        "z": -14.559052339214483,
+        "vx": 4.700227822481954e-12,
+        "vy": -1.7805197172522247e-11,
+        "vz": 1.1981184397135067e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/Navigation.tsx",
+        "name": "Navigation.tsx",
+        "path": "keigominamidapage2/src/components/layout/Navigation.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 74.0424436625335,
+        "y": -366.1410017099449,
+        "z": -45.69990233357635,
+        "vx": 5.812427765392854e-12,
+        "vy": -1.8565776387468296e-11,
+        "vz": 1.3502394229613498e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/RefinedFooter.tsx",
+        "name": "RefinedFooter.tsx",
+        "path": "keigominamidapage2/src/components/layout/RefinedFooter.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 112.01443646831537,
+        "y": -327.44717067475386,
+        "z": -42.72361287716967,
+        "vx": 5.899497202583643e-12,
+        "vy": -1.4658273695533525e-11,
+        "vz": 1.3855764332376735e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/layout/RefinedNavigation.tsx",
+        "name": "RefinedNavigation.tsx",
+        "path": "keigominamidapage2/src/components/layout/RefinedNavigation.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/layout",
+        "childFileCount": 0,
+        "x": 106.70913447405817,
+        "y": -359.05063010403927,
+        "z": -42.32190636901164,
+        "vx": 4.926530594693804e-12,
+        "vy": -1.621814673402252e-11,
+        "vz": 1.2538676864096778e-11
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections",
+        "name": "sections",
+        "path": "keigominamidapage2/src/components/sections",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 17,
+        "x": -51.50114161232471,
+        "y": -211.5414065018048,
+        "z": 304.49804023739625,
+        "vx": 3.428020230659232e-12,
+        "vy": -1.9802967076201302e-11,
+        "vz": 1.225866937570847e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/experience",
+        "name": "experience",
+        "path": "keigominamidapage2/src/components/sections/experience",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 3,
+        "x": -72.05937808454358,
+        "y": -178.64648699947497,
+        "z": 403.3938961736422,
+        "vx": 3.2799105677103225e-12,
+        "vy": -2.440090824303453e-11,
+        "vz": 3.392150495492571e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/experience/CurrentTimeIndicator.tsx",
+        "name": "CurrentTimeIndicator.tsx",
+        "path": "keigominamidapage2/src/components/sections/experience/CurrentTimeIndicator.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections/experience",
+        "childFileCount": 0,
+        "x": -62.704672051999225,
+        "y": -160.20251756500656,
+        "z": 442.55713727805204,
+        "vx": 1.6652413649085775e-12,
+        "vy": -2.499192286115322e-11,
+        "vz": 3.655964202660247e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/experience/ExperienceFilter.tsx",
+        "name": "ExperienceFilter.tsx",
+        "path": "keigominamidapage2/src/components/sections/experience/ExperienceFilter.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections/experience",
+        "childFileCount": 0,
+        "x": -92.51576129529029,
+        "y": -154.21803523648708,
+        "z": 432.97513569843176,
+        "vx": 2.1966887849153677e-12,
+        "vy": -2.5690601348825772e-11,
+        "vz": 2.6173148805661903e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/experience/TimelineChart.tsx",
+        "name": "TimelineChart.tsx",
+        "path": "keigominamidapage2/src/components/sections/experience/TimelineChart.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections/experience",
+        "childFileCount": 0,
+        "x": -85.49903039468316,
+        "y": -181.1613030977766,
+        "z": 445.66085645155005,
+        "vx": 2.8533074614005225e-12,
+        "vy": -2.561983907650864e-11,
+        "vz": 1.904286429450993e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/ArtworkSection.tsx",
+        "name": "ArtworkSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/ArtworkSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -83.10670427214788,
+        "y": -180.52501483239675,
+        "z": 307.25541732784967,
+        "vx": 4.6665392498996825e-12,
+        "vy": -1.931102576734663e-11,
+        "vz": 1.1107438695651532e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/AwardsSection.tsx",
+        "name": "AwardsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/AwardsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -69.16611169576373,
+        "y": -225.21857434811787,
+        "z": 344.66184766029033,
+        "vx": 1.8308055466909746e-13,
+        "vy": -2.1556814028029952e-11,
+        "vz": -3.3038581131765404e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/ExperienceSection.tsx",
+        "name": "ExperienceSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/ExperienceSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -31.428801547330963,
+        "y": -226.0241507204779,
+        "z": 343.39692933200564,
+        "vx": 4.899211045700775e-12,
+        "vy": -2.363176017566671e-11,
+        "vz": 1.3531518973673913e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/HomeSection.tsx",
+        "name": "HomeSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/HomeSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -15.49840270163535,
+        "y": -211.9572936071266,
+        "z": 287.971409619134,
+        "vx": 3.2157773999902644e-12,
+        "vy": -1.8843604269278205e-11,
+        "vz": 4.539418421140089e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/HomeSectionVariants.tsx",
+        "name": "HomeSectionVariants.tsx",
+        "path": "keigominamidapage2/src/components/sections/HomeSectionVariants.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -88.10199714211716,
+        "y": -231.40312254901556,
+        "z": 320.9690715705172,
+        "vx": 7.790596964616169e-12,
+        "vy": -1.8323250868979335e-11,
+        "vz": 6.98723089092547e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/MinimalExperienceSection.tsx",
+        "name": "MinimalExperienceSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/MinimalExperienceSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -69.87886462349842,
+        "y": -249.0609795066513,
+        "z": 300.8402802407451,
+        "vx": 3.0724142244771813e-12,
+        "vy": -1.8809311120488017e-11,
+        "vz": -7.899597614103138e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/MinimalHomeSection.tsx",
+        "name": "MinimalHomeSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/MinimalHomeSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -28.48539404896433,
+        "y": -189.3398754771381,
+        "z": 337.04889710044364,
+        "vx": -1.7228683631224857e-12,
+        "vy": -2.2539903714854015e-11,
+        "vz": 5.703125793848335e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/MinimalProjectsSection.tsx",
+        "name": "MinimalProjectsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/MinimalProjectsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -12.758924859414538,
+        "y": -219.30364413203299,
+        "z": 323.7922684595859,
+        "vx": 2.5887456610080143e-12,
+        "vy": -1.4277857368911123e-11,
+        "vz": 6.41007850835744e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/OtherProjectsSection.tsx",
+        "name": "OtherProjectsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/OtherProjectsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -30.97749396365764,
+        "y": -248.36389573723724,
+        "z": 311.07613309158336,
+        "vx": 1.6923896183077577e-12,
+        "vy": -2.1791784836573916e-11,
+        "vz": 5.6310925054853783e-14
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/ProfessionalExperienceSection.tsx",
+        "name": "ProfessionalExperienceSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/ProfessionalExperienceSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -52.17712451085959,
+        "y": -197.27502911903989,
+        "z": 347.24974459361675,
+        "vx": 9.960049564902452e-14,
+        "vy": -2.1021647160580876e-11,
+        "vz": 1.3056700095198614e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/ProjectsSection.tsx",
+        "name": "ProjectsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/ProjectsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -93.11693352170282,
+        "y": -214.54124992260185,
+        "z": 294.2973230827042,
+        "vx": 4.04777554062368e-12,
+        "vy": -2.3250149609872953e-11,
+        "vz": 2.9639549459791183e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedArtworkSection.tsx",
+        "name": "RefinedArtworkSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedArtworkSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -60.31361037408751,
+        "y": -172.6545412536094,
+        "z": 325.78880268149845,
+        "vx": 3.3963685528088226e-12,
+        "vy": -2.3292653165242634e-11,
+        "vz": 6.79961807637172e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedAwardsSection.tsx",
+        "name": "RefinedAwardsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedAwardsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -71.18348412701206,
+        "y": -187.31631367058478,
+        "z": 278.0842554938889,
+        "vx": 5.531242021187174e-12,
+        "vy": -1.8964646450290166e-11,
+        "vz": 2.091355134862059e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedHomeSection.tsx",
+        "name": "RefinedHomeSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedHomeSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -56.28519889617246,
+        "y": -246.20928519937414,
+        "z": 333.61511128602206,
+        "vx": -2.5541513023755605e-12,
+        "vy": -2.1047082853066138e-11,
+        "vz": 1.4826196168860472e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedOtherProjectsSection.tsx",
+        "name": "RefinedOtherProjectsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedOtherProjectsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -18.1268055777384,
+        "y": -184.64539120484775,
+        "z": 312.14920791475424,
+        "vx": 1.2586243901417328e-12,
+        "vy": -1.9163662687247175e-11,
+        "vz": 1.6755725246688207e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedProjectsSection.tsx",
+        "name": "RefinedProjectsSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedProjectsSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -87.41838157029936,
+        "y": -200.87257041490864,
+        "z": 330.1408933857021,
+        "vx": -3.6886907828082756e-13,
+        "vy": -1.9105864422932186e-11,
+        "vz": -5.62218280023762e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/sections/RefinedStartupSection.tsx",
+        "name": "RefinedStartupSection.tsx",
+        "path": "keigominamidapage2/src/components/sections/RefinedStartupSection.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components/sections",
+        "childFileCount": 0,
+        "x": -44.508438778725576,
+        "y": -168.7525976207113,
+        "z": 300.60961098491345,
+        "vx": 2.6461075190245794e-12,
+        "vy": -2.0966027694382895e-11,
+        "vz": 1.0289296905442588e-13
+      },
+      {
+        "id": "keigominamidapage2/src/components/DynamicBackground.tsx",
+        "name": "DynamicBackground.tsx",
+        "path": "keigominamidapage2/src/components/DynamicBackground.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -9.901098850795167,
+        "y": -271.7877992964418,
+        "z": 24.62325601341266,
+        "vx": 3.2792273182310353e-12,
+        "vy": -1.2415503981381442e-11,
+        "vz": 3.159257541896024e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/FocusIndicator.tsx",
+        "name": "FocusIndicator.tsx",
+        "path": "keigominamidapage2/src/components/FocusIndicator.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -1.3456874359547024,
+        "y": -292.8926977468927,
+        "z": 95.96676716184679,
+        "vx": 4.652292209850013e-12,
+        "vy": -1.248344352755028e-11,
+        "vz": 4.604663909490578e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/LanguageSwitch.tsx",
+        "name": "LanguageSwitch.tsx",
+        "path": "keigominamidapage2/src/components/LanguageSwitch.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -34.045983420263475,
+        "y": -255.63070391644047,
+        "z": 48.799822646750044,
+        "vx": 3.518540047422841e-12,
+        "vy": -8.294144780458997e-12,
+        "vz": 1.0331963719992545e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/MinimalBackground.tsx",
+        "name": "MinimalBackground.tsx",
+        "path": "keigominamidapage2/src/components/MinimalBackground.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 39.351461541083964,
+        "y": -247.0965354066669,
+        "z": 57.412968017367945,
+        "vx": 1.9120587168925212e-12,
+        "vy": -1.3728026036798812e-11,
+        "vz": 3.2560752985544196e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/MinimalLanguageSwitch.tsx",
+        "name": "MinimalLanguageSwitch.tsx",
+        "path": "keigominamidapage2/src/components/MinimalLanguageSwitch.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 36.05473355148876,
+        "y": -259.3692207703868,
+        "z": 88.06073069400254,
+        "vx": 1.3867609510568184e-13,
+        "vy": -7.227391698807063e-12,
+        "vz": 2.879816048438026e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/MinimalPortfolio.tsx",
+        "name": "MinimalPortfolio.tsx",
+        "path": "keigominamidapage2/src/components/MinimalPortfolio.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 23.07608328466031,
+        "y": -303.51182505984997,
+        "z": 60.94180492054346,
+        "vx": -2.5262853783069424e-12,
+        "vy": -1.377969447003189e-11,
+        "vz": 1.6402765192343362e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/MinimalThemeSwitch.tsx",
+        "name": "MinimalThemeSwitch.tsx",
+        "path": "keigominamidapage2/src/components/MinimalThemeSwitch.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 41.320621668591265,
+        "y": -277.47460198176555,
+        "z": 49.46634775782347,
+        "vx": 4.907342945650967e-13,
+        "vy": -1.2849438078827317e-11,
+        "vz": 6.425629934304759e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/portfolio.tsx",
+        "name": "portfolio.tsx",
+        "path": "keigominamidapage2/src/components/portfolio.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 6.139770043781478,
+        "y": -229.4587657028831,
+        "z": 74.65717696901883,
+        "vx": -8.955633284723232e-13,
+        "vy": -1.1642237085982806e-11,
+        "vz": 2.3163082799889796e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/RefinedPortfolio.tsx",
+        "name": "RefinedPortfolio.tsx",
+        "path": "keigominamidapage2/src/components/RefinedPortfolio.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -13.83284568026197,
+        "y": -304.0486307664738,
+        "z": 56.77488577777619,
+        "vx": 3.9588404450458186e-12,
+        "vy": -1.402670637031721e-11,
+        "vz": 4.8710399075350485e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/SkipLink.tsx",
+        "name": "SkipLink.tsx",
+        "path": "keigominamidapage2/src/components/SkipLink.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -34.12773304700333,
+        "y": -281.9625709895263,
+        "z": 76.30277338410866,
+        "vx": 1.471951122182357e-12,
+        "vy": -1.2786158141119235e-11,
+        "vz": 5.225529403022538e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/StructuredData.tsx",
+        "name": "StructuredData.tsx",
+        "path": "keigominamidapage2/src/components/StructuredData.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 4.038379335785369,
+        "y": -259.857653389243,
+        "z": 103.75135387608712,
+        "vx": 2.5348137864231655e-12,
+        "vy": -1.2695380944388513e-11,
+        "vz": 4.010273646557153e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/ThemeSwitch.tsx",
+        "name": "ThemeSwitch.tsx",
+        "path": "keigominamidapage2/src/components/ThemeSwitch.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": -27.65217383670912,
+        "y": -249.94225224327576,
+        "z": 84.05701817093187,
+        "vx": 1.7973311047244605e-12,
+        "vy": -9.220787538345798e-12,
+        "vz": 2.5631387488958553e-12
+      },
+      {
+        "id": "keigominamidapage2/src/components/ThreeBackground.tsx",
+        "name": "ThreeBackground.tsx",
+        "path": "keigominamidapage2/src/components/ThreeBackground.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/components",
+        "childFileCount": 0,
+        "x": 15.592450953378126,
+        "y": -251.53695719994795,
+        "z": 28.786348601818705,
+        "vx": -4.3275202043098605e-13,
+        "vy": -5.10067510764928e-12,
+        "vz": 1.059956830088728e-12
+      },
+      {
+        "id": "keigominamidapage2/src/constants",
+        "name": "constants",
+        "path": "keigominamidapage2/src/constants",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 0,
+        "x": 6.430579744234254,
+        "y": -37.10544790913885,
+        "z": -101.84850016671977,
+        "vx": -4.868688962943926e-12,
+        "vy": -1.1796937435447509e-11,
+        "vz": -8.184468138083546e-12
+      },
+      {
+        "id": "keigominamidapage2/src/contexts",
+        "name": "contexts",
+        "path": "keigominamidapage2/src/contexts",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 2,
+        "x": -75.65150695349935,
+        "y": -39.15431909156975,
+        "z": -47.37635266377009,
+        "vx": -1.935509929621533e-12,
+        "vy": -1.3416773098733303e-11,
+        "vz": -5.156497852133597e-12
+      },
+      {
+        "id": "keigominamidapage2/src/contexts/ThemeContext.tsx",
+        "name": "ThemeContext.tsx",
+        "path": "keigominamidapage2/src/contexts/ThemeContext.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/contexts",
+        "childFileCount": 0,
+        "x": -101.88310569212604,
+        "y": -21.094601372702005,
+        "z": -21.40695618460463,
+        "vx": -5.522945674323481e-12,
+        "vy": -1.470441509967516e-11,
+        "vz": -5.453609829137846e-12
+      },
+      {
+        "id": "keigominamidapage2/src/contexts/TranslationContext.tsx",
+        "name": "TranslationContext.tsx",
+        "path": "keigominamidapage2/src/contexts/TranslationContext.tsx",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#61dafb",
+        "originalColor": "#61dafb",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/contexts",
+        "childFileCount": 0,
+        "x": -107.94697063333054,
+        "y": -48.119442490394626,
+        "z": -24.059522650571452,
+        "vx": -3.4010324524086222e-12,
+        "vy": -1.451955722530187e-11,
+        "vz": -5.213082272900076e-12
+      },
+      {
+        "id": "keigominamidapage2/src/data",
+        "name": "data",
+        "path": "keigominamidapage2/src/data",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 1,
+        "x": -65.60540125304338,
+        "y": -1.4881185679974223,
+        "z": -92.47559309610274,
+        "vx": -2.289104454997494e-12,
+        "vy": -1.3348099474319747e-11,
+        "vz": -4.258645772886679e-12
+      },
+      {
+        "id": "keigominamidapage2/src/data/experiences.ts",
+        "name": "experiences.ts",
+        "path": "keigominamidapage2/src/data/experiences.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/data",
+        "childFileCount": 0,
+        "x": -94.11089511000891,
+        "y": 31.482305613453146,
+        "z": -88.83994633551116,
+        "vx": -2.6543692242127778e-12,
+        "vy": -1.2677528269717714e-11,
+        "vz": -4.407919396138842e-12
+      },
+      {
+        "id": "keigominamidapage2/src/docs",
+        "name": "docs",
+        "path": "keigominamidapage2/src/docs",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 1,
+        "x": 1.9152784655578652,
+        "y": -67.53827799700105,
+        "z": -64.2071599890781,
+        "vx": -3.543431358517945e-12,
+        "vy": -1.7543977376058692e-11,
+        "vz": -7.2245814296573996e-12
+      },
+      {
+        "id": "keigominamidapage2/src/docs/professional-experience-guide.md",
+        "name": "professional-experience-guide.md",
+        "path": "keigominamidapage2/src/docs/professional-experience-guide.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/docs",
+        "childFileCount": 0,
+        "x": 34.14400165450354,
+        "y": -80.18176372995184,
+        "z": -44.19163055813123,
+        "vx": -1.6711751099321258e-12,
+        "vy": -2.4512737801738722e-11,
+        "vz": -1.0745021767078734e-11
+      },
+      {
+        "id": "keigominamidapage2/src/hooks",
+        "name": "hooks",
+        "path": "keigominamidapage2/src/hooks",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 4,
+        "x": -56.66027154788583,
+        "y": -93.48953066324445,
+        "z": -177.67223146964417,
+        "vx": 2.5873552859214615e-14,
+        "vy": -9.36986872147854e-12,
+        "vz": -3.715803340387032e-12
+      },
+      {
+        "id": "keigominamidapage2/src/hooks/useExperienceData.ts",
+        "name": "useExperienceData.ts",
+        "path": "keigominamidapage2/src/hooks/useExperienceData.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/hooks",
+        "childFileCount": 0,
+        "x": -68.91694729691625,
+        "y": -93.02269770225746,
+        "z": -218.86905735980915,
+        "vx": 1.885204420850701e-13,
+        "vy": -1.0857211407545677e-11,
+        "vz": -5.936567499089495e-12
+      },
+      {
+        "id": "keigominamidapage2/src/hooks/useRealTimePosition.ts",
+        "name": "useRealTimePosition.ts",
+        "path": "keigominamidapage2/src/hooks/useRealTimePosition.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/hooks",
+        "childFileCount": 0,
+        "x": -64.5056718061428,
+        "y": -129.80589595337824,
+        "z": -199.01834998141152,
+        "vx": 8.681157001422328e-13,
+        "vy": -1.064706440676429e-11,
+        "vz": -5.115916522960396e-12
+      },
+      {
+        "id": "keigominamidapage2/src/hooks/useScrollSection.ts",
+        "name": "useScrollSection.ts",
+        "path": "keigominamidapage2/src/hooks/useScrollSection.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/hooks",
+        "childFileCount": 0,
+        "x": -45.26964486754609,
+        "y": -111.97466413393047,
+        "z": -215.12786849659562,
+        "vx": 1.5745312623792692e-13,
+        "vy": -9.419946043248372e-12,
+        "vz": -4.857415826468215e-12
+      },
+      {
+        "id": "keigominamidapage2/src/hooks/useThrottle.ts",
+        "name": "useThrottle.ts",
+        "path": "keigominamidapage2/src/hooks/useThrottle.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/hooks",
+        "childFileCount": 0,
+        "x": -88.1138087348523,
+        "y": -110.94897360887391,
+        "z": -201.0362008864685,
+        "vx": 1.0047860377499666e-12,
+        "vy": -1.0882202746238736e-11,
+        "vz": -5.8904569318879376e-12
+      },
+      {
+        "id": "keigominamidapage2/src/lib",
+        "name": "lib",
+        "path": "keigominamidapage2/src/lib",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 2,
+        "x": -94.07920089969419,
+        "y": -66.3984353249715,
+        "z": -102.99629958090928,
+        "vx": 1.3492004097775515e-12,
+        "vy": -1.400980235048423e-11,
+        "vz": -2.4559884506961503e-12
+      },
+      {
+        "id": "keigominamidapage2/src/lib/refined-styles.ts",
+        "name": "refined-styles.ts",
+        "path": "keigominamidapage2/src/lib/refined-styles.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/lib",
+        "childFileCount": 0,
+        "x": -134.61202427101512,
+        "y": -68.73138174545436,
+        "z": -116.69842790846413,
+        "vx": -1.7692744119003802e-12,
+        "vy": -1.8797393553340458e-11,
+        "vz": -1.7208370621374955e-12
+      },
+      {
+        "id": "keigominamidapage2/src/lib/utils.ts",
+        "name": "utils.ts",
+        "path": "keigominamidapage2/src/lib/utils.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/lib",
+        "childFileCount": 0,
+        "x": -130.91913829314248,
+        "y": -86.4097012200494,
+        "z": -96.67146158889132,
+        "vx": 1.2871214048808596e-11,
+        "vy": -1.2583198266725162e-11,
+        "vz": -4.466016775458109e-12
+      },
+      {
+        "id": "keigominamidapage2/src/translations",
+        "name": "translations",
+        "path": "keigominamidapage2/src/translations",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 2,
+        "x": -28.843817569268,
+        "y": -9.321795451096797,
+        "z": -155.75161184200658,
+        "vx": -1.7568161092221787e-13,
+        "vy": -1.2194460491671173e-11,
+        "vz": -1.1050708461164062e-12
+      },
+      {
+        "id": "keigominamidapage2/src/translations/en.ts",
+        "name": "en.ts",
+        "path": "keigominamidapage2/src/translations/en.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/translations",
+        "childFileCount": 0,
+        "x": -22.844622845406104,
+        "y": -2.315398246971974,
+        "z": -197.3315075199671,
+        "vx": -1.036738856099402e-12,
+        "vy": -1.2934997741477374e-11,
+        "vz": -2.758434160772056e-12
+      },
+      {
+        "id": "keigominamidapage2/src/translations/ja.ts",
+        "name": "ja.ts",
+        "path": "keigominamidapage2/src/translations/ja.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/translations",
+        "childFileCount": 0,
+        "x": -36.00283511849738,
+        "y": 19.669701644636792,
+        "z": -186.6814816947148,
+        "vx": 2.3803828356687276e-12,
+        "vy": -1.2215235336403183e-11,
+        "vz": -2.4745184894756112e-12
+      },
+      {
+        "id": "keigominamidapage2/src/types",
+        "name": "types",
+        "path": "keigominamidapage2/src/types",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 2,
+        "x": 22.84308160575611,
+        "y": -68.34541208704316,
+        "z": -139.27879006515948,
+        "vx": -4.981338241002887e-12,
+        "vy": -1.1253360319465291e-11,
+        "vz": -9.762165292731204e-13
+      },
+      {
+        "id": "keigominamidapage2/src/types/experience.ts",
+        "name": "experience.ts",
+        "path": "keigominamidapage2/src/types/experience.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/types",
+        "childFileCount": 0,
+        "x": 43.13229208396923,
+        "y": -78.51622731309271,
+        "z": -176.24073732522226,
+        "vx": -4.472954025253159e-12,
+        "vy": -1.3771714550838201e-11,
+        "vz": -3.850554522692321e-12
+      },
+      {
+        "id": "keigominamidapage2/src/types/index.ts",
+        "name": "index.ts",
+        "path": "keigominamidapage2/src/types/index.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/types",
+        "childFileCount": 0,
+        "x": 58.88848125212644,
+        "y": -85.72221638808303,
+        "z": -155.6410321095955,
+        "vx": -4.833997182493909e-12,
+        "vy": -1.2565125600130107e-11,
+        "vz": -3.0391094815288195e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils",
+        "name": "utils",
+        "path": "keigominamidapage2/src/utils",
+        "type": "directory",
+        "lines": 0,
+        "val": 14,
+        "color": "#2c3038",
+        "baseColor": "#4ec9b0",
+        "originalColor": "#4ec9b0",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 8,
+        "x": -167.14740071959096,
+        "y": 23.37492912219293,
+        "z": -187.29793960378436,
+        "vx": 3.893662173035302e-12,
+        "vy": -1.1468686949145959e-11,
+        "vz": -4.576521270072774e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/design-system.ts",
+        "name": "design-system.ts",
+        "path": "keigominamidapage2/src/utils/design-system.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -195.67305848132756,
+        "y": 2.9473694561296804,
+        "z": -211.41040930100297,
+        "vx": 6.832887085183912e-13,
+        "vy": -1.0575110901128328e-11,
+        "vz": -3.898387097336165e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/experienceProcessor.ts",
+        "name": "experienceProcessor.ts",
+        "path": "keigominamidapage2/src/utils/experienceProcessor.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -176.0304097749909,
+        "y": 60.25068094373585,
+        "z": -206.80115347535877,
+        "vx": 2.3075441938442246e-12,
+        "vy": -1.2433984273615086e-11,
+        "vz": -8.578020676770887e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/minimal-styles.ts",
+        "name": "minimal-styles.ts",
+        "path": "keigominamidapage2/src/utils/minimal-styles.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -169.85480808173563,
+        "y": 39.37526854930134,
+        "z": -226.73021401917285,
+        "vx": 6.453029406052979e-13,
+        "vy": -1.4764003885404806e-11,
+        "vz": -6.3661605463786064e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/performance-accessibility.ts",
+        "name": "performance-accessibility.ts",
+        "path": "keigominamidapage2/src/utils/performance-accessibility.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -209.04935024212577,
+        "y": 14.323688588702064,
+        "z": -188.40296219157943,
+        "vx": 2.636449108205997e-12,
+        "vy": -9.873068688896115e-12,
+        "vz": -4.035952506078112e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/professional-animations.ts",
+        "name": "professional-animations.ts",
+        "path": "keigominamidapage2/src/utils/professional-animations.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -189.5294397738376,
+        "y": 59.67125442551802,
+        "z": -186.56836113528698,
+        "vx": 5.646827932953202e-12,
+        "vy": -9.467489665034627e-12,
+        "vz": -8.770118209941526e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/professional-design-system.ts",
+        "name": "professional-design-system.ts",
+        "path": "keigominamidapage2/src/utils/professional-design-system.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -186.99103238061437,
+        "y": 21.197408206583653,
+        "z": -226.88709476914525,
+        "vx": 2.7864645718655328e-12,
+        "vy": -1.2972930796986591e-11,
+        "vz": -4.594412917226465e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/refined-styles.ts",
+        "name": "refined-styles.ts",
+        "path": "keigominamidapage2/src/utils/refined-styles.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -206.61694221506724,
+        "y": 37.095191068183006,
+        "z": -176.53734145749698,
+        "vx": 5.367437114124495e-12,
+        "vy": -8.690184640751976e-12,
+        "vz": -2.6741152422079506e-12
+      },
+      {
+        "id": "keigominamidapage2/src/utils/styles.ts",
+        "name": "styles.ts",
+        "path": "keigominamidapage2/src/utils/styles.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src/utils",
+        "childFileCount": 0,
+        "x": -204.35817227212956,
+        "y": 40.072656256089196,
+        "z": -209.63609404916988,
+        "vx": 1.8749809804851844e-12,
+        "vy": -1.2656466438007612e-11,
+        "vz": -3.0844139934751707e-12
+      },
+      {
+        "id": "keigominamidapage2/src/translations.ts",
+        "name": "translations.ts",
+        "path": "keigominamidapage2/src/translations.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2/src",
+        "childFileCount": 0,
+        "x": -23.798371694064837,
+        "y": -10.687885158149912,
+        "z": -74.11680678310796,
+        "vx": 8.383799977876324e-15,
+        "vy": -1.260658275804302e-11,
+        "vz": -1.1249550857101208e-12
+      },
+      {
+        "id": "keigominamidapage2/.DS_Store",
+        "name": ".DS_Store",
+        "path": "keigominamidapage2/.DS_Store",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 124.59685986613782,
+        "y": 193.86296992567307,
+        "z": -81.88519157157087,
+        "vx": -1.508224502032196e-11,
+        "vy": 5.420898893836408e-12,
+        "vz": -3.821679926937155e-12
+      },
+      {
+        "id": "keigominamidapage2/.eslintrc.json",
+        "name": ".eslintrc.json",
+        "path": "keigominamidapage2/.eslintrc.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 120.80868881747071,
+        "y": 164.64213186954555,
+        "z": -68.61795972390065,
+        "vx": -2.2141121509152364e-11,
+        "vy": 3.207860217015972e-13,
+        "vz": -4.94240401096774e-12
+      },
+      {
+        "id": "keigominamidapage2/.gitignore",
+        "name": ".gitignore",
+        "path": "keigominamidapage2/.gitignore",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 128.0176635906004,
+        "y": 125.6518805099624,
+        "z": -93.22307409734105,
+        "vx": -1.0172060459543838e-11,
+        "vy": 8.281540336364675e-13,
+        "vz": -2.537786855225988e-12
+      },
+      {
+        "id": "keigominamidapage2/components.json",
+        "name": "components.json",
+        "path": "keigominamidapage2/components.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 144.2993497604687,
+        "y": 172.17305556071244,
+        "z": -152.08123426924342,
+        "vx": -9.823294891824509e-12,
+        "vy": 3.949470291347873e-12,
+        "vz": -6.273883884226949e-12
+      },
+      {
+        "id": "keigominamidapage2/memo.txt",
+        "name": "memo.txt",
+        "path": "keigominamidapage2/memo.txt",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#95a5a6",
+        "originalColor": "#95a5a6",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 148.2705992698201,
+        "y": 143.15024925137084,
+        "z": -75.1261033503918,
+        "vx": -8.993884665248662e-12,
+        "vy": -2.061631878481684e-12,
+        "vz": -4.633194373137126e-12
+      },
+      {
+        "id": "keigominamidapage2/next-env.d.ts",
+        "name": "next-env.d.ts",
+        "path": "keigominamidapage2/next-env.d.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 104.71995137824567,
+        "y": 172.3443457388208,
+        "z": -142.57419747756248,
+        "vx": -1.2174539370745136e-11,
+        "vy": 4.190392769098525e-12,
+        "vz": -4.269595045840787e-12
+      },
+      {
+        "id": "keigominamidapage2/next.config.ts",
+        "name": "next.config.ts",
+        "path": "keigominamidapage2/next.config.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 134.79816480333588,
+        "y": 194.54464568135103,
+        "z": -140.1973608275347,
+        "vx": -1.2566793881399764e-11,
+        "vy": 7.693471392865871e-12,
+        "vz": -1.0845370093930844e-12
+      },
+      {
+        "id": "keigominamidapage2/package-lock.json",
+        "name": "package-lock.json",
+        "path": "keigominamidapage2/package-lock.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 168.50300784919176,
+        "y": 162.1605342305193,
+        "z": -136.53657551143561,
+        "vx": -8.216272974503087e-12,
+        "vy": 4.329163133702702e-12,
+        "vz": -6.791575756463547e-12
+      },
+      {
+        "id": "keigominamidapage2/package.json",
+        "name": "package.json",
+        "path": "keigominamidapage2/package.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 168.17443162513996,
+        "y": 185.29477980925637,
+        "z": -122.45565021073114,
+        "vx": -9.892263723602863e-12,
+        "vy": 9.318443032658416e-12,
+        "vz": -6.192663905818937e-12
+      },
+      {
+        "id": "keigominamidapage2/postcss.config.mjs",
+        "name": "postcss.config.mjs",
+        "path": "keigominamidapage2/postcss.config.mjs",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 125.10294822840281,
+        "y": 150.46103140486312,
+        "z": -151.68885338683236,
+        "vx": -1.1758009959579272e-11,
+        "vy": 1.2993716623272523e-11,
+        "vz": -5.036027113153227e-12
+      },
+      {
+        "id": "keigominamidapage2/README.md",
+        "name": "README.md",
+        "path": "keigominamidapage2/README.md",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3498db",
+        "originalColor": "#3498db",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 148.2885201084596,
+        "y": 203.1323881091178,
+        "z": -111.43757236051165,
+        "vx": -1.7756856672928585e-11,
+        "vy": 9.719645605144809e-12,
+        "vz": -9.07548120489012e-12
+      },
+      {
+        "id": "keigominamidapage2/tailwind.config.ts",
+        "name": "tailwind.config.ts",
+        "path": "keigominamidapage2/tailwind.config.ts",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#3178c6",
+        "originalColor": "#3178c6",
+        "defaultGlow": 0.1,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 160.87132590260714,
+        "y": 189.35804150319694,
+        "z": -90.08264071406883,
+        "vx": -9.036873574919441e-12,
+        "vy": 3.765224998361334e-12,
+        "vz": -3.789508765872841e-12
+      },
+      {
+        "id": "keigominamidapage2/tsconfig.json",
+        "name": "tsconfig.json",
+        "path": "keigominamidapage2/tsconfig.json",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#8e44ad",
+        "originalColor": "#8e44ad",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 106.8202648904499,
+        "y": 196.17569929794533,
+        "z": -117.97676090898291,
+        "vx": -1.91566207873e-11,
+        "vy": 7.207168252736871e-13,
+        "vz": -2.6752614441464153e-12
+      },
+      {
+        "id": "keigominamidapage2/tsconfig.tsbuildinfo",
+        "name": "tsconfig.tsbuildinfo",
+        "path": "keigominamidapage2/tsconfig.tsbuildinfo",
+        "type": "file",
+        "lines": 0,
+        "val": 6,
+        "color": "#2c3038",
+        "baseColor": "#57606f",
+        "originalColor": "#57606f",
+        "defaultGlow": 0.18,
+        "glowIntensity": 0,
+        "highlighted": false,
+        "parentPath": "keigominamidapage2",
+        "childFileCount": 0,
+        "x": 135.93658551919663,
+        "y": 126.06456853695879,
+        "z": -130.5957147430269,
+        "vx": -1.234661768061208e-11,
+        "vy": 4.1765862186216595e-12,
+        "vz": -5.491372316188323e-12
+      }
+    ],
+    "links": [
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.claude",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.kamui",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.next",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/logmd",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/logmd",
+        "target": "keigominamidapage2/logmd/logfile.md",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/logmd",
+        "target": "keigominamidapage2/logmd/nextdevelop.yaml",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/node_modules",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/public",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/images",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/1000ya.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/4ZIGEN.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/bodyop.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/cotton.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/FSTL.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/geo.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/ha.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/iii.jpg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/met.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/minikuro-title.jpg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/myface.jpg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/nozo.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/proto.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/Protozoa.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/puf.jpeg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/Recertif.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/robot_room.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/shu.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/sigasi.jpg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/unilidar.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public/images",
+        "target": "keigominamidapage2/public/images/wakabar.png",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/favicon.ico",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/file.svg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/globe.svg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/manifest.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/next.svg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/robots.txt",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/sitemap.xml",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/vercel.svg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/public",
+        "target": "keigominamidapage2/public/window.svg",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/src",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/app",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app",
+        "target": "keigominamidapage2/src/app/fonts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app/fonts",
+        "target": "keigominamidapage2/src/app/fonts/GeistMonoVF.woff",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app/fonts",
+        "target": "keigominamidapage2/src/app/fonts/GeistVF.woff",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app",
+        "target": "keigominamidapage2/src/app/globals.css",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app",
+        "target": "keigominamidapage2/src/app/layout.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/app",
+        "target": "keigominamidapage2/src/app/page.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/components",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/cards",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/ArtworkCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/ExperienceCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/MinimalExperienceCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/MinimalProjectCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/ProfessionalExperienceCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/ProjectCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/ResearchProjectCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/cards",
+        "target": "keigominamidapage2/src/components/cards/StartupCard.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/common",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/common",
+        "target": "keigominamidapage2/src/components/common/OptimizedImage.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/controls",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/controls",
+        "target": "keigominamidapage2/src/components/controls/TimelineControls.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/layout",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/Footer.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/MinimalFooter.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/MinimalNavigation.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/Navigation.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/RefinedFooter.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/layout",
+        "target": "keigominamidapage2/src/components/layout/RefinedNavigation.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/sections",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/experience",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections/experience",
+        "target": "keigominamidapage2/src/components/sections/experience/CurrentTimeIndicator.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections/experience",
+        "target": "keigominamidapage2/src/components/sections/experience/ExperienceFilter.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections/experience",
+        "target": "keigominamidapage2/src/components/sections/experience/TimelineChart.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/ArtworkSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/AwardsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/ExperienceSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/HomeSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/HomeSectionVariants.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/MinimalExperienceSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/MinimalHomeSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/MinimalProjectsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/OtherProjectsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/ProfessionalExperienceSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/ProjectsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedArtworkSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedAwardsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedHomeSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedOtherProjectsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedProjectsSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components/sections",
+        "target": "keigominamidapage2/src/components/sections/RefinedStartupSection.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/DynamicBackground.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/FocusIndicator.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/LanguageSwitch.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/MinimalBackground.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/MinimalLanguageSwitch.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/MinimalPortfolio.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/MinimalThemeSwitch.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/portfolio.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/RefinedPortfolio.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/SkipLink.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/StructuredData.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/ThemeSwitch.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/components",
+        "target": "keigominamidapage2/src/components/ThreeBackground.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/constants",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/contexts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/contexts",
+        "target": "keigominamidapage2/src/contexts/ThemeContext.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/contexts",
+        "target": "keigominamidapage2/src/contexts/TranslationContext.tsx",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/data",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/data",
+        "target": "keigominamidapage2/src/data/experiences.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/docs",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/docs",
+        "target": "keigominamidapage2/src/docs/professional-experience-guide.md",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/hooks",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/hooks",
+        "target": "keigominamidapage2/src/hooks/useExperienceData.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/hooks",
+        "target": "keigominamidapage2/src/hooks/useRealTimePosition.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/hooks",
+        "target": "keigominamidapage2/src/hooks/useScrollSection.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/hooks",
+        "target": "keigominamidapage2/src/hooks/useThrottle.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/lib",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/lib",
+        "target": "keigominamidapage2/src/lib/refined-styles.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/lib",
+        "target": "keigominamidapage2/src/lib/utils.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/translations",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/translations",
+        "target": "keigominamidapage2/src/translations/en.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/translations",
+        "target": "keigominamidapage2/src/translations/ja.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/types",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/types",
+        "target": "keigominamidapage2/src/types/experience.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/types",
+        "target": "keigominamidapage2/src/types/index.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/utils",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/design-system.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/experienceProcessor.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/minimal-styles.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/performance-accessibility.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/professional-animations.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/professional-design-system.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/refined-styles.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src/utils",
+        "target": "keigominamidapage2/src/utils/styles.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2/src",
+        "target": "keigominamidapage2/src/translations.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.DS_Store",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.eslintrc.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/.gitignore",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/components.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/memo.txt",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/next-env.d.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/next.config.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/package-lock.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/package.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/postcss.config.mjs",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/README.md",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/tailwind.config.ts",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/tsconfig.json",
+        "type": "tree"
+      },
+      {
+        "source": "keigominamidapage2",
+        "target": "keigominamidapage2/tsconfig.tsbuildinfo",
+        "type": "tree"
+      }
+    ]
+  },
+  "trackedFiles": [
+    ".eslintrc.json",
+    ".gitignore",
+    "README.md",
+    "components.json",
+    "logmd/logfile.md",
+    "logmd/nextdevelop.yaml",
+    "memo.txt",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.mjs",
+    "public/favicon.ico",
+    "public/file.svg",
+    "public/globe.svg",
+    "public/images/1000ya.png",
+    "public/images/4ZIGEN.png",
+    "public/images/FSTL.png",
+    "public/images/Protozoa.png",
+    "public/images/Recertif.png",
+    "public/images/bodyop.png",
+    "public/images/cotton.jpeg",
+    "public/images/geo.jpeg",
+    "public/images/ha.png",
+    "public/images/iii.jpg",
+    "public/images/met.jpeg",
+    "public/images/minikuro-title.jpg",
+    "public/images/myface.jpg",
+    "public/images/nozo.jpeg",
+    "public/images/proto.jpeg",
+    "public/images/puf.jpeg",
+    "public/images/robot_room.png",
+    "public/images/shu.png",
+    "public/images/sigasi.jpg",
+    "public/images/unilidar.png",
+    "public/images/wakabar.png",
+    "public/manifest.json",
+    "public/next.svg",
+    "public/robots.txt",
+    "public/sitemap.xml",
+    "public/vercel.svg",
+    "public/window.svg",
+    "src/app/fonts/GeistMonoVF.woff",
+    "src/app/fonts/GeistVF.woff",
+    "src/app/globals.css",
+    "src/app/layout.tsx",
+    "src/app/page.tsx",
+    "src/components/DynamicBackground.tsx",
+    "src/components/FocusIndicator.tsx",
+    "src/components/LanguageSwitch.tsx",
+    "src/components/MinimalBackground.tsx",
+    "src/components/MinimalLanguageSwitch.tsx",
+    "src/components/MinimalPortfolio.tsx",
+    "src/components/MinimalThemeSwitch.tsx",
+    "src/components/RefinedPortfolio.tsx",
+    "src/components/SkipLink.tsx",
+    "src/components/StructuredData.tsx",
+    "src/components/ThemeSwitch.tsx",
+    "src/components/ThreeBackground.tsx",
+    "src/components/cards/ArtworkCard.tsx",
+    "src/components/cards/ExperienceCard.tsx",
+    "src/components/cards/MinimalExperienceCard.tsx",
+    "src/components/cards/MinimalProjectCard.tsx",
+    "src/components/cards/ProfessionalExperienceCard.tsx",
+    "src/components/cards/ProjectCard.tsx",
+    "src/components/cards/ResearchProjectCard.tsx",
+    "src/components/cards/StartupCard.tsx",
+    "src/components/common/OptimizedImage.tsx",
+    "src/components/controls/TimelineControls.tsx",
+    "src/components/layout/Footer.tsx",
+    "src/components/layout/MinimalFooter.tsx",
+    "src/components/layout/MinimalNavigation.tsx",
+    "src/components/layout/Navigation.tsx",
+    "src/components/layout/RefinedFooter.tsx",
+    "src/components/layout/RefinedNavigation.tsx",
+    "src/components/portfolio.tsx",
+    "src/components/sections/ArtworkSection.tsx",
+    "src/components/sections/AwardsSection.tsx",
+    "src/components/sections/ExperienceSection.tsx",
+    "src/components/sections/HomeSection.tsx",
+    "src/components/sections/HomeSectionVariants.tsx",
+    "src/components/sections/MinimalExperienceSection.tsx",
+    "src/components/sections/MinimalHomeSection.tsx",
+    "src/components/sections/MinimalProjectsSection.tsx",
+    "src/components/sections/OtherProjectsSection.tsx",
+    "src/components/sections/ProfessionalExperienceSection.tsx",
+    "src/components/sections/ProjectsSection.tsx",
+    "src/components/sections/RefinedArtworkSection.tsx",
+    "src/components/sections/RefinedAwardsSection.tsx",
+    "src/components/sections/RefinedHomeSection.tsx",
+    "src/components/sections/RefinedOtherProjectsSection.tsx",
+    "src/components/sections/RefinedProjectsSection.tsx",
+    "src/components/sections/RefinedStartupSection.tsx",
+    "src/components/sections/experience/CurrentTimeIndicator.tsx",
+    "src/components/sections/experience/ExperienceFilter.tsx",
+    "src/components/sections/experience/TimelineChart.tsx",
+    "src/contexts/ThemeContext.tsx",
+    "src/contexts/TranslationContext.tsx",
+    "src/data/experiences.ts",
+    "src/docs/professional-experience-guide.md",
+    "src/hooks/useExperienceData.ts",
+    "src/hooks/useRealTimePosition.ts",
+    "src/hooks/useScrollSection.ts",
+    "src/hooks/useThrottle.ts",
+    "src/lib/refined-styles.ts",
+    "src/lib/utils.ts",
+    "src/translations.ts",
+    "src/translations/en.ts",
+    "src/translations/ja.ts",
+    "src/types/experience.ts",
+    "src/types/index.ts",
+    "src/utils/design-system.ts",
+    "src/utils/experienceProcessor.ts",
+    "src/utils/minimal-styles.ts",
+    "src/utils/performance-accessibility.ts",
+    "src/utils/professional-animations.ts",
+    "src/utils/professional-design-system.ts",
+    "src/utils/refined-styles.ts",
+    "src/utils/styles.ts",
+    "tailwind.config.ts",
+    "tsconfig.json"
+  ],
+  "uiState": {
+    "expandedDirs": [
+      "keigominamidapage2",
+      "keigominamidapage2/keigominamidapage2",
+      "keigominamidapage2/.kamui",
+      "keigominamidapage2/keigominamidapage2/.kamui",
+      "keigominamidapage2/.kamui/gantte",
+      "keigominamidapage2/keigominamidapage2/.kamui/gantte",
+      "keigominamidapage2/.kamui/prompt",
+      "keigominamidapage2/keigominamidapage2/.kamui/prompt"
+    ],
+    "selectedPath": null
+  },
+  "directoryTreeMeta": {
+    "mode": "full",
+    "maxDepthApplied": 10,
+    "maxEntriesPerDirectory": 0,
+    "isPartial": false
+  },
+  "gitHistoryMeta": {
+    "mode": "full",
+    "isPartial": false,
+    "branchPulse": {
+      "generatedAt": 1764420492123,
+      "targets": [
+        "main",
+        "master"
+      ],
+      "statsByBranch": {
+        "main": {
+          "branch": "main",
+          "head": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+          "baseRef": "origin/main",
+          "baseHead": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+          "mergeBase": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+          "divergence": {
+            "aheadCount": 0,
+            "fileCount": 0
+          },
+          "baseline": {
+            "aheadCount": 0,
+            "behindCount": 0,
+            "fileCount": 0
+          },
+          "upstream": null
+        }
+      }
+    }
+  },
+  "gitHistoryState": {
+    "selectedTimelineIndex": 1,
+    "activeCommitHash": null,
+    "entries": [
+      {
+        "type": "live",
+        "label": "現在のコードベース",
+        "files": [],
+        "branch": "main",
+        "targetCommitHash": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+        "worktreePath": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+        "timestamp": 1764420492141,
+        "lane": 0,
+        "branchLabel": "main",
+        "branchTags": [
+          "main"
+        ],
+        "isDefaultWorktree": true,
+        "branchColor": "#4f85e8",
+        "index": 0
+      },
+      {
+        "type": "unstaged",
+        "label": "未ステージ (3)",
+        "files": [
+          ".kamui/gantte/test.yaml",
+          ".kamui/prompt/merge-prompt.txt",
+          ".kamui/system-graph-state.json"
+        ],
+        "branch": "main",
+        "targetCommitHash": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+        "worktreePath": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+        "timestamp": 1764420492141,
+        "sortOrder": 0,
+        "lane": 0,
+        "branchColor": "#4f85e8",
+        "index": 1
+      },
+      {
+        "type": "commit",
+        "label": "Add new project \"MiniChro\" to project sections",
+        "commit": {
+          "hash": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+          "subject": "Add new project \"MiniChro\" to project sections",
+          "author": "keigo1110",
+          "timestamp": 1753837794,
+          "parents": [
+            "3847f61be379bfe9b22586a1a81c7ae66ad526ca"
+          ],
+          "parent": "3847f61be379bfe9b22586a1a81c7ae66ad526ca",
+          "refs": "HEAD -> main, origin/main, origin/HEAD",
+          "branches": [
+            "HEAD -> main",
+            "origin/main",
+            "origin/HEAD",
+            "main"
+          ]
+        },
+        "commitHash": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "3847f61be379bfe9b22586a1a81c7ae66ad526ca",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [
+          "main"
+        ],
+        "worktrees": [
+          {
+            "path": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+            "head": "b0aa309b9eec6550699d8c2104ec469f67b54650",
+            "branch": "main",
+            "isMerged": false,
+            "mergeCommitHash": null,
+            "status": {
+              "staged": [],
+              "unstaged": [],
+              "untracked": [
+                {
+                  "path": ".kamui/gantte/test.yaml",
+                  "status": "untracked",
+                  "rawPath": ".kamui/gantte/test.yaml",
+                  "timestamp": 1764420492024
+                },
+                {
+                  "path": ".kamui/prompt/merge-prompt.txt",
+                  "status": "untracked",
+                  "rawPath": ".kamui/prompt/merge-prompt.txt",
+                  "timestamp": 1764420492024
+                },
+                {
+                  "path": ".kamui/system-graph-state.json",
+                  "status": "untracked",
+                  "rawPath": ".kamui/system-graph-state.json",
+                  "timestamp": 1764420492024
+                }
+              ],
+              "capturedAt": 1764420492024
+            },
+            "normalizedPath": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+            "lane": 0
+          }
+        ],
+        "index": 2
+      },
+      {
+        "type": "commit",
+        "label": "Update personal information and social links for consistency",
+        "commit": {
+          "hash": "3847f61be379bfe9b22586a1a81c7ae66ad526ca",
+          "subject": "Update personal information and social links for consistency",
+          "author": "keigo1110",
+          "timestamp": 1751004821,
+          "parents": [
+            "79da0db201f480360707ec0acaa877ffd74cebb5"
+          ],
+          "parent": "79da0db201f480360707ec0acaa877ffd74cebb5",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "3847f61be379bfe9b22586a1a81c7ae66ad526ca",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "79da0db201f480360707ec0acaa877ffd74cebb5",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 3
+      },
+      {
+        "type": "commit",
+        "label": "Enhance accessibility and design across components",
+        "commit": {
+          "hash": "79da0db201f480360707ec0acaa877ffd74cebb5",
+          "subject": "Enhance accessibility and design across components",
+          "author": "keigo1110",
+          "timestamp": 1749461074,
+          "parents": [
+            "d885128bba7ecd06733dcd70f35a7ff3d025ffdb"
+          ],
+          "parent": "d885128bba7ecd06733dcd70f35a7ff3d025ffdb",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "79da0db201f480360707ec0acaa877ffd74cebb5",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "d885128bba7ecd06733dcd70f35a7ff3d025ffdb",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 4
+      },
+      {
+        "type": "commit",
+        "label": "Refactor theme switch components for fixed dark mode",
+        "commit": {
+          "hash": "d885128bba7ecd06733dcd70f35a7ff3d025ffdb",
+          "subject": "Refactor theme switch components for fixed dark mode",
+          "author": "keigo1110",
+          "timestamp": 1749380302,
+          "parents": [
+            "d9b8e6d98cba7ea25bfb4546650890230e2f45e0"
+          ],
+          "parent": "d9b8e6d98cba7ea25bfb4546650890230e2f45e0",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "d885128bba7ecd06733dcd70f35a7ff3d025ffdb",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "d9b8e6d98cba7ea25bfb4546650890230e2f45e0",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 5
+      },
+      {
+        "type": "commit",
+        "label": "Refactor layout and component structure",
+        "commit": {
+          "hash": "d9b8e6d98cba7ea25bfb4546650890230e2f45e0",
+          "subject": "Refactor layout and component structure",
+          "author": "keigo1110",
+          "timestamp": 1749378943,
+          "parents": [
+            "c6cb2b719d80baddefdf43ebbccd1dcfaf2ebe7b"
+          ],
+          "parent": "c6cb2b719d80baddefdf43ebbccd1dcfaf2ebe7b",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "d9b8e6d98cba7ea25bfb4546650890230e2f45e0",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "c6cb2b719d80baddefdf43ebbccd1dcfaf2ebe7b",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 6
+      },
+      {
+        "type": "commit",
+        "label": "Refactor experience and artwork sections",
+        "commit": {
+          "hash": "c6cb2b719d80baddefdf43ebbccd1dcfaf2ebe7b",
+          "subject": "Refactor experience and artwork sections",
+          "author": "keigo1110",
+          "timestamp": 1749374146,
+          "parents": [
+            "94d90ea1fc990111cdc8c10ab1bafe0e64fc36d4"
+          ],
+          "parent": "94d90ea1fc990111cdc8c10ab1bafe0e64fc36d4",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "c6cb2b719d80baddefdf43ebbccd1dcfaf2ebe7b",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "94d90ea1fc990111cdc8c10ab1bafe0e64fc36d4",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 7
+      },
+      {
+        "type": "commit",
+        "label": "update steatement",
+        "commit": {
+          "hash": "94d90ea1fc990111cdc8c10ab1bafe0e64fc36d4",
+          "subject": "update steatement",
+          "author": "keigo1110",
+          "timestamp": 1748408370,
+          "parents": [
+            "ae8a1f8474f0041102b34c12beaefbca9a3e9b8e"
+          ],
+          "parent": "ae8a1f8474f0041102b34c12beaefbca9a3e9b8e",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "94d90ea1fc990111cdc8c10ab1bafe0e64fc36d4",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "ae8a1f8474f0041102b34c12beaefbca9a3e9b8e",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 8
+      },
+      {
+        "type": "commit",
+        "label": "update experience section",
+        "commit": {
+          "hash": "ae8a1f8474f0041102b34c12beaefbca9a3e9b8e",
+          "subject": "update experience section",
+          "author": "keigo1110",
+          "timestamp": 1748406850,
+          "parents": [
+            "61d569f719abfdc3130b04dfef5aaec375418fbc"
+          ],
+          "parent": "61d569f719abfdc3130b04dfef5aaec375418fbc",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "ae8a1f8474f0041102b34c12beaefbca9a3e9b8e",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "61d569f719abfdc3130b04dfef5aaec375418fbc",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 9
+      },
+      {
+        "type": "commit",
+        "label": "update research section",
+        "commit": {
+          "hash": "61d569f719abfdc3130b04dfef5aaec375418fbc",
+          "subject": "update research section",
+          "author": "keigo1110",
+          "timestamp": 1748283396,
+          "parents": [
+            "b6d6aee77aaf30e3048f8d624cbc52f2aa1e80ac"
+          ],
+          "parent": "b6d6aee77aaf30e3048f8d624cbc52f2aa1e80ac",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "61d569f719abfdc3130b04dfef5aaec375418fbc",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "b6d6aee77aaf30e3048f8d624cbc52f2aa1e80ac",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 10
+      },
+      {
+        "type": "commit",
+        "label": "update artwork section design",
+        "commit": {
+          "hash": "b6d6aee77aaf30e3048f8d624cbc52f2aa1e80ac",
+          "subject": "update artwork section design",
+          "author": "keigo1110",
+          "timestamp": 1748278899,
+          "parents": [
+            "d495977a4412e980ff4e19ed586b1cc8744cb30e"
+          ],
+          "parent": "d495977a4412e980ff4e19ed586b1cc8744cb30e",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "b6d6aee77aaf30e3048f8d624cbc52f2aa1e80ac",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "d495977a4412e980ff4e19ed586b1cc8744cb30e",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 11
+      },
+      {
+        "type": "commit",
+        "label": "Unify color scheme to black and blue theme",
+        "commit": {
+          "hash": "d495977a4412e980ff4e19ed586b1cc8744cb30e",
+          "subject": "Unify color scheme to black and blue theme",
+          "author": "keigo1110",
+          "timestamp": 1748241875,
+          "parents": [
+            "3db3948894b3e18b2b44c34b8ff79ae539cc075c"
+          ],
+          "parent": "3db3948894b3e18b2b44c34b8ff79ae539cc075c",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "d495977a4412e980ff4e19ed586b1cc8744cb30e",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "3db3948894b3e18b2b44c34b8ff79ae539cc075c",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 12
+      },
+      {
+        "type": "commit",
+        "label": "split laungage file",
+        "commit": {
+          "hash": "3db3948894b3e18b2b44c34b8ff79ae539cc075c",
+          "subject": "split laungage file",
+          "author": "keigo1110",
+          "timestamp": 1747359530,
+          "parents": [
+            "6049609cd00e5c4c9f9a20db5bc5a0d0007d78fc"
+          ],
+          "parent": "6049609cd00e5c4c9f9a20db5bc5a0d0007d78fc",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "3db3948894b3e18b2b44c34b8ff79ae539cc075c",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "6049609cd00e5c4c9f9a20db5bc5a0d0007d78fc",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 13
+      },
+      {
+        "type": "commit",
+        "label": "add analytics",
+        "commit": {
+          "hash": "6049609cd00e5c4c9f9a20db5bc5a0d0007d78fc",
+          "subject": "add analytics",
+          "author": "keigo1110",
+          "timestamp": 1747015622,
+          "parents": [
+            "35a047598dbba39373e0221ab3455e9a89644fbb"
+          ],
+          "parent": "35a047598dbba39373e0221ab3455e9a89644fbb",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "6049609cd00e5c4c9f9a20db5bc5a0d0007d78fc",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "35a047598dbba39373e0221ab3455e9a89644fbb",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 14
+      },
+      {
+        "type": "commit",
+        "label": "add sns links and update seo",
+        "commit": {
+          "hash": "35a047598dbba39373e0221ab3455e9a89644fbb",
+          "subject": "add sns links and update seo",
+          "author": "keigo1110",
+          "timestamp": 1747015045,
+          "parents": [
+            "4517d8993aa897b3956a7d05c1a04506599ead19"
+          ],
+          "parent": "4517d8993aa897b3956a7d05c1a04506599ead19",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "35a047598dbba39373e0221ab3455e9a89644fbb",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "4517d8993aa897b3956a7d05c1a04506599ead19",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 15
+      },
+      {
+        "type": "commit",
+        "label": "add award",
+        "commit": {
+          "hash": "4517d8993aa897b3956a7d05c1a04506599ead19",
+          "subject": "add award",
+          "author": "keigo1110",
+          "timestamp": 1739694470,
+          "parents": [
+            "1bf020ebf3faf0d26cb3bf92ee6b82a6383a6b8b"
+          ],
+          "parent": "1bf020ebf3faf0d26cb3bf92ee6b82a6383a6b8b",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "4517d8993aa897b3956a7d05c1a04506599ead19",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "1bf020ebf3faf0d26cb3bf92ee6b82a6383a6b8b",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 16
+      },
+      {
+        "type": "commit",
+        "label": "add Recertif paper",
+        "commit": {
+          "hash": "1bf020ebf3faf0d26cb3bf92ee6b82a6383a6b8b",
+          "subject": "add Recertif paper",
+          "author": "keigo1110",
+          "timestamp": 1739692818,
+          "parents": [
+            "30d616f38e33ff07e78a061b61557c60cf0967ae"
+          ],
+          "parent": "30d616f38e33ff07e78a061b61557c60cf0967ae",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "1bf020ebf3faf0d26cb3bf92ee6b82a6383a6b8b",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "30d616f38e33ff07e78a061b61557c60cf0967ae",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 17
+      },
+      {
+        "type": "commit",
+        "label": "add artwork",
+        "commit": {
+          "hash": "30d616f38e33ff07e78a061b61557c60cf0967ae",
+          "subject": "add artwork",
+          "author": "keigo1110",
+          "timestamp": 1733827869,
+          "parents": [
+            "2ca9ca67fdfd45246ccd28dfb5f5cd62c0af939a"
+          ],
+          "parent": "2ca9ca67fdfd45246ccd28dfb5f5cd62c0af939a",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "30d616f38e33ff07e78a061b61557c60cf0967ae",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "2ca9ca67fdfd45246ccd28dfb5f5cd62c0af939a",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 18
+      },
+      {
+        "type": "commit",
+        "label": "add doi",
+        "commit": {
+          "hash": "2ca9ca67fdfd45246ccd28dfb5f5cd62c0af939a",
+          "subject": "add doi",
+          "author": "keigo1110",
+          "timestamp": 1733236614,
+          "parents": [
+            "8cdb9728bf4434df4200c8b5b3350e559ed286b1"
+          ],
+          "parent": "8cdb9728bf4434df4200c8b5b3350e559ed286b1",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "2ca9ca67fdfd45246ccd28dfb5f5cd62c0af939a",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "8cdb9728bf4434df4200c8b5b3350e559ed286b1",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 19
+      },
+      {
+        "type": "commit",
+        "label": "modify details",
+        "commit": {
+          "hash": "8cdb9728bf4434df4200c8b5b3350e559ed286b1",
+          "subject": "modify details",
+          "author": "keigo1110",
+          "timestamp": 1733058042,
+          "parents": [
+            "d1771f8da17df997038a3ef3edcc9c9985028699"
+          ],
+          "parent": "d1771f8da17df997038a3ef3edcc9c9985028699",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "8cdb9728bf4434df4200c8b5b3350e559ed286b1",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "d1771f8da17df997038a3ef3edcc9c9985028699",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 20
+      },
+      {
+        "type": "commit",
+        "label": "add I-GS description",
+        "commit": {
+          "hash": "d1771f8da17df997038a3ef3edcc9c9985028699",
+          "subject": "add I-GS description",
+          "author": "keigo1110",
+          "timestamp": 1733057692,
+          "parents": [
+            "0ffe746459f84f573417c46da72ff79723a64f16"
+          ],
+          "parent": "0ffe746459f84f573417c46da72ff79723a64f16",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "d1771f8da17df997038a3ef3edcc9c9985028699",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "0ffe746459f84f573417c46da72ff79723a64f16",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 21
+      },
+      {
+        "type": "commit",
+        "label": "update layout",
+        "commit": {
+          "hash": "0ffe746459f84f573417c46da72ff79723a64f16",
+          "subject": "update layout",
+          "author": "keigo1110",
+          "timestamp": 1733045132,
+          "parents": [
+            "37d9bc0e1d0f385c5ab8e56eca2d43f0daa984fe"
+          ],
+          "parent": "37d9bc0e1d0f385c5ab8e56eca2d43f0daa984fe",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "0ffe746459f84f573417c46da72ff79723a64f16",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "37d9bc0e1d0f385c5ab8e56eca2d43f0daa984fe",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 22
+      },
+      {
+        "type": "commit",
+        "label": "update layout",
+        "commit": {
+          "hash": "37d9bc0e1d0f385c5ab8e56eca2d43f0daa984fe",
+          "subject": "update layout",
+          "author": "keigo1110",
+          "timestamp": 1733044999,
+          "parents": [
+            "136330ea67428b6c4455f76b688a634e92b1dcf5"
+          ],
+          "parent": "136330ea67428b6c4455f76b688a634e92b1dcf5",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "37d9bc0e1d0f385c5ab8e56eca2d43f0daa984fe",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "136330ea67428b6c4455f76b688a634e92b1dcf5",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 23
+      },
+      {
+        "type": "commit",
+        "label": "add siggraph asia2024",
+        "commit": {
+          "hash": "136330ea67428b6c4455f76b688a634e92b1dcf5",
+          "subject": "add siggraph asia2024",
+          "author": "keigo1110",
+          "timestamp": 1733044090,
+          "parents": [
+            "555cdc5ce967897f15e929e529083f829db9c206"
+          ],
+          "parent": "555cdc5ce967897f15e929e529083f829db9c206",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "136330ea67428b6c4455f76b688a634e92b1dcf5",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "555cdc5ce967897f15e929e529083f829db9c206",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 24
+      },
+      {
+        "type": "commit",
+        "label": "update artwork",
+        "commit": {
+          "hash": "555cdc5ce967897f15e929e529083f829db9c206",
+          "subject": "update artwork",
+          "author": "keigo1110",
+          "timestamp": 1733043555,
+          "parents": [
+            "3d3b9914fa9218c0609d5deb6233a4bbbb9eedd0"
+          ],
+          "parent": "3d3b9914fa9218c0609d5deb6233a4bbbb9eedd0",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "555cdc5ce967897f15e929e529083f829db9c206",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "3d3b9914fa9218c0609d5deb6233a4bbbb9eedd0",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 25
+      },
+      {
+        "type": "commit",
+        "label": "update contents",
+        "commit": {
+          "hash": "3d3b9914fa9218c0609d5deb6233a4bbbb9eedd0",
+          "subject": "update contents",
+          "author": "keigo1110",
+          "timestamp": 1733042660,
+          "parents": [
+            "61a674c9f5f32162c0da70ada0148b2775f0cfd9"
+          ],
+          "parent": "61a674c9f5f32162c0da70ada0148b2775f0cfd9",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "3d3b9914fa9218c0609d5deb6233a4bbbb9eedd0",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "61a674c9f5f32162c0da70ada0148b2775f0cfd9",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 26
+      },
+      {
+        "type": "commit",
+        "label": "modify section",
+        "commit": {
+          "hash": "61a674c9f5f32162c0da70ada0148b2775f0cfd9",
+          "subject": "modify section",
+          "author": "keigo1110",
+          "timestamp": 1733037569,
+          "parents": [
+            "354ae6222080a02dd5c5da2f4259c89801d29d99"
+          ],
+          "parent": "354ae6222080a02dd5c5da2f4259c89801d29d99",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "61a674c9f5f32162c0da70ada0148b2775f0cfd9",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "354ae6222080a02dd5c5da2f4259c89801d29d99",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 27
+      },
+      {
+        "type": "commit",
+        "label": "add translate",
+        "commit": {
+          "hash": "354ae6222080a02dd5c5da2f4259c89801d29d99",
+          "subject": "add translate",
+          "author": "keigo1110",
+          "timestamp": 1733037338,
+          "parents": [
+            "37e8444f95802c989e22cf43db5a0f758f56ad56"
+          ],
+          "parent": "37e8444f95802c989e22cf43db5a0f758f56ad56",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "354ae6222080a02dd5c5da2f4259c89801d29d99",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "37e8444f95802c989e22cf43db5a0f758f56ad56",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 28
+      },
+      {
+        "type": "commit",
+        "label": "react to 18",
+        "commit": {
+          "hash": "37e8444f95802c989e22cf43db5a0f758f56ad56",
+          "subject": "react to 18",
+          "author": "keigo1110",
+          "timestamp": 1733032373,
+          "parents": [
+            "cad2d690f385357bc8bec92abae6ed556fac04ae"
+          ],
+          "parent": "cad2d690f385357bc8bec92abae6ed556fac04ae",
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "37e8444f95802c989e22cf43db5a0f758f56ad56",
+        "lane": 0,
+        "parentLinks": [
+          {
+            "hash": "cad2d690f385357bc8bec92abae6ed556fac04ae",
+            "lane": 0
+          }
+        ],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 29
+      },
+      {
+        "type": "commit",
+        "label": "first commit",
+        "commit": {
+          "hash": "cad2d690f385357bc8bec92abae6ed556fac04ae",
+          "subject": "first commit",
+          "author": "keigo1110",
+          "timestamp": 1731840499,
+          "parents": [],
+          "parent": null,
+          "refs": "",
+          "branches": [
+            "main"
+          ]
+        },
+        "commitHash": "cad2d690f385357bc8bec92abae6ed556fac04ae",
+        "lane": 0,
+        "parentLinks": [],
+        "primaryBranchName": "main",
+        "branchColor": "#4f85e8",
+        "branchTags": [],
+        "index": 30
+      },
+      {
+        "type": "empty",
+        "label": "初期状態 (初回コミット以前)",
+        "files": [],
+        "marker": "pre-history",
+        "index": 31
+      }
+    ]
+  },
+  "projectRoot": "/Users/keigo/Desktop/workspace/keigominamidapage2",
+  "savedAt": 1764420510187
+}
