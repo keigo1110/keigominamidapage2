@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, FileText, Video, Presentation } from 'lucide-react'
 import { useTranslation } from '../../contexts/TranslationContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import Image from 'next/image'
 
 export function ProjectsSection() {
   const { t } = useTranslation()
-  const isDark = true // ダークモード固定
+  const { isDark } = useTheme()
 
   const researchProjects = [
     {
@@ -76,9 +77,8 @@ export function ProjectsSection() {
   ]
 
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" className="py-24 md:py-32 lg:py-40 relative">
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,15 +86,14 @@ export function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-light mb-6 tracking-tight ${
-            isDark ? 'text-white' : 'text-gray-900'
+          <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
+            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
           }`}>
             {t('researchProjects')}
           </h2>
-          <div className="w-24 h-0.5 bg-gray-300 dark:bg-gray-700 mx-auto" />
+          <div className={`w-24 h-0.5 mx-auto ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
 
-        {/* Research Grid */}
         <div className="space-y-8">
           {researchProjects.map((project, index) => (
             <motion.article
@@ -103,12 +102,11 @@ export function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group ${isDark ? 'bg-gray-900/30' : 'bg-white/50'} backdrop-blur-sm rounded-lg overflow-hidden border ${
-                isDark ? 'border-gray-800' : 'border-gray-200'
-              } hover:shadow-lg transition-all duration-300`}
+              className={`group rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300 ${
+                isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
+              }`}
             >
               <div className="flex flex-col md:flex-row">
-                {/* Image */}
                 <div className="md:w-1/3 relative overflow-hidden">
                   <div className="aspect-video md:aspect-auto md:h-full">
                     <Image
@@ -119,38 +117,33 @@ export function ProjectsSection() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  {/* Venue Badge */}
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                      isDark ? 'bg-gray-900/90 text-gray-300' : 'bg-white/90 text-gray-700'
-                    } backdrop-blur-sm`}>
+                      isDark ? 'bg-black/80 text-[#F5F5F7]' : 'bg-white/90 text-[#1D1D1F]'
+                    }`}>
                       {project.venue}
                     </span>
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="md:w-2/3 p-6 md:p-8">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className={`text-xl md:text-2xl font-medium mb-2 ${
-                        isDark ? 'text-white' : 'text-gray-900'
+                        isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
                       }`}>
                         {project.title}
                       </h3>
-                      <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                      <p className="text-sm text-[#86868B]">
                         {project.date}
                       </p>
                     </div>
                   </div>
 
-                  <p className={`mb-6 leading-relaxed ${
-                    isDark ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
+                  <p className={`mb-6 leading-relaxed text-[#86868B]`}>
                     {project.description}
                   </p>
 
-                  {/* Links */}
                   <div className="flex flex-wrap gap-3">
                     {project.links.map((link) => (
                       <motion.a
@@ -161,17 +154,9 @@ export function ProjectsSection() {
                         whileHover={{ y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                          link.type === 'paper'
-                            ? isDark
-                              ? 'bg-blue-900/20 text-blue-400 hover:bg-blue-900/30'
-                              : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                            : link.type === 'demo' || link.type === 'slides'
-                            ? isDark
-                              ? 'bg-green-900/20 text-green-400 hover:bg-green-900/30'
-                              : 'bg-green-50 text-green-600 hover:bg-green-100'
-                            : isDark
-                              ? 'bg-gray-800/50 text-gray-400 hover:bg-gray-800/70'
-                              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                          isDark
+                            ? 'bg-[#2997FF]/10 text-[#2997FF] hover:bg-[#2997FF]/20'
+                            : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
                         }`}
                       >
                         {link.icon}

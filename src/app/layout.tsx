@@ -1,16 +1,20 @@
 import { TranslationProvider } from '../contexts/TranslationContext'
+import { ThemeProvider } from '../contexts/ThemeContext'
 import { StructuredData } from '../components/StructuredData'
+import { Navigation } from '../components/layout/Navigation'
+import { Footer } from '../components/layout/Footer'
+import { SkipLink } from '../components/SkipLink'
+import { PageTransition } from '../components/PageTransition'
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const geist = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist",
+  weight: "100 900",
   display: "swap",
-  preload: true,
 });
 
 const geistMono = localFont({
@@ -27,7 +31,7 @@ export const viewport: Viewport = {
   userScalable: true,
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+    { media: '(prefers-color-scheme: dark)', color: '#000000' }
   ],
   colorScheme: 'dark light',
 };
@@ -145,19 +149,19 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#8b5cf6' },
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#0071E3' },
     ],
   },
   manifest: '/manifest.json',
   other: {
-    "theme-color": "#0f172a",
+    "theme-color": "#000000",
     "color-scheme": "dark light",
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Keigo Minamida",
     "application-name": "Keigo Minamida Portfolio",
-    "msapplication-TileColor": "#8b5cf6",
+    "msapplication-TileColor": "#0071E3",
     "msapplication-config": "/browserconfig.xml"
   }
 };
@@ -168,11 +172,23 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={geist.variable} suppressHydrationWarning>
       <head>
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* Theme flash prevention */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = theme === 'dark' || (!theme && systemDark) || (theme === 'system' && systemDark);
+                  document.documentElement.classList.add(isDark ? 'dark' : 'light');
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
 
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -188,9 +204,20 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className={`${inter.className} ${geistMono.variable} font-sans antialiased bg-slate-900 text-white dark`} suppressHydrationWarning>
+      <body className={`${geist.className} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <TranslationProvider>
-          {children}
+          <ThemeProvider>
+            <div className="min-h-screen bg-white dark:bg-black text-[#1D1D1F] dark:text-[#F5F5F7] overflow-x-hidden transition-colors duration-500">
+              <SkipLink />
+              <Navigation />
+              <main id="main-content" className="pt-20 relative z-10">
+                <PageTransition>
+                  {children}
+                </PageTransition>
+              </main>
+              <Footer />
+            </div>
+          </ThemeProvider>
         </TranslationProvider>
         <Analytics />
       </body>

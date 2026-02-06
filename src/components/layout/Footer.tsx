@@ -1,10 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from '../../contexts/ThemeContext'
 
 export function Footer() {
+  const { isDark } = useTheme();
+
   return (
-    <footer className="bg-slate-900/95 backdrop-blur-lg py-12 border-t border-blue-500/20">
+    <footer className={`py-12 border-t ${
+      isDark ? 'bg-black border-[#333336]' : 'bg-white border-[#D2D2D7]'
+    }`}>
       <motion.div
         className="text-center mb-6"
         initial={{ opacity: 0, y: 20 }}
@@ -14,7 +19,9 @@ export function Footer() {
       >
         <a
           href="mailto:keigo-minamida@g.ecc.u-tokyo.ac.jp"
-          className="text-blue-400 hover:text-blue-300 transition-colors inline-block text-xl font-semibold"
+          className={`inline-block text-xl font-semibold transition-colors ${
+            isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'
+          }`}
         >
           mkeigo1110@gmail.com
         </a>
@@ -26,9 +33,9 @@ export function Footer() {
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <p className="text-gray-400">
+        <p className="text-[#86868B]">
           &copy; {new Date().getFullYear()} Keigo Minamida.
-          <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent ml-2">
+          <span className="ml-2">
             Created on the shoulders of history.
           </span>
         </p>

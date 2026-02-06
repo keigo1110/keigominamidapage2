@@ -1,5 +1,21 @@
 // Section types
-export type SectionType = "home" | "projects" | "artwork" | "startup" | "experience" | "awards" | "contact";
+export type SectionType = "home" | "projects" | "artwork" | "startup" | "otherProjects" | "experience" | "awards" | "contact";
+
+// Page route types
+export type PageRoute = 'home' | 'startup' | 'artwork' | 'awards';
+
+export interface NavItem {
+  key: PageRoute;
+  href: string;
+  labelKey: string;
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  { key: 'home', href: '/', labelKey: 'home' },
+  { key: 'startup', href: '/startup', labelKey: 'startup' },
+  { key: 'artwork', href: '/artwork', labelKey: 'artwork' },
+  { key: 'awards', href: '/awards', labelKey: 'awards' },
+];
 
 // Card component props
 export interface ProjectCardProps {

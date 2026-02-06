@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion'
 import { FaYoutube, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import { ProjectCard } from '../cards/ProjectCard'
 
 export function OtherProjectsSection() {
   const { t } = useTranslation();
-  const isDark = true; // ダークモード固定
+  const { isDark } = useTheme();
 
   const otherProjects = [
     {
@@ -45,11 +46,12 @@ export function OtherProjectsSection() {
   ];
 
   return (
-    <section id="otherProjects" className="py-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-100/40 via-blue-50/50 to-slate-100/60 dark:from-slate-950/40 dark:via-blue-900/30 dark:to-slate-950/50"></div>
+    <section id="otherProjects" className="py-24 md:py-32 lg:py-40 relative">
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
-          className={`text-5xl font-bold mb-12 text-center bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-600 to-blue-800'} bg-clip-text text-transparent`}
+          className={`text-4xl md:text-5xl font-semibold mb-12 text-center tracking-tight ${
+            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+          }`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}

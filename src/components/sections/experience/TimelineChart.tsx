@@ -6,6 +6,7 @@ import { Calendar, Clock, ExternalLink, Activity, GitBranch } from 'lucide-react
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from '../../../contexts/TranslationContext'
+import { useTheme } from '../../../contexts/ThemeContext'
 
 
 interface TimelineChartProps {
@@ -22,8 +23,7 @@ export function TimelineChart({
   onProjectHover
 }: TimelineChartProps) {
   const { t } = useTranslation()
-  // ダークモード固定
-  const isDark = true
+  const { isDark } = useTheme()
   const [isClient, setIsClient] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showCard, setShowCard] = useState(false)
@@ -477,7 +477,7 @@ export function TimelineChart({
                     </div>
                     <div className={`w-full h-2 rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
                       <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
+                        className={`h-full rounded-full ${isDark ? 'bg-[#2997FF]' : 'bg-[#0071E3]'}`}
                         initial={{ width: 0 }}
                         animate={{ width: `${(hoveredProjectPos as ProjectPosition).progress}%` }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -552,9 +552,7 @@ export function TimelineChart({
 
               {/* フッター装飾 */}
               <div className={`h-1 rounded-b-xl ${
-                isDark
-                  ? 'bg-gradient-to-r from-blue-400/60 to-purple-400/60'
-                  : 'bg-gradient-to-r from-blue-500/60 to-purple-500/60'
+                isDark ? 'bg-[#2997FF]/60' : 'bg-[#0071E3]/60'
               }`} />
             </motion.div>
           )
