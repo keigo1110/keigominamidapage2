@@ -233,7 +233,7 @@ export function TimelineChart({
                       <div key={projectPos.experience.id} className="absolute inset-0">
                         {/* アクセシブルなホバー領域 */}
                         <div
-                          className="absolute z-30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 rounded"
+                          className="absolute z-30 cursor-pointer outline-none rounded"
                           style={{
                             left: `${Math.max(0, projectPos.leftPercent - (isMobile ? 2 : 1))}%`,
                             width: `${Math.min(100, projectPos.widthPercent + (isMobile ? 4 : 2))}%`,
@@ -370,7 +370,7 @@ export function TimelineChart({
               role="dialog"
               aria-labelledby={`project-title-${hoveredProject}`}
               aria-describedby={`project-content-${hoveredProject}`}
-              className={`fixed z-50 rounded-xl shadow-2xl border backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${
+              className={`fixed z-50 rounded-xl shadow-2xl border backdrop-blur-sm outline-none ${
                 isDark
                   ? 'bg-gray-800/95 text-white border-gray-600/80'
                   : 'bg-white/95 text-gray-900 border-gray-200/80'

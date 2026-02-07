@@ -16,26 +16,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessibility: Enhanced focus styles */
-body.using-mouse *:focus {
+/* Accessibility: Remove focus outline for mouse clicks, keep for keyboard */
+*:focus:not(:focus-visible) {
   outline: none;
+  box-shadow: none;
 }
 
-body:not(.using-mouse) *:focus {
+/* Focus styles only for keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid #0071E3;
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(0, 113, 227, 0.15);
 }
 
-/* Enhanced focus for interactive elements */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 3px solid #0071E3 !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(0, 113, 227, 0.15) !important;
+.dark button:focus-visible,
+.dark a:focus-visible,
+.dark input:focus-visible,
+.dark textarea:focus-visible,
+.dark select:focus-visible {
+  outline: 3px solid #2997FF;
+  box-shadow: 0 0 0 6px rgba(41, 151, 255, 0.15);
 }
 
 /* Skip link styles */
@@ -168,13 +172,17 @@ select:focus {
   color: inherit;
 }
 
-/* Enhanced focus styles */
-:focus {
+/* Focus styles only for keyboard navigation */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
   outline: 3px solid #0071E3;
   outline-offset: 2px;
 }
 
-.dark :focus {
+.dark :focus-visible {
   outline: 3px solid #2997FF;
   outline-offset: 2px;
 }

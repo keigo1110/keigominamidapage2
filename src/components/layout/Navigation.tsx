@@ -66,10 +66,10 @@ export function Navigation() {
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center" role="navigation" aria-label="Main navigation">
           <Link
             href="/"
-            className={`text-2xl sm:text-3xl font-semibold tracking-tight focus:outline-none focus:ring-4 rounded-lg px-2 py-1 ${
+            className={`text-2xl sm:text-3xl font-semibold tracking-tight outline-none rounded-lg px-2 py-1 ${
               isDark
-                ? 'text-[#F5F5F7] focus:ring-[#2997FF]/50'
-                : 'text-[#1D1D1F] focus:ring-[#0071E3]/50'
+                ? 'text-[#F5F5F7]'
+                : 'text-[#1D1D1F]'
             }`}
             aria-label="Go to home page"
           >
@@ -89,9 +89,7 @@ export function Navigation() {
                 <Link
                   key={item.key}
                   href={item.href}
-                  className={`relative px-3 py-2 rounded-lg transition-all duration-300 text-sm lg:text-base font-medium focus:outline-none focus:ring-4 ${
-                    isDark ? 'focus:ring-[#2997FF]/50' : 'focus:ring-[#0071E3]/50'
-                  } ${
+                  className={`relative px-3 py-2 rounded-lg transition-all duration-300 text-sm lg:text-base font-medium outline-none ${
                     isActive(item.href)
                       ? isDark ? 'text-[#2997FF]' : 'text-[#0071E3]'
                       : 'text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7]'
@@ -129,10 +127,10 @@ export function Navigation() {
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className={`focus:outline-none focus:ring-4 rounded-lg p-3 transition-colors duration-200 ${
+                className={`outline-none rounded-lg p-3 transition-colors duration-200 ${
                   isDark
-                    ? 'text-[#F5F5F7] focus:ring-[#2997FF]/50 hover:bg-[#1D1D1F]'
-                    : 'text-[#1D1D1F] focus:ring-[#0071E3]/50 hover:bg-[#F5F5F7]'
+                    ? 'text-[#F5F5F7] hover:bg-[#1D1D1F]'
+                    : 'text-[#1D1D1F] hover:bg-[#F5F5F7]'
                 }`}
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
@@ -185,9 +183,7 @@ export function Navigation() {
                     >
                       <Link
                         href={item.href}
-                        className={`block text-xl py-3 px-4 rounded-lg transition-all duration-200 focus:outline-none focus:ring-4 ${
-                          isDark ? 'focus:ring-[#2997FF]/50' : 'focus:ring-[#0071E3]/50'
-                        } ${
+                        className={`block text-xl py-3 px-4 rounded-lg transition-all duration-200 outline-none ${
                           isActive(item.href)
                             ? isDark ? 'text-[#2997FF] bg-[#2997FF]/10' : 'text-[#0071E3] bg-[#0071E3]/10'
                             : isDark ? 'text-[#86868B] hover:text-[#F5F5F7] hover:bg-[#1D1D1F]' : 'text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7]'

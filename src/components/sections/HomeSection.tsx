@@ -89,8 +89,8 @@ function DefaultHome() {
           >
             <a
               href="https://www.iii.u-tokyo.ac.jp/"
-              className={`transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 rounded-lg px-2 py-1 inline-block ${
-                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF] focus:ring-[#2997FF]/50' : 'text-[#1D1D1F] hover:text-[#0071E3] focus:ring-[#0071E3]/50'
+              className={`transition-colors block text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
+                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
               }`}
               target="_blank"
               rel="noopener noreferrer"
@@ -99,8 +99,8 @@ function DefaultHome() {
             </a>
             <a
               href="https://lab.rekimoto.org/"
-              className={`transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 rounded-lg px-2 py-1 inline-block ${
-                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF] focus:ring-[#2997FF]/50' : 'text-[#1D1D1F] hover:text-[#0071E3] focus:ring-[#0071E3]/50'
+              className={`transition-colors block text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
+                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
               }`}
               target="_blank"
               rel="noopener noreferrer"
@@ -119,10 +119,10 @@ function DefaultHome() {
               <motion.a
                 key={index}
                 href={social.url}
-                className={`p-3 sm:p-4 rounded-xl transition-all duration-300 focus:outline-none focus:ring-4 ${
+                className={`p-3 sm:p-4 rounded-xl transition-all duration-300 outline-none ${
                   isDark
-                    ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B] hover:text-[#F5F5F7] focus:ring-[#2997FF]/50'
-                    : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F] focus:ring-[#0071E3]/50'
+                    ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B] hover:text-[#F5F5F7]'
+                    : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]'
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -152,9 +152,7 @@ function DefaultHome() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-4 ${
-                      isDark ? 'focus:ring-[#2997FF]/50' : 'focus:ring-[#0071E3]/50'
-                    } ${
+                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base outline-none ${
                       activeTab === tab.id
                         ? isDark
                           ? 'bg-[#2997FF] text-white shadow-lg'

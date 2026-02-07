@@ -14,6 +14,7 @@ interface Artwork {
   image: string
   link?: string
   year: string
+  team: string
   keywords?: string[]
   awards?: string[]
 }
@@ -36,6 +37,7 @@ export function ArtworkSection() {
       image: "/images/geo.jpeg",
       link: "https://geohp.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['Interactive', 'Sound', 'Sensor', 'Physical Computing']
     },
     {
@@ -45,6 +47,7 @@ export function ArtworkSection() {
       image: "/images/proto.jpeg",
       link: "https://protophysicahp.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['Energy', 'Electronics', 'Sustainable Design']
     },
     {
@@ -54,6 +57,7 @@ export function ArtworkSection() {
       image: "/images/cotton.jpeg",
       link: "https://cotton-sketch-pen-hp.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['3D Printing', 'Portable', 'Creative Tools']
     },
     {
@@ -63,6 +67,7 @@ export function ArtworkSection() {
       image: "/images/met.jpeg",
       link: "https://metransfer.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['Transformation', 'Liquid', 'Dynamic Form']
     },
     {
@@ -72,6 +77,7 @@ export function ArtworkSection() {
       image: "/images/puf.jpeg",
       link: "https://puflica.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['Interactive', 'Sound', 'Playful Design']
     },
     {
@@ -81,6 +87,7 @@ export function ArtworkSection() {
       image: "/images/nozo.jpeg",
       link: "https://nozoko.vercel.app/",
       year: '2024',
+      team: '4ZIGEN',
       keywords: ['Aroma', 'Heat Control', 'Sensory Experience']
     },
     {
@@ -90,6 +97,7 @@ export function ArtworkSection() {
       image: "/images/Protozoa.png",
       link: "https://protozoahp.vercel.app/",
       year: '2025',
+      team: '4ZIGEN',
       keywords: ['Biomimetic', 'Touch', 'Responsive Technology']
     }
   ], [t])
@@ -266,11 +274,18 @@ export function ArtworkSection() {
 
                     <div className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} space-y-6`}>
                       <div>
-                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-light mb-4 ${
-                          isDark ? 'bg-[#1D1D1F] text-[#86868B]' : 'bg-[#F5F5F7] text-[#86868B]'
-                        }`}>
-                          {artwork.year}
-                        </span>
+                        <div className="flex gap-2 mb-4">
+                          <span className={`inline-block px-3 py-1 rounded-full text-xs font-light ${
+                            isDark ? 'bg-[#1D1D1F] text-[#86868B]' : 'bg-[#F5F5F7] text-[#86868B]'
+                          }`}>
+                            {artwork.year}
+                          </span>
+                          <span className={`inline-block px-3 py-1 rounded-full text-xs font-light ${
+                            isDark ? 'bg-[#1D1D1F] text-[#86868B]' : 'bg-[#F5F5F7] text-[#86868B]'
+                          }`}>
+                            {artwork.team}
+                          </span>
+                        </div>
                         <h3 className={`text-3xl font-light mb-4 ${
                           isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
                         }`}>
@@ -345,6 +360,9 @@ export function ArtworkSection() {
                       <div className="absolute top-4 left-4 flex gap-2">
                         <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-xs font-light">
                           {artwork.year}
+                        </span>
+                        <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-xs font-light">
+                          {artwork.team}
                         </span>
                       </div>
                     </div>
@@ -463,8 +481,7 @@ export function ArtworkSection() {
                         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${
                           isDark ? 'bg-[#2C2C2E] text-[#F5F5F7]' : 'bg-[#F5F5F7] text-[#1D1D1F]'
                         }`}>
-                          <span className="font-medium">{t('artworkTeam')}</span>
-                          <span className="text-xs text-[#86868B]">{t('artworkTeamDescription')}</span>
+                          <span className="font-medium">{filteredArtworks[selectedArtwork]?.team}</span>
                         </div>
                       </div>
                       {filteredArtworks[selectedArtwork]?.keywords && (

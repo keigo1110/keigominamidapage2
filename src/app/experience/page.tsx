@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Professional experience and awards received by Keigo Minamida.',
 }
 
-export default function AwardsPage() {
+export default function ExperiencePage() {
   return (
     <>
       <ExperienceSection />

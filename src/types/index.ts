@@ -2,7 +2,7 @@
 export type SectionType = "home" | "projects" | "artwork" | "startup" | "otherProjects" | "experience" | "awards" | "contact";
 
 // Page route types
-export type PageRoute = 'home' | 'startup' | 'artwork' | 'awards';
+export type PageRoute = 'home' | 'startup' | 'artwork' | 'experience';
 
 export interface NavItem {
   key: PageRoute;
@@ -14,7 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
   { key: 'home', href: '/', labelKey: 'home' },
   { key: 'startup', href: '/startup', labelKey: 'startup' },
   { key: 'artwork', href: '/artwork', labelKey: 'works' },
-  { key: 'awards', href: '/awards', labelKey: 'awards' },
+  { key: 'experience', href: '/experience', labelKey: 'experience' },
 ];
 
 // Card component props
