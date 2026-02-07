@@ -89,9 +89,9 @@ In the future where informatization progresses, what we face is whether to be sw
     achivement2: 'Conducting proof-of-concept experiments with integrated IoT devices and mobile applications',
 
     // Wakabar Platform Features
-    wakabarMainSite: 'Main Platform',
-    wakabarTourSite: 'Interactive Demo',
-    wakabarAppSite: 'Mobile Application',
+    wakabarMainSite: 'Corporate Site',
+    wakabarTourSite: 'Self-guided Tour',
+    wakabarAppSite: 'Try the App',
     audioWarningSystem: 'Voice Alert System',
     audioWarningDescription: 'Automatically provides voice alerts when approaching high-risk areas',
     realtimeTracking: 'Hazard Zone Database',
@@ -208,10 +208,10 @@ In the future where informatization progresses, what we face is whether to be sw
     // Hardcoded Japanese text translations
     bicycleAccidentPrevention: 'Zero bicycle accidents',
     locationBasedAccidentPrevention: 'Location-based accident prevention',
-    mainSite: 'Main',
-    corporateSiteDescription: 'Corporate site & service details',
+    mainSite: 'Recommended',
+    corporateSiteDescription: 'Company overview & service details',
     selfTourDescription: 'Self tour & experience',
-    applicationDescription: 'Application',
+    applicationDescription: 'Experience the Wakabar app',
     serviceDemo: 'Service Demo',
     serviceDemoVideoTitle: 'Wakabar Service Demo Video',
     coreServices: 'Core Services & Features',

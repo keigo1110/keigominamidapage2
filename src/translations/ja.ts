@@ -89,9 +89,9 @@ export const ja = {
     achivement2: 'IoTデバイスとアプリの連携による実証実験を実施',
 
     // 新しい翻訳データ
-    wakabarMainSite: 'メインサイト',
+    wakabarMainSite: 'コーポレートサイト',
     wakabarTourSite: 'セルフツアー',
-    wakabarAppSite: 'アプリケーション',
+    wakabarAppSite: 'アプリを試す',
     audioWarningSystem: '音声警告システム',
     audioWarningDescription: '危険地点に近づくと、自動的に音声で注意を促します',
     realtimeTracking: '危険地点データ基盤',
@@ -208,10 +208,10 @@ export const ja = {
     // ハードコーディングされた日本語テキスト
     bicycleAccidentPrevention: '自転車事故をゼロにする',
     locationBasedAccidentPrevention: '位置情報を活用した事故防止',
-    mainSite: 'メイン',
-    corporateSiteDescription: 'コーポレートサイト・サービス詳細',
+    mainSite: 'おすすめ',
+    corporateSiteDescription: '会社概要・サービス詳細',
     selfTourDescription: 'セルフツアー・体験',
-    applicationDescription: 'アプリケーション',
+    applicationDescription: 'Wakabarアプリを体験する',
     serviceDemo: 'サービスデモ',
     serviceDemoVideoTitle: 'Wakabar サービスデモ動画',
     coreServices: '主要サービス・機能',

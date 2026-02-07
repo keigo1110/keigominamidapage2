@@ -35,9 +35,9 @@ export function RefinedStartupSection() {
 
   const wakabarSites = [
     {
-      name: t('wakabarMainSite'),
-      url: 'https://www.wakabar-cycle.com/',
-      description: t('corporateSiteDescription'),
+      name: t('wakabarAppSite'),
+      url: 'https://wakabar.net/',
+      description: t('applicationDescription'),
       isPrimary: true
     },
     {
@@ -47,9 +47,9 @@ export function RefinedStartupSection() {
       isPrimary: false
     },
     {
-      name: t('wakabarAppSite'),
-      url: 'https://wakabar.net/',
-      description: t('applicationDescription'),
+      name: t('wakabarMainSite'),
+      url: 'https://www.wakabar-cycle.com/',
+      description: t('corporateSiteDescription'),
       isPrimary: false
     }
   ]
