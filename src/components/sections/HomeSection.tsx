@@ -3,10 +3,25 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
+import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub } from 'react-icons/fa'
+import { SiQiita } from 'react-icons/si'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
+
+const TextIcon = ({ letter, className }: { letter: string; className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
+    <text x="12" y="18" fontSize="20" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif" textAnchor="middle">{letter}</text>
+  </svg>
+)
+const NoteIcon = ({ className }: { className?: string }) => <TextIcon letter="n" className={className} />
+const ProtoPediaIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 34 24" fill="currentColor" className={className} width="1em" height="1em">
+    <text x="1" y="19" fontSize="18" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif">P</text>
+    <text x="13" y="12" fontSize="8" fontWeight="700" fontFamily="'Helvetica Neue', Arial, sans-serif">roto</text>
+    <text x="13" y="21" fontSize="8" fontWeight="700" fontFamily="'Helvetica Neue', Arial, sans-serif">edia</text>
+  </svg>
+)
 
 const socialLinks: SocialLink[] = [
   { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "default" },
@@ -14,7 +29,9 @@ const socialLinks: SocialLink[] = [
   { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "default" },
   { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "default" },
   { icon: FaGithub, url: "https://github.com/keigo1110", style: "default" },
-  { icon: FaPencilAlt, url: "https://qiita.com/keigo1110", style: "default" }
+  { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default" },
+  { icon: NoteIcon, url: "https://note.com/namida1110", style: "default" },
+  { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" }
 ];
 
 function DefaultHome() {
@@ -39,17 +56,15 @@ function DefaultHome() {
           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
           className="w-full lg:w-1/3 mb-8 lg:mb-0 relative flex justify-center"
         >
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
-            <div className="relative w-full h-full">
-              <Image
-                src="/images/myface.jpg"
-                alt={t('profileAlt')}
-                fill
-                sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
-                className="rounded-full shadow-lg object-cover"
-                priority
-              />
-            </div>
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-lg">
+            <Image
+              src="/images/myface.jpg"
+              alt={t('profileAlt')}
+              fill
+              sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
+              className="object-cover"
+              priority
+            />
           </div>
         </motion.div>
 
@@ -70,22 +85,11 @@ function DefaultHome() {
             {t('name')}
           </motion.h1>
 
-          <motion.p
-            className={`text-lg sm:text-xl mb-6 sm:mb-8 leading-relaxed ${
-              isDark ? 'text-[#86868B]' : 'text-[#86868B]'
-            }`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            {t('roll')}
-          </motion.p>
-
           <motion.div
             className="mb-6 sm:mb-8 space-y-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             <a
               href="https://www.iii.u-tokyo.ac.jp/"
@@ -97,16 +101,21 @@ function DefaultHome() {
             >
               {t('school')}
             </a>
-            <a
-              href="https://lab.rekimoto.org/"
-              className={`transition-colors block text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
-                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('Lab')}
-            </a>
+            <div className="flex items-center gap-2 flex-wrap">
+              <a
+                href="https://lab.rekimoto.org/"
+                className={`transition-colors text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
+                  isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('Lab')}
+              </a>
+              <span className="text-base sm:text-lg text-[#86868B]">
+                {t('roll')}
+              </span>
+            </div>
           </motion.div>
 
           <motion.div

@@ -187,10 +187,9 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
-/* Image optimization */
-img {
+/* Image optimization - only for non-fill images */
+img:not([data-nimg="fill"]) {
   transition: opacity 0.3s ease, transform 0.3s ease;
-  will-change: transform;
 }
 
 img[data-loading="true"] {
@@ -211,8 +210,8 @@ img[data-loading="true"] {
   will-change: auto;
 }
 
-/* Smooth theme transitions */
-* {
+/* Smooth theme transitions - scoped to avoid interfering with animations */
+*:not(img):not([data-nimg]) {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -245,8 +244,8 @@ img[data-loading="true"] {
     min-width: 44px;
   }
 
-  /* Optimize images for mobile */
-  img {
+  /* Optimize images for mobile - exclude next/image fill mode */
+  img:not([data-nimg]) {
     max-width: 100%;
     height: auto;
   }

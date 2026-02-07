@@ -108,13 +108,13 @@ export function ProjectsSection() {
             >
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3 relative overflow-hidden">
-                  <div className="aspect-video md:aspect-auto md:h-full">
+                  <div className="relative aspect-video md:aspect-[3/4] lg:aspect-auto lg:h-full min-h-[200px]">
                     <Image
                       src={project.image}
                       alt={project.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="absolute top-4 left-4">

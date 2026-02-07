@@ -3,54 +3,36 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
+import type { TranslationKey } from '../../translations'
 
-export function AwardsSection() {
+interface Education {
+  period: string
+  institutionKey: TranslationKey
+  departmentKey: TranslationKey
+  noteKey?: TranslationKey
+}
+
+export function EducationSection() {
   const { t } = useTranslation()
   const { isDark } = useTheme()
 
-  const awards = [
+  const educations: Education[] = [
     {
-      year: '2024',
-      content: (
-        <>
-          <a href="https://gugen.jp/result/2024.html" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
-            {t('award4no1')}
-          </a>
-          {t('award4no2')}
-          <a href="https://4zigenhp.vercel.app/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
-            {t('award4no3')}
-          </a>
-          {t('award4no4')}
-        </>
-      )
+      period: '2024.04 - 2026.03',
+      institutionKey: 'edu1Institution',
+      departmentKey: 'edu1Department',
+      noteKey: 'edu1Note',
     },
     {
-      year: '2024',
-      content: t('award1')
+      period: '2020.04 - 2024.03',
+      institutionKey: 'edu2Institution',
+      departmentKey: 'edu2Department',
+      noteKey: 'edu2Note',
     },
-    {
-      year: '2024',
-      content: t('award2')
-    },
-    {
-      year: '2022',
-      content: (
-        <>
-          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
-            {t('award3no1')}
-          </a>
-          ・
-          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
-            {t('award3no2')}
-          </a>
-          {t('award3no3')}
-        </>
-      )
-    }
   ]
 
   return (
-    <section id="awards" className="py-24 md:py-32 lg:py-40 relative">
+    <section id="education" className="py-24 md:py-32 lg:py-40 relative">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,7 +44,7 @@ export function AwardsSection() {
           <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
             isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
           }`}>
-            Awards
+            Education
           </h2>
           <div className={`w-24 h-0.5 mx-auto ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
@@ -74,7 +56,7 @@ export function AwardsSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="space-y-12"
         >
-          {awards.map((award, index) => (
+          {educations.map((edu, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -92,13 +74,23 @@ export function AwardsSection() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span className="text-sm font-light text-[#86868B]">
-                    {award.year}
+                    {edu.period}
                   </span>
                 </motion.div>
-                <div className={`flex-1 text-base leading-relaxed ${
-                  isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-                }`}>
-                  {award.content}
+                <div className="flex-1">
+                  <p className={`text-base leading-relaxed ${
+                    isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                  }`}>
+                    {t(edu.institutionKey)}
+                  </p>
+                  <p className="text-sm text-[#86868B] mt-1">
+                    {t(edu.departmentKey)}
+                  </p>
+                  {edu.noteKey && (
+                    <p className="text-sm mt-1 text-[#86868B]">
+                      {t(edu.noteKey)}
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.div>

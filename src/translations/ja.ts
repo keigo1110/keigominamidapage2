@@ -162,6 +162,17 @@ export const ja = {
     experience6Date: '2024年5月 - 2025年12月',
     experience6Link1: '4ZIGEN公式サイト',
 
+    // 学歴
+    edu1Institution: '東京大学大学院',
+    edu1Department: '学際情報学府 総合分析情報学コース',
+    edu1Note: '革命的ロマン的研究室（ヒューマンオーグメンテーション研究室）（指導教員: 暦本純一 教授）',
+    edu2Institution: '近畿大学',
+    edu2Department: '理工学部 機械工学科 知能機械システムコース',
+    edu2Note: 'メカトロニクス研究室（指導教員: 大坪義一 准教授）',
+
+    // 出版
+    publications: '出版',
+
     // 受賞
     award1: 'ベストプレゼンテーション賞 近畿大学理工学部機械工学科卒業研究発表会（2024年3月）',
     award2: '校友会長賞 近畿大学（2024年3月）',

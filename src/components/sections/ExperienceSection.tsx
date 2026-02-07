@@ -1,13 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { TimelineChart } from './experience/TimelineChart'
 import { useExperienceData } from '../../hooks/useExperienceData'
 
 export function ExperienceSection() {
-  const { t } = useTranslation()
   const { isDark } = useTheme()
 
   const {
@@ -31,7 +29,7 @@ export function ExperienceSection() {
             <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight ${
               isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
             }`}>
-              {t('experience')}
+              Experience
             </h2>
           </div>
           <div className={`w-20 h-0.5 mx-auto rounded-full ${

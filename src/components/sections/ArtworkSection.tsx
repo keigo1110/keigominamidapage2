@@ -332,18 +332,12 @@ export function ArtworkSection() {
                   <div className={`relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-500 ${
                     isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
                   }`}>
-                    <div className={`relative ${
-                      viewMode === 'grid' ? 'aspect-[4/3]' : 'aspect-auto'
-                    } overflow-hidden`}>
+                    <div className="relative overflow-hidden aspect-[4/3]">
                       <Image
                         src={artwork.image}
                         alt={artwork.title}
-                        fill={viewMode === 'grid'}
-                        width={viewMode === 'masonry' ? 400 : undefined}
-                        height={viewMode === 'masonry' ? 300 : undefined}
-                        className={`${
-                          viewMode === 'grid' ? 'object-cover' : 'w-full h-auto'
-                        } transition-transform duration-700 group-hover:scale-105`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         loading="lazy"
                       />

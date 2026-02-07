@@ -19,6 +19,7 @@ interface PersonalProject {
   title: string
   description: string
   image: string
+  aspectRatio: string
   links: ProjectLink[]
 }
 
@@ -38,6 +39,7 @@ export function OtherProjectsSection() {
       title: t('oProject1'),
       description: t('oProject1Description'),
       image: "/images/robot_room.png",
+      aspectRatio: '2/1',
       links: [
         { icon: <FaYoutube />, text: t('demoSwitch'), url: 'https://www.youtube.com/watch?v=XedxYF_UYmQ' },
         { icon: <FaYoutube />, text: t('demoDiscord'), url: 'https://www.youtube.com/watch?v=oPy740TgO-8' },
@@ -49,6 +51,7 @@ export function OtherProjectsSection() {
       title: t('oProject2'),
       description: t('oProject2Description'),
       image: "/images/bodyop.png",
+      aspectRatio: '2/1',
       links: [{ icon: <FaYoutube />, text: 'Demo', url: 'https://www.youtube.com/watch?v=-y6T3JDFr5Q' }]
     },
     {
@@ -56,6 +59,7 @@ export function OtherProjectsSection() {
       title: t('oProject3'),
       description: t('oProject3Description'),
       image: "/images/unilidar.png",
+      aspectRatio: '2.2/1',
       links: [{ icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/unilidar_sdk' }]
     },
     {
@@ -63,6 +67,7 @@ export function OtherProjectsSection() {
       title: t('oProject4'),
       description: t('oProject4Description'),
       image: "/images/minikuro-title.jpg",
+      aspectRatio: '3.5/1',
       links: [
         { icon: <FaExternalLinkAlt />, text: t('demo'), url: 'https://myminichronology.vercel.app/' },
         { icon: <FaExternalLinkAlt />, text: t('usageGuide'), url: 'https://note.com/namida1110/n/nfd97132121ef' },
@@ -211,7 +216,8 @@ export function OtherProjectsSection() {
                   >
                     <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                       <div
-                        className="relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
+                        className="relative overflow-hidden rounded-2xl cursor-pointer"
+                        style={{ aspectRatio: project.aspectRatio }}
                         onClick={() => setSelectedProject(index)}
                       >
                         <Image
@@ -268,18 +274,12 @@ export function OtherProjectsSection() {
                   <div className={`relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-500 ${
                     isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
                   }`}>
-                    <div className={`relative ${
-                      viewMode === 'grid' ? 'aspect-[4/3]' : 'aspect-auto'
-                    } overflow-hidden`}>
+                    <div className="relative overflow-hidden" style={{ aspectRatio: project.aspectRatio }}>
                       <Image
                         src={project.image}
                         alt={project.title}
-                        fill={viewMode === 'grid'}
-                        width={viewMode === 'masonry' ? 400 : undefined}
-                        height={viewMode === 'masonry' ? 300 : undefined}
-                        className={`${
-                          viewMode === 'grid' ? 'object-cover' : 'w-full h-auto'
-                        } transition-transform duration-700 group-hover:scale-105`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 50vw"
                         loading="lazy"
                       />
@@ -364,9 +364,12 @@ export function OtherProjectsSection() {
 
                   <div className="grid lg:grid-cols-2 gap-8 p-6">
                     <div className="relative">
-                      <div className={`aspect-[4/3] relative overflow-hidden rounded-xl ${
-                        isDark ? 'bg-[#2C2C2E]' : 'bg-[#F5F5F7]'
-                      }`}>
+                      <div
+                        className={`relative overflow-hidden rounded-xl ${
+                          isDark ? 'bg-[#2C2C2E]' : 'bg-[#F5F5F7]'
+                        }`}
+                        style={{ aspectRatio: projects[selectedProject]?.aspectRatio || '16/9' }}
+                      >
                         <Image
                           src={projects[selectedProject]?.image || ''}
                           alt={projects[selectedProject]?.title || ''}
