@@ -10,6 +10,8 @@ interface Education {
   institutionKey: TranslationKey
   departmentKey: TranslationKey
   noteKey?: TranslationKey
+  note2Key?: TranslationKey
+  note2LinkUrl?: string
 }
 
 export function EducationSection() {
@@ -22,6 +24,8 @@ export function EducationSection() {
       institutionKey: 'edu1Institution',
       departmentKey: 'edu1Department',
       noteKey: 'edu1Note',
+      note2Key: 'edu1WingsCfs',
+      note2LinkUrl: 'https://cfs.t.u-tokyo.ac.jp/',
     },
     {
       period: '2020.04 - 2024.03',
@@ -89,6 +93,22 @@ export function EducationSection() {
                   {edu.noteKey && (
                     <p className="text-sm mt-1 text-[#86868B]">
                       {t(edu.noteKey)}
+                    </p>
+                  )}
+                  {edu.note2Key && (
+                    <p className="text-sm mt-1 text-[#86868B]">
+                      {edu.note2LinkUrl ? (
+                        <a
+                          href={edu.note2LinkUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#86868B] hover:underline underline-offset-2"
+                        >
+                          {t(edu.note2Key)}
+                        </a>
+                      ) : (
+                        t(edu.note2Key)
+                      )}
                     </p>
                   )}
                 </div>

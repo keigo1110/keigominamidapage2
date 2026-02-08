@@ -166,6 +166,7 @@ export const ja = {
     edu1Institution: '東京大学大学院',
     edu1Department: '学際情報学府 総合分析情報学コース',
     edu1Note: '革命的ロマン的研究室（ヒューマンオーグメンテーション研究室）（指導教員: 暦本純一 教授）',
+    edu1WingsCfs: 'WINGS CFS（未来社会協創 国際卓越大学院）採択',
     edu2Institution: '近畿大学',
     edu2Department: '理工学部 機械工学科 知能機械システムコース',
     edu2Note: 'メカトロニクス研究室（指導教員: 大坪義一 准教授）',

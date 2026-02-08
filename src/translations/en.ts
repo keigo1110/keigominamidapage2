@@ -166,6 +166,7 @@ In the future where informatization progresses, what we face is whether to be sw
     edu1Institution: 'The University of Tokyo',
     edu1Department: 'Applied Computer Science Course, Graduate School of Interdisciplinary Information Studies',
     edu1Note: 'Laboratoire Révolutionnaire et Romantique, (Human Augmentation Lab.) (Supervisor: Prof. Jun Rekimoto)',
+    edu1WingsCfs: 'Selected for WINGS CFS (World-leading Innovative Graduate Study Program Co-designing Future Society)',
     edu2Institution: 'Kindai University',
     edu2Department: 'Faculty of Science and Engineering, Department of Mechanical Engineering, Intelligent Mechanical Systems Course',
     edu2Note: 'Mechatronics Laboratory (Supervisor: Associate Prof. Yoshikazu Ohtsubo)',
