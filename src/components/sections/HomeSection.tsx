@@ -56,6 +56,8 @@ const SOCIAL_ICON_ANIMATION_PATTERNS: SocialIconAnimationPattern[] = [
   },
 ]
 
+const DEFAULT_SOCIAL_ANIMATION_PATTERN = SOCIAL_ICON_ANIMATION_PATTERNS[0] as SocialIconAnimationPattern;
+
 const TextIcon = ({ letter, className }: { letter: string; className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
     <text x="12" y="18" fontSize="20" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif" textAnchor="middle">{letter}</text>
@@ -179,7 +181,12 @@ function DefaultHome() {
             {socialLinks.map((social, index) => {
               const defaultHover = isDark ? 'group-hover:text-[#2997FF]' : 'group-hover:text-[#0071E3]';
               const iconHoverClass = social.hoverColorClass ?? defaultHover;
-              const pattern = SOCIAL_ICON_ANIMATION_PATTERNS[socialAnimationIndex];
+              const patternIndex = Math.min(
+                Math.max(0, socialAnimationIndex),
+                SOCIAL_ICON_ANIMATION_PATTERNS.length - 1
+              );
+              const pattern =
+                SOCIAL_ICON_ANIMATION_PATTERNS[patternIndex] ?? DEFAULT_SOCIAL_ANIMATION_PATTERN;
               const staggerDelay = (pattern.transition.delay ?? 0) + index * 0.08;
               return (
                 <motion.a
