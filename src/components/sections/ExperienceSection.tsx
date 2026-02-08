@@ -11,6 +11,8 @@ export function ExperienceSection() {
   const {
     experiences,
     timelineBounds,
+    currentFocusItems,
+    currentLogLines,
     hoveredProject,
     setHoveredProject
   } = useExperienceData()
@@ -52,6 +54,8 @@ export function ExperienceSection() {
             <TimelineChart
               experiences={experiences}
               timelineBounds={timelineBounds}
+              currentFocusItems={currentFocusItems}
+              currentLogLines={currentLogLines}
               hoveredProject={hoveredProject}
               onProjectHover={setHoveredProject}
             />

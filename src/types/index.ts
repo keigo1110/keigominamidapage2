@@ -63,6 +63,8 @@ export interface SocialLink {
   icon: React.ComponentType<{ className?: string }>;
   url: string;
   style: string;
+  /** Tailwind class for icon on hover (e.g. group-hover:text-[#E4405F]). Uses theme blue if omitted. */
+  hoverColorClass?: string;
 }
 
 // Project data types

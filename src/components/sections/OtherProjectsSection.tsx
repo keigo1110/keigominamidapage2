@@ -73,6 +73,24 @@ export function OtherProjectsSection() {
         { icon: <FaExternalLinkAlt />, text: t('usageGuide'), url: 'https://note.com/namida1110/n/nfd97132121ef' },
         { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/myminichronology' }
       ]
+    },
+    {
+      id: '4zigen-hp',
+      title: t('oProject5'),
+      description: t('oProject5Description'),
+      image: "/images/4zigen_hp.png",
+      aspectRatio: '2/1',
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('link4zigenSite'), url: 'https://4zigenhp.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork1Title'), url: 'https://geohp.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork2Title'), url: 'https://protophysicahp.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork3Title'), url: 'https://cotton-sketch-pen-hp.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork4Title'), url: 'https://metransfer.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork5Title'), url: 'https://puflica.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork6Title'), url: 'https://nozoko.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork7Title'), url: 'https://protozoahp.vercel.app/' },
+        { icon: <FaExternalLinkAlt />, text: t('artwork8Title'), url: 'https://keigo1110.github.io/edgeofbubbles/' }
+      ]
     }
   ], [t])
 

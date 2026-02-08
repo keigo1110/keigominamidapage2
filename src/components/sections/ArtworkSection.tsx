@@ -99,6 +99,16 @@ export function ArtworkSection() {
       year: '2025',
       team: '4ZIGEN',
       keywords: ['Biomimetic', 'Touch', 'Responsive Technology']
+    },
+    {
+      id: 'edge-of-bubbles',
+      title: t('artwork8Title'),
+      description: t('artwork8Description'),
+      image: "/images/eob.png",
+      link: "https://keigo1110.github.io/edgeofbubbles/",
+      year: '2024',
+      team: '4ZIGEN',
+      keywords: ['Transformation', 'Liquid', 'Dynamic Form']
     }
   ], [t])
 

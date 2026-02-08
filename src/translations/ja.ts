@@ -60,7 +60,7 @@ export const ja = {
     paper: '論文',
     slide: 'スライド',
 
-    // 制作作品（アートと制作の両方）
+    // 制作プロジェクト（アートと制作の両方）
     artwork1Title: 'Geocussion',
     artwork1Description: '砂を叩き押し固めてオブジェクトを作り出し、砂の形を変えれば異なるを鳴らせる砂場上の楽器',
     artwork2Title: 'Protophysica',
@@ -75,8 +75,10 @@ export const ja = {
     artwork6Description: '香りを拡張する',
     artwork7Title: 'Protozoa',
     artwork7Description: '触れることで動き出す原生機械生物群',
+    artwork8Title: 'Edge of Bubbles',
+    artwork8Description: '波打ち際のように揺れ動くシャボン塊',
 
-    // 制作品共通情報
+    // 制作プロジェクト共通情報
     artworkTeam: '4ZIGEN',
     artworkTeamDescription: 'チーム制作',
     createdBy: '制作',
@@ -121,6 +123,9 @@ export const ja = {
     oProject3Description: 'Unitree L1のLiDARをRvizを使わずに表示する',
     oProject4: 'ミニクロ',
     oProject4Description: 'Excelから年表を生成する',
+    oProject5: '4ZIGENのHP',
+    oProject5Description: '4ZIGENの制作プロジェクトを紹介するホームページです。ホームページ芸人として、各プロジェクトの特徴を活かした大喜利形式で構成しています。',
+    link4zigenSite: '4ZIGEN公式サイト',
     demo: 'デモ',
     usageGuide: '使用ガイド',
     repository: 'Repository',
@@ -161,6 +166,8 @@ export const ja = {
     experience6Description: 'ハードウェア・ソフトウェア開発',
     experience6Date: '2024年5月 - 2025年12月',
     experience6Link1: '4ZIGEN公式サイト',
+    experienceBirthTitle: '生誕',
+    experienceBirthDescription: '大阪で生まれる',
 
     // 学歴
     edu1Institution: '東京大学大学院',
@@ -221,6 +228,20 @@ export const ja = {
     technicalInnovationDescription: '技術革新とクリエイティブな問題解決を通じて、人間中心のソリューションを構築しています。',
     projectsLabel: 'プロジェクト',
     ongoingLabel: '進行中',
+    personalTrackLabel: 'パーソナル',
+    socialTrackLabel: 'ソーシャル',
+    communityTrackLabel: 'コミュニティ',
+    currentLabel: '現在',
+    currentSubtitle: '今動いているフォーカス',
+    currentLogLabel: 'アクティビティログ',
+    currentEmpty: '進行中の項目がありません',
+    milestonesLabel: '過去',
+    milestonesSubtitle: '主要な節目とアウトプット',
+    rootsLabel: 'ルーツ',
+    rootsSubtitle: '深層の記憶と背景',
+    rootsEmpty: 'ルーツ情報がまだありません',
+    bornLabel: '生誕',
+    completedLabel: '完了',
     totalDurationLabel: '累計期間',
     featuredProjectsLabel: '注目プロジェクト',
     searchProjectsPlaceholder: 'プロジェクトを検索...',
@@ -278,7 +299,7 @@ export const ja = {
     // Artwork Section
     viewFullDetails: '詳細を見る',
     viewDetails: '詳細を見る',
-    aboutThisWork: 'この作品について',
+    aboutThisWork: 'このプロジェクトについて',
     year: '制作年',
     keywords: 'キーワード',
     visitProjectWebsite: 'プロジェクトサイトを見る',

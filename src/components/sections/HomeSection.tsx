@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub } from 'react-icons/fa'
@@ -8,6 +8,53 @@ import { SiQiita } from 'react-icons/si'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
+
+/** SNSアイコン用アニメーションパターン（入場＋ホバー/タップ） */
+interface SocialIconAnimationPattern {
+  initial: { opacity: number; y?: number; scale?: number; rotate?: number }
+  animate: { opacity: number; y?: number; scale?: number; rotate?: number }
+  transition: { duration: number; delay?: number }
+  whileHover: { y?: number; scale?: number; rotate?: number }
+  whileTap: { scale: number }
+}
+
+const SOCIAL_ICON_ANIMATION_PATTERNS: SocialIconAnimationPattern[] = [
+  {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: 0.1 },
+    whileHover: { y: -2 },
+    whileTap: { scale: 0.95 },
+  },
+  {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.4, delay: 0.05 },
+    whileHover: { scale: 1.08 },
+    whileTap: { scale: 0.98 },
+  },
+  {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: 0.08 },
+    whileHover: { y: -3, scale: 1.02 },
+    whileTap: { scale: 0.97 },
+  },
+  {
+    initial: { opacity: 0.6, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.6, delay: 0.06 },
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 },
+  },
+  {
+    initial: { opacity: 0, y: 16, rotate: -2 },
+    animate: { opacity: 1, y: 0, rotate: 0 },
+    transition: { duration: 0.45, delay: 0.07 },
+    whileHover: { y: -2, rotate: 2 },
+    whileTap: { scale: 0.96 },
+  },
+]
 
 const TextIcon = ({ letter, className }: { letter: string; className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
@@ -24,13 +71,13 @@ const ProtoPediaIcon = ({ className }: { className?: string }) => (
 )
 
 const socialLinks: SocialLink[] = [
-  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "default" },
-  { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "default" },
-  { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "default" },
-  { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "default" },
-  { icon: FaGithub, url: "https://github.com/keigo1110", style: "default" },
-  { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default" },
-  { icon: NoteIcon, url: "https://note.com/namida1110", style: "default" },
+  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "default", hoverColorClass: "group-hover:text-[#1DA1F2]" },
+  { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "default", hoverColorClass: "group-hover:text-[#E4405F]" },
+  { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "default", hoverColorClass: "group-hover:text-[#0A66C2]" },
+  { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "default", hoverColorClass: "group-hover:text-[#1877F2]" },
+  { icon: FaGithub, url: "https://github.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#8b949e]" },
+  { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#55C500]" },
+  { icon: NoteIcon, url: "https://note.com/namida1110", style: "default", hoverColorClass: "group-hover:text-[#2CB696]" },
   { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" }
 ];
 
@@ -38,6 +85,11 @@ function DefaultHome() {
   const { t } = useTranslation();
   const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState(0);
+  const [socialAnimationIndex, setSocialAnimationIndex] = useState(0);
+
+  useEffect(() => {
+    setSocialAnimationIndex(Math.floor(Math.random() * SOCIAL_ICON_ANIMATION_PATTERNS.length));
+  }, []);
 
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
 
@@ -124,27 +176,33 @@ function DefaultHome() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.1 }}
           >
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.url}
-                className={`p-3 sm:p-4 rounded-xl transition-all duration-300 outline-none ${
-                  isDark
-                    ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B] hover:text-[#F5F5F7]'
-                    : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]'
-                }`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit ${social.url.split('/').pop() || social.url} profile`}
-              >
-                <social.icon className="text-lg sm:text-xl" />
-              </motion.a>
-            ))}
+            {socialLinks.map((social, index) => {
+              const defaultHover = isDark ? 'group-hover:text-[#2997FF]' : 'group-hover:text-[#0071E3]';
+              const iconHoverClass = social.hoverColorClass ?? defaultHover;
+              const pattern = SOCIAL_ICON_ANIMATION_PATTERNS[socialAnimationIndex];
+              const staggerDelay = (pattern.transition.delay ?? 0) + index * 0.08;
+              return (
+                <motion.a
+                  key={index}
+                  href={social.url}
+                  className={`group p-3 sm:p-4 rounded-xl transition-all duration-300 outline-none ${
+                    isDark
+                      ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B]'
+                      : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B]'
+                  }`}
+                  initial={pattern.initial}
+                  animate={pattern.animate}
+                  transition={{ duration: pattern.transition.duration, delay: 1.3 + staggerDelay }}
+                  whileHover={pattern.whileHover}
+                  whileTap={pattern.whileTap}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${social.url.split('/').pop() || social.url} profile`}
+                >
+                  <social.icon className={`text-lg sm:text-xl transition-colors duration-300 ${iconHoverClass}`} />
+                </motion.a>
+              );
+            })}
           </motion.div>
 
           <motion.div

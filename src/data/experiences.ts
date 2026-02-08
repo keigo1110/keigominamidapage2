@@ -6,7 +6,7 @@ interface ExperienceConfig {
   /** プロジェクトの表示順序 (低い値ほど上に表示) */
   displayOrder: number
   /** プロジェクトカテゴリ */
-  category: 'exhibition' | 'startup' | 'research' | 'commercial' | 'academic' | 'education' | 'volunteer'
+  category: 'exhibition' | 'startup' | 'research' | 'commercial' | 'academic' | 'education' | 'volunteer' | 'origin'
   /** 重要度 (timeline での視認性に影響) */
   importance: 'high' | 'medium' | 'low'
   /** 優先度 */
@@ -63,6 +63,14 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     displayOrder: 6,
     category: 'education',
     importance: 'medium',
+    priority: 'low',
+    impactLevel: 'supporting',
+    featured: false
+  },
+  birth: {
+    displayOrder: 999,
+    category: 'origin',
+    importance: 'low',
     priority: 'low',
     impactLevel: 'supporting',
     featured: false
@@ -126,6 +134,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'ongoing',
     priority: 'critical',
     category: 'research',
+    track: 'community',
     projectGroup: '1000ya',
     tags: ['編集', '図版構成', '研究', 'コンテンツ'],
 
@@ -195,6 +204,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'ongoing',
     priority: 'critical',
     category: 'startup',
+    track: 'community',
     tags: ['ハードウェア', 'ソフトウェア', 'IoT', 'プロダクト開発'],
 
     description: "革新的なIoTデバイスの開発プロジェクト。ハードウェアとソフトウェアを統合した包括的なソリューション",
@@ -266,6 +276,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'completed',
     priority: 'high',
     category: 'exhibition',
+    track: 'community',
     links: [
       { text: "", url: 'https://www.iiiexhibition.com/', type: 'website', primary: true },
       { text: "", url: 'https://iii-exhibition-2024-web.vercel.app/', type: 'demo', primary: false }
@@ -284,6 +295,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'completed',
     priority: 'medium',
     category: 'research',
+    track: 'community',
     projectGroup: '1000ya',
     links: [
       { text: "", url: 'https://1000ya.isis.ne.jp/1850.html', type: 'publication', primary: true },
@@ -306,6 +318,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'completed',
     priority: 'medium',
     category: 'education',
+    track: 'community',
     links: [
       { text: "", url: 'https://edist.ne.jp/list/82kanmon_51ha_shusseuo/', type: 'publication', primary: true },
       { text: "", url: 'https://edist.ne.jp/list/83kanmon_51ha_book/', type: 'publication', primary: false },
@@ -325,11 +338,30 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'completed',
     priority: 'low',
     category: 'education',
+    track: 'community',
     links: [
       { text: "", url: 'https://edist.ne.jp/list/81kanmon_51shu_names/', type: 'publication', primary: true },
       { text: "", url: 'https://edist.ne.jp/list/82kanmon_51shu_book/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/post/51syu_ruijisoji/', type: 'demo', primary: false }
     ]
+  },
+  {
+    id: 'birth',
+    logo: "/globe.svg",
+    title: "",
+    position: "",
+    location: "大阪, 日本",
+    period: {
+      start: { year: 2001, month: 11, day: 10 },
+      end: { year: 2001, month: 11, day: 10 }
+    },
+    color: '#6B7280',
+    status: 'completed',
+    priority: 'low',
+    category: 'origin',
+    track: 'personal',
+    shortDescription: "",
+    links: []
   }
 ]
 
@@ -414,6 +446,11 @@ const TRANSLATION_MAPPING = {
     title: 'experience4',
     position: 'experience4Description',
     links: ['experience4Link1', 'experience4Link2', 'experience4Link3']
+  },
+  birth: {
+    title: 'experienceBirthTitle',
+    position: 'experienceBirthDescription',
+    links: []
   }
 } as const
 
