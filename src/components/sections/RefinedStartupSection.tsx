@@ -185,13 +185,6 @@ export function RefinedStartupSection() {
                             }`}>
                               {site.name}
                             </span>
-                            {site.isPrimary && (
-                              <span className={`px-2 py-1 text-xs rounded-full ${
-                                isDark ? 'bg-[#2997FF]/20 text-[#2997FF]' : 'bg-[#0071E3]/10 text-[#0071E3]'
-                              }`}>
-                                {t('mainSite')}
-                              </span>
-                            )}
                           </div>
                           <p className="text-sm text-[#86868B]">
                             {site.description}
