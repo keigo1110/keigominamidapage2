@@ -47,10 +47,10 @@ export const ja = {
     statementTab1: 'ライフワーク',
     statementTab2: '読み、書き、AI',
     statementTab3: '情報文化技術',
-    interest1: 'Human-Computer Interaction',
+    interest1: 'Human–AI Integration',
     interest2: 'Augmented Humans',
-    interest3: 'Artificial Intelligence',
-    interest4: 'Computer Vision',
+    interest3: 'Computer Vision',
+    interest4: 'Ars Combinatoria',
     department: '近畿大学 理工学部 機械工学科 卒業',
 
     // 研究プロジェクト

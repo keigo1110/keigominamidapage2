@@ -47,10 +47,10 @@ In the future where informatization progresses, what we face is whether to be sw
     statementTab1: 'Life Theme',
     statementTab2: 'Reading, Writing, AI',
     statementTab3: 'Information Cultural Technology',
-    interest1: 'Human-Computer Interaction',
+    interest1: 'Human–AI Integration',
     interest2: 'Augmented Humans',
-    interest3: 'Artificial Intelligence',
-    interest4: 'Computer Vision',
+    interest3: 'Computer Vision',
+    interest4: 'Ars Combinatoria',
     department: 'Bachelor of Engineering, Mechanical Engineering, Kindai University',
 
     // Research Projects

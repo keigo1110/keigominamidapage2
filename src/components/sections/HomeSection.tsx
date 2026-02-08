@@ -95,8 +95,8 @@ function DefaultHome() {
 
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (

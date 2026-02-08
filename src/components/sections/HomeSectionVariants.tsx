@@ -34,8 +34,8 @@ export function GlassmorphismHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -255,8 +255,8 @@ export function BrutalistHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -437,8 +437,8 @@ export function MinimalistHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -619,8 +619,8 @@ export function CyberpunkHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -822,8 +822,8 @@ export function MagazineHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -1031,8 +1031,8 @@ export function RetroSynthwaveHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -1289,8 +1289,8 @@ export function LuxuryPremiumHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -1555,8 +1555,8 @@ export function OrganicBiomorphicHome() {
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
