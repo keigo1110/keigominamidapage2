@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion'
+import { useMemo, useRef, type ReactNode } from 'react'
 import Image from 'next/image'
 import { Calendar, ExternalLink, MapPin } from 'lucide-react'
 import { ProcessedExperience } from '../../../types/experience'
@@ -21,6 +21,26 @@ type PositionedExperience = VerticalProjectPosition & {
   depthOpacity: number
 }
 
+function RevealItem({
+  progress,
+  index,
+  children
+}: {
+  progress: MotionValue<number>
+  index: number
+  children: ReactNode
+}) {
+  const start = 0.05 + index * 0.08
+  const end = Math.min(1, start + 0.35)
+  const opacity = useTransform(progress, [start, end], [0.85, 1])
+  const y = useTransform(progress, [start, end], [12, 0])
+  return (
+    <motion.div style={{ opacity, y }}>
+      {children}
+    </motion.div>
+  )
+}
+
 export function TimelineChart({
   experiences,
   timelineBounds,
@@ -29,6 +49,8 @@ export function TimelineChart({
 }: TimelineChartProps) {
   const { t } = useTranslation()
   const { isDark } = useTheme()
+  const currentRef = useRef<HTMLElement | null>(null)
+  const milestonesRef = useRef<HTMLElement | null>(null)
 
   const ongoingIds = useMemo(() => new Set(currentFocusItems.map(exp => exp.id)), [currentFocusItems])
 
@@ -104,12 +126,29 @@ export function TimelineChart({
     }
   }, [milestones, timelineBounds, baseTimelineHeight])
 
+  const { scrollYProgress: currentProgress } = useScroll({
+    target: currentRef,
+    offset: ['start 0.85', 'end 0.2']
+  })
+  const { scrollYProgress: milestonesProgress } = useScroll({
+    target: milestonesRef,
+    offset: ['start 0.85', 'end 0.2']
+  })
+  const currentSectionOpacity = useTransform(currentProgress, [0, 1], [0.9, 1])
+  const currentSectionY = useTransform(currentProgress, [0, 1], [8, 0])
+  const milestonesSectionOpacity = useTransform(milestonesProgress, [0, 1], [0.9, 1])
+  const milestonesSectionY = useTransform(milestonesProgress, [0, 1], [8, 0])
+
   return (
     <div className="relative w-full space-y-16" role="region" aria-label="経歴タイムライン" tabIndex={0}>
       {/* Current */}
-      <section className={`space-y-7 pb-10 border-b ${
+      <motion.section
+        ref={currentRef}
+        style={{ opacity: currentSectionOpacity, y: currentSectionY }}
+        className={`space-y-7 pb-10 border-b ${
         isDark ? 'border-[#2C2C2E]/70' : 'border-[#D2D2D7]/70'
-      }`}>
+      }`}
+      >
         <div className="flex items-center justify-between">
           <div>
             <h3 className={`text-xl sm:text-2xl font-semibold tracking-tight ${
@@ -135,10 +174,12 @@ export function TimelineChart({
             <div className="space-y-3 text-sm text-[#86868B] font-mono">
               {currentLogLines.length > 0 ? (
                 currentLogLines.map((line, index) => (
-                  <div key={`${line}-${index}`} className="flex items-start gap-3">
-                    <span className="text-[10px] leading-6">-</span>
-                    <span className="leading-6">{line}</span>
-                  </div>
+                  <RevealItem key={`${line}-${index}`} progress={currentProgress} index={index}>
+                    <div className="flex items-start gap-3">
+                      <span className="text-[10px] leading-6">-</span>
+                      <span className="leading-6">{line}</span>
+                    </div>
+                  </RevealItem>
                 ))
               ) : (
                 <div className="text-sm">{t('currentEmpty')}</div>
@@ -151,21 +192,19 @@ export function TimelineChart({
               const items = currentFocusItems.filter(exp => exp.track === track.id)
               return (
                 <div key={track.id} className="space-y-4">
-                  <div className="text-xs uppercase tracking-[0.2em] text-[#86868B]">
-                    {track.label}
-                  </div>
-                  {items.map(exp => (
-                    <motion.div
-                      key={exp.id}
+                  <RevealItem progress={currentProgress} index={0}>
+                    <div className="text-xs uppercase tracking-[0.2em] text-[#86868B]">
+                      {track.label}
+                    </div>
+                  </RevealItem>
+                  {items.map((exp, index) => (
+                    <RevealItem key={exp.id} progress={currentProgress} index={index + 1}>
+                      <div
                       className={`rounded-2xl border p-4 sm:p-5 transition-shadow ${
                         isDark
                           ? 'border-[#333336] bg-[#1D1D1F] hover:shadow-[0_16px_50px_rgba(0,0,0,0.4)]'
                           : 'border-[#D2D2D7] bg-[#F5F5F7] hover:shadow-[0_16px_50px_rgba(0,0,0,0.14)]'
                       }`}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4 }}
                     >
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/10 flex-shrink-0">
@@ -223,19 +262,24 @@ export function TimelineChart({
                           )}
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
+                    </RevealItem>
                   ))}
                 </div>
               )
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Milestones */}
-      <section className={`space-y-7 pb-10 border-b ${
+      <motion.section
+        ref={milestonesRef}
+        style={{ opacity: milestonesSectionOpacity, y: milestonesSectionY }}
+        className={`space-y-7 pb-10 border-b ${
         isDark ? 'border-[#2C2C2E]/70' : 'border-[#D2D2D7]/70'
-      }`}>
+      }`}
+      >
         <div>
           <h3 className={`text-xl sm:text-2xl font-semibold tracking-tight ${
             isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
@@ -253,9 +297,11 @@ export function TimelineChart({
 
               return (
                 <div key={track.id} className="relative" style={{ minHeight: `${positionedTracks.height}px` }}>
-                  <div className="text-xs uppercase tracking-[0.2em] text-[#86868B] mb-4">
-                    {track.label}
-                  </div>
+                  <RevealItem progress={milestonesProgress} index={0}>
+                    <div className="text-xs uppercase tracking-[0.2em] text-[#86868B] mb-4">
+                      {track.label}
+                    </div>
+                  </RevealItem>
                   <div
                     className={`absolute left-6 w-px ${
                       isDark ? 'bg-gradient-to-b from-[#4B5563] via-[#333336] to-[#1F2937]' : 'bg-gradient-to-b from-[#C7CBD1] via-[#D2D2D7] to-[#E5E7EB]'
@@ -263,7 +309,7 @@ export function TimelineChart({
                     style={{ top: `${trackOffset}px`, bottom: 0 }}
                   />
 
-                  {trackData.items.map(position => {
+                  {trackData.items.map((position, index) => {
                     const exp = position.experience
                     const displayTitle = exp.title || t('projectsLabel')
                     const depthStyle = { opacity: position.depthOpacity }
@@ -277,13 +323,10 @@ export function TimelineChart({
                           }`}
                           style={{ top: `${topPx}px` }}
                         />
-                        <motion.div
+                        <RevealItem progress={milestonesProgress} index={index + 1}>
+                          <div
                           className="absolute left-12 right-2"
                           style={{ top: `${topPx}px`, transform: 'translateY(-50%)', ...depthStyle }}
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4 }}
                         >
                           <div className={`rounded-2xl border p-4 sm:p-5 ${
                             isDark ? 'border-[#333336] bg-[#1D1D1F]' : 'border-[#D2D2D7] bg-white'
@@ -350,7 +393,8 @@ export function TimelineChart({
                               </div>
                             </div>
                           </div>
-                        </motion.div>
+                        </div>
+                        </RevealItem>
                       </div>
                     )
                   })}
@@ -359,7 +403,7 @@ export function TimelineChart({
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   )

@@ -38,57 +38,44 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://keigominamida.com'),
-  title: 'Keigo Minamida | HCI Researcher & Creative Technologist',
-  description: 'Keigo Minamida (南田桂吾, みなみだけいご, けいごみなみだ) is a Master\'s student at The University of Tokyo, specializing in Human-Computer Interaction, Augmented Humans, AI, and Computer Vision. Explore his research projects, creative works, and innovative solutions.',
+  title: {
+    default: 'Keigo Minamida | HCI Researcher & Creative Technologist',
+    template: '%s | Keigo Minamida',
+  },
+  description: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
   keywords: [
     "Keigo Minamida",
     "南田桂吾",
     "みなみだけいご",
-    "けいごみなみだ",
+    "東京大学",
     "University of Tokyo",
     "Rekimoto Lab",
-    "human-robot interaction",
-    "computer vision",
-    "machine learning",
-    "augmented reality",
-    "researcher",
-    "entrepreneur",
-    "software developer",
-    "portfolio",
-    "ポートフォリオ",
-    "研究者",
-    "起業家",
-    "ソフトウェア開発者",
-    "東京大学",
     "暦本研究室",
-    "SIGGRAPH Asia",
-    "Gaussian Splatting",
-    "IoT",
-    "bicycle safety",
-    "interactive art",
-    "GUGEN2024",
     "HCI",
     "Human-Computer Interaction",
     "Augmented Humans",
-    "AI",
-    "Research",
-    "Creative Technology",
-    "Portfolio"
+    "computer vision",
+    "machine learning",
+    "researcher",
+    "entrepreneur",
+    "portfolio",
+    "SIGGRAPH Asia",
+    "Gaussian Splatting",
+    "Wakabar",
+    "4ZIGEN",
+    "interactive art",
+    "GUGEN2024",
   ],
-  authors: [{
-    name: "Keigo Minamida",
-    url: "https://keigominamida.com/"
-  }],
+  authors: [{ name: "Keigo Minamida", url: "https://keigominamida.com/" }],
   creator: "Keigo Minamida",
   publisher: "Keigo Minamida",
   category: "technology",
-  classification: "portfolio",
   openGraph: {
     type: "website",
     locale: "en_US",
     alternateLocale: ["ja_JP"],
     title: "Keigo Minamida | HCI Researcher & Creative Technologist",
-    description: "Explore the innovative research and creative works of Keigo Minamida, specializing in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
+    description: "Keigo Minamida (南田桂吾) — Master's student at The University of Tokyo. Research in HCI, Augmented Humans, and Computer Vision. Portfolio of projects and creative works.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
     images: [
@@ -97,21 +84,21 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Keigo Minamida Portfolio - HCI Research and Creative Technology",
-        type: "image/jpeg"
+        type: "image/jpeg",
       },
       {
         url: "/images/og-image-square.jpg",
         width: 1200,
         height: 1200,
         alt: "Keigo Minamida Profile",
-        type: "image/jpeg"
-      }
+        type: "image/jpeg",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Keigo Minamida | HCI Researcher & Creative Technologist",
-    description: "Innovative research in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
+    description: "Researcher at The University of Tokyo. HCI, Augmented Humans, Computer Vision. Portfolio and projects.",
     creator: "@keigominamida",
     site: "@keigominamida",
     images: ["/images/og-image.jpg"],
@@ -130,14 +117,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? process.env.GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
     canonical: "/",
-    languages: {
-      'en': '/en',
-      'ja': '/ja',
-    },
   },
   icons: {
     icon: [
@@ -153,6 +136,7 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+  referrer: "strict-origin-when-cross-origin",
   other: {
     "theme-color": "#000000",
     "color-scheme": "dark light",
@@ -162,8 +146,8 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "Keigo Minamida",
     "application-name": "Keigo Minamida Portfolio",
     "msapplication-TileColor": "#0071E3",
-    "msapplication-config": "/browserconfig.xml"
-  }
+    "msapplication-config": "/browserconfig.xml",
+  },
 };
 
 export default function RootLayout({

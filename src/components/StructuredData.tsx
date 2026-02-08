@@ -1,182 +1,216 @@
 'use client'
 
+const BASE = 'https://keigominamida.com'
+
 export function StructuredData() {
-  // Person Schema for Keigo Minamida
   const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://keigominamida.com/#person",
-    "name": "Keigo Minamida",
-    "alternateName": ["南田桂吾", "みなみだけいご", "けいごみなみだ"],
-    "url": "https://keigominamida.com/",
-    "image": "https://keigominamida.com/images/myface.jpg",
-    "description": "A passionate researcher and entrepreneur focused on pioneering new ways for humans to interact with robots and real-world objects. Second-year Master student at The University of Tokyo.",
-    "jobTitle": ["Master's Student", "Researcher", "Entrepreneur", "Software Developer"],
-    "affiliation": {
-      "@type": "Organization",
-      "name": "The University of Tokyo",
-      "url": "https://www.iii.u-tokyo.ac.jp/",
-      "department": {
-        "@type": "Organization",
-        "name": "Rekimoto Lab",
-        "url": "https://lab.rekimoto.org/"
-      }
+    '@type': 'Person',
+    '@id': `${BASE}/#person`,
+    name: 'Keigo Minamida',
+    alternateName: ['南田桂吾', 'みなみだけいご', 'けいごみなみだ'],
+    url: `${BASE}/`,
+    image: `${BASE}/images/myface.jpg`,
+    description: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar.',
+    jobTitle: ["Master's Student", 'Researcher', 'Entrepreneur', 'Software Developer'],
+    affiliation: {
+      '@type': 'Organization',
+      name: 'The University of Tokyo',
+      url: 'https://www.iii.u-tokyo.ac.jp/',
+      department: {
+        '@type': 'Organization',
+        name: 'Rekimoto Lab',
+        url: 'https://lab.rekimoto.org/',
+      },
     },
-    "alumniOf": {
-      "@type": "Organization",
-      "name": "Kindai University",
-      "department": "Department of Mechanical Engineering"
+    alumniOf: {
+      '@type': 'Organization',
+      name: 'Kindai University',
+      department: 'Department of Mechanical Engineering',
     },
-    "knowsAbout": [
-      "Human-robot interaction",
-      "Augmented reality",
-      "Computer vision",
-      "Machine learning",
-      "Software development",
-      "Entrepreneurship"
+    knowsAbout: [
+      'Human-robot interaction',
+      'Augmented reality',
+      'Computer vision',
+      'Machine learning',
+      'Software development',
+      'Entrepreneurship',
     ],
-    "sameAs": [
-      "https://twitter.com/keigominamida",
-      "https://www.instagram.com/namida1110/",
-      "https://www.linkedin.com/in/keigominamida/",
-      "https://www.facebook.com/profile.php?id=100053066043602",
-      "https://github.com/keigo1110",
-      "https://qiita.com/keigo1110"
+    sameAs: [
+      'https://twitter.com/keigominamida',
+      'https://www.instagram.com/namida1110/',
+      'https://www.linkedin.com/in/keigominamida/',
+      'https://www.facebook.com/profile.php?id=100053066043602',
+      'https://github.com/keigo1110',
+      'https://qiita.com/keigo1110',
+      'https://note.com/namida1110',
     ],
-    "email": "mkeigo1110@gmail.com",
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": "Researcher",
-      "description": "Developing effective methods to process and utilize real-world information for human-robot interaction"
-    }
-  };
+    email: 'mkeigo1110@gmail.com',
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Researcher',
+      description:
+        'Developing effective methods to process and utilize real-world information for human-robot interaction',
+    },
+  }
 
-  // Website Schema
   const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://keigominamida.com/#website",
-    "url": "https://keigominamida.com/",
-    "name": "Keigo Minamida Portfolio",
-    "description": "Portfolio website of Keigo Minamida (南田桂吾) - Researcher, Entrepreneur, and Software Developer",
-    "author": {
-      "@id": "https://keigominamida.com/#person"
+    '@type': 'WebSite',
+    '@id': `${BASE}/#website`,
+    url: `${BASE}/`,
+    name: 'Keigo Minamida Portfolio',
+    description:
+      'Portfolio of Keigo Minamida (南田桂吾) — Researcher, Entrepreneur, and Software Developer at The University of Tokyo.',
+    author: { '@id': `${BASE}/#person` },
+    inLanguage: ['en', 'ja'],
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${BASE}/?search={search_term_string}`,
+      'query-input': 'required name=search_term_string',
     },
-    "inLanguage": ["en", "ja"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://keigominamida.com/?search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  };
+  }
 
-  // Organization Schema for Wakabar K.K.
+  const webPageSchema = {
+    '@type': 'WebPage',
+    '@id': `${BASE}/#webpage`,
+    url: `${BASE}/`,
+    name: 'Keigo Minamida | HCI Researcher & Creative Technologist',
+    description:
+      'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
+    isPartOf: { '@id': `${BASE}/#website` },
+    about: { '@id': `${BASE}/#person` },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: `${BASE}/images/myface.jpg`,
+    },
+    inLanguage: 'en',
+    potentialAction: {
+      '@type': 'ReadAction',
+      target: `${BASE}/`,
+    },
+  }
+
+  const faqSchema = {
+    '@type': 'FAQPage',
+    '@id': `${BASE}/#faq`,
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Who is Keigo Minamida?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo (Rekimoto Lab) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at SIGGRAPH Asia (e.g. Incremental Gaussian Splatting), co-founded Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does Keigo Minamida research?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Keigo Minamida researches Human-Computer Interaction (HCI), Augmented Humans, and Computer Vision. His work includes 3D reconstruction (Gaussian Splatting), human-robot interaction (e.g. Recertif for robot status visibility), and real-world sensing for interactive systems.',
+        },
+      },
+    ],
+  }
+
+  const breadcrumbSchema = {
+    '@type': 'BreadcrumbList',
+    '@id': `${BASE}/#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
+    ],
+  }
+
   const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://keigominamida.com/#organization",
-    "name": "Wakabar K.K.",
-    "description": "Supporting safe behavior while cycling using IoT technology",
-    "url": "https://wakabar-cycle.com/",
-    "founder": {
-      "@id": "https://keigominamida.com/#person"
-    },
-    "foundingDate": "2023",
-    "mission": "Zero traffic accidents on bicycles using IoT",
-    "knowsAbout": ["IoT", "Bicycle Safety", "Traffic Safety"]
-  };
+    '@type': 'Organization',
+    '@id': `${BASE}/#organization`,
+    name: 'Wakabar K.K.',
+    description: 'Supporting safe behavior while cycling using IoT technology',
+    url: 'https://wakabar-cycle.com/',
+    founder: { '@id': `${BASE}/#person` },
+    foundingDate: '2023',
+    mission: 'Zero traffic accidents on bicycles using IoT',
+    knowsAbout: ['IoT', 'Bicycle Safety', 'Traffic Safety'],
+  }
 
-  // Research Paper Schema for notable publications
   const researchWorksSchema = [
     {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "name": "Incremental Gaussian Splatting",
-      "description": "Gradual 3D Reconstruction from a Monocular Camera Following Physical World Changes",
-      "author": {
-        "@id": "https://keigominamida.com/#person"
-      },
-      "publisher": "SIGGRAPH Asia 2024",
-      "url": "https://doi.org/10.1145/3681756.3697913",
-      "datePublished": "2024",
-      "about": ["Computer Vision", "3D Reconstruction", "Gaussian Splatting"]
+      '@type': 'ScholarlyArticle',
+      name: 'Incremental Gaussian Splatting',
+      description:
+        'Gradual 3D Reconstruction from a Monocular Camera Following Physical World Changes',
+      author: { '@id': `${BASE}/#person` },
+      publisher: 'SIGGRAPH Asia 2024',
+      url: 'https://doi.org/10.1145/3681756.3697913',
+      datePublished: '2024',
+      about: ['Computer Vision', '3D Reconstruction', 'Gaussian Splatting'],
     },
     {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "name": "Recertif",
-      "description": "A system that shows the robot's work status simply by directing attention to the robot",
-      "author": {
-        "@id": "https://keigominamida.com/#person"
-      },
-      "datePublished": "2024",
-      "about": ["Human-Robot Interaction", "Visual Attention", "Robotics"]
-    }
-  ];
+      '@type': 'ScholarlyArticle',
+      name: 'Recertif',
+      description:
+        "A system that shows the robot's work status simply by directing attention to the robot",
+      author: { '@id': `${BASE}/#person` },
+      datePublished: '2024',
+      about: ['Human-Robot Interaction', 'Visual Attention', 'Robotics'],
+    },
+  ]
 
-  // Creative Works Schema for artworks
   const creativeWorksSchema = [
     {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "Geocussion",
-      "description": "An instrument on a sandbox that can produce different sounds by hitting and pressing sand to create objects",
-      "creator": {
-        "@id": "https://keigominamida.com/#person"
-      },
-      "url": "https://geohp.vercel.app/",
-      "genre": "Interactive Art",
-      "artform": "Digital Installation"
+      '@type': 'CreativeWork',
+      name: 'Geocussion',
+      description:
+        'An instrument on a sandbox that produces different sounds by hitting and pressing sand to create objects',
+      creator: { '@id': `${BASE}/#person` },
+      url: 'https://geohp.vercel.app/',
+      genre: 'Interactive Art',
+      artform: 'Digital Installation',
     },
     {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "Protophysica",
-      "description": "Expanding the possibilities of creation using supercapacitors",
-      "creator": {
-        "@id": "https://keigominamida.com/#person"
-      },
-      "url": "https://protophysicahp.vercel.app/",
-      "genre": "Interactive Art",
-      "artform": "Physical Computing"
-    }
-  ];
+      '@type': 'CreativeWork',
+      name: 'Protophysica',
+      description: 'Expanding the possibilities of creation using supercapacitors',
+      creator: { '@id': `${BASE}/#person` },
+      url: 'https://protophysicahp.vercel.app/',
+      genre: 'Interactive Art',
+      artform: 'Physical Computing',
+    },
+  ]
 
-  // Awards Schema
   const awardsSchema = [
     {
-      "@context": "https://schema.org",
-      "@type": "Award",
-      "name": "GUGEN2024 Grand Prize and Hosii-ne Award",
-      "description": "The Grand Prize and the Hosii-ne Award from GUGEN2024 for 4ZIGEN project",
-      "recipient": {
-        "@id": "https://keigominamida.com/#person"
-      },
-      "dateAwarded": "2024-12",
-      "awardingOrganization": "GUGEN"
-    }
-  ];
+      '@type': 'Award',
+      name: 'GUGEN2024 Grand Prize and Hosii-ne Award',
+      description: 'Grand Prize and Hosii-ne Award from GUGEN2024 for 4ZIGEN project',
+      recipient: { '@id': `${BASE}/#person` },
+      dateAwarded: '2024-12',
+      awardingOrganization: 'GUGEN',
+    },
+  ]
 
-  const allSchemas = [
+  const graph = [
     personSchema,
     websiteSchema,
+    webPageSchema,
+    faqSchema,
+    breadcrumbSchema,
     organizationSchema,
     ...researchWorksSchema,
     ...creativeWorksSchema,
-    ...awardsSchema
-  ];
+    ...awardsSchema,
+  ]
+
+  const schemaWithGraph = {
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  }
 
   return (
-    <>
-      {allSchemas.map((schema, index) => (
-        <script
-          key={index}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema, null, 2)
-          }}
-        />
-      ))}
-    </>
-  );
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(schemaWithGraph),
+      }}
+    />
+  )
 }
