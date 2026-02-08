@@ -350,9 +350,9 @@ new_project_integration:
       experience6:
         ja_title: "4ZIGEN"
         en_title: "4ZIGEN"
-        ja_description: "ハードウェア・ソフトウェア開発"
-        en_description: "Hardware & Software Development"
-        ja_link: "4ZIGEN公式サイト"
+        ja_description: "アイデアを実装する"
+        en_description: "Implementing ideas"
+        ja_link: "4ZIGEN公式サイト" 
         en_link: "4ZIGEN Official Website"
 
 # === 現在時刻精度向上実装 ===

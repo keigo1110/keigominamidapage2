@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
 import { useMemo } from 'react'
 import Image from 'next/image'
-import { Activity, Calendar, ExternalLink, MapPin } from 'lucide-react'
+import { Calendar, ExternalLink, MapPin } from 'lucide-react'
 import { ProcessedExperience } from '../../../types/experience'
 import { TimelineBounds, calculateProjectVerticalPosition, VerticalProjectPosition } from '../../../utils/experienceProcessor'
-import { CurrentTimeIndicator } from './CurrentTimeIndicator'
 import { useTranslation } from '../../../contexts/TranslationContext'
 import { useTheme } from '../../../contexts/ThemeContext'
 
@@ -34,12 +33,8 @@ export function TimelineChart({
   const ongoingIds = useMemo(() => new Set(currentFocusItems.map(exp => exp.id)), [currentFocusItems])
 
   const milestones = useMemo(() => {
-    return experiences.filter(exp => !ongoingIds.has(exp.id) && exp.category !== 'origin')
+    return experiences.filter(exp => !ongoingIds.has(exp.id))
   }, [experiences, ongoingIds])
-
-  const roots = useMemo(() => {
-    return experiences.filter(exp => exp.category === 'origin')
-  }, [experiences])
 
   const baseTimelineHeight = useMemo(() => {
     return Math.max(720, timelineBounds.totalMonths * 12)
@@ -122,11 +117,9 @@ export function TimelineChart({
             }`}>
               {t('currentLabel')}
             </h3>
-            <p className="text-sm text-[#86868B] mt-1">{t('currentSubtitle')}</p>
           </div>
-          <div className="flex items-center gap-2 text-xs text-[#86868B]">
-            <Activity className="w-4 h-4" />
-            <span>{t('ongoingLabel')}</span>
+          <div className="text-xs text-[#86868B]">
+            {new Date().toLocaleDateString('ja-JP')}
           </div>
         </div>
 
@@ -249,18 +242,9 @@ export function TimelineChart({
           }`}>
             {t('milestonesLabel')}
           </h3>
-          <p className="text-sm text-[#86868B] mt-1">{t('milestonesSubtitle')}</p>
         </div>
 
         <div className="relative">
-          <CurrentTimeIndicator
-            timelineBounds={timelineBounds}
-            experiences={experiences.map(exp => ({
-              startDate: exp.startDate,
-              endDate: exp.endDate,
-              status: exp.status
-            }))}
-          />
 
           <div className="grid gap-6 lg:grid-cols-3" style={{ minHeight: `${positionedTracks.height}px` }}>
             {tracks.map(track => {
@@ -377,61 +361,6 @@ export function TimelineChart({
         </div>
       </section>
 
-      {/* Roots */}
-      <section className="space-y-7">
-        <div>
-          <h3 className={`text-xl sm:text-2xl font-semibold tracking-tight ${
-            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-          }`}>
-            {t('rootsLabel')}
-          </h3>
-          <p className="text-sm text-[#86868B] mt-1">{t('rootsSubtitle')}</p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          {tracks.map(track => {
-            const items = roots.filter(exp => exp.track === track.id)
-
-            return (
-              <div
-                key={track.id}
-                className={`rounded-2xl border p-5 sm:p-6 ${
-                  isDark ? 'border-[#2C2C2E] bg-[#141416]' : 'border-[#D2D2D7] bg-[#F5F5F7]'
-                }`}
-              >
-                <div className="text-xs uppercase tracking-[0.2em] text-[#86868B] mb-4">
-                  {track.label}
-                </div>
-                {items.length > 0 && (
-                  <div className="space-y-4">
-                    {items.map(exp => (
-                      <div key={exp.id} className="flex items-start gap-4 text-[#86868B]">
-                        <div className="text-xs uppercase tracking-[0.3em] mt-1">
-                          {t('bornLabel')}
-                        </div>
-                        <div>
-                          <div className={`text-base font-medium ${
-                            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-                          }`}>
-                            {exp.title}
-                          </div>
-                          <div className="text-sm mt-1">{exp.displayDate}</div>
-                          {exp.location && (
-                            <div className="text-sm mt-1">{exp.location}</div>
-                          )}
-                          {exp.shortDescription && (
-                            <div className="text-sm mt-2">{exp.shortDescription}</div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-      </section>
     </div>
   )
 }

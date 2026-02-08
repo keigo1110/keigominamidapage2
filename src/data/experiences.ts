@@ -139,7 +139,7 @@ const EXPERIENCE_DATA: Experience[] = [
     tags: ['編集', '図版構成', '研究', 'コンテンツ'],
 
     description: "松岡正剛氏が主宰する知的編集プログラムにおいて、高度な図版構成と編集技術を駆使した情報デザインプロジェクト",
-    shortDescription: "情報編集と図版構成によるナレッジデザイン",
+    shortDescription: "千夜千冊絶筆篇更新中！",
     objectives: [
       "複雑な情報を視覚的に整理し、理解しやすい形に編集",
       "多様な知識領域を横断する編集的思考の実践",
@@ -208,7 +208,7 @@ const EXPERIENCE_DATA: Experience[] = [
     tags: ['ハードウェア', 'ソフトウェア', 'IoT', 'プロダクト開発'],
 
     description: "革新的なIoTデバイスの開発プロジェクト。ハードウェアとソフトウェアを統合した包括的なソリューション",
-    shortDescription: "次世代IoTデバイスの企画・開発",
+    shortDescription: "ワクワクするものを作りたい",
     objectives: [
       "ユーザー中心のハードウェア設計",
       "シームレスなソフトウェア統合",

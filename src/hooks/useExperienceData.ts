@@ -35,7 +35,7 @@ export function useExperienceData() {
       const formatLocalizedPeriod = (periodData: {
         start: { year: number; month: number; day: number }
         end: { year: number; month: number; day: number }
-      }) => {
+      }, isOngoing: boolean) => {
         const { start, end } = periodData
 
         // Check if we're in English mode (use language directly)
@@ -71,6 +71,12 @@ export function useExperienceData() {
           return `${year}年${monthName}月${day}日`
         }
 
+        if (isOngoing) {
+          const startFormatted = formatMonth(start.month, start.year)
+          const dateTo = isEnglish ? ' - ' : '〜'
+          return `${startFormatted}${dateTo}`
+        }
+
         if (start.year === end.year && start.month === end.month && start.day === end.day) {
           return formatDateWithDay(start.day, start.month, start.year)
         }
@@ -86,9 +92,11 @@ export function useExperienceData() {
         return `${startFormatted}${dateTo}${endFormatted}`
       }
 
+      const isOngoing = exp.status === 'ongoing'
+
       return {
         ...exp,
-        displayDate: formatLocalizedPeriod(period)
+        displayDate: formatLocalizedPeriod(period, isOngoing)
       }
     })
   }, [t, language])

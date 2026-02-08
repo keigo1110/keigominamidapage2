@@ -158,12 +158,12 @@ export const ja = {
     experience4Link3: '教室の様子',
 
     // 新規経歴
-    experience5: '1000sen team',
+    experience5: 'センセン隊',
     experience5Description: '図版構成・編集',
     experience5Date: '2025年5月 - 2025年12月',
     experience5Link1: '千夜千冊',
     experience6: '4ZIGEN',
-    experience6Description: 'ハードウェア・ソフトウェア開発',
+    experience6Description: 'アイデアを実装する',
     experience6Date: '2024年5月 - 2025年12月',
     experience6Link1: '4ZIGEN公式サイト',
     experienceBirthTitle: '生誕',
