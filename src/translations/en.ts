@@ -125,6 +125,8 @@ In the future where informatization progresses, what we face is whether to be sw
     oProject4Description: 'Generate timelines from Excel',
     oProject5: '4ZIGEN Website',
     oProject5Description: 'A website I created to introduce projects produced by 4ZIGEN. As a "homepage geinin," it is an oogiri-style page that highlights the distinctive features of each project.',
+    oProject6: 'Rekimoto Lab Research Chronicle',
+    oProject6Description: 'An interactive archive that lets you explore representative research from Rekimoto Laboratory as a zoomable, pannable map-like timeline. OCR-powered search allows you to jump instantly to topics of interest and grasp the flow and interconnections of projects at a glance.',
     link4zigenSite: '4ZIGEN Official Site',
     demo: 'Demo',
     usageGuide: 'Usage Guide',

@@ -91,6 +91,16 @@ export function OtherProjectsSection() {
         { icon: <FaExternalLinkAlt />, text: t('artwork7Title'), url: 'https://protozoahp.vercel.app/' },
         { icon: <FaExternalLinkAlt />, text: t('artwork8Title'), url: 'https://keigo1110.github.io/edgeofbubbles/' }
       ]
+    },
+    {
+      id: 'rkmt-chronicle',
+      title: t('oProject6'),
+      description: t('oProject6Description'),
+      image: "/images/rkmt-chronicle.png",
+      aspectRatio: '2/1',
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('visitProjectWebsite'), url: 'https://rkmt-chronicle-viewer.vercel.app/' }
+      ]
     }
   ], [t])
 

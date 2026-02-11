@@ -125,6 +125,8 @@ export const ja = {
     oProject4Description: 'Excelから年表を生成する',
     oProject5: '4ZIGENのHP',
     oProject5Description: '4ZIGENの制作プロジェクトを紹介するホームページです。ホームページ芸人として、各プロジェクトの特徴を活かした大喜利形式で構成しています。',
+    oProject6: '暦本研の研究年表',
+    oProject6Description: '暦本研究室の代表的な研究を、地図のように拡大・移動しながら年表として俯瞰できるインタラクティブなアーカイブです。OCR検索により関心のあるテーマへ即座にジャンプでき、研究の流れと相互関係を直感的に理解できます。',
     link4zigenSite: '4ZIGEN公式サイト',
     demo: 'デモ',
     usageGuide: '使用ガイド',
