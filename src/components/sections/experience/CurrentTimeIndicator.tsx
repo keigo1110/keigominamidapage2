@@ -72,18 +72,17 @@ export function CurrentTimeIndicator({
     }
   }, [currentTime, timelineBounds, experiences])
 
-  // プロジェクト情報の幅分を考慮した位置調整
-  const projectInfoWidthPercent = 25
-  const adjustedPosition = projectInfoWidthPercent + (currentTimeData.position * (100 - projectInfoWidthPercent) / 100)
+  // 縦軸用の位置調整（上が現在、下が過去）
+  const adjustedPosition = Math.max(0, Math.min(100, 100 - currentTimeData.position))
 
   return (
     <motion.div
-      className="absolute top-0 bottom-0 z-40 pointer-events-none"
-      style={{ left: `${adjustedPosition}%` }}
-      initial={{ opacity: 0, scaleY: 0 }}
+      className="absolute left-0 right-0 z-40 pointer-events-none"
+      style={{ top: `${adjustedPosition}%` }}
+      initial={{ opacity: 0, scaleX: 0 }}
       animate={{
         opacity: 1,
-        scaleY: 1
+        scaleX: 1
       }}
       transition={{
         duration: 0.6,
@@ -93,9 +92,9 @@ export function CurrentTimeIndicator({
     >
       {/* 現在時刻ラベル */}
       <motion.div
-        className="absolute -top-16 left-1/2 -translate-x-1/2 px-3 py-2 rounded-lg bg-red-900/90 border-red-700/50 border backdrop-blur-sm shadow-lg min-w-max"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="absolute -left-2 -translate-x-full -translate-y-1/2 px-3 py-2 rounded-lg bg-red-900/90 border-red-700/50 border backdrop-blur-sm shadow-lg min-w-max"
+        initial={{ opacity: 0, x: 10 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4, delay: 1.2 }}
       >
         <div className="flex items-center gap-2 text-xs">
@@ -114,25 +113,18 @@ export function CurrentTimeIndicator({
         )}
       </motion.div>
 
-      {/* 垂直線 */}
-      <div className="absolute top-4 bottom-4 w-0.5 bg-gradient-to-b from-red-400 via-red-500 to-red-600 shadow-lg opacity-90"
-           style={{ left: '-1px' }} />
+      {/* 横ライン */}
+      <div className="absolute left-6 right-0 h-0.5 bg-gradient-to-r from-red-400 via-red-500 to-red-600 shadow-lg opacity-90"
+           style={{ top: '-1px' }} />
 
       {/* グロー効果 */}
-      <div className="absolute top-4 bottom-4 w-1 bg-red-500/30 blur-sm"
-           style={{ left: '-2px' }} />
+      <div className="absolute left-6 right-0 h-1 bg-red-500/30 blur-sm"
+           style={{ top: '-2px' }} />
 
-      {/* 上部のドット */}
+      {/* 左端のドット */}
       <motion.div
-        className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-red-500 rounded-full shadow-lg border-2 border-white"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.3, delay: 1.0 }}
-      />
-
-      {/* 下部のドット */}
-      <motion.div
-        className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-red-500 rounded-full shadow-lg border-2 border-white"
+        className="absolute left-6 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-red-500 rounded-full shadow-lg border-2 border-white"
+        style={{ top: 0 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3, delay: 1.0 }}
@@ -140,7 +132,8 @@ export function CurrentTimeIndicator({
 
       {/* パルスエフェクト */}
       <motion.div
-        className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-red-500/40 rounded-full"
+        className="absolute left-6 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-red-500/40 rounded-full"
+        style={{ top: 0 }}
         animate={{
           scale: currentTimeData.hasOngoingProjects ? [1, 2.5, 1] : [1, 2, 1],
           opacity: currentTimeData.hasOngoingProjects ? [0.6, 0, 0.6] : [0.4, 0, 0.4]
@@ -155,7 +148,8 @@ export function CurrentTimeIndicator({
       {/* 進行中プロジェクトがある場合の追加エフェクト */}
       {currentTimeData.hasOngoingProjects && (
         <motion.div
-          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-orange-500/40 rounded-full"
+          className="absolute left-6 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-orange-500/40 rounded-full"
+          style={{ top: 0 }}
           animate={{
             scale: [1, 2, 1],
             opacity: [0.3, 0, 0.3]

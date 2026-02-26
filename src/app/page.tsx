@@ -1,11 +1,11 @@
-import { SSRContent } from "@/components/SSRContent"
-import Portfolio from "@/components/portfolio"
+import { HomeSection } from '@/components/sections/HomeSection'
+import { ProjectsSection } from '@/components/sections/ProjectsSection'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <SSRContent />
-      <Portfolio />
+      <HomeSection />
+      <ProjectsSection />
     </>
   );
 }

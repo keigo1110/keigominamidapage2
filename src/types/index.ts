@@ -1,5 +1,21 @@
 // Section types
-export type SectionType = "home" | "projects" | "artwork" | "startup" | "experience" | "awards" | "contact";
+export type SectionType = "home" | "projects" | "artwork" | "startup" | "otherProjects" | "experience" | "awards" | "contact";
+
+// Page route types
+export type PageRoute = 'home' | 'startup' | 'artwork' | 'experience';
+
+export interface NavItem {
+  key: PageRoute;
+  href: string;
+  labelKey: string;
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  { key: 'home', href: '/', labelKey: 'home' },
+  { key: 'startup', href: '/startup', labelKey: 'startup' },
+  { key: 'artwork', href: '/artwork', labelKey: 'works' },
+  { key: 'experience', href: '/experience', labelKey: 'experience' },
+];
 
 // Card component props
 export interface ProjectCardProps {
@@ -47,6 +63,8 @@ export interface SocialLink {
   icon: React.ComponentType<{ className?: string }>;
   url: string;
   style: string;
+  /** Tailwind class for icon on hover (e.g. group-hover:text-[#E4405F]). Uses theme blue if omitted. */
+  hoverColorClass?: string;
 }
 
 // Project data types

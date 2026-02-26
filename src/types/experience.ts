@@ -92,7 +92,8 @@ export interface Experience {
   priority: 'critical' | 'high' | 'medium' | 'low'
 
   // カテゴリとグループ
-  category: 'exhibition' | 'startup' | 'research' | 'commercial' | 'academic' | 'education' | 'volunteer'
+  category: 'exhibition' | 'startup' | 'research' | 'commercial' | 'academic' | 'education' | 'volunteer' | 'origin'
+  track: 'personal' | 'social' | 'community'
   projectGroup?: string
   tags?: string[]
 

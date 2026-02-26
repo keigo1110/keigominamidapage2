@@ -32,6 +32,15 @@ export interface ProjectPosition {
   isOngoing: boolean
 }
 
+export interface VerticalProjectPosition {
+  experience: ProcessedExperience
+  topPercent: number
+  heightPercent: number
+  progress: number
+  isActive: boolean
+  isOngoing: boolean
+}
+
 /**
  * タイムライン境界計算
  */
@@ -140,6 +149,38 @@ export function calculateProjectPosition(
   return {
     leftPercent,
     widthPercent,
+    progress,
+    isActive
+  }
+}
+
+/**
+ * 縦型タイムライン用の位置計算
+ */
+export function calculateProjectVerticalPosition(
+  experience: ProcessedExperience,
+  bounds: TimelineBounds
+): {
+  topPercent: number
+  heightPercent: number
+  progress: number
+  isActive: boolean
+} {
+  const totalTime = bounds.endDate.getTime() - bounds.startDate.getTime()
+  const projectStart = experience.startDate.getTime() - bounds.startDate.getTime()
+  const projectDuration = experience.endDate.getTime() - experience.startDate.getTime()
+
+  const rawPosition = totalTime === 0 ? 0 : (projectStart / totalTime) * 100
+  // 上が「現在」、下が「過去」になるように反転
+  const topPercent = Math.max(0, Math.min(100, 100 - rawPosition))
+  const heightPercent = Math.max(1, totalTime === 0 ? 1 : (projectDuration / totalTime) * 100)
+
+  const progress = DateUtils.getProgress(experience.startDate, experience.endDate)
+  const isActive = DateUtils.isCurrentlyActive(experience.startDate, experience.endDate)
+
+  return {
+    topPercent,
+    heightPercent,
     progress,
     isActive
   }

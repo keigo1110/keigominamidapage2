@@ -1,56 +1,104 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub, FaPencilAlt } from 'react-icons/fa'
+import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub } from 'react-icons/fa'
+import { SiQiita } from 'react-icons/si'
 import { useTranslation } from '../../contexts/TranslationContext'
+import { useTheme } from '../../contexts/ThemeContext'
 import { SocialLink } from '../../types'
-// import {
-//   GlassmorphismHome,
-//   BrutalistHome,
-//   MinimalistHome,
-//   CyberpunkHome,
-//   MagazineHome,
-//   RetroSynthwaveHome,
-//   LuxuryPremiumHome,
-//   OrganicBiomorphicHome
-// } from './HomeSectionVariants'
+
+/** SNSアイコン用アニメーションパターン（入場＋ホバー/タップ） */
+interface SocialIconAnimationPattern {
+  initial: { opacity: number; y?: number; scale?: number; rotate?: number }
+  animate: { opacity: number; y?: number; scale?: number; rotate?: number }
+  transition: { duration: number; delay?: number }
+  whileHover: { y?: number; scale?: number; rotate?: number }
+  whileTap: { scale: number }
+}
+
+const SOCIAL_ICON_ANIMATION_PATTERNS: SocialIconAnimationPattern[] = [
+  {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: 0.1 },
+    whileHover: { y: -2 },
+    whileTap: { scale: 0.95 },
+  },
+  {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.4, delay: 0.05 },
+    whileHover: { scale: 1.08 },
+    whileTap: { scale: 0.98 },
+  },
+  {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: 0.08 },
+    whileHover: { y: -3, scale: 1.02 },
+    whileTap: { scale: 0.97 },
+  },
+  {
+    initial: { opacity: 0.6, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.6, delay: 0.06 },
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.95 },
+  },
+  {
+    initial: { opacity: 0, y: 16, rotate: -2 },
+    animate: { opacity: 1, y: 0, rotate: 0 },
+    transition: { duration: 0.45, delay: 0.07 },
+    whileHover: { y: -2, rotate: 2 },
+    whileTap: { scale: 0.96 },
+  },
+]
+
+const DEFAULT_SOCIAL_ANIMATION_PATTERN = SOCIAL_ICON_ANIMATION_PATTERNS[0] as SocialIconAnimationPattern;
+
+const TextIcon = ({ letter, className }: { letter: string; className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
+    <text x="12" y="18" fontSize="20" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif" textAnchor="middle">{letter}</text>
+  </svg>
+)
+const NoteIcon = ({ className }: { className?: string }) => <TextIcon letter="n" className={className} />
+const ProtoPediaIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 34 24" fill="currentColor" className={className} width="1em" height="1em">
+    <text x="1" y="19" fontSize="18" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif">P</text>
+    <text x="13" y="12" fontSize="8" fontWeight="700" fontFamily="'Helvetica Neue', Arial, sans-serif">roto</text>
+    <text x="13" y="21" fontSize="8" fontWeight="700" fontFamily="'Helvetica Neue', Arial, sans-serif">edia</text>
+  </svg>
+)
 
 const socialLinks: SocialLink[] = [
-  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "bg-blue-500 hover:bg-blue-600 text-white shadow-blue-500/25" },
-  { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-blue-500/25" },
-  { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/25" },
-  { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "bg-blue-700 hover:bg-blue-800 text-white shadow-blue-700/25" },
-  { icon: FaGithub, url: "https://github.com/keigo1110", style: "dynamic" }, // Style will be set dynamically
-  { icon: FaPencilAlt, url: "https://qiita.com/keigo1110", style: "bg-green-500 hover:bg-green-600 text-white shadow-green-500/25" }
+  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "default", hoverColorClass: "group-hover:text-[#1DA1F2]" },
+  { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "default", hoverColorClass: "group-hover:text-[#E4405F]" },
+  { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "default", hoverColorClass: "group-hover:text-[#0A66C2]" },
+  { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "default", hoverColorClass: "group-hover:text-[#1877F2]" },
+  { icon: FaGithub, url: "https://github.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#8b949e]" },
+  { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#55C500]" },
+  { icon: NoteIcon, url: "https://note.com/namida1110", style: "default", hoverColorClass: "group-hover:text-[#2CB696]" },
+  { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" }
 ];
 
-// Array of all design variants (commented out for future use)
-// const HOME_VARIANTS = [
-//   GlassmorphismHome,
-//   BrutalistHome,
-//   MinimalistHome,
-//   CyberpunkHome,
-//   MagazineHome,
-//   RetroSynthwaveHome,
-//   LuxuryPremiumHome,
-//   OrganicBiomorphicHome,
-//   DefaultHome // We'll keep the original as one of the options
-// ];
-
-// Original Home Section as Default
 function DefaultHome() {
   const { t } = useTranslation();
-  const isDark = true; // ダークモード固定
+  const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState(0);
+  const [socialAnimationIndex, setSocialAnimationIndex] = useState(0);
+
+  useEffect(() => {
+    setSocialAnimationIndex(Math.floor(Math.random() * SOCIAL_ICON_ANIMATION_PATTERNS.length));
+  }, []);
 
   const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
 
   const statementTabs = [
     { id: 0, label: t('statementTab1'), content: t('statement') },
-    { id: 1, label: t('statementTab2'), content: t('statement2') },
-    { id: 2, label: t('statementTab3'), content: t('statement3') }
+    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
+    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
   ];
 
   return (
@@ -62,29 +110,15 @@ function DefaultHome() {
           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
           className="w-full lg:w-1/3 mb-8 lg:mb-0 relative flex justify-center"
         >
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
-            <motion.div
-              className={`absolute inset-0 bg-gradient-to-r ${isDark ? 'from-blue-400 to-blue-600' : 'from-blue-400 to-blue-500'} rounded-full blur-2xl opacity-30`}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-lg">
+            <Image
+              src="/images/myface.jpg"
+              alt={t('profileAlt')}
+              fill
+              sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
+              className="object-cover"
+              priority
             />
-            <div className="relative w-full h-full">
-              <Image
-                src="/images/myface.jpg"
-                alt={t('profileAlt')}
-                fill
-                sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
-                className={`rounded-full shadow-2xl object-cover border-4 ${isDark ? 'border-blue-400/30' : 'border-blue-300/50'}`}
-                priority
-              />
-            </div>
           </div>
         </motion.div>
 
@@ -95,7 +129,9 @@ function DefaultHome() {
           className="w-full lg:w-2/3 lg:pl-8 xl:pl-12 text-center lg:text-left"
         >
           <motion.h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r ${isDark ? 'from-blue-400 via-blue-500 to-blue-600' : 'from-blue-600 via-blue-700 to-blue-800'} bg-clip-text text-transparent leading-tight`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 sm:mb-6 leading-tight ${
+              isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+            }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -103,37 +139,37 @@ function DefaultHome() {
             {t('name')}
           </motion.h1>
 
-          <motion.p
-            className={`text-lg sm:text-xl mb-6 sm:mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            {t('roll')}
-          </motion.p>
-
           <motion.div
             className="mb-6 sm:mb-8 space-y-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             <a
               href="https://www.iii.u-tokyo.ac.jp/"
-              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 focus:ring-blue-400/50 rounded-lg px-2 py-1 inline-block`}
+              className={`transition-colors block text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
+                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
+              }`}
               target="_blank"
               rel="noopener noreferrer"
             >
               {t('school')}
             </a>
-            <a
-              href="https://lab.rekimoto.org/"
-              className={`${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'} transition-colors block text-base sm:text-lg font-medium focus:outline-none focus:ring-4 focus:ring-blue-400/50 rounded-lg px-2 py-1 inline-block`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('Lab')}
-            </a>
+            <div className="flex items-center gap-2 flex-wrap">
+              <a
+                href="https://lab.rekimoto.org/"
+                className={`transition-colors text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
+                  isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('Lab')}
+              </a>
+              <span className="text-base sm:text-lg text-[#86868B]">
+                {t('roll')}
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
@@ -143,25 +179,34 @@ function DefaultHome() {
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             {socialLinks.map((social, index) => {
-              const style = social.style === 'dynamic'
-                ? `${isDark ? 'bg-gray-800 hover:bg-gray-700 text-white shadow-gray-800/25' : 'bg-gray-900 hover:bg-gray-800 text-white shadow-gray-900/25'}`
-                : social.style;
-
+              const defaultHover = isDark ? 'group-hover:text-[#2997FF]' : 'group-hover:text-[#0071E3]';
+              const iconHoverClass = social.hoverColorClass ?? defaultHover;
+              const patternIndex = Math.min(
+                Math.max(0, socialAnimationIndex),
+                SOCIAL_ICON_ANIMATION_PATTERNS.length - 1
+              );
+              const pattern =
+                SOCIAL_ICON_ANIMATION_PATTERNS[patternIndex] ?? DEFAULT_SOCIAL_ANIMATION_PATTERN;
+              const staggerDelay = (pattern.transition.delay ?? 0) + index * 0.08;
               return (
                 <motion.a
                   key={index}
                   href={social.url}
-                  className={`p-3 sm:p-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${style}`}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
+                  className={`group p-3 sm:p-4 rounded-xl transition-all duration-300 outline-none ${
+                    isDark
+                      ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B]'
+                      : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B]'
+                  }`}
+                  initial={pattern.initial}
+                  animate={pattern.animate}
+                  transition={{ duration: pattern.transition.duration, delay: 1.3 + staggerDelay }}
+                  whileHover={pattern.whileHover}
+                  whileTap={pattern.whileTap}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visit ${social.url.split('/').pop() || social.url} profile`}
                 >
-                  <social.icon className="text-lg sm:text-xl" />
+                  <social.icon className={`text-lg sm:text-xl transition-colors duration-300 ${iconHoverClass}`} />
                 </motion.a>
               );
             })}
@@ -173,16 +218,22 @@ function DefaultHome() {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="space-y-6"
           >
-            <div className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-4 sm:p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}>
+            <div className={`rounded-2xl p-4 sm:p-6 ${
+              isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
+            }`}>
               <div className="flex flex-wrap gap-2 mb-4">
                 {statementTabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-4 focus:ring-blue-400/50 ${
+                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base outline-none ${
                       activeTab === tab.id
-                        ? `${isDark ? 'bg-blue-500 text-white' : 'bg-blue-600 text-white'} shadow-lg`
-                        : `${isDark ? 'bg-slate-700/50 text-gray-300 hover:bg-slate-700' : 'bg-gray-200/50 text-gray-600 hover:bg-gray-300'}`
+                        ? isDark
+                          ? 'bg-[#2997FF] text-white shadow-lg'
+                          : 'bg-[#0071E3] text-white shadow-lg'
+                        : isDark
+                          ? 'bg-[#2C2C2E] text-[#86868B] hover:text-[#F5F5F7]'
+                          : 'bg-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]'
                     }`}
                   >
                     {tab.label}
@@ -194,7 +245,9 @@ function DefaultHome() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`text-sm sm:text-base lg:text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'} leading-relaxed max-h-96 overflow-y-auto`}
+                className={`text-sm sm:text-base lg:text-lg leading-relaxed max-h-96 overflow-y-auto ${
+                  isDark ? 'text-[#86868B]' : 'text-[#86868B]'
+                }`}
               >
                 {statementTabs[activeTab]?.content.split('\n').map((paragraph, index) => (
                   <p key={index} className="mb-4 last:mb-0">
@@ -209,9 +262,13 @@ function DefaultHome() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.7 }}
-              className={`${isDark ? 'bg-slate-800/40' : 'bg-white/40'} backdrop-blur-sm rounded-2xl p-4 sm:p-6 border ${isDark ? 'border-blue-500/20' : 'border-blue-200/30'} shadow-lg`}
+              className={`rounded-2xl p-4 sm:p-6 ${
+                isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
+              }`}
             >
-              <h3 className={`text-lg sm:text-xl font-semibold mb-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+              <h3 className={`text-lg sm:text-xl font-semibold mb-4 ${
+                isDark ? 'text-[#2997FF]' : 'text-[#0071E3]'
+              }`}>
                 {t('interests')}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -219,9 +276,13 @@ function DefaultHome() {
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.02, x: 4 }}
-                    className={`p-3 rounded-lg transition-all duration-300 ${isDark ? 'bg-slate-700/50 hover:bg-slate-700' : 'bg-gray-200/50 hover:bg-gray-300'}`}
+                    className={`p-3 rounded-lg transition-all duration-300 ${
+                      isDark ? 'bg-[#2C2C2E] hover:bg-[#333336]' : 'bg-[#E8E8ED] hover:bg-[#D2D2D7]'
+                    }`}
                   >
-                    <span className={`text-sm sm:text-base ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <span className={`text-sm sm:text-base ${
+                      isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                    }`}>
                       {interest}
                     </span>
                   </motion.div>
@@ -235,19 +296,6 @@ function DefaultHome() {
   );
 }
 
-// Switch to render a random variant (or keep using DefaultHome)
 export function HomeSection() {
-  // For now, we'll use the DefaultHome.
-  // You can uncomment the lines below to enable random variants
-
-  // const [selectedVariant, setSelectedVariant] = useState(0);
-
-  // useEffect(() => {
-  //   setSelectedVariant(Math.floor(Math.random() * HOME_VARIANTS.length));
-  // }, []);
-
-  // const SelectedHomeComponent = HOME_VARIANTS[selectedVariant];
-  // return <SelectedHomeComponent />;
-
   return <DefaultHome />;
 }
