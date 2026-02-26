@@ -127,6 +127,7 @@ export function SSRContent() {
           <a href="https://www.instagram.com/namida1110/">Instagram</a>
           <a href="https://www.linkedin.com/in/keigominamida/">LinkedIn</a>
           <a href="https://github.com/keigo1110">GitHub</a>
+          <a href="https://sora.chatgpt.com/profile/namida1110">Sora</a>
         </nav>
       </footer>
     </div>

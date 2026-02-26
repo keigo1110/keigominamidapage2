@@ -63,6 +63,12 @@ const TextIcon = ({ letter, className }: { letter: string; className?: string })
     <text x="12" y="18" fontSize="20" fontWeight="800" fontFamily="'Helvetica Neue', Arial, sans-serif" textAnchor="middle">{letter}</text>
   </svg>
 )
+const SoraIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
+    <circle cx="12" cy="12" r="4" />
+  </svg>
+)
 const NoteIcon = ({ className }: { className?: string }) => <TextIcon letter="n" className={className} />
 const ProtoPediaIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 34 24" fill="currentColor" className={className} width="1em" height="1em">
@@ -80,7 +86,8 @@ const socialLinks: SocialLink[] = [
   { icon: FaGithub, url: "https://github.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#8b949e]" },
   { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#55C500]" },
   { icon: NoteIcon, url: "https://note.com/namida1110", style: "default", hoverColorClass: "group-hover:text-[#2CB696]" },
-  { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" }
+  { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" },
+  { icon: SoraIcon, url: "https://sora.chatgpt.com/profile/namida1110", style: "default", hoverColorClass: "group-hover:text-[#10A37F]" }
 ];
 
 function DefaultHome() {

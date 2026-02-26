@@ -43,6 +43,7 @@ export function StructuredData() {
       'https://github.com/keigo1110',
       'https://qiita.com/keigo1110',
       'https://note.com/namida1110',
+      'https://sora.chatgpt.com/profile/namida1110',
     ],
     email: 'mkeigo1110@gmail.com',
     hasOccupation: {
