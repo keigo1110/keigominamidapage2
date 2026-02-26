@@ -175,6 +175,9 @@ In the future where informatization progresses, what we face is whether to be sw
     experienceBirthDescription: 'Born in Osaka, Japan',
 
     // Education
+    edu0Institution: 'The University of Tokyo',
+    edu0Department: 'Integrated Analysis of Information Course, Graduate School of Interdisciplinary Information Studies',
+    edu0Note: 'Ishiguro Laboratory (Supervisor: Associate Prof. Yoshio Ishiguro)',
     edu1Institution: 'The University of Tokyo',
     edu1Department: 'Applied Computer Science Course, Graduate School of Interdisciplinary Information Studies',
     edu1Note: 'Laboratoire Révolutionnaire et Romantique, (Human Augmentation Lab.) (Supervisor: Prof. Jun Rekimoto)',
@@ -192,10 +195,15 @@ In the future where informatization progresses, what we face is whether to be sw
     award3no1: '律相院賞',
     award3no2: '析匠賞',
     award3no3: ' from ISIS editing school 15th[離] (November, 2022)',
-    award4no1: 'The Grand Prize and the \"Hosii-ne\" Award ',
+    award4no1: 'The Grand Prize and the "Hosii-ne" Award',
     award4no2: 'from GUGEN2024 [',
     award4no3: '4ZIGEN',
     award4no4: '] (December, 2024)',
+    awardBestPresentation: 'Best Presentation Award',
+    awardBestPresentationOrg: 'Kindai University, Faculty of Science and Engineering, Dept. of Mechanical Engineering',
+    awardAlumni: 'Alumni President Award',
+    awardAlumniOrg: 'Kindai University Alumni Association',
+    awardIsisOrg: 'ISIS Editorial School 15th [離]',
     contact: 'Contact',
 
     // Missing translations

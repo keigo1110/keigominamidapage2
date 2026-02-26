@@ -175,6 +175,9 @@ export const ja = {
     experienceBirthDescription: '大阪で生まれる',
 
     // 学歴
+    edu0Institution: '東京大学大学院',
+    edu0Department: '学際情報学府 総合分析情報学コース',
+    edu0Note: '石黒研究室（指導教員: 石黒祥生 准教授）',
     edu1Institution: '東京大学大学院',
     edu1Department: '学際情報学府 総合分析情報学コース',
     edu1Note: '革命的ロマン的研究室（ヒューマンオーグメンテーション研究室）（指導教員: 暦本純一 教授）',
@@ -196,6 +199,11 @@ export const ja = {
     award4no2: ' GUGEN2024 [',
     award4no3: '4ZIGEN',
     award4no4: '] (2024年12月)',
+    awardBestPresentation: 'ベストプレゼンテーション賞',
+    awardBestPresentationOrg: '近畿大学 理工学部 機械工学科 卒業研究発表会',
+    awardAlumni: '校友会長賞',
+    awardAlumniOrg: '近畿大学 校友会',
+    awardIsisOrg: 'イシス編集学校 15季[離]',
     contact: 'お問い合わせ',
 
     // Missing translations

@@ -3,50 +3,61 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
+import type { ReactNode } from 'react'
+
+interface Award {
+  date: string
+  content: ReactNode
+  org: string
+}
 
 export function AwardsSection() {
   const { t } = useTranslation()
   const { isDark } = useTheme()
 
-  const awards = [
+  const linkClass = `${isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'} underline-offset-4 hover:underline transition-colors`
+
+  const awards: Award[] = [
     {
-      year: '2024',
+      date: '2024.12',
       content: (
         <>
-          <a href="https://gugen.jp/result/2024.html" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
+          <a href="https://gugen.jp/result/2024.html" className={linkClass}>
             {t('award4no1')}
           </a>
-          {t('award4no2')}
-          <a href="https://4zigenhp.vercel.app/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
+          <span className="text-[#86868B] mx-1">—</span>
+          <a href="https://4zigenhp.vercel.app/" className={linkClass}>
             {t('award4no3')}
           </a>
-          {t('award4no4')}
         </>
-      )
+      ),
+      org: 'GUGEN2024',
     },
     {
-      year: '2024',
-      content: t('award1')
+      date: '2024.03',
+      content: t('awardBestPresentation'),
+      org: t('awardBestPresentationOrg'),
     },
     {
-      year: '2024',
-      content: t('award2')
+      date: '2024.03',
+      content: t('awardAlumni'),
+      org: t('awardAlumniOrg'),
     },
     {
-      year: '2022',
+      date: '2022.11',
       content: (
         <>
-          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
+          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={linkClass}>
             {t('award3no1')}
           </a>
           ・
-          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={`${isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'} underline-offset-4 hover:underline transition-colors`}>
+          <a href="https://edist.ne.jp/just/80kanmon-15ri-tokubetsusho/" className={linkClass}>
             {t('award3no2')}
           </a>
-          {t('award3no3')}
         </>
-      )
-    }
+      ),
+      org: t('awardIsisOrg'),
+    },
   ]
 
   return (
@@ -87,18 +98,23 @@ export function AwardsSection() {
                 isDark ? 'border-[#333336]' : 'border-[#D2D2D7]'
               }`}>
                 <motion.div
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 md:w-44"
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span className="text-sm font-light text-[#86868B]">
-                    {award.year}
+                    {award.date}
                   </span>
                 </motion.div>
-                <div className={`flex-1 text-base leading-relaxed ${
-                  isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-                }`}>
-                  {award.content}
+                <div className="flex-1">
+                  <p className={`text-base leading-relaxed ${
+                    isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                  }`}>
+                    {award.content}
+                  </p>
+                  <p className="text-sm text-[#86868B] mt-1">
+                    {award.org}
+                  </p>
                 </div>
               </div>
             </motion.div>

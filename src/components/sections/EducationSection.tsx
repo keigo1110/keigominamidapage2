@@ -20,6 +20,12 @@ export function EducationSection() {
 
   const educations: Education[] = [
     {
+      period: '2026.04 -',
+      institutionKey: 'edu0Institution',
+      departmentKey: 'edu0Department',
+      noteKey: 'edu0Note',
+    },
+    {
       period: '2024.04 - 2026.03',
       institutionKey: 'edu1Institution',
       departmentKey: 'edu1Department',
@@ -73,7 +79,7 @@ export function EducationSection() {
                 isDark ? 'border-[#333336]' : 'border-[#D2D2D7]'
               }`}>
                 <motion.div
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 md:w-44"
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
