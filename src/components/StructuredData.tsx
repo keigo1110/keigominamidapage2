@@ -136,6 +136,23 @@ export function StructuredData() {
   const researchWorksSchema = [
     {
       '@type': 'ScholarlyArticle',
+      name: 'Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity',
+      description:
+        'Human Jump Augmentation through Wearable Apparent Reduced Gravity',
+      author: [
+        { '@type': 'Person', name: 'Yuto Nakamura' },
+        { '@id': `${BASE}/#person` },
+        { '@type': 'Person', name: 'Masanobu Kanazawa' },
+        { '@type': 'Person', name: 'Koya Dendo' },
+        { '@type': 'Person', name: 'Jun Rekimoto' },
+      ],
+      publisher: 'Augmented Humans 2026',
+      url: 'https://doi.org/10.1145/3795011.3795034',
+      datePublished: '2026',
+      about: ['Augmented Humans', 'Wearable', 'Jump Augmentation'],
+    },
+    {
+      '@type': 'ScholarlyArticle',
       name: 'Incremental Gaussian Splatting',
       description:
         'Gradual 3D Reconstruction from a Monocular Camera Following Physical World Changes',

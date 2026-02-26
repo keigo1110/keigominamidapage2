@@ -54,6 +54,7 @@ In the future where informatization progresses, what we face is whether to be sw
     department: 'Bachelor of Engineering, Mechanical Engineering, Kindai University',
 
     // Research Projects
+    augmentedLeapDescription: 'Augmenting human jumps with thrust',
     IGSDescription: 'System for gradual 3D reconstruction from monocular camera adapting to real-world changes',
     recertifDescription: 'System that enables checking robot work status by simply looking towards the robot',
     fstlDescription: 'Improvements to pruning techniques (Slide created by Fujisaki)',
@@ -127,6 +128,8 @@ In the future where informatization progresses, what we face is whether to be sw
     oProject5Description: 'A website I created to introduce projects produced by 4ZIGEN. As a "homepage geinin," it is an oogiri-style page that highlights the distinctive features of each project.',
     oProject6: 'Rekimoto Lab Research Chronicle',
     oProject6Description: 'An interactive archive that lets you explore representative research from Rekimoto Laboratory as a zoomable, pannable map-like timeline. OCR-powered search allows you to jump instantly to topics of interest and grasp the flow and interconnections of projects at a glance.',
+    oProject7: 'LexiAtlas',
+    oProject7Description: 'Select a word in text to instantly retrieve dictionary definitions, thesaurus entries, multilingual translations, and etymology',
     link4zigenSite: '4ZIGEN Official Site',
     demo: 'Demo',
     usageGuide: 'Usage Guide',

@@ -18,6 +18,20 @@ export function PublicationsSection() {
   const publications: Publication[] = [
     {
       authors: [
+        { name: 'Yuto Nakamura' },
+        { name: 'Keigo Minamida', highlight: true },
+        { name: 'Masanobu Kanazawa' },
+        { name: 'Koya Dendo' },
+        { name: 'Jun Rekimoto' },
+      ],
+      title: 'Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity.',
+      venue: 'Augmented Humans 2026',
+      location: 'Okinawa, Japan',
+      date: '2026.03',
+      url: 'https://doi.org/10.1145/3795011.3795034',
+    },
+    {
+      authors: [
         { name: 'Keigo Minamida', highlight: true },
         { name: 'Jun Rekimoto' },
       ],

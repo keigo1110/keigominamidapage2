@@ -12,6 +12,27 @@ export function ProjectsSection() {
 
   const researchProjects = [
     {
+      title: "Augmented Leap",
+      description: t('augmentedLeapDescription'),
+      image: "/images/augmented-leap.png",
+      venue: "Augmented Humans 2026",
+      date: "2026.03",
+      links: [
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://doi.org/10.1145/3795011.3795034'
+        },
+        {
+          type: 'demo',
+          icon: <Video className="w-3.5 h-3.5" />,
+          text: 'Demo (coming soon)',
+          url: '#'
+        }
+      ]
+    },
+    {
       title: "Incremental Gaussian Splatting",
       description: t('IGSDescription'),
       image: "/images/sigasi.jpg",
@@ -23,12 +44,6 @@ export function ProjectsSection() {
           icon: <FileText className="w-3.5 h-3.5" />,
           text: 'Paper',
           url: 'https://doi.org/10.1145/3681756.3697913'
-        },
-        {
-          type: 'venue',
-          icon: <Presentation className="w-3.5 h-3.5" />,
-          text: 'SIGGRAPH Asia',
-          url: 'https://asia.siggraph.org/2024/presentation/?id=pos_232&sess=sess198'
         }
       ]
     },

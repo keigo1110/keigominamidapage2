@@ -54,6 +54,7 @@ export const ja = {
     department: '近畿大学 理工学部 機械工学科 卒業',
 
     // 研究プロジェクト
+    augmentedLeapDescription: '人間の跳躍を推力で拡張する',
     IGSDescription: '現実世界の変化に適応して徐々に3D再構築するためのシステム',
     recertifDescription: 'ロボットの作業状況をロボットの方を向くだけで確認可能なシステム',
     fstlDescription: '枝刈り技術の改善（スライドは藤崎が作成）',
@@ -127,6 +128,8 @@ export const ja = {
     oProject5Description: '4ZIGENの制作プロジェクトを紹介するホームページです。ホームページ芸人として、各プロジェクトの特徴を活かした大喜利形式で構成しています。',
     oProject6: '暦本研の研究年表',
     oProject6Description: '暦本研究室の代表的な研究を、地図のように拡大・移動しながら年表として俯瞰できるインタラクティブなアーカイブです。OCR検索により関心のあるテーマへ即座にジャンプでき、研究の流れと相互関係を直感的に理解できます。',
+    oProject7: 'LexiAtlas',
+    oProject7Description: '文章中の単語を選択して辞書定義・シソーラス・多言語翻訳・語源を即座に取得できる',
     link4zigenSite: '4ZIGEN公式サイト',
     demo: 'デモ',
     usageGuide: '使用ガイド',

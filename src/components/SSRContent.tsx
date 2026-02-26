@@ -17,6 +17,17 @@ export function SSRContent() {
       </section>
 
       <section>
+        <h2>Publications</h2>
+
+        <article>
+          <h3>Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity</h3>
+          <p>Yuto Nakamura, Keigo Minamida, Masanobu Kanazawa, Koya Dendo, Jun Rekimoto</p>
+          <p>Augmented Humans 2026, Okinawa, Japan</p>
+          <a href="https://doi.org/10.1145/3795011.3795034">Paper</a>
+        </article>
+      </section>
+
+      <section>
         <h2>{en.researchProjects}</h2>
 
         <article>
@@ -73,6 +84,17 @@ export function SSRContent() {
         <article>
           <h3>{en.artwork7Title}</h3>
           <p>{en.artwork7Description}</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>{en.otherProjects}</h2>
+
+        <article>
+          <h3>LexiAtlas</h3>
+          <p>Select a word in text to instantly retrieve dictionary definitions, thesaurus entries, multilingual translations, and etymology</p>
+          <a href="https://wordtree-one.vercel.app/">Demo</a>
+          <a href="https://github.com/keigo1110/wordtree">Repository</a>
         </article>
       </section>
 

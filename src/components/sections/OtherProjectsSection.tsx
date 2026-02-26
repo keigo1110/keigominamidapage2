@@ -101,6 +101,17 @@ export function OtherProjectsSection() {
       links: [
         { icon: <FaExternalLinkAlt />, text: t('visitProjectWebsite'), url: 'https://rkmt-chronicle-viewer.vercel.app/' }
       ]
+    },
+    {
+      id: 'lexiatlas',
+      title: t('oProject7'),
+      description: t('oProject7Description'),
+      image: "/images/LexiAtlas.png",
+      aspectRatio: '2/1',
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('demo'), url: 'https://wordtree-one.vercel.app/' },
+        { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/wordtree' }
+      ]
     }
   ], [t])
 
