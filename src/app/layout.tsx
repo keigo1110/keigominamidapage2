@@ -87,22 +87,6 @@ export const metadata: Metadata = {
     description: "Explore the innovative research and creative works of Keigo Minamida, specializing in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Keigo Minamida Portfolio - HCI Research and Creative Technology",
-        type: "image/jpeg"
-      },
-      {
-        url: "/images/og-image-square.jpg",
-        width: 1200,
-        height: 1200,
-        alt: "Keigo Minamida Profile",
-        type: "image/jpeg"
-      }
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -110,7 +94,6 @@ export const metadata: Metadata = {
     description: "Innovative research in Human-Computer Interaction and Augmented Humans at The University of Tokyo.",
     creator: "@keigominamida",
     site: "@keigominamida",
-    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -130,23 +113,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-    languages: {
-      'en': '/en',
-      'ja': '/ja',
-    },
-  },
-  icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#8b5cf6' },
-    ],
   },
   manifest: '/manifest.json',
   other: {
@@ -158,7 +124,6 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-title": "Keigo Minamida",
     "application-name": "Keigo Minamida Portfolio",
     "msapplication-TileColor": "#8b5cf6",
-    "msapplication-config": "/browserconfig.xml"
   }
 };
 
@@ -184,9 +149,6 @@ export default function RootLayout({
         {/* Additional performance hints */}
         <link rel="prefetch" href="/images/myface.jpg" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className={`${inter.className} ${geistMono.variable} font-sans antialiased bg-slate-900 text-white dark`} suppressHydrationWarning>
         <TranslationProvider>

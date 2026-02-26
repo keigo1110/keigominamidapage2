@@ -95,21 +95,5 @@
             "description": "Get in touch with Keigo Minamida",
             "url": "mailto:mkeigo1110@gmail.com"
         }
-    ],
-    "screenshots": [
-        {
-            "src": "/images/screenshot-wide.png",
-            "sizes": "1280x720",
-            "type": "image/png",
-            "form_factor": "wide",
-            "label": "Keigo Minamida Portfolio - Desktop View"
-        },
-        {
-            "src": "/images/screenshot-narrow.png",
-            "sizes": "375x667",
-            "type": "image/png",
-            "form_factor": "narrow",
-            "label": "Keigo Minamida Portfolio - Mobile View"
-        }
     ]
 }

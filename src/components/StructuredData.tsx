@@ -1,5 +1,3 @@
-'use client'
-
 export function StructuredData() {
   // Person Schema for Keigo Minamida
   const personSchema = {
@@ -63,11 +61,7 @@ export function StructuredData() {
       "@id": "https://keigominamida.com/#person"
     },
     "inLanguage": ["en", "ja"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://keigominamida.com/?search={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "copyrightYear": 2024
   };
 
   // Organization Schema for Wakabar K.K.
@@ -146,7 +140,7 @@ export function StructuredData() {
   const awardsSchema = [
     {
       "@context": "https://schema.org",
-      "@type": "Award",
+      "@type": "CreativeWork",
       "name": "GUGEN2024 Grand Prize and Hosii-ne Award",
       "description": "The Grand Prize and the Hosii-ne Award from GUGEN2024 for 4ZIGEN project",
       "recipient": {
