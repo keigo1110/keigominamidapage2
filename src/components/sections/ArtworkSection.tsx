@@ -115,6 +115,7 @@ export function ArtworkSection() {
       title: t('artwork9Title'),
       description: t('artwork9Description'),
       image: "/images/rkmt-archive.png",
+      link: "https://lab.rekimoto.org/2026/02/28/rekimoto-lab-research-archive-2007-2026/",
       year: '2026',
       team: t('artwork9Team'),
       keywords: ['Research', 'Book']
