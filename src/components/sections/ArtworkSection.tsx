@@ -109,6 +109,15 @@ export function ArtworkSection() {
       year: '2024',
       team: '4ZIGEN',
       keywords: ['Transformation', 'Liquid', 'Dynamic Form']
+    },
+    {
+      id: 'rkmt-archive',
+      title: t('artwork9Title'),
+      description: t('artwork9Description'),
+      image: "/images/rkmt-archive.png",
+      year: '2026',
+      team: t('artwork9Team'),
+      keywords: ['Research', 'Book']
     }
   ], [t])
 

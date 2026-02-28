@@ -78,6 +78,9 @@ export const ja = {
     artwork7Description: '触れることで動き出す原生機械生物群',
     artwork8Title: 'Edge of Bubbles',
     artwork8Description: '波打ち際のように揺れ動くシャボン塊',
+    artwork9Title: '暦本研究室 研究収録 2007-2026',
+    artwork9Description: '暦本研究室のすべての研究（405論文）が集録されています',
+    artwork9Team: '暦本研究室',
 
     // 制作プロジェクト共通情報
     artworkTeam: '4ZIGEN',

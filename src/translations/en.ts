@@ -78,6 +78,9 @@ In the future where informatization progresses, what we face is whether to be sw
     artwork7Description: 'Primitive mechanical life forms that animate through tactile interaction',
     artwork8Title: 'Edge of Bubbles',
     artwork8Description: 'A mass of bubbles swaying like the edge of waves',
+    artwork9Title: 'Rekimoto Lab Research Archive 2007-2026',
+    artwork9Description: 'A complete archive of Rekimoto Lab research, containing all 405 papers.',
+    artwork9Team: 'Rekimoto Lab',
 
     // Artwork common information
     artworkTeam: '4ZIGEN',
