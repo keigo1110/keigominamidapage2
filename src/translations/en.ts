@@ -181,6 +181,7 @@ In the future where informatization progresses, what we face is whether to be sw
     edu0Institution: 'The University of Tokyo',
     edu0Department: 'Integrated Analysis of Information Course, Graduate School of Interdisciplinary Information Studies',
     edu0Note: 'Ishiguro Laboratory (Supervisor: Associate Prof. Yoshio Ishiguro)',
+    edu0SpringGx: 'JST Support for Pioneering Research Initiated by the Next Generation (SPRING), The University of Tokyo SPRING GX Project Student',
     edu1Institution: 'The University of Tokyo',
     edu1Department: 'Applied Computer Science Course, Graduate School of Interdisciplinary Information Studies',
     edu1Note: 'Laboratoire Révolutionnaire et Romantique, (Human Augmentation Lab.) (Supervisor: Prof. Jun Rekimoto)',

@@ -24,6 +24,8 @@ export function EducationSection() {
       institutionKey: 'edu0Institution',
       departmentKey: 'edu0Department',
       noteKey: 'edu0Note',
+      note2Key: 'edu0SpringGx',
+      note2LinkUrl: 'https://www.cis-trans.jp/spring_gx/',
     },
     {
       period: '2024.04 - 2026.03',

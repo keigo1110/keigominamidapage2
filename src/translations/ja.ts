@@ -181,6 +181,7 @@ export const ja = {
     edu0Institution: '東京大学大学院',
     edu0Department: '学際情報学府 総合分析情報学コース',
     edu0Note: '石黒研究室（指導教員: 石黒祥生 准教授）',
+    edu0SpringGx: 'JST次世代研究者挑戦的研究プログラム（SPRING）東京大学「グリーントランスフォーメーション（GX）を先導する高度人材育成（SPRING GX）」プロジェクト生',
     edu1Institution: '東京大学大学院',
     edu1Department: '学際情報学府 総合分析情報学コース',
     edu1Note: '革命的ロマン的研究室（ヒューマンオーグメンテーション研究室）（指導教員: 暦本純一 教授）',
