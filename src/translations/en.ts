@@ -20,9 +20,9 @@ export const en = {
 
     // About Me
     name: 'Keigo Minamida',
-    roll: 'Master\'s Student (2nd Year)',
+    roll: 'Doctoral Student (1st Year)',
     school: 'Graduate School of Interdisciplinary Information Studies, The University of Tokyo',
-    Lab: 'Rekimoto Laboratory',
+    Lab: 'Ishiguro Laboratory',
     statement: 'I explore the expansion of human freedom in meaning-generation by supporting the inherent human editorial acts of "segmentation, relationalization, structuralization, and representation" at the level of media and tools in contemporary society where information technology (IT) digitizes all subjects. In our highly informatized society, a future is imminent where everything is captured as data and reconstructed as digital twins in virtual space. This digitalization trend is certainly heading toward a definitive endpoint. However, to derive value from informatized data, human editorial intervention—reinterpretation and reconstitution of information—is indispensable. My life theme lies in "editing as software" that goes beyond mere information collection and generation, enabling humans to freely and flexibly re-edit information. From an HCI (Human-Computer Interaction) perspective, I develop technical methods and interface designs that allow humans to freely re-edit information, proposing a new practical learning approach of "reading, writing, AI" in high-speed, high-volume information environments. This is an attempt to connect the information editing practices that humanity has historically accumulated to the present as "information cultural technology."',
     statement2: `AI has emerged for the first time in human history as an "external automatic editing organ" capable of generating language and meaning. However, this characteristic of "automatic editing" carries the risk of depriving humans of the practice of information editing and converging all possibilities into "homogeneous and fixed solutions."
 

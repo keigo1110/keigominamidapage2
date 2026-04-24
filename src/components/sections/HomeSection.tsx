@@ -164,7 +164,7 @@ function DefaultHome() {
             </a>
             <div className="flex items-center gap-2 flex-wrap">
               <a
-                href="https://lab.rekimoto.org/"
+                href="https://ishiguro-lab.org/"
                 className={`transition-colors text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
                   isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
                 }`}
