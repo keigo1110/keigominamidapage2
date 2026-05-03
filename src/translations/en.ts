@@ -214,7 +214,7 @@ In the future where informatization progresses, what we face is whether to be sw
     profileAlt: 'Keigo Minamida Profile Picture',
     university: 'The University of Tokyo',
     location: 'Tokyo, Japan',
-    academicYear: 'Master\'s 2nd Year',
+    academicYear: 'Doctoral 1st Year',
     homeTitle: 'Home',
     projectsTitle: 'Projects',
     projectsDescription: 'Building innovative solutions at the intersection of robotics and human interaction',

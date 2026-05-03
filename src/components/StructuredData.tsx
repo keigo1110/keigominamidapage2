@@ -10,16 +10,16 @@ export function StructuredData() {
     alternateName: ['南田桂吾', 'みなみだけいご', 'けいごみなみだ'],
     url: `${BASE}/`,
     image: `${BASE}/images/myface.jpg`,
-    description: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar.',
-    jobTitle: ["Master's Student", 'Researcher', 'Entrepreneur', 'Software Developer'],
+    description: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar.',
+    jobTitle: ['Doctoral Student', 'Researcher', 'Entrepreneur', 'Software Developer'],
     affiliation: {
       '@type': 'Organization',
       name: 'The University of Tokyo',
       url: 'https://www.iii.u-tokyo.ac.jp/',
       department: {
         '@type': 'Organization',
-        name: 'Rekimoto Lab',
-        url: 'https://lab.rekimoto.org/',
+        name: 'Ishiguro Laboratory',
+        url: 'https://ishiguro-lab.org/',
       },
     },
     alumniOf: {
@@ -28,7 +28,8 @@ export function StructuredData() {
       department: 'Department of Mechanical Engineering',
     },
     knowsAbout: [
-      'Human-robot interaction',
+      'Human-computer interaction',
+      'Human augmentation',
       'Augmented reality',
       'Computer vision',
       'Machine learning',
@@ -50,7 +51,7 @@ export function StructuredData() {
       '@type': 'Occupation',
       name: 'Researcher',
       description:
-        'Developing effective methods to process and utilize real-world information for human-robot interaction',
+        'Developing tools and interfaces for HCI, human augmentation, computer vision, and information editing',
     },
   }
 
@@ -76,7 +77,7 @@ export function StructuredData() {
     url: `${BASE}/`,
     name: 'Keigo Minamida | HCI Researcher & Creative Technologist',
     description:
-      'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
+      'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
     isPartOf: { '@id': `${BASE}/#website` },
     about: { '@id': `${BASE}/#person` },
     primaryImageOfPage: {
@@ -99,7 +100,7 @@ export function StructuredData() {
         name: 'Who is Keigo Minamida?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo (Rekimoto Lab) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at SIGGRAPH Asia (e.g. Incremental Gaussian Splatting), co-founded Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
+          text: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo (Ishiguro Laboratory) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at SIGGRAPH Asia (e.g. Incremental Gaussian Splatting), works on Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
         },
       },
       {
@@ -124,7 +125,7 @@ export function StructuredData() {
   const organizationSchema = {
     '@type': 'Organization',
     '@id': `${BASE}/#organization`,
-    name: 'Wakabar K.K.',
+    name: 'Wakabar Co., Ltd.',
     description: 'Supporting safe behavior while cycling using IoT technology',
     url: 'https://wakabar-cycle.com/',
     founder: { '@id': `${BASE}/#person` },

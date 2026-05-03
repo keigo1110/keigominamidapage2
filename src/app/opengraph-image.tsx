@@ -75,7 +75,7 @@ export default function OGImage() {
               textAlign: 'center',
             }}
           >
-            The University of Tokyo | Rekimoto Laboratory
+            The University of Tokyo | Ishiguro Laboratory
           </div>
         </div>
       </div>

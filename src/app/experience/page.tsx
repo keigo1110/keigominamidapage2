@@ -9,7 +9,7 @@ const BASE_URL = 'https://keigominamida.com'
 export const metadata: Metadata = {
   title: 'Experience',
   description:
-    'Keigo Minamida: publications (SIGGRAPH Asia, Recertif), awards (GUGEN2024), education (University of Tokyo, Rekimoto Lab), and professional experience.',
+    'Keigo Minamida: publications (SIGGRAPH Asia, Recertif), awards (GUGEN2024), education (University of Tokyo, Ishiguro Laboratory, prior Rekimoto Lab work), and professional experience.',
   alternates: { canonical: `${BASE_URL}/experience` },
   openGraph: {
     title: 'Experience | Keigo Minamida',

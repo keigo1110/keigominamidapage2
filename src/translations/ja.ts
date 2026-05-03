@@ -214,7 +214,7 @@ export const ja = {
     profileAlt: '南田圭吾のプロフィール写真',
     university: '東京大学',
     location: '東京, 日本',
-    academicYear: '修士2年',
+    academicYear: '博士1年',
     homeTitle: 'ホーム',
     projectsTitle: 'プロジェクト',
     projectsDescription: 'ロボティクスとヒューマンインタラクションの交差点で革新的なソリューションを構築',

@@ -3,6 +3,7 @@ import { ThemeProvider } from '../contexts/ThemeContext'
 import { StructuredData } from '../components/StructuredData'
 import { Navigation } from '../components/layout/Navigation'
 import { Footer } from '../components/layout/Footer'
+import { PortfolioAgent } from '../components/portfolio-agent/PortfolioAgent'
 import { SkipLink } from '../components/SkipLink'
 import { PageTransition } from '../components/PageTransition'
 import type { Metadata, Viewport } from "next";
@@ -42,13 +43,15 @@ export const metadata: Metadata = {
     default: 'Keigo Minamida | HCI Researcher & Creative Technologist',
     template: '%s | Keigo Minamida',
   },
-  description: 'Keigo Minamida (南田桂吾) is a Master\'s student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
+  description: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
   keywords: [
     "Keigo Minamida",
     "南田桂吾",
     "みなみだけいご",
     "東京大学",
     "University of Tokyo",
+    "Ishiguro Laboratory",
+    "石黒研究室",
     "Rekimoto Lab",
     "暦本研究室",
     "HCI",
@@ -75,7 +78,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: ["ja_JP"],
     title: "Keigo Minamida | HCI Researcher & Creative Technologist",
-    description: "Keigo Minamida (南田桂吾) — Master's student at The University of Tokyo. Research in HCI, Augmented Humans, and Computer Vision. Portfolio of projects and creative works.",
+    description: "Keigo Minamida (南田桂吾) — Doctoral student at The University of Tokyo. Research in HCI, Augmented Humans, and Computer Vision. Portfolio of projects and creative works.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
     images: [
@@ -181,6 +184,12 @@ export default function RootLayout({
         <StructuredData />
 
         {/* Additional performance hints */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/agent/portfolio-agent-spritesheet.webp"
+          type="image/webp"
+        />
         <link rel="prefetch" href="/images/myface.jpg" />
         <meta name="format-detection" content="telephone=no" />
       </head>
@@ -196,6 +205,7 @@ export default function RootLayout({
                 </PageTransition>
               </main>
               <Footer />
+              <PortfolioAgent />
             </div>
           </ThemeProvider>
         </TranslationProvider>
