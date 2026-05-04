@@ -32,6 +32,7 @@ interface LocalizedLabels {
   sending: string
   visitorLabel: string
   chatError: string
+  dataUseNotice: string
   mood: Record<AgentMood, string>
 }
 
@@ -47,6 +48,7 @@ const localizedLabels = {
     sending: 'Thinking',
     visitorLabel: 'You',
     chatError: 'ROTA could not answer right now. Please try again later.',
+    dataUseNotice: 'Chats may be used to improve ROTA.',
     mood: {
       friendly: 'Guide',
       focused: 'Focus',
@@ -66,6 +68,7 @@ const localizedLabels = {
     sending: '考え中',
     visitorLabel: 'あなた',
     chatError: '今は ROTA がうまく返答できませんでした。少し後でもう一度試してください。',
+    dataUseNotice: '会話は ROTA の改善に使用します。',
     mood: {
       friendly: '案内',
       focused: '要点',
@@ -690,6 +693,9 @@ export function PortfolioAgent() {
                     )}
                   </button>
                 </form>
+                <p className={`mt-1.5 text-[10px] leading-snug tracking-normal ${secondaryTextClassName}`}>
+                  {labels.dataUseNotice}
+                </p>
               </div>
             </div>
           </motion.section>

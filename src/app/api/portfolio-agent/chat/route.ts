@@ -5,7 +5,9 @@ import {
   normalizeAgentLanguage,
   type AgentGuideRequest,
 } from '@/components/portfolio-agent/agentContent'
+import { PORTFOLIO_AGENT_MAX_OUTPUT_TOKENS } from '@/components/portfolio-agent/content/agentPersona'
 import { buildPortfolioAgentPrompt } from '@/components/portfolio-agent/content/chatPrompt'
+import { logRotaConversationToSlack } from '@/components/portfolio-agent/server/slackReviewLogger'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -15,7 +17,6 @@ const DEFAULT_MODEL = 'gpt-5.4-mini'
 const MAX_MESSAGES = 12
 const MAX_MESSAGE_CHARACTERS = 1200
 const MAX_TOTAL_CHARACTERS = 6000
-const MAX_OUTPUT_TOKENS = 600
 
 type ChatRole = 'user' | 'assistant'
 
@@ -212,6 +213,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   const guide = getAgentGuide(guideRequest)
   const model = process.env.OPENAI_PORTFOLIO_AGENT_MODEL ?? DEFAULT_MODEL
   const input: ResponsesApiMessage[] = messages
+  const latestUserMessage = messages.at(-1)?.content ?? ''
 
   let openAIResponse: Response
 
@@ -224,9 +226,12 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
       body: JSON.stringify({
         model,
-        instructions: buildPortfolioAgentPrompt({ language, guide }),
+        instructions: buildPortfolioAgentPrompt({ language, guide, latestUserMessage }),
         input,
-        max_output_tokens: MAX_OUTPUT_TOKENS,
+        max_output_tokens: PORTFOLIO_AGENT_MAX_OUTPUT_TOKENS,
+        text: {
+          verbosity: 'low',
+        },
       }),
     })
   } catch {
@@ -251,6 +256,16 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (!message) {
     return jsonError('OpenAI returned an empty response.', 502)
   }
+
+  await logRotaConversationToSlack({
+    language,
+    model,
+    pathname: guideRequest.pathname,
+    guideId: guide.id,
+    guideTitle: guide.title,
+    userMessage: latestUserMessage,
+    assistantMessage: message,
+  })
 
   return NextResponse.json({ message, model })
 }
