@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, FileText, Video, Presentation } from 'lucide-react'
+import { Calendar, ExternalLink, FileText, Presentation, Video } from 'lucide-react'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import Image from 'next/image'
@@ -122,22 +122,17 @@ export function ProjectsSection() {
               }`}
             >
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 relative overflow-hidden">
-                  <div className="relative aspect-video md:aspect-[3/4] lg:aspect-auto lg:h-full min-h-[200px]">
+                <div className={`md:w-1/3 overflow-hidden ${
+                  isDark ? 'bg-black/30' : 'bg-white/70'
+                }`}>
+                  <div className="relative min-h-[200px] aspect-video md:h-full md:min-h-[280px] md:aspect-auto">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.02]"
                     />
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                      isDark ? 'bg-black/80 text-[#F5F5F7]' : 'bg-white/90 text-[#1D1D1F]'
-                    }`}>
-                      {project.venue}
-                    </span>
                   </div>
                 </div>
 
@@ -149,9 +144,17 @@ export function ProjectsSection() {
                       }`}>
                         {project.title}
                       </h3>
-                      <p className="text-sm text-[#86868B]">
-                        {project.date}
-                      </p>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#86868B]">
+                        <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${
+                          isDark ? 'bg-[#2997FF]/10 text-[#7AB7FF]' : 'bg-[#0071E3]/10 text-[#006EDB]'
+                        }`}>
+                          {project.venue}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <Calendar aria-hidden="true" className="h-3.5 w-3.5" />
+                          {project.date}
+                        </span>
+                      </div>
                     </div>
                   </div>
 

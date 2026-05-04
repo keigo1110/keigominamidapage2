@@ -150,6 +150,13 @@ export function getAgentGuidesForRoute(
     .map((template) => materializeAgentGuide(template, normalizedLanguage))
 }
 
+export function getAllAgentGuides(
+  language: Language | string | null | undefined = 'en'
+): AgentGuide[] {
+  const normalizedLanguage = normalizeAgentLanguage(language)
+  return agentGuideTemplates.map((template) => materializeAgentGuide(template, normalizedLanguage))
+}
+
 function findRouteTemplate(route: AgentKnownRoute, sectionId: AgentSectionId | undefined): AgentGuideTemplate {
   if (sectionId) {
     const sectionTemplate = agentGuideTemplates.find(

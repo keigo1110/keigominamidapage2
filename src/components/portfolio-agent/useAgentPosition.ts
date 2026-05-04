@@ -22,6 +22,7 @@ export interface UseAgentPositionResult {
   position: AgentCoordinates
   facing: AgentFacing
   isReady: boolean
+  isMobile: boolean
   isWalking: boolean
   isReacting: boolean
   characterSize: number
@@ -103,6 +104,7 @@ function createViewportLayout(options: ResolvedPositionOptions): ViewportLayout 
   const safeTop = NAVIGATION_RESERVE
   const safeLeft = sideReserve
   const safeRight = sideReserve
+  const shouldReserveBubbleSpace = options.bubbleOpen && !isMobile
 
   const maxX = Math.max(safeLeft, width - characterSize - safeRight)
   const maxY = Math.max(safeTop, height - characterSize - bottomReserve)
@@ -113,9 +115,9 @@ function createViewportLayout(options: ResolvedPositionOptions): ViewportLayout 
   const minYForBubble = Math.min(safeTop + options.bubbleHeight + BUBBLE_GAP, maxY)
 
   const bounds: AgentBounds = {
-    minX: options.bubbleOpen ? minXForBubble : safeLeft,
+    minX: shouldReserveBubbleSpace ? minXForBubble : safeLeft,
     maxX,
-    minY: options.bubbleOpen ? minYForBubble : safeTop,
+    minY: shouldReserveBubbleSpace ? minYForBubble : safeTop,
     maxY,
   }
 
@@ -251,6 +253,7 @@ export function useAgentPosition(options: UseAgentPositionOptions): UseAgentPosi
     position: resolvedPosition,
     facing,
     isReady: layout !== null && position !== null,
+    isMobile: layout?.isMobile ?? false,
     isWalking,
     isReacting,
     characterSize,

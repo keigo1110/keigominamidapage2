@@ -86,7 +86,7 @@ const profilePitchMessage: AgentText = (language: Language) => {
   const positioning = localize(profileFacts.positioning, language)
 
   return language === 'ja'
-    ? `${name}さんは、${role}です。${positioning}`
+    ? `${name}さんは、${role}。HCI、人間拡張、CV、制作、編集、スタートアップを横断して、技術を体験や意味に接地させる人だよ。`
     : `${name} is a ${role}. ${positioning}`
 }
 
@@ -94,12 +94,12 @@ const crossDomainMessage: AgentText = (language: Language) => {
   const coreTheme = localize(profileFacts.coreTheme, language)
 
   return language === 'ja'
-    ? `${coreTheme} 研究、制作、起業、編集は別々ではなく、「情報や体験をどう組み替えるか」という同じ問いにつながっています。`
+    ? '桂吾さんの軸は「ソフトウェアとしての編集化」。研究、制作、起業、編集は別々じゃなくて、情報や体験をどう組み替えるかという同じ問いでつながってるよ。'
     : `${coreTheme} His research, creative work, startup practice, and editorial work all connect through the question of how people can restructure information and experience.`
 }
 
 const firstVisitMessage: AgentText = (language: Language) => language === 'ja'
-  ? '初めてなら、まず研究プロジェクトで技術の軸を見てから、4ZIGEN と Wakabar に進むと全体像がつかみやすいです。最後に経歴を見ると、編集実践とのつながりが見えてきます。'
+  ? '初めてなら、まず研究プロジェクトで技術の軸を見て、次に 4ZIGEN と Wakabar に進むのがいいよ。最後に経歴を見ると、編集実践とのつながりまで見えてくる。'
   : 'For a first visit, start with the research projects, then move to 4ZIGEN and Wakabar. The experience page makes the editorial background easier to connect afterward.'
 
 // 編集したい案内文はこの配列を中心に変更してください。
@@ -113,7 +113,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       const theme = localize(profileFacts.coreTheme, language)
 
       return language === 'ja'
-        ? `こんにちは。${name}さんは、HCI・人間拡張・制作・編集を横断して、情報や体験を再編集するための技術を探求しています。${theme}`
+        ? `やあ。${name}さんは、HCI・人間拡張・制作・編集を横断して、情報や体験を再編集する技術を探ってる人だよ。ライフテーマは「ソフトウェアとしての編集化」。`
         : `Hi. ${name} works across HCI, human augmentation, creative technology, and editorial practice to explore tools for re-editing information and experience. ${theme}`
     },
     route: '/',
@@ -162,7 +162,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       const summary = localize(findProfileHighlight('research').summary, language)
 
       return language === 'ja'
-        ? `${summary} 技術単体ではなく、人が身体や環境をどう扱えるようになるかまで見ているのが特徴です。`
+        ? '研究は HCI、人間拡張、ロボティクス、3D再構成が軸。Incremental Gaussian Splatting や Augmented Leap みたいに、技術だけじゃなくて人が身体や環境をどう扱えるようになるかまで見てるよ。'
         : `${summary} The throughline is not only the technique itself, but how people can act with bodies, environments, and digital representations.`
     },
     route: '/',
@@ -182,7 +182,9 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
   {
     id: 'artwork-route',
     title: (language) => localize(findProfileHighlight('creative-work').title, language),
-    message: (language) => localize(findProfileHighlight('creative-work').summary, language),
+    message: (language) => language === 'ja'
+      ? '制作では 4ZIGEN の活動が中心。技術アイデアを、触れる・聞こえる・身体でわかる体験に変えていくところが面白いんだ。'
+      : localize(findProfileHighlight('creative-work').summary, language),
     route: '/artwork',
     targetRoute: '/artwork',
     targetHash: 'artwork',
@@ -207,7 +209,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The 4ZIGEN works combine sensors, sound, materials, and embodied interaction, turning technical ideas into tangible experiences. This line of work connects to the GUGEN2024 award.',
-      ja: '4ZIGEN の作品は、センサー、音、素材、身体性を組み合わせ、技術アイデアを触って理解できる体験にしています。GUGEN2024 での受賞にもつながった制作群です。',
+      ja: '4ZIGEN の作品は、センサー、音、素材、身体性を組み合わせて、技術アイデアを触って理解できる体験に変えてるよ。GUGEN2024 の受賞にもつながった制作群だね。',
     },
     route: '/artwork',
     sectionId: 'artwork',
@@ -231,7 +233,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The personal works turn nearby problems into working tools, from room management and LiDAR visualization to timeline generation and research archives. This section shows both implementation skill and editorial structuring.',
-      ja: '個人制作では、部室管理、LiDAR可視化、年表生成、研究アーカイブなど、身近な課題を動くツールに落とし込んでいます。実装力と編集的な整理力が同時に見える場所です。',
+      ja: '個人制作は、部室管理、LiDAR可視化、年表生成、研究アーカイブみたいに、身近な課題をちゃんと動くツールへ落としてる場所。実装力と編集的な整理力が同時に見えるよ。',
     },
     route: '/artwork',
     sectionId: 'otherProjects',
@@ -252,7 +254,9 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
   {
     id: 'startup-route',
     title: (language) => localize(findProfileHighlight('startup').title, language),
-    message: (language) => localize(findProfileHighlight('startup').summary, language),
+    message: (language) => language === 'ja'
+      ? 'Wakabar では、IoT と位置情報で自転車事故を減らすプロダクトに取り組んでるよ。研究や制作で培った実装力を、日常の安全へ接続してる感じだね。'
+      : localize(findProfileHighlight('startup').summary, language),
     route: '/startup',
     targetRoute: '/startup',
     targetHash: 'startup',
@@ -277,7 +281,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service.',
-      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクトです。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめています。',
+      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。',
     },
     route: '/startup',
     sectionId: 'startup',
@@ -304,7 +308,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The experience page gathers publications, awards, education, and project history. It shows the person more fully when read across research, creative work, startup practice, editing, and exhibition production.',
-      ja: '経歴ページでは、出版、受賞、学歴、活動歴をまとめています。研究・制作・起業だけでなく、編集や展示運営の実践まで含めて見ると人物像が立体的になります。',
+      ja: '経歴ページには、出版、受賞、学歴、活動歴がまとまってるよ。研究・制作・起業だけじゃなくて、編集や展示運営まで見ると桂吾さんの輪郭がかなり立体的になる。',
     },
     route: '/experience',
     targetRoute: '/experience',
@@ -330,7 +334,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The publication list includes work connected to Augmented Humans 2026, SIGGRAPH Asia 2024 Posters, SI2023, and JSAI 2023. The scope spans human augmentation, 3D reconstruction, and robot work support.',
-      ja: '論文では、Augmented Humans 2026、SIGGRAPH Asia 2024 Posters、SI2023、JSAI 2023 などに関連する研究成果が並んでいます。身体拡張、3D再構築、ロボット作業支援まで領域が広いです。',
+      ja: '論文まわりでは、Augmented Humans 2026、SIGGRAPH Asia 2024 Posters、SI2023、JSAI 2023 などの成果が並んでる。身体拡張、3D再構築、ロボット作業支援まで射程が広いよ。',
     },
     route: '/experience',
     sectionId: 'publications',
@@ -354,7 +358,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The awards include the GUGEN2024 Grand Prize and Hosii-ne Award, a Kindai University Best Presentation Award, and ISIS Editorial School awards. They show recognition across technology, presentation, and editorial practice.',
-      ja: '受賞歴では、GUGEN2024 の大賞・ほしいね賞、近畿大学でのベストプレゼンテーション賞、イシス編集学校での受賞が見られます。技術、発表、編集の複数面で評価されています。',
+      ja: '受賞歴では、GUGEN2024 の大賞・ほしいね賞、近畿大学でのベストプレゼンテーション賞、イシス編集学校での受賞が見られるよ。技術、発表、編集の複数面で評価されてるのが強いね。',
     },
     route: '/experience',
     sectionId: 'awards',
@@ -377,7 +381,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'The education section shows that he entered the doctoral program at The University of Tokyo in April 2026 and belongs to Ishiguro Laboratory, after studying in Rekimoto Laboratory during his master’s program. The path from mechanical engineering to HCI matters here.',
-      ja: '学歴では、2026年4月から東京大学大学院の博士課程で石黒研究室に所属していること、修士課程では暦本研究室で学んだことが確認できます。機械工学からHCIへ広がっている流れも重要です。',
+      ja: '学歴では、2026年4月から東京大学大学院の博士課程で石黒研究室にいること、修士では暦本研究室で学んだことがわかるよ。機械工学から HCI へ広がっていく流れも大事だね。',
     },
     route: '/experience',
     sectionId: 'education',
@@ -402,7 +406,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       const summary = localize(findProfileHighlight('editorial-practice').summary, language)
 
       return language === 'ja'
-        ? `${summary} タイムラインでは、4ZIGEN、東京大学制作展、センセン隊、イシス編集学校などの活動が同時期に重なっていることも見どころです。`
+        ? '編集実践は、センセン隊やイシス編集学校で培った「意味・構造・文化を見る目」だね。タイムラインでは、4ZIGEN、東京大学制作展、センセン隊、イシス編集学校の活動が重なってるのも見どころ。'
         : `${summary} The timeline also shows how 4ZIGEN, iii Exhibition, 1000sen, and ISIS Editorial School activities overlap across periods.`
     },
     route: '/experience',
@@ -468,7 +472,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     },
     message: {
       en: 'Wakabar fits because it turns technology into a usable service in everyday settings. It uses implementation skill around sensors and location data, while also relying on an editorial eye for how risks and riding experiences are communicated.',
-      ja: 'Wakabar は、技術を社会の現場で使える形にする活動です。センサーや位置情報を扱う実装力に加えて、危険地点や走行体験をどう伝えるかという編集的な視点が活きています。',
+      ja: 'Wakabar は、技術を社会の現場で使える形にする活動。センサーや位置情報を扱う実装力に加えて、危険地点や走行体験をどう伝えるかという編集的な視点が活きてるよ。',
     },
     route: '/startup',
     targetRoute: '/startup',

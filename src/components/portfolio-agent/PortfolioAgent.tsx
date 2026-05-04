@@ -4,14 +4,15 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { FormEvent, PointerEvent as ReactPointerEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Loader2, MapPin, Send, Sparkles, X } from 'lucide-react'
+import { Loader2, MapPin, Send, X } from 'lucide-react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import type { Language } from '../../translations'
 import {
+  getAllAgentGuides,
+  type AgentGuide,
   type AgentAnimation,
   type AgentKnownRoute,
-  type AgentMood,
   type AgentSectionId,
 } from './agentContent'
 import { SpriteCharacter } from './SpriteCharacter'
@@ -30,10 +31,9 @@ interface LocalizedLabels {
   chatPlaceholder: string
   send: string
   sending: string
-  visitorLabel: string
+  idleHint: string
   chatError: string
   dataUseNotice: string
-  mood: Record<AgentMood, string>
 }
 
 const localizedLabels = {
@@ -46,16 +46,9 @@ const localizedLabels = {
     chatPlaceholder: 'Ask ROTA a question',
     send: 'Send',
     sending: 'Thinking',
-    visitorLabel: 'You',
+    idleHint: 'Tap me for a guide',
     chatError: 'ROTA could not answer right now. Please try again later.',
     dataUseNotice: 'Chats may be used to improve ROTA.',
-    mood: {
-      friendly: 'Guide',
-      focused: 'Focus',
-      curious: 'Context',
-      excited: 'Highlight',
-      thoughtful: 'Thought',
-    },
   },
   ja: {
     guideName: 'ROTA',
@@ -66,16 +59,9 @@ const localizedLabels = {
     chatPlaceholder: 'ROTAに質問する',
     send: '送信',
     sending: '考え中',
-    visitorLabel: 'あなた',
+    idleHint: 'タップで案内するよ',
     chatError: '今は ROTA がうまく返答できませんでした。少し後でもう一度試してください。',
     dataUseNotice: '会話は ROTA の改善に使用します。',
-    mood: {
-      friendly: '案内',
-      focused: '要点',
-      curious: '文脈',
-      excited: '注目',
-      thoughtful: '整理',
-    },
   },
 } as const satisfies Record<Language, LocalizedLabels>
 
@@ -106,10 +92,42 @@ interface AgentChatApiResponse {
 const CHAT_HISTORY_LIMIT = 8
 const CHAT_INPUT_MAX_LENGTH = 420
 const CHAT_RESPONSE_ANIMATION_MS = 920
-const SHORT_GUIDE_MESSAGE_LENGTH = {
-  en: 92,
-  ja: 54,
-} as const satisfies Record<Language, number>
+const PANEL_WIDTH_PX = 336
+const PANEL_MAX_HEIGHT_PX = 448
+const IDLE_HINT_INITIAL_DELAY_MS = 4200
+const IDLE_HINT_VISIBLE_MS = 4200
+const IDLE_HINT_MIN_DELAY_MS = 18000
+const IDLE_HINT_MAX_DELAY_MS = 42000
+
+const GUIDE_RECOMMENDATION_HINTS: Record<string, readonly string[]> = {
+  'home-overview': ['overview', 'introduction', '全体', '概要', '最初', '紹介'],
+  'home-route': ['portfolio', 'start', 'はじめ', '案内', 'どこから'],
+  'research-projects': [
+    'research',
+    'hci',
+    'augmented humans',
+    'computer vision',
+    '研究',
+    '人間拡張',
+    '3d',
+    'gaussian',
+    'augmented leap',
+  ],
+  'artwork-route': ['artwork', 'creative work', '4zigen', '制作', '作品', 'アート', '展示'],
+  'artwork-section': ['4zigen', 'physical computing', 'interactive art', 'センサー', 'フィジカル', 'インタラクティブ'],
+  'personal-works': ['personal work', 'tool', 'archive', 'lidar', '個人制作', 'ツール', 'アーカイブ', '年表'],
+  'startup-route': ['startup', 'wakabar', 'iot', 'スタートアップ', '起業'],
+  'startup-section': ['wakabar', 'bicycle', 'safety', '自転車', '事故', '安全', '危険地点'],
+  'experience-route': ['experience', 'career', 'profile', '経歴', 'プロフィール', '人物像'],
+  'publications-section': ['publication', 'paper', 'siggraph', '論文', '出版', '発表', '研究成果'],
+  'awards-section': ['award', 'prize', 'gugen', '受賞', '賞', '大賞'],
+  'education-section': ['education', 'university', 'lab', '学歴', '大学', '博士', '修士', '研究室', '東大'],
+  'experience-timeline-section': ['timeline', 'editing', 'isis', '経歴', '活動', '編集', '展示運営', 'イシス'],
+  'profile-pitch': ['pitch', 'strength', 'who', '強み', 'どんな人', '短く紹介'],
+  'cross-domain-bridge': ['throughline', 'editing', 'connection', '横断', 'つながり', '編集'],
+  'startup-bridge': ['wakabar', 'implementation', '社会', '実装', 'プロダクト'],
+  'first-visit-route': ['where to start', 'route', 'start', 'どこから', 'おすすめ', '見る順番'],
+}
 
 function createChatRequestMessages(
   previousMessages: readonly AgentChatMessage[],
@@ -131,21 +149,85 @@ function createChatRequestMessages(
   ].slice(-CHAT_HISTORY_LIMIT)
 }
 
-function createShortGuideMessage(message: string, language: Language): string {
-  const normalizedMessage = message.replace(/\s+/g, ' ').trim()
-  const maxLength = SHORT_GUIDE_MESSAGE_LENGTH[language]
+function normalizeGuideMessage(message: string): string {
+  return message.replace(/\s+/g, ' ').trim()
+}
 
-  if (normalizedMessage.length <= maxLength) {
-    return normalizedMessage
+function createGuideDisplayMessage(
+  guide: AgentGuide,
+  language: Language,
+  isChatRecommended: boolean,
+): string {
+  const guideMessage = normalizeGuideMessage(guide.message)
+
+  if (!isChatRecommended) {
+    return guideMessage
   }
 
-  const sentenceEndIndex = normalizedMessage.search(/[。.!?]/)
+  return language === 'ja'
+    ? `その話なら、ここが近いよ。${guideMessage}`
+    : `For that thread, this is the part I would show first. ${guideMessage}`
+}
 
-  if (sentenceEndIndex > 12 && sentenceEndIndex + 1 <= maxLength) {
-    return normalizedMessage.slice(0, sentenceEndIndex + 1)
+function normalizeRecommendationText(value: string): string {
+  return value.toLowerCase().replace(/\s+/g, ' ').trim()
+}
+
+function extractRecommendationTerms(value: string): string[] {
+  return normalizeRecommendationText(value)
+    .split(/[\s,./:;()[\]'"!?、。・「」『』（）#]+/)
+    .map((term) => term.trim())
+    .filter((term) => term.length >= 2 && term.length <= 48)
+}
+
+function scoreGuideRecommendation(guide: AgentGuide, normalizedQuery: string): number {
+  const weightedTerms = [
+    ...((guide.title ? [guide.title] : []).map((term) => ({ term, weight: 10 }))),
+    ...(GUIDE_RECOMMENDATION_HINTS[guide.id]?.map((term) => ({ term, weight: 9 })) ?? []),
+    ...guide.contextTags.map((term) => ({ term, weight: 8 })),
+    ...[guide.id, guide.targetRoute, guide.targetHash ?? '', guide.sectionId ?? '']
+      .filter((term): term is string => Boolean(term))
+      .map((term) => ({ term, weight: 6 })),
+    ...guide.suggestions.flatMap((suggestion) => [
+      { term: suggestion.label, weight: 5 },
+      ...(suggestion.description ? [{ term: suggestion.description, weight: 4 }] : []),
+    ]),
+    ...extractRecommendationTerms(guide.message).map((term) => ({ term, weight: 1 })),
+  ]
+
+  return weightedTerms.reduce((score, { term, weight }) => {
+    const normalizedTerm = normalizeRecommendationText(term)
+
+    if (!normalizedTerm || normalizedTerm.length < 2) return score
+    return normalizedQuery.includes(normalizedTerm) ? score + weight : score
+  }, 0)
+}
+
+function selectRecommendedGuideFromChat(
+  guides: readonly AgentGuide[],
+  userMessage: string,
+  assistantMessage: string,
+  fallbackGuideId: string,
+): AgentGuide | null {
+  const normalizedQuery = normalizeRecommendationText(`${userMessage} ${assistantMessage}`)
+
+  if (!normalizedQuery) return null
+
+  const scoredGuides = guides
+    .map((candidateGuide) => ({
+      guide: candidateGuide,
+      score: scoreGuideRecommendation(candidateGuide, normalizedQuery),
+    }))
+    .filter(({ score }) => score >= 8)
+    .sort((left, right) => right.score - left.score)
+
+  const bestGuide = scoredGuides[0]?.guide
+
+  if (!bestGuide || bestGuide.id === fallbackGuideId) {
+    return null
   }
 
-  return `${normalizedMessage.slice(0, maxLength).trim()}...`
+  return bestGuide
 }
 
 function mapAgentAnimation(
@@ -185,6 +267,12 @@ function getFacingFromDeltaX(deltaX: number): SpriteDirection | null {
   return deltaX < 0 ? 'left' : 'right'
 }
 
+function getIdleHintDelay(): number {
+  return Math.round(
+    IDLE_HINT_MIN_DELAY_MS + Math.random() * (IDLE_HINT_MAX_DELAY_MS - IDLE_HINT_MIN_DELAY_MS)
+  )
+}
+
 const DRAG_THRESHOLD_PX = 4
 const ZERO_OFFSET: AgentCoordinates = { x: 0, y: 0 }
 const CLICK_REACTION_SEQUENCE = ['wave', 'celebrate', 'think', 'talk', 'cast'] as const satisfies readonly SpriteAnimationName[]
@@ -208,11 +296,14 @@ export function PortfolioAgent() {
   } | null>(null)
   const didDragRef = useRef(false)
   const { guide } = useAgentGuide({ language, pathname })
+  const allGuides = useMemo(() => getAllAgentGuides(language), [language])
   const [isOpen, setIsOpen] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const [dragOffset, setDragOffset] = useState<AgentCoordinates>(ZERO_OFFSET)
   const [dragFacing, setDragFacing] = useState<SpriteDirection | null>(null)
   const [characterReactionAnimation, setCharacterReactionAnimation] = useState<SpriteAnimationName | null>(null)
+  const [isIdleHintVisible, setIsIdleHintVisible] = useState(false)
+  const [recommendedGuideId, setRecommendedGuideId] = useState<string | null>(null)
   const [chatMessages, setChatMessages] = useState<AgentChatMessage[]>([])
   const [chatInput, setChatInput] = useState('')
   const [isChatSending, setIsChatSending] = useState(false)
@@ -220,6 +311,7 @@ export function PortfolioAgent() {
     position,
     facing,
     isReady,
+    isMobile,
     isWalking,
     isReacting,
     characterSize,
@@ -228,18 +320,27 @@ export function PortfolioAgent() {
     reactToInteraction,
   } = useAgentPosition({
     bubbleOpen: isOpen,
-    bubbleHeight: 420,
-    bubbleWidth: 336,
+    bubbleHeight: PANEL_MAX_HEIGHT_PX,
+    bubbleWidth: PANEL_WIDTH_PX,
     reducedMotion: prefersReducedMotion,
   })
 
   const labels = localizedLabels[language]
+  const recommendedGuide = useMemo(
+    () => recommendedGuideId
+      ? allGuides.find((candidateGuide) => candidateGuide.id === recommendedGuideId) ?? null
+      : null,
+    [allGuides, recommendedGuideId],
+  )
+  const activeGuide = recommendedGuide ?? guide
+  const isChatRecommendedGuide = recommendedGuide !== null
+  const shouldShowGuideCta = isChatRecommendedGuide
   const guideDisplayMessage = useMemo(
-    () => createShortGuideMessage(guide.message, language),
-    [guide.message, language],
+    () => createGuideDisplayMessage(activeGuide, language, isChatRecommendedGuide),
+    [activeGuide, isChatRecommendedGuide, language],
   )
   const activeAnimation = mapAgentAnimation(
-    guide.animation,
+    activeGuide.animation,
     isOpen,
     isWalking || isDragging,
     isReacting,
@@ -272,6 +373,47 @@ export function PortfolioAgent() {
 
     chatScrollElement.scrollTop = chatScrollElement.scrollHeight
   }, [chatMessages, isChatSending, isOpen])
+
+  useEffect(() => {
+    setRecommendedGuideId(null)
+  }, [language, pathname])
+
+  useEffect(() => {
+    if (isOpen || isDragging || isChatSending) {
+      setIsIdleHintVisible(false)
+      return
+    }
+
+    let showTimerId: number | null = null
+    let hideTimerId: number | null = null
+    let cancelled = false
+
+    const scheduleHint = (delay: number) => {
+      showTimerId = window.setTimeout(() => {
+        if (cancelled) return
+
+        setIsIdleHintVisible(true)
+        hideTimerId = window.setTimeout(() => {
+          if (cancelled) return
+
+          setIsIdleHintVisible(false)
+          scheduleHint(getIdleHintDelay())
+        }, prefersReducedMotion ? 2800 : IDLE_HINT_VISIBLE_MS)
+      }, delay)
+    }
+
+    scheduleHint(IDLE_HINT_INITIAL_DELAY_MS)
+
+    return () => {
+      cancelled = true
+      if (showTimerId !== null) {
+        window.clearTimeout(showTimerId)
+      }
+      if (hideTimerId !== null) {
+        window.clearTimeout(hideTimerId)
+      }
+    }
+  }, [isChatSending, isDragging, isOpen, pathname, prefersReducedMotion])
 
   const createChatMessageId = useCallback(() => {
     chatMessageIdRef.current += 1
@@ -334,10 +476,10 @@ export function PortfolioAgent() {
           language,
           pathname,
           currentGuide: {
-            id: guide.id,
-            title: guide.title,
-            message: guide.message,
-            contextTags: guide.contextTags,
+            id: activeGuide.id,
+            title: activeGuide.title,
+            message: activeGuide.message,
+            contextTags: activeGuide.contextTags,
           },
           messages: requestMessages,
         }),
@@ -357,6 +499,13 @@ export function PortfolioAgent() {
           content: assistantMessage,
         },
       ])
+      const nextRecommendedGuide = selectRecommendedGuideFromChat(
+        allGuides,
+        content,
+        assistantMessage,
+        guide.id,
+      )
+      setRecommendedGuideId(nextRecommendedGuide?.id ?? null)
       triggerChatResponseAnimation()
     } catch {
       setChatMessages((currentMessages) => [
@@ -372,12 +521,14 @@ export function PortfolioAgent() {
       setIsChatSending(false)
     }
   }, [
+    activeGuide.contextTags,
+    activeGuide.id,
+    activeGuide.message,
+    activeGuide.title,
+    allGuides,
     chatMessages,
     createChatMessageId,
-    guide.contextTags,
     guide.id,
-    guide.message,
-    guide.title,
     isChatSending,
     labels.chatError,
     language,
@@ -410,6 +561,7 @@ export function PortfolioAgent() {
       return
     }
 
+    setIsIdleHintVisible(false)
     triggerCharacterReaction()
     setIsOpen(true)
   }, [triggerCharacterReaction])
@@ -443,6 +595,7 @@ export function PortfolioAgent() {
       startX: event.clientX,
       startY: event.clientY,
     }
+    setIsIdleHintVisible(false)
     setDragOffset(ZERO_OFFSET)
     setDragFacing(null)
 
@@ -496,10 +649,10 @@ export function PortfolioAgent() {
   }, [resetDragState])
 
   const handleNavigateToTarget = useCallback(() => {
-    navigateTo(guide.targetRoute, guide.targetHash)
+    navigateTo(activeGuide.targetRoute, activeGuide.targetHash)
     setIsOpen(false)
     reactToInteraction()
-  }, [guide.targetHash, guide.targetRoute, navigateTo, reactToInteraction])
+  }, [activeGuide.targetHash, activeGuide.targetRoute, navigateTo, reactToInteraction])
 
   if (!isReady) {
     return null
@@ -517,211 +670,242 @@ export function PortfolioAgent() {
   const travelTransition = prefersReducedMotion
     ? { duration: 0 }
     : { type: 'spring' as const, stiffness: 260, damping: 26, mass: 0.8 }
+  const panelContent = (
+    <div className="flex max-h-[inherit] min-h-0 flex-col overflow-hidden">
+      <div className="flex min-h-0 flex-1 flex-col gap-3 px-3 pb-3 pt-3">
+        <div
+          className={`relative rounded-[8px] border px-3 pb-3 pt-3 ${
+            isDark ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-black/[0.03]'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false)
+            }}
+            className={`absolute right-1.5 top-1.5 rounded-[8px] p-1.5 transition-colors ${
+              isDark ? 'hover:bg-white/10' : 'hover:bg-black/5'
+            }`}
+            aria-label={labels.close}
+            aria-controls={panelId}
+          >
+            <X aria-hidden="true" className="h-3.5 w-3.5" />
+          </button>
+          <p className={`pr-7 text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
+            {guideDisplayMessage}
+          </p>
+          {shouldShowGuideCta && (
+            <button
+              type="button"
+              onClick={handleNavigateToTarget}
+              className={`mt-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${
+                isDark
+                  ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
+                  : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
+              }`}
+            >
+              <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
+              <span>{labels.navigate}</span>
+            </button>
+          )}
+        </div>
+
+        {(chatMessages.length > 0 || isChatSending) && (
+          <div
+            ref={chatScrollRef}
+            className={`min-h-0 overflow-y-auto rounded-[8px] border px-2 py-2 ${
+              isMobile ? 'max-h-[42dvh]' : 'max-h-[min(16rem,38vh)]'
+            } ${isDark ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-black/[0.03]'}`}
+            aria-label={labels.chatPlaceholder}
+            aria-live="polite"
+          >
+            {chatMessages.map((message) => {
+              const isUserMessage = message.role === 'user'
+
+              return (
+                <div
+                  key={message.id}
+                  className={`mb-2 flex last:mb-0 ${isUserMessage ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[88%] rounded-[8px] px-2.5 py-2 text-xs leading-relaxed tracking-normal md:max-w-[86%] ${
+                      isUserMessage
+                        ? isDark
+                          ? 'bg-[#2997FF]/25 text-[#F5F5F7]'
+                          : 'bg-[#0071E3]/10 text-[#1D1D1F]'
+                        : message.status === 'error'
+                          ? isDark
+                            ? 'bg-red-500/15 text-red-100'
+                            : 'bg-red-500/10 text-red-700'
+                          : isDark
+                            ? 'bg-white/10 text-[#F5F5F7]'
+                            : 'bg-white text-[#1D1D1F]'
+                    }`}
+                  >
+                    {!isUserMessage && (
+                      <p className={`mb-1 text-[10px] font-semibold tracking-normal ${secondaryTextClassName}`}>
+                        {labels.guideName}
+                      </p>
+                    )}
+                    <p>{message.content}</p>
+                  </div>
+                </div>
+              )
+            })}
+
+            {isChatSending && (
+              <div className="flex items-center gap-2 text-xs tracking-normal text-[#86868B]">
+                <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
+                <span>{labels.sending}</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div className={`border-t px-3 py-2.5 ${dividerClassName}`}>
+        <form className="flex items-center gap-2" onSubmit={handleChatSubmit}>
+          <label className="sr-only" htmlFor={`${panelId}-chat-input`}>
+            {labels.chatPlaceholder}
+          </label>
+          <input
+            id={`${panelId}-chat-input`}
+            type="text"
+            value={chatInput}
+            onChange={(event) => {
+              setChatInput(event.target.value.slice(0, CHAT_INPUT_MAX_LENGTH))
+            }}
+            maxLength={CHAT_INPUT_MAX_LENGTH}
+            disabled={isChatSending}
+            placeholder={labels.chatPlaceholder}
+            className={`min-h-12 min-w-0 flex-1 rounded-[8px] border px-3 py-2 text-base tracking-normal outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60 md:min-h-0 md:text-sm ${
+              isDark
+                ? 'border-white/10 bg-white/10 text-[#F5F5F7] placeholder:text-[#86868B] focus:border-[#2997FF]'
+                : 'border-black/10 bg-white text-[#1D1D1F] placeholder:text-[#86868B] focus:border-[#0071E3]'
+            }`}
+          />
+          <button
+            type="submit"
+            disabled={!chatInput.trim() || isChatSending}
+            aria-label={labels.send}
+            className={`inline-flex min-h-12 min-w-12 items-center justify-center rounded-[8px] transition-colors disabled:cursor-not-allowed disabled:opacity-45 md:min-h-11 md:min-w-11 ${
+              isDark
+                ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
+                : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
+            }`}
+          >
+            {isChatSending ? (
+              <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
+            ) : (
+              <Send aria-hidden="true" className="h-4 w-4" />
+            )}
+          </button>
+        </form>
+        <p className={`mt-1.5 text-[10px] leading-snug tracking-normal ${secondaryTextClassName}`}>
+          {labels.dataUseNotice}
+        </p>
+      </div>
+    </div>
+  )
 
   return (
-    <motion.aside
-      className={`pointer-events-none fixed left-0 top-0 ${shellClassName}`}
-      style={containerStyle}
-      aria-label={labels.open}
-      initial={false}
-      animate={{
-        x: displayedPosition.x,
-        y: displayedPosition.y,
-        scale: isReacting && !prefersReducedMotion ? 1.025 : 1,
-      }}
-      transition={isDragging ? { duration: 0 } : travelTransition}
-    >
+    <>
       <AnimatePresence initial={false}>
-        {isOpen && (
+        {isOpen && isMobile && (
           <motion.section
             id={panelId}
-            key="portfolio-agent-panel"
+            key="portfolio-agent-mobile-panel"
             role="region"
             aria-live="polite"
             aria-label={labels.open}
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 12, scale: 0.98 }}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 18, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
             transition={panelTransition}
-            className={`pointer-events-auto absolute bottom-[calc(100%+0.75rem)] right-0 w-[min(21rem,calc(100vw-1.5rem))] max-h-[min(28rem,70vh)] overflow-hidden rounded-[8px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
+            className={`pointer-events-auto fixed inset-x-2 bottom-[calc(0.5rem_+_env(safe-area-inset-bottom))] z-50 max-h-[calc(100dvh_-_1rem_-_env(safe-area-inset-top)_-_env(safe-area-inset-bottom))] overflow-hidden rounded-[12px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
           >
-            <div className="flex max-h-[min(28rem,70vh)] flex-col">
-              <div className={`flex items-center justify-between border-b px-3 py-2.5 ${dividerClassName}`}>
-                <div className="flex min-w-0 items-center gap-2">
-                  <span
-                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] ${
-                      isDark ? 'bg-[#2997FF]/15 text-[#2997FF]' : 'bg-[#0071E3]/10 text-[#0071E3]'
-                    }`}
-                  >
-                    <Sparkles aria-hidden="true" className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold tracking-normal">{labels.guideName}</p>
-                    <p className={`text-xs tracking-normal ${secondaryTextClassName}`}>
-                      {labels.mood[guide.mood]}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex shrink-0 items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={handleNavigateToTarget}
-                    className={`inline-flex min-h-9 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${
-                      isDark
-                        ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
-                        : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
-                    }`}
-                  >
-                    <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
-                    <span>{labels.navigate}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false)
-                    }}
-                    className={`rounded-[8px] p-2 transition-colors ${
-                      isDark ? 'hover:bg-white/10' : 'hover:bg-black/5'
-                    }`}
-                    aria-label={labels.close}
-                    aria-controls={panelId}
-                  >
-                    <X aria-hidden="true" className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
-                <div>
-                  {guide.title && (
-                    <h2 className="mb-1.5 text-sm font-semibold leading-snug tracking-normal">
-                      {guide.title}
-                    </h2>
-                  )}
-                  <p className={`text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
-                    {guideDisplayMessage}
-                  </p>
-                </div>
-
-                {(chatMessages.length > 0 || isChatSending) && (
-                  <div
-                    ref={chatScrollRef}
-                    className={`max-h-44 overflow-y-auto rounded-[8px] border px-2 py-2 ${
-                      isDark ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-black/[0.03]'
-                    }`}
-                    aria-label={labels.chatPlaceholder}
-                    aria-live="polite"
-                  >
-                    {chatMessages.map((message) => {
-                      const isUserMessage = message.role === 'user'
-
-                      return (
-                        <div
-                          key={message.id}
-                          className={`mb-2 flex last:mb-0 ${isUserMessage ? 'justify-end' : 'justify-start'}`}
-                        >
-                          <div
-                            className={`max-w-[86%] rounded-[8px] px-2.5 py-2 text-xs leading-relaxed tracking-normal ${
-                              isUserMessage
-                                ? isDark
-                                  ? 'bg-[#2997FF]/25 text-[#F5F5F7]'
-                                  : 'bg-[#0071E3]/10 text-[#1D1D1F]'
-                                : message.status === 'error'
-                                  ? isDark
-                                    ? 'bg-red-500/15 text-red-100'
-                                    : 'bg-red-500/10 text-red-700'
-                                  : isDark
-                                    ? 'bg-white/10 text-[#F5F5F7]'
-                                    : 'bg-white text-[#1D1D1F]'
-                            }`}
-                          >
-                            <p className={`mb-1 text-[10px] font-semibold tracking-normal ${secondaryTextClassName}`}>
-                              {isUserMessage ? labels.visitorLabel : labels.guideName}
-                            </p>
-                            <p>{message.content}</p>
-                          </div>
-                        </div>
-                      )
-                    })}
-
-                    {isChatSending && (
-                      <div className="flex items-center gap-2 text-xs tracking-normal text-[#86868B]">
-                        <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
-                        <span>{labels.sending}</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className={`border-t px-3 py-2.5 ${dividerClassName}`}>
-                <form className="flex items-center gap-2" onSubmit={handleChatSubmit}>
-                  <label className="sr-only" htmlFor={`${panelId}-chat-input`}>
-                    {labels.chatPlaceholder}
-                  </label>
-                  <input
-                    id={`${panelId}-chat-input`}
-                    type="text"
-                    value={chatInput}
-                    onChange={(event) => {
-                      setChatInput(event.target.value.slice(0, CHAT_INPUT_MAX_LENGTH))
-                    }}
-                    maxLength={CHAT_INPUT_MAX_LENGTH}
-                    disabled={isChatSending}
-                    placeholder={labels.chatPlaceholder}
-                    className={`min-w-0 flex-1 rounded-[8px] border px-3 py-2 text-sm tracking-normal outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
-                      isDark
-                        ? 'border-white/10 bg-white/10 text-[#F5F5F7] placeholder:text-[#86868B] focus:border-[#2997FF]'
-                        : 'border-black/10 bg-white text-[#1D1D1F] placeholder:text-[#86868B] focus:border-[#0071E3]'
-                    }`}
-                  />
-                  <button
-                    type="submit"
-                    disabled={!chatInput.trim() || isChatSending}
-                    aria-label={labels.send}
-                    className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-[8px] transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${
-                      isDark
-                        ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
-                        : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
-                    }`}
-                  >
-                    {isChatSending ? (
-                      <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Send aria-hidden="true" className="h-4 w-4" />
-                    )}
-                  </button>
-                </form>
-                <p className={`mt-1.5 text-[10px] leading-snug tracking-normal ${secondaryTextClassName}`}>
-                  {labels.dataUseNotice}
-                </p>
-              </div>
-            </div>
+            {panelContent}
           </motion.section>
         )}
       </AnimatePresence>
 
-      <motion.button
-        type="button"
-        onClick={handleCharacterClick}
-        onPointerDown={handleCharacterPointerDown}
-        onPointerMove={handleCharacterPointerMove}
-        onPointerUp={handleCharacterPointerUp}
-        onPointerCancel={handleCharacterPointerCancel}
-        className="pointer-events-auto absolute inset-0 flex items-center justify-center rounded-[8px] p-0.5 outline-none transition-transform hover:scale-[1.02] active:scale-[0.98]"
-        aria-label={isOpen ? labels.react : labels.open}
-        aria-controls={panelId}
-        aria-expanded={isOpen}
-        whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
+      <motion.aside
+        className={`pointer-events-none fixed left-0 top-0 ${shellClassName}`}
+        style={containerStyle}
+        aria-label={labels.open}
+        initial={false}
+        animate={{
+          x: displayedPosition.x,
+          y: displayedPosition.y,
+          scale: isReacting && !prefersReducedMotion ? 1.025 : 1,
+        }}
+        transition={isDragging ? { duration: 0 } : travelTransition}
       >
-        <SpriteCharacter
-          animation={activeAnimation}
-          direction={activeFacing}
-          size={characterSize}
-          ariaLabel={labels.guideName}
-        />
-      </motion.button>
-    </motion.aside>
+        <AnimatePresence initial={false}>
+          {!isOpen && !isDragging && isIdleHintVisible && (
+            <motion.div
+              key="portfolio-agent-idle-hint"
+              aria-hidden="true"
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 6, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.98 }}
+              transition={panelTransition}
+              className={`pointer-events-none absolute bottom-[calc(100%-0.25rem)] right-1 max-w-[11rem] rounded-[8px] border px-3 py-2 text-xs font-semibold leading-snug tracking-normal shadow-lg backdrop-blur-xl ${
+                isDark
+                  ? 'border-white/10 bg-black/85 text-[#F5F5F7]'
+                  : 'border-black/10 bg-white/95 text-[#1D1D1F]'
+              }`}
+            >
+              <span>{labels.idleHint}</span>
+              <span
+                className={`absolute -bottom-1 right-6 h-2 w-2 rotate-45 border-b border-r ${
+                  isDark ? 'border-white/10 bg-black/85' : 'border-black/10 bg-white/95'
+                }`}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence initial={false}>
+          {isOpen && !isMobile && (
+            <motion.section
+              id={panelId}
+              key="portfolio-agent-desktop-panel"
+              role="region"
+              aria-live="polite"
+              aria-label={labels.open}
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
+              transition={panelTransition}
+              className={`pointer-events-auto absolute bottom-[calc(100%+0.75rem)] right-0 w-[min(21rem,calc(100vw-1.5rem))] max-h-[min(28rem,70vh)] overflow-hidden rounded-[8px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
+            >
+              {panelContent}
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        <motion.button
+          type="button"
+          onClick={handleCharacterClick}
+          onPointerDown={handleCharacterPointerDown}
+          onPointerMove={handleCharacterPointerMove}
+          onPointerUp={handleCharacterPointerUp}
+          onPointerCancel={handleCharacterPointerCancel}
+          className="pointer-events-auto absolute inset-0 flex items-center justify-center rounded-[8px] p-0.5 outline-none transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          aria-label={isOpen ? labels.react : labels.open}
+          aria-controls={panelId}
+          aria-expanded={isOpen}
+          whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
+        >
+          <SpriteCharacter
+            animation={activeAnimation}
+            direction={activeFacing}
+            size={characterSize}
+            ariaLabel={labels.guideName}
+          />
+        </motion.button>
+      </motion.aside>
+    </>
   )
 }
