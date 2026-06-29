@@ -133,6 +133,8 @@ export const ja = {
     oProject6Description: '暦本研究室の代表的な研究を、地図のように拡大・移動しながら年表として俯瞰できるインタラクティブなアーカイブです。OCR検索により関心のあるテーマへ即座にジャンプでき、研究の流れと相互関係を直感的に理解できます。',
     oProject7: 'LexiAtlas',
     oProject7Description: '文章中の単語を選択して辞書定義・シソーラス・多言語翻訳・語源を即座に取得できる',
+    oProject8: 'kAIgi',
+    oProject8Description: '議論中にAIが必要な調べものを行い、根拠や比較材料をその場に差し入れてくれるディスカッション支援ツールです。',
     link4zigenSite: '4ZIGEN公式サイト',
     demo: 'デモ',
     usageGuide: '使用ガイド',

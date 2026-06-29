@@ -112,6 +112,16 @@ export function OtherProjectsSection() {
         { icon: <FaExternalLinkAlt />, text: t('demo'), url: 'https://wordtree-one.vercel.app/' },
         { icon: <FaGithub />, text: t('repository'), url: 'https://github.com/keigo1110/wordtree' }
       ]
+    },
+    {
+      id: 'kaigi',
+      title: t('oProject8'),
+      description: t('oProject8Description'),
+      image: "/images/kaigi.png",
+      aspectRatio: '16/9',
+      links: [
+        { icon: <FaExternalLinkAlt />, text: t('visitProjectWebsite'), url: 'https://keigo1110.github.io/kAIgi-download/' }
+      ]
     }
   ], [t])
 

@@ -96,6 +96,12 @@ export function SSRContent() {
           <a href="https://wordtree-one.vercel.app/">Demo</a>
           <a href="https://github.com/keigo1110/wordtree">Repository</a>
         </article>
+
+        <article>
+          <h3>{en.oProject8}</h3>
+          <p>{en.oProject8Description}</p>
+          <a href="https://keigo1110.github.io/kAIgi-download/">{en.visitProjectWebsite}</a>
+        </article>
       </section>
 
       <section>

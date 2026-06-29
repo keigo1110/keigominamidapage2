@@ -133,6 +133,8 @@ In the future where informatization progresses, what we face is whether to be sw
     oProject6Description: 'An interactive archive that lets you explore representative research from Rekimoto Laboratory as a zoomable, pannable map-like timeline. OCR-powered search allows you to jump instantly to topics of interest and grasp the flow and interconnections of projects at a glance.',
     oProject7: 'LexiAtlas',
     oProject7Description: 'Select a word in text to instantly retrieve dictionary definitions, thesaurus entries, multilingual translations, and etymology',
+    oProject8: 'kAIgi',
+    oProject8Description: 'A discussion support tool where AI researches what the conversation needs and brings in evidence, comparisons, and context in real time.',
     link4zigenSite: '4ZIGEN Official Site',
     demo: 'Demo',
     usageGuide: 'Usage Guide',
