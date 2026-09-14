@@ -56,8 +56,6 @@ In the future where informatization progresses, what we face is whether to be sw
     // Research Projects
     agencyPerceptionDescription: 'Can people distinguish human from AI in humanoid teleoperation?',
     warpingWorkspaceDescription: 'Teleoperation in a warped space.',
-    scopeGsTitle: 'SCOPE-GS: Spatial Construction and Viewpoint-aware Online Updating system for Dynamic Environments via Gaussian Splatting',
-    scopeGsVenue: 'Spatial Media Conference 2026',
     scopeGsDescription: 'Online sequential updates of 3D Gaussian Splatting in dynamic environments.',
     augmentedLeapDescription: 'Augmenting human jumps with thrust',
     IGSDescription: 'System for gradual 3D reconstruction from monocular camera adapting to real-world changes',
@@ -65,6 +63,7 @@ In the future where informatization progresses, what we face is whether to be sw
     fstlDescription: 'Improvements to pruning techniques (Slide created by Fujisaki)',
     paper: 'Paper',
     slide: 'Slide',
+    comingSoon: 'coming soon',
 
     // Creative Works
     artwork1Title: 'Geocussion',

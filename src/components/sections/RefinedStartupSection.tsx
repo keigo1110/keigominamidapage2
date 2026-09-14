@@ -5,8 +5,12 @@ import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
 import { MapPin, BarChart3, GraduationCap, ExternalLink, Play } from 'lucide-react'
 import Image from 'next/image'
-
-const APP_STORE_URL = 'https://apps.apple.com/jp/app/wakabar/id6759553729'
+import {
+  WAKABAR_APP_STORE_URL,
+  WAKABAR_APP_URL,
+  WAKABAR_CORPORATE_URL,
+  WAKABAR_TOUR_URL,
+} from '../../data/wakabar'
 
 export function RefinedStartupSection() {
   const { t, language } = useTranslation()
@@ -19,6 +23,9 @@ export function RefinedStartupSection() {
     : language === 'ja'
       ? '/images/badges/app-store-ja-black.svg'
       : '/images/badges/app-store-en-black.svg'
+  const appStoreBadgeSize = language === 'ja'
+    ? { width: 109, height: 40 }
+    : { width: 120, height: 40 }
   const appStoreBadgeAlt = t('wakabarAppStoreBadgeAlt')
 
   const coreFeatures = [
@@ -47,21 +54,18 @@ export function RefinedStartupSection() {
   const wakabarSites = [
     {
       name: t('wakabarAppSite'),
-      url: 'https://wakabar.net/',
+      url: WAKABAR_APP_URL,
       description: t('applicationDescription'),
-      isPrimary: true
     },
     {
       name: t('wakabarTourSite'),
-      url: 'https://wakabar.net/wakabar-tours',
+      url: WAKABAR_TOUR_URL,
       description: t('selfTourDescription'),
-      isPrimary: false
     },
     {
       name: t('wakabarMainSite'),
-      url: 'https://www.wakabar-cycle.com/',
+      url: WAKABAR_CORPORATE_URL,
       description: t('corporateSiteDescription'),
-      isPrimary: false
     }
   ]
 
@@ -170,7 +174,7 @@ export function RefinedStartupSection() {
 
                   <div className="space-y-3">
                     <a
-                      href={APP_STORE_URL}
+                      href={WAKABAR_APP_STORE_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex"
@@ -178,35 +182,30 @@ export function RefinedStartupSection() {
                     >
                       <img
                         src={appStoreBadgeSrc}
-                        alt={appStoreBadgeAlt}
-                        height={40}
+                        alt=""
+                        width={appStoreBadgeSize.width}
+                        height={appStoreBadgeSize.height}
                         className="h-10 w-auto"
                       />
                     </a>
-                    {wakabarSites.map((site, index) => (
+                    {wakabarSites.map((site) => (
                       <motion.a
-                        key={index}
+                        key={site.url}
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02, x: 4 }}
                         whileTap={{ scale: 0.98 }}
                         className={`flex items-center justify-between p-4 rounded-xl w-full border transition-all duration-300 group ${
-                          site.isPrimary
-                            ? isDark
-                              ? 'bg-[#2997FF]/10 border-[#2997FF]/20 hover:bg-[#2997FF]/15'
-                              : 'bg-[#0071E3]/5 border-[#0071E3]/20 hover:bg-[#0071E3]/10'
-                            : isDark
-                              ? 'bg-[#2C2C2E] border-[#333336] hover:bg-[#333336]'
-                              : 'bg-white border-[#D2D2D7] hover:bg-[#F5F5F7]'
+                          isDark
+                            ? 'bg-[#2C2C2E] border-[#333336] hover:bg-[#333336]'
+                            : 'bg-white border-[#D2D2D7] hover:bg-[#F5F5F7]'
                         }`}
                       >
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-1">
                             <span className={`font-semibold text-lg ${
-                              site.isPrimary
-                                ? isDark ? 'text-[#2997FF]' : 'text-[#0071E3]'
-                                : isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                              isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
                             }`}>
                               {site.name}
                             </span>

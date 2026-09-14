@@ -1,4 +1,5 @@
-'use client'
+import { toScholarlyArticles } from '@/data/research'
+import { WAKABAR_APP_STORE_URL, WAKABAR_CORPORATE_URL } from '@/data/wakabar'
 
 const BASE = 'https://keigominamida.com'
 
@@ -64,11 +65,6 @@ export function StructuredData() {
       'Portfolio of Keigo Minamida (南田桂吾) — Researcher, Entrepreneur, and Software Developer at The University of Tokyo.',
     author: { '@id': `${BASE}/#person` },
     inLanguage: ['en', 'ja'],
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${BASE}/?search={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
   }
 
   const webPageSchema = {
@@ -100,7 +96,7 @@ export function StructuredData() {
         name: 'Who is Keigo Minamida?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo (Ishiguro Laboratory) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at SIGGRAPH Asia (e.g. Incremental Gaussian Splatting), works on Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
+          text: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo (Ishiguro Laboratory) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at UIST Adjunct 2026, Spatial Media Conference 2026, Augmented Humans 2026, and SIGGRAPH Asia 2024, works on Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
         },
       },
       {
@@ -108,7 +104,7 @@ export function StructuredData() {
         name: 'What does Keigo Minamida research?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Keigo Minamida researches Human-Computer Interaction (HCI), Augmented Humans, and Computer Vision. His work includes 3D reconstruction (Gaussian Splatting), human-robot interaction (e.g. Recertif for robot status visibility), and real-world sensing for interactive systems.',
+          text: 'Keigo Minamida researches Human-Computer Interaction (HCI), Augmented Humans, and Computer Vision. His work includes humanoid teleoperation (agency perception and Warping the Workspace), 3D reconstruction (SCOPE-GS and Incremental Gaussian Splatting), human-robot interaction (Recertif), and real-world sensing for interactive systems.',
         },
       },
     ],
@@ -127,104 +123,15 @@ export function StructuredData() {
     '@id': `${BASE}/#organization`,
     name: 'Wakabar Co., Ltd.',
     description: 'Supporting safe behavior while cycling using IoT technology',
-    url: 'https://wakabar-cycle.com/',
-    sameAs: ['https://apps.apple.com/jp/app/wakabar/id6759553729'],
+    url: WAKABAR_CORPORATE_URL,
+    sameAs: [WAKABAR_APP_STORE_URL],
     founder: { '@id': `${BASE}/#person` },
     foundingDate: '2023',
     mission: 'Zero traffic accidents on bicycles using IoT',
     knowsAbout: ['IoT', 'Bicycle Safety', 'Traffic Safety'],
   }
 
-  const researchWorksSchema = [
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'Can People Distinguish Human and AI Agency in Humanoid Teleoperation? A Preliminary Study of Agency Perception',
-      description:
-        'A preliminary study of whether people can distinguish human and AI agency in humanoid teleoperation',
-      author: [
-        { '@type': 'Person', name: 'Xiang Li' },
-        { '@type': 'Person', name: 'Koya Dendo' },
-        { '@id': `${BASE}/#person` },
-        { '@type': 'Person', name: 'Yuto Nakamura' },
-        { '@type': 'Person', name: 'Per Ola Kristensson' },
-        { '@type': 'Person', name: 'Jun Rekimoto' },
-      ],
-      publisher: "UIST Adjunct '26",
-      url: 'https://doi.org/10.1145/3830397.3841874',
-      datePublished: '2026',
-      about: ['Human-Computer Interaction', 'Teleoperation', 'Humanoid Robots', 'Agency Perception'],
-    },
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'Warping the Workspace: Expanding Visual Access with Adjustable Reach Mapping for Humanoid Teleoperation',
-      description:
-        'Teleoperation in a warped space with adjustable reach mapping for humanoid robots',
-      author: [
-        { '@id': `${BASE}/#person` },
-        { '@type': 'Person', name: 'Koya Dendo' },
-        { '@type': 'Person', name: 'Yuto Nakamura' },
-        { '@type': 'Person', name: 'Jun Rekimoto' },
-      ],
-      publisher: "UIST Adjunct '26",
-      url: 'https://doi.org/10.1145/3830397.3841893',
-      datePublished: '2026',
-      about: ['Human-Computer Interaction', 'Teleoperation', 'Humanoid Robots', 'Spatial Mapping'],
-    },
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'SCOPE-GS: Spatial Construction and Viewpoint-aware Online Updating system for Dynamic Environments via Gaussian Splatting',
-      description:
-        'Online sequential updates of 3D Gaussian Splatting in dynamic environments',
-      author: [
-        { '@type': 'Person', name: 'Taiyo Ozaki' },
-        { '@id': `${BASE}/#person` },
-        { '@type': 'Person', name: 'Keiko Nakamoto' },
-        { '@type': 'Person', name: 'Tsubasa Ichikawa' },
-        { '@type': 'Person', name: 'Jun Rekimoto' },
-      ],
-      publisher: 'Spatial Media Conference 2026',
-      url: 'https://www.ite.or.jp/ken/paper/20260730vAPu/',
-      datePublished: '2026',
-      about: ['Gaussian Splatting', '3D Reconstruction', 'Dynamic Environments'],
-    },
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity',
-      description:
-        'Human Jump Augmentation through Wearable Apparent Reduced Gravity',
-      author: [
-        { '@type': 'Person', name: 'Yuto Nakamura' },
-        { '@id': `${BASE}/#person` },
-        { '@type': 'Person', name: 'Masanobu Kanazawa' },
-        { '@type': 'Person', name: 'Koya Dendo' },
-        { '@type': 'Person', name: 'Jun Rekimoto' },
-      ],
-      publisher: 'Augmented Humans 2026',
-      url: 'https://doi.org/10.1145/3795011.3795034',
-      datePublished: '2026',
-      about: ['Augmented Humans', 'Wearable', 'Jump Augmentation'],
-    },
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'Incremental Gaussian Splatting',
-      description:
-        'Gradual 3D Reconstruction from a Monocular Camera Following Physical World Changes',
-      author: { '@id': `${BASE}/#person` },
-      publisher: 'SIGGRAPH Asia 2024',
-      url: 'https://doi.org/10.1145/3681756.3697913',
-      datePublished: '2024',
-      about: ['Computer Vision', '3D Reconstruction', 'Gaussian Splatting'],
-    },
-    {
-      '@type': 'ScholarlyArticle',
-      name: 'Recertif',
-      description:
-        "A system that shows the robot's work status simply by directing attention to the robot",
-      author: { '@id': `${BASE}/#person` },
-      datePublished: '2024',
-      about: ['Human-Robot Interaction', 'Visual Attention', 'Robotics'],
-    },
-  ]
+  const researchWorksSchema = toScholarlyArticles(`${BASE}/#person`)
 
   const creativeWorksSchema = [
     {

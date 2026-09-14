@@ -56,8 +56,6 @@ export const ja = {
     // 研究プロジェクト
     agencyPerceptionDescription: 'ヒューマノイドの遠隔操作において、人間かAIか区別できるのか？',
     warpingWorkspaceDescription: '歪んだ空間でテレオペレーションをする',
-    scopeGsTitle: 'SCOPE-GS：Gaussian Splattingによる動的環境の視点考慮型オンライン空間構築・更新システム',
-    scopeGsVenue: '空間メディアコンファレンス2026',
     scopeGsDescription: '動的な環境における3D GSの逐次更新',
     augmentedLeapDescription: '人間の跳躍を推力で拡張する',
     IGSDescription: '現実世界の変化に適応して徐々に3D再構築するためのシステム',
@@ -65,6 +63,7 @@ export const ja = {
     fstlDescription: '枝刈り技術の改善（スライドは藤崎が作成）',
     paper: '論文',
     slide: 'スライド',
+    comingSoon: '近日公開',
 
     // 制作プロジェクト（アートと制作の両方）
     artwork1Title: 'Geocussion',

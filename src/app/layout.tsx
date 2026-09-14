@@ -65,6 +65,8 @@ export const metadata: Metadata = {
     "SIGGRAPH Asia",
     "Gaussian Splatting",
     "Wakabar",
+    "UIST",
+    "ROTA",
     "4ZIGEN",
     "interactive art",
     "GUGEN2024",

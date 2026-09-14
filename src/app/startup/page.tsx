@@ -6,7 +6,7 @@ const BASE_URL = 'https://keigominamida.com'
 export const metadata: Metadata = {
   title: 'Startup',
   description:
-    'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. Partner with local governments; try the app.',
+    'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. Partner with local governments. The iOS app is on the App Store.',
   alternates: { canonical: `${BASE_URL}/startup` },
   openGraph: {
     title: 'Startup | Keigo Minamida',

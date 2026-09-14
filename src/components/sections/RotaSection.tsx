@@ -149,7 +149,7 @@ export function RotaSection() {
               ? 'border-white/10 bg-white/[0.03] hover:bg-white/[0.05]'
               : 'border-black/10 bg-black/[0.02] hover:bg-black/[0.04]'
           }`}
-          aria-label={localizeRotaText(rotaProfile.lineStamp.cta, language)}
+          aria-label={`${localizeRotaText(rotaProfile.lineStamp.title, language)} — ${localizeRotaText(rotaProfile.lineStamp.cta, language)}`}
         >
           <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex shrink-0 gap-1.5">

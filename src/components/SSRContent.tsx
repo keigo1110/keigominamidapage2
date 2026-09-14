@@ -1,4 +1,17 @@
 import { en } from '@/translations/en';
+import {
+  isComingSoonLink,
+  publications,
+  researchLinkLabel,
+  researchProjects,
+  resolveLocalized,
+} from '@/data/research';
+import {
+  WAKABAR_APP_STORE_URL,
+  WAKABAR_APP_URL,
+  WAKABAR_CORPORATE_URL,
+  WAKABAR_TOUR_URL,
+} from '@/data/wakabar';
 
 export function SSRContent() {
   return (
@@ -18,79 +31,39 @@ export function SSRContent() {
 
       <section>
         <h2>Publications</h2>
+        {publications.map((publication) => {
+          const title = resolveLocalized(publication.title, 'en').replace(/\.$/, '')
+          const authors = resolveLocalized(publication.authors, 'en').map((author) => author.name).join(', ')
+          const venue = resolveLocalized(publication.venue, 'en')
+          const location = resolveLocalized(publication.location, 'en')
 
-        <article>
-          <h3>Can People Distinguish Human and AI Agency in Humanoid Teleoperation?</h3>
-          <p>Xiang Li, Koya Dendo, Keigo Minamida, Yuto Nakamura, Per Ola Kristensson, Jun Rekimoto</p>
-          <p>UIST Adjunct '26, Detroit, MI, USA</p>
-          <p>{en.agencyPerceptionDescription}</p>
-          <a href="https://doi.org/10.1145/3830397.3841874">Paper</a>
-          <a href="https://arxiv.org/abs/2609.06434">arXiv</a>
-        </article>
-
-        <article>
-          <h3>Warping the Workspace: Expanding Visual Access with Adjustable Reach Mapping for Humanoid Teleoperation</h3>
-          <p>Keigo Minamida, Koya Dendo, Yuto Nakamura, Jun Rekimoto</p>
-          <p>UIST Adjunct '26, Detroit, MI, USA</p>
-          <p>{en.warpingWorkspaceDescription}</p>
-          <a href="https://doi.org/10.1145/3830397.3841893">Paper</a>
-        </article>
-
-        <article>
-          <h3>{en.scopeGsTitle}</h3>
-          <p>Taiyo Ozaki, Keigo Minamida, Keiko Nakamoto, Tsubasa Ichikawa, Jun Rekimoto</p>
-          <p>Spatial Media Conference 2026, Tokyo, Japan</p>
-          <p>{en.scopeGsDescription}</p>
-          <a href="https://www.ite.or.jp/ken/paper/20260730vAPu/">Paper</a>
-        </article>
-
-        <article>
-          <h3>Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity</h3>
-          <p>Yuto Nakamura, Keigo Minamida, Masanobu Kanazawa, Koya Dendo, Jun Rekimoto</p>
-          <p>Augmented Humans 2026, Okinawa, Japan</p>
-          <a href="https://doi.org/10.1145/3795011.3795034">Paper</a>
-        </article>
+          return (
+            <article key={publication.id}>
+              <h3>{title}</h3>
+              <p>{authors}</p>
+              <p>{venue}, {location}</p>
+              {publication.descriptionKey ? <p>{en[publication.descriptionKey]}</p> : null}
+              {publication.url ? <a href={publication.url}>Paper</a> : null}
+              {publication.arxivUrl ? <a href={publication.arxivUrl}>arXiv</a> : null}
+            </article>
+          )
+        })}
       </section>
 
       <section>
         <h2>{en.researchProjects}</h2>
-
-        <article>
-          <h3>Can People Distinguish Human and AI Agency in Humanoid Teleoperation?</h3>
-          <p>{en.agencyPerceptionDescription}</p>
-          <p>UIST Adjunct '26</p>
-          <a href="https://doi.org/10.1145/3830397.3841874">Paper</a>
-          <a href="https://arxiv.org/abs/2609.06434">arXiv</a>
-        </article>
-
-        <article>
-          <h3>Warping the Workspace</h3>
-          <p>{en.warpingWorkspaceDescription}</p>
-          <p>UIST Adjunct '26</p>
-          <a href="https://doi.org/10.1145/3830397.3841893">Paper</a>
-        </article>
-
-        <article>
-          <h3>SCOPE-GS</h3>
-          <a href="https://www.ite.or.jp/ken/paper/20260730vAPu/">Paper</a>
-        </article>
-
-        <article>
-          <h3>Incremental Gaussian Splatting</h3>
-          <p>{en.IGSDescription}</p>
-          <p>{en.siggraphasia}</p>
-          <a href="https://doi.org/10.1145/3681756.3697913">Paper</a>
-        </article>
-
-        <article>
-          <h3>Recertif</h3>
-          <p>{en.recertifDescription}</p>
-        </article>
-
-        <article>
-          <h3>FSTL</h3>
-          <p>{en.fstlDescription}</p>
-        </article>
+        {researchProjects.map((project) => (
+          <article key={project.id}>
+            <h3>{project.title}</h3>
+            <p>{en[project.descriptionKey]}</p>
+            <p>{resolveLocalized(project.venue, 'en')}</p>
+            {project.links
+              .filter((link) => !isComingSoonLink(link))
+              .map((link) => (
+                <a key={link.type} href={link.url}>{researchLinkLabel(link.type, (key) => en[key])}</a>
+              ))}
+          </article>
+        ))}
       </section>
 
       <section>
@@ -158,10 +131,10 @@ export function SSRContent() {
           <li>{en.achivement1}</li>
           <li>{en.achivement2}</li>
         </ul>
-        <a href="https://apps.apple.com/jp/app/wakabar/id6759553729">App Store</a>
-        <a href="https://wakabar.net/">{en.wakabarAppSite}</a>
-        <a href="https://wakabar.net/wakabar-tours">{en.wakabarTourSite}</a>
-        <a href="https://www.wakabar-cycle.com/">{en.wakabarMainSite}</a>
+        <a href={WAKABAR_APP_STORE_URL}>App Store</a>
+        <a href={WAKABAR_APP_URL}>{en.wakabarAppSite}</a>
+        <a href={WAKABAR_TOUR_URL}>{en.wakabarTourSite}</a>
+        <a href={WAKABAR_CORPORATE_URL}>{en.wakabarMainSite}</a>
       </section>
 
       <section>
