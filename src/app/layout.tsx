@@ -6,6 +6,7 @@ import { Footer } from '../components/layout/Footer'
 import { PortfolioAgent } from '../components/portfolio-agent/PortfolioAgent'
 import { SkipLink } from '../components/SkipLink'
 import { PageTransition } from '../components/PageTransition'
+import { ScrollEnchantment } from '../components/ScrollEnchantment'
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
@@ -30,11 +31,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' }
-  ],
-  colorScheme: 'dark light',
+  themeColor: '#0c0b0a',
+  colorScheme: 'dark',
 };
 
 export const metadata: Metadata = {
@@ -136,20 +134,20 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#0071E3' },
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#B8A04A' },
     ],
   },
   manifest: '/manifest.json',
   referrer: "strict-origin-when-cross-origin",
   other: {
-    "theme-color": "#000000",
-    "color-scheme": "dark light",
+    "theme-color": "#0C0B0A",
+    "color-scheme": "dark",
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Keigo Minamida",
     "application-name": "Keigo Minamida Portfolio",
-    "msapplication-TileColor": "#0071E3",
+    "msapplication-TileColor": "#0C0B0A",
     "msapplication-config": "/browserconfig.xml",
   },
 };
@@ -160,7 +158,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={geist.variable} suppressHydrationWarning>
+    <html lang="en" className={`${geist.variable} dark`} suppressHydrationWarning>
       <head>
         {/* Theme flash prevention */}
         <script
@@ -168,10 +166,9 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme');
-                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var isDark = theme === 'dark' || (!theme && systemDark) || (theme === 'system' && systemDark);
-                  document.documentElement.classList.add(isDark ? 'dark' : 'light');
+                  document.documentElement.classList.remove('light');
+                  document.documentElement.classList.add('dark');
+                  localStorage.setItem('theme', 'dark');
                 } catch(e) {}
               })();
             `,
@@ -198,10 +195,11 @@ export default function RootLayout({
       <body className={`${geist.className} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning>
         <TranslationProvider>
           <ThemeProvider>
-            <div className="min-h-screen bg-white dark:bg-black text-[#1D1D1F] dark:text-[#F5F5F7] overflow-x-hidden transition-colors duration-500">
+            <div className="min-h-screen overflow-x-hidden bg-[#0C0B0A] text-[#F2EFE9]">
               <SkipLink />
+              <ScrollEnchantment />
               <Navigation />
-              <main id="main-content" className="pt-20 relative z-10">
+              <main id="main-content" className="relative z-10 pt-[4.25rem] sm:pt-[4.5rem]">
                 <PageTransition>
                   {children}
                 </PageTransition>

@@ -1,65 +1,46 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '../../contexts/ThemeContext'
-import { TimelineChart } from './experience/TimelineChart'
-import { useExperienceData } from '../../hooks/useExperienceData'
+import { useTranslation } from '../../contexts/TranslationContext'
+import { ExperienceTracks } from './experience/ExperienceTracks'
+import { getExperiences } from '../../data/experiences'
 
 export function ExperienceSection() {
   const { isDark } = useTheme()
-
-  const {
-    experiences,
-    timelineBounds,
-    currentFocusItems,
-    currentLogLines,
-    hoveredProject,
-    setHoveredProject
-  } = useExperienceData()
+  const { t, language } = useTranslation()
+  const experiences = useMemo(() => getExperiences(t, language), [t, language])
 
   return (
-    <section id="experience" className="py-12 lg:py-20 relative overflow-hidden">
-      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
+    <section id="experience" className="world-library relative py-24 md:py-32 lg:py-40">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 md:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-            <h2 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight ${
-              isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-            }`}>
-              Experience
-            </h2>
-          </div>
-          <div className={`w-20 h-0.5 mx-auto rounded-full ${
-            isDark ? 'bg-[#2997FF]' : 'bg-[#0071E3]'
-          }`} />
+          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${
+            isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+          }`}>
+            Path
+          </p>
+          <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${
+            isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
+          }`}>
+            Experience
+          </h2>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className={`p-4 sm:p-6 lg:p-8 xl:p-10 rounded-2xl sm:rounded-3xl border ${
-            isDark
-              ? 'bg-[#1D1D1F] border-[#333336]'
-              : 'bg-[#F5F5F7] border-[#D2D2D7]'
-          }`}
+          transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative z-10">
-            <TimelineChart
-              experiences={experiences}
-              timelineBounds={timelineBounds}
-              currentFocusItems={currentFocusItems}
-              currentLogLines={currentLogLines}
-              hoveredProject={hoveredProject}
-              onProjectHover={setHoveredProject}
-            />
-          </div>
+          <ExperienceTracks experiences={experiences} />
         </motion.div>
       </div>
     </section>

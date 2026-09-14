@@ -1,149 +1,273 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
 import { LanguageSwitch } from '../LanguageSwitch'
-import { ThemeSwitch } from '../ThemeSwitch'
-import { NAV_ITEMS } from '../../types'
+import { usePrefersReducedMotion } from '../portfolio-agent/usePrefersReducedMotion'
+import { NAV_ITEMS, type NavItem } from '../../types'
 import type { TranslationKey } from '../../translations'
 
+const glassSpring = {
+  type: 'spring' as const,
+  stiffness: 360,
+  damping: 32,
+  mass: 0.85,
+}
+
+function isItemActive(pathname: string, href: string) {
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
+interface GlassBox {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+function measureGlass(
+  list: HTMLElement | null,
+  item: HTMLElement | null,
+): GlassBox | null {
+  if (!list || !item) return null
+
+  return {
+    x: item.offsetLeft,
+    y: item.offsetTop,
+    width: item.offsetWidth,
+    height: item.offsetHeight,
+  }
+}
+
+function DesktopNavGlass({
+  pathname,
+  reduced,
+}: {
+  pathname: string
+  reduced: boolean
+}) {
+  const { t } = useTranslation()
+  const listRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
+  const [pill, setPill] = useState<GlassBox | null>(null)
+  const glassMotion = reduced ? { duration: 0 } : glassSpring
+  const activeItem = NAV_ITEMS.find((item) => isItemActive(pathname, item.href))
+
+  const updatePill = useCallback(() => {
+    const next = measureGlass(
+      listRef.current,
+      activeItem ? itemRefs.current.get(activeItem.key) ?? null : null,
+    )
+    setPill(next)
+  }, [activeItem])
+
+  useLayoutEffect(() => {
+    updatePill()
+  }, [updatePill, t])
+
+  useEffect(() => {
+    const list = listRef.current
+    if (!list || typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', updatePill)
+      return () => window.removeEventListener('resize', updatePill)
+    }
+
+    const observer = new ResizeObserver(() => updatePill())
+    observer.observe(list)
+    for (const node of itemRefs.current.values()) {
+      observer.observe(node)
+    }
+
+    return () => observer.disconnect()
+  }, [updatePill, t])
+
+  return (
+    <div ref={listRef} className="relative hidden items-center md:flex">
+      {pill && (
+        <motion.span
+          aria-hidden="true"
+          className="nav-liquid-glass pointer-events-none absolute z-0"
+          initial={false}
+          animate={{ x: pill.x, width: pill.width, height: pill.height }}
+          transition={glassMotion}
+          style={{ top: pill.y, left: 0, borderRadius: 9999 }}
+        />
+      )}
+      {NAV_ITEMS.map((item) => (
+        <Link
+          key={item.key}
+          href={item.href}
+          ref={(node) => {
+            if (node) itemRefs.current.set(item.key, node)
+            else itemRefs.current.delete(item.key)
+          }}
+          className={`relative z-10 rounded-full px-3.5 py-1.5 text-sm font-medium outline-none ${
+            isItemActive(pathname, item.href)
+              ? 'text-[#F2EFE9]'
+              : 'text-[#9A958C] hover:text-[#F2EFE9]'
+          }`}
+          aria-current={isItemActive(pathname, item.href) ? 'page' : undefined}
+        >
+          {t(item.labelKey as TranslationKey)}
+        </Link>
+      ))}
+    </div>
+  )
+}
+
+function MobileNavGlass({
+  pathname,
+  reduced,
+  onNavigate,
+}: {
+  pathname: string
+  reduced: boolean
+  onNavigate: () => void
+}) {
+  const { t } = useTranslation()
+  const listRef = useRef<HTMLElement>(null)
+  const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
+  const [pill, setPill] = useState<GlassBox | null>(null)
+  const glassMotion = reduced ? { duration: 0 } : glassSpring
+  const activeItem = NAV_ITEMS.find((item) => isItemActive(pathname, item.href))
+
+  const updatePill = useCallback(() => {
+    const next = measureGlass(
+      listRef.current,
+      activeItem ? itemRefs.current.get(activeItem.key) ?? null : null,
+    )
+    setPill(next)
+  }, [activeItem])
+
+  useLayoutEffect(() => {
+    updatePill()
+  }, [updatePill, t])
+
+  return (
+    <nav
+      ref={listRef}
+      className="relative space-y-1"
+      role="navigation"
+      aria-label="Mobile navigation"
+    >
+      {pill && (
+        <motion.span
+          aria-hidden="true"
+          className="nav-liquid-glass pointer-events-none absolute z-0"
+          initial={false}
+          animate={{ x: pill.x, y: pill.y, width: pill.width, height: pill.height }}
+          transition={glassMotion}
+          style={{ top: 0, left: 0, borderRadius: 9999 }}
+        />
+      )}
+      {NAV_ITEMS.map((item: NavItem) => (
+        <Link
+          key={item.key}
+          href={item.href}
+          ref={(node) => {
+            if (node) itemRefs.current.set(item.key, node)
+            else itemRefs.current.delete(item.key)
+          }}
+          className={`relative z-10 block rounded-full px-4 py-3 text-lg outline-none ${
+            isItemActive(pathname, item.href)
+              ? 'text-[#F2EFE9]'
+              : 'text-[#9A958C] hover:text-[#F2EFE9]'
+          }`}
+          onClick={onNavigate}
+          aria-current={isItemActive(pathname, item.href) ? 'page' : undefined}
+        >
+          {t(item.labelKey as TranslationKey)}
+        </Link>
+      ))}
+    </nav>
+  )
+}
+
 export function Navigation() {
-  const { t } = useTranslation();
-  const { isDark } = useTheme();
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation()
+  const pathname = usePathname()
+  const reduced = usePrefersReducedMotion()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
-    return pathname === href || pathname.startsWith(href + '/');
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isMenuOpen) {
-        setIsMenuOpen(false);
+        setIsMenuOpen(false)
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isMenuOpen])
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
+        setIsMenuOpen(false)
       }
-    };
+    }
 
     if (isMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMenuOpen]);
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b transition-all duration-300 safe-area-top ${
-        isDark
-          ? 'bg-black/80 border-[#333336]'
-          : 'bg-white/80 border-[#D2D2D7]'
-      }`}>
-        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center" role="navigation" aria-label="Main navigation">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-[max(0.7rem,env(safe-area-inset-top))] sm:px-5">
+        <nav
+          className="nav-liquid-shell pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 md:w-fit md:gap-6"
+          role="navigation"
+          aria-label="Main navigation"
+        >
           <Link
             href="/"
-            className={`text-2xl sm:text-3xl font-semibold tracking-tight outline-none rounded-lg px-2 py-1 ${
-              isDark
-                ? 'text-[#F5F5F7]'
-                : 'text-[#1D1D1F]'
-            }`}
+            className="rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-[#F2EFE9] outline-none sm:text-xl"
             aria-label="Go to home page"
           >
-            <motion.span
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="inline-block"
-            >
-              {t('name')}
-            </motion.span>
+            {t('name')}
           </Link>
 
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className={`relative px-3 py-2 rounded-lg transition-all duration-300 text-sm lg:text-base font-medium outline-none ${
-                    isActive(item.href)
-                      ? isDark ? 'text-[#2997FF]' : 'text-[#0071E3]'
-                      : 'text-[#86868B] hover:text-[#1D1D1F] dark:hover:text-[#F5F5F7]'
-                  }`}
-                  aria-current={isActive(item.href) ? 'page' : undefined}
-                >
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-block"
-                  >
-                    {t(item.labelKey as TranslationKey)}
-                  </motion.span>
-                  {isActive(item.href) && (
-                    <motion.div
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                        isDark ? 'bg-[#2997FF]' : 'bg-[#0071E3]'
-                      }`}
-                      layoutId="activeTab"
-                    />
-                  )}
-                </Link>
-              ))}
-            </div>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <DesktopNavGlass pathname={pathname} reduced={reduced} />
+            <LanguageSwitch />
 
-            {/* Theme Switch */}
-            <ThemeSwitch />
-
-            {/* Language Switch */}
-            <div className="flex items-center">
-              <LanguageSwitch />
-            </div>
-
-            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className={`outline-none rounded-lg p-3 transition-colors duration-200 ${
-                  isDark
-                    ? 'text-[#F5F5F7] hover:bg-[#1D1D1F]'
-                    : 'text-[#1D1D1F] hover:bg-[#F5F5F7]'
-                }`}
+                className="rounded-full p-2.5 text-[#F2EFE9] outline-none transition-colors duration-200 hover:bg-white/[0.06]"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
               >
-                {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+                {isMenuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
               </button>
             </div>
           </div>
         </nav>
       </header>
 
-      {/* Mobile Navigation Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -151,56 +275,34 @@ export function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
             />
 
             <motion.div
               id="mobile-menu"
-              initial={{ opacity: 0, y: -50, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -50, scale: 0.95 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className={`fixed top-20 left-4 right-4 z-50 backdrop-blur-lg rounded-2xl border shadow-2xl md:hidden safe-area-top ${
-                isDark
-                  ? 'bg-black/95 border-[#333336]'
-                  : 'bg-white/95 border-[#D2D2D7]'
-              }`}
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="nav-liquid-shell fixed left-3 right-3 top-[4.75rem] z-50 rounded-[1.5rem] md:hidden"
               role="dialog"
               aria-modal="true"
               aria-labelledby="mobile-menu-title"
             >
-              <div className="p-6">
+              <div className="p-5">
                 <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
-                <nav className="space-y-4" role="navigation" aria-label="Mobile navigation">
-                  {NAV_ITEMS.map((item, index) => (
-                    <motion.div
-                      key={item.key}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`block text-xl py-3 px-4 rounded-lg transition-all duration-200 outline-none ${
-                          isActive(item.href)
-                            ? isDark ? 'text-[#2997FF] bg-[#2997FF]/10' : 'text-[#0071E3] bg-[#0071E3]/10'
-                            : isDark ? 'text-[#86868B] hover:text-[#F5F5F7] hover:bg-[#1D1D1F]' : 'text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7]'
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                        aria-current={isActive(item.href) ? 'page' : undefined}
-                      >
-                        {t(item.labelKey as TranslationKey)}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </nav>
+                <MobileNavGlass
+                  pathname={pathname}
+                  reduced={reduced}
+                  onNavigate={() => setIsMenuOpen(false)}
+                />
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }

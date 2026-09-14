@@ -15,7 +15,7 @@ export function AwardsSection() {
   const { t } = useTranslation()
   const { isDark } = useTheme()
 
-  const linkClass = `${isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'} underline-offset-4 hover:underline transition-colors`
+  const linkClass = `${isDark ? 'text-[#F2EFE9] hover:text-[#D4C07A]' : 'text-[#1C1916] hover:text-[#8A7428]'} underline-offset-4 hover:underline transition-colors`
 
   const awards: Award[] = [
     {
@@ -25,7 +25,7 @@ export function AwardsSection() {
           <a href="https://gugen.jp/result/2024.html" className={linkClass}>
             {t('award4no1')}
           </a>
-          <span className="text-[#86868B] mx-1">—</span>
+          <span className={`mx-1 ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>—</span>
           <a href="https://4zigenhp.vercel.app/" className={linkClass}>
             {t('award4no3')}
           </a>
@@ -61,21 +61,25 @@ export function AwardsSection() {
   ]
 
   return (
-    <section id="awards" className="py-24 md:py-32 lg:py-40 relative">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section id="awards" className="world-library relative py-24 md:py-32 lg:py-40">
+      <div className="container mx-auto max-w-4xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14 md:mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
-            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${
+            isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+          }`}>
+            Recognition
+          </p>
+          <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl ${
+            isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
           }`}>
             Awards
           </h2>
-          <div className={`w-24 h-0.5 mx-auto ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
 
         <motion.div
@@ -94,25 +98,25 @@ export function AwardsSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 pb-8 border-b ${
-                isDark ? 'border-[#333336]' : 'border-[#D2D2D7]'
+              <div className={`flex flex-col gap-4 border-b pb-8 md:flex-row md:items-baseline md:gap-8 ${
+                isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
               }`}>
                 <motion.div
                   className="flex-shrink-0 md:w-44"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <span className="text-sm font-light text-[#86868B]">
+                  <span className={`text-sm font-light ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                     {award.date}
                   </span>
                 </motion.div>
                 <div className="flex-1">
                   <p className={`text-base leading-relaxed ${
-                    isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                    isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
                   }`}>
                     {award.content}
                   </p>
-                  <p className="text-sm text-[#86868B] mt-1">
+                  <p className={`mt-1 text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                     {award.org}
                   </p>
                 </div>

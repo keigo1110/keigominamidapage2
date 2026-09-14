@@ -1,62 +1,174 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF, FaGithub } from 'react-icons/fa'
 import { SiQiita } from 'react-icons/si'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { useTheme } from '../../contexts/ThemeContext'
+import { usePrefersReducedMotion } from '../portfolio-agent/usePrefersReducedMotion'
+import { SocialDock } from '../SocialDock'
 import { SocialLink } from '../../types'
 
-/** SNSアイコン用アニメーションパターン（入場＋ホバー/タップ） */
-interface SocialIconAnimationPattern {
-  initial: { opacity: number; y?: number; scale?: number; rotate?: number }
-  animate: { opacity: number; y?: number; scale?: number; rotate?: number }
-  transition: { duration: number; delay?: number }
-  whileHover: { y?: number; scale?: number; rotate?: number }
-  whileTap: { scale: number }
+const ease = [0.22, 1, 0.36, 1] as const
+
+function splitGlyphs(text: string): string[] {
+  if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
+    return Array.from(
+      new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(text),
+      (part) => part.segment,
+    )
+  }
+  return Array.from(text)
 }
 
-const SOCIAL_ICON_ANIMATION_PATTERNS: SocialIconAnimationPattern[] = [
-  {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay: 0.1 },
-    whileHover: { y: -2 },
-    whileTap: { scale: 0.95 },
-  },
-  {
-    initial: { opacity: 0, scale: 0.9 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.4, delay: 0.05 },
-    whileHover: { scale: 1.08 },
-    whileTap: { scale: 0.98 },
-  },
-  {
-    initial: { opacity: 0, y: 12 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay: 0.08 },
-    whileHover: { y: -3, scale: 1.02 },
-    whileTap: { scale: 0.97 },
-  },
-  {
-    initial: { opacity: 0.6, scale: 0.95 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.6, delay: 0.06 },
-    whileHover: { scale: 1.05 },
-    whileTap: { scale: 0.95 },
-  },
-  {
-    initial: { opacity: 0, y: 16, rotate: -2 },
-    animate: { opacity: 1, y: 0, rotate: 0 },
-    transition: { duration: 0.45, delay: 0.07 },
-    whileHover: { y: -2, rotate: 2 },
-    whileTap: { scale: 0.96 },
-  },
-]
+function splitSpellUnits(text: string): string[] {
+  const glyphs = splitGlyphs(text)
+  if (glyphs.length <= 22) return glyphs
+  return text.split(/(\s+)/).filter(Boolean)
+}
 
-const DEFAULT_SOCIAL_ANIMATION_PATTERN = SOCIAL_ICON_ANIMATION_PATTERNS[0] as SocialIconAnimationPattern;
+function EnchantedPassage({
+  text,
+  className,
+  delay = 0,
+  reduced,
+  isDark,
+}: {
+  text: string
+  className?: string
+  delay?: number
+  reduced: boolean
+  isDark: boolean
+}) {
+  const glyphs = useMemo(() => splitGlyphs(text), [text])
+  const [count, setCount] = useState(reduced ? glyphs.length : 0)
+  const done = count >= glyphs.length
+  const visible = glyphs.slice(0, count).join('')
+
+  useEffect(() => {
+    if (reduced) {
+      setCount(glyphs.length)
+      return
+    }
+
+    setCount(0)
+    let raf = 0
+    let start: number | null = null
+    const duration = 1700 + Math.min(glyphs.length, 480) * 2.4
+
+    const wait = window.setTimeout(() => {
+      const tick = (now: number) => {
+        if (start == null) start = now
+        const t = Math.min(1, (now - start) / duration)
+        const accelerated = t * t * (1.2 - 0.2 * t)
+        setCount(Math.min(glyphs.length, Math.floor(accelerated * glyphs.length)))
+        if (t < 1) {
+          raf = requestAnimationFrame(tick)
+        } else {
+          setCount(glyphs.length)
+        }
+      }
+      raf = requestAnimationFrame(tick)
+    }, delay * 1000)
+
+    return () => {
+      window.clearTimeout(wait)
+      cancelAnimationFrame(raf)
+    }
+  }, [delay, glyphs.length, reduced, text])
+
+  if (reduced) {
+    return <p className={className}>{text}</p>
+  }
+
+  return (
+    <p className={`relative ${className ?? ''}`}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" className="invisible">
+        {text}
+      </span>
+      <span aria-hidden="true" className="absolute inset-0">
+        {visible}
+        <span
+          className="ml-[1px] inline-block h-[0.85em] w-10 align-middle rounded-full blur-[7px] transition-opacity duration-500"
+          style={{
+            opacity: done || count === 0 ? 0 : isDark ? 0.55 : 0.42,
+            background: isDark
+              ? 'linear-gradient(90deg, transparent, rgba(212,192,122,0.95), transparent)'
+              : 'linear-gradient(90deg, transparent, rgba(184,160,74,0.85), transparent)',
+            transform: 'translateY(-0.05em)',
+          }}
+        />
+      </span>
+    </p>
+  )
+}
+
+function EnchantedText({
+  text,
+  className,
+  as: Tag = 'span',
+  delay = 0,
+  reduced,
+  href,
+  target,
+  rel,
+}: {
+  text: string
+  className?: string
+  as?: 'span' | 'p' | 'h1' | 'a'
+  delay?: number
+  reduced: boolean
+  href?: string
+  target?: string
+  rel?: string
+}) {
+  const units = splitSpellUnits(text)
+  const stagger = units.length > 18 ? 0.018 : units.length > 8 ? 0.038 : 0.055
+
+  if (reduced) {
+    const extra =
+      Tag === 'a'
+        ? { href, target, rel }
+        : {}
+    return (
+      <Tag className={className} {...extra}>
+        {text}
+      </Tag>
+    )
+  }
+
+  const extra =
+    Tag === 'a'
+      ? { href, target, rel }
+      : {}
+
+  return (
+    <Tag className={className} aria-label={text} {...extra}>
+      {units.map((unit, index) => {
+        const space = /^\s+$/.test(unit)
+        return (
+          <motion.span
+            key={`${unit}-${index}`}
+            aria-hidden="true"
+            className={space ? 'inline' : 'inline-block'}
+            initial={{ opacity: 0, y: '0.35em', filter: 'blur(7px)' }}
+            animate={{ opacity: 1, y: '0em', filter: 'blur(0px)' }}
+            transition={{
+              duration: 0.72,
+              delay: delay + index * stagger,
+              ease,
+            }}
+          >
+            {unit}
+          </motion.span>
+        )
+      })}
+    </Tag>
+  )
+}
 
 const TextIcon = ({ letter, className }: { letter: string; className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} width="1em" height="1em">
@@ -79,230 +191,223 @@ const ProtoPediaIcon = ({ className }: { className?: string }) => (
 )
 
 const socialLinks: SocialLink[] = [
-  { icon: FaTwitter, url: "https://twitter.com/keigominamida", style: "default", hoverColorClass: "group-hover:text-[#1DA1F2]" },
-  { icon: FaInstagram, url: "https://www.instagram.com/namida1110/", style: "default", hoverColorClass: "group-hover:text-[#E4405F]" },
-  { icon: FaLinkedin, url: "https://www.linkedin.com/in/keigominamida/", style: "default", hoverColorClass: "group-hover:text-[#0A66C2]" },
-  { icon: FaFacebookF, url: "https://www.facebook.com/profile.php?id=100053066043602", style: "default", hoverColorClass: "group-hover:text-[#1877F2]" },
-  { icon: FaGithub, url: "https://github.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#8b949e]" },
-  { icon: SiQiita, url: "https://qiita.com/keigo1110", style: "default", hoverColorClass: "group-hover:text-[#55C500]" },
-  { icon: NoteIcon, url: "https://note.com/namida1110", style: "default", hoverColorClass: "group-hover:text-[#2CB696]" },
-  { icon: ProtoPediaIcon, url: "https://protopedia.net/prototyper/namida1110", style: "default" },
-  { icon: SoraIcon, url: "https://sora.chatgpt.com/profile/namida1110", style: "default", hoverColorClass: "group-hover:text-[#10A37F]" }
-];
+  { icon: FaTwitter, url: 'https://twitter.com/keigominamida', style: 'default', accentClass: 'text-[#1DA1F2]' },
+  { icon: FaInstagram, url: 'https://www.instagram.com/namida1110/', style: 'default', accentClass: 'text-[#E4405F]' },
+  { icon: FaLinkedin, url: 'https://www.linkedin.com/in/keigominamida/', style: 'default', accentClass: 'text-[#0A66C2]' },
+  { icon: FaFacebookF, url: 'https://www.facebook.com/profile.php?id=100053066043602', style: 'default', accentClass: 'text-[#1877F2]' },
+  { icon: FaGithub, url: 'https://github.com/keigo1110', style: 'default', accentClass: 'text-[#8b949e]' },
+  { icon: SiQiita, url: 'https://qiita.com/keigo1110', style: 'default', accentClass: 'text-[#55C500]' },
+  { icon: NoteIcon, url: 'https://note.com/namida1110', style: 'default', accentClass: 'text-[#2CB696]' },
+  { icon: ProtoPediaIcon, url: 'https://protopedia.net/prototyper/namida1110', style: 'default' },
+  { icon: SoraIcon, url: 'https://sora.chatgpt.com/profile/namida1110', style: 'default', accentClass: 'text-[#10A37F]' },
+]
 
 function DefaultHome() {
-  const { t } = useTranslation();
-  const { isDark } = useTheme();
-  const [activeTab, setActiveTab] = useState(0);
-  const [socialAnimationIndex, setSocialAnimationIndex] = useState(0);
+  const { t } = useTranslation()
+  const { isDark } = useTheme()
+  const reduced = usePrefersReducedMotion()
 
-  useEffect(() => {
-    setSocialAnimationIndex(Math.floor(Math.random() * SOCIAL_ICON_ANIMATION_PATTERNS.length));
-  }, []);
+  const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')]
+  const statementParagraphs = t('statement').split('\n').filter(Boolean)
 
-  const interests = [t('interest1'), t('interest2'), t('interest3'), t('interest4')];
+  // Light mode: stronger ink for body readability on warm paper
+  const ink = isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
+  const body = isDark ? 'text-[#D8D2C8]' : 'text-[#2A2620]'
+  const muted = isDark ? 'text-[#A39E94]' : 'text-[#4A453C]'
+  const softBorder = isDark ? 'border-[#2A2724]' : 'border-[#D0C8BA]'
+  const goldHover = isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
 
-  const statementTabs = [
-    { id: 0, label: t('statementTab1'), content: t('statement') },
-    // { id: 1, label: t('statementTab2'), content: t('statement2') }, // 読み、書き、AI
-    // { id: 2, label: t('statementTab3'), content: t('statement3') }  // 情報文化技術
-  ];
+  const restShadow = isDark
+    ? '0 22px 48px rgba(0,0,0,0.5), 0 6px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(184,160,74,0.1)'
+    : '0 26px 56px rgba(28,25,22,0.14), 0 8px 18px rgba(28,25,22,0.07), 0 0 0 1px rgba(138,116,40,0.08)'
+  const hoverShadow = isDark
+    ? '0 32px 64px rgba(0,0,0,0.58), 0 10px 22px rgba(0,0,0,0.34), 0 0 0 1px rgba(184,160,74,0.18)'
+    : '0 34px 68px rgba(28,25,22,0.18), 0 12px 24px rgba(28,25,22,0.09), 0 0 0 1px rgba(138,116,40,0.14)'
+
+  const name = t('name')
+  const roll = t('roll')
+  const school = t('school')
+  const lab = t('Lab')
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative safe-area-top safe-area-bottom">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center relative z-10">
+    <section
+      id="home"
+      className="world-ambient relative flex min-h-screen items-center justify-center safe-area-bottom"
+    >
+      <div
+        aria-hidden="true"
+        className="hero-bloom pointer-events-none absolute left-[8%] top-[18%] h-[28rem] w-[28rem] rounded-full blur-3xl"
+        style={{
+          background: isDark
+            ? 'radial-gradient(circle, rgba(184,160,74,0.28), transparent 68%)'
+            : 'radial-gradient(circle, rgba(184,160,74,0.22), transparent 68%)',
+        }}
+      />
+
+      <div className="relative z-10 container mx-auto flex flex-col items-start gap-12 px-4 pb-24 pt-8 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pb-28 lg:pt-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-          className="w-full lg:w-1/3 mb-8 lg:mb-0 relative flex justify-center"
+          initial={reduced ? { opacity: 1 } : { opacity: 0, y: 28, scale: 0.94, filter: 'blur(14px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          transition={reduced ? { duration: 0 } : { duration: 1.2, ease }}
+          className="w-full max-w-sm shrink-0 lg:w-[36%]"
         >
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-lg">
-            <Image
-              src="/images/myface.jpg"
-              alt={t('profileAlt')}
-              fill
-              sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full lg:w-2/3 lg:pl-8 xl:pl-12 text-center lg:text-left"
-        >
-          <motion.h1
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 sm:mb-6 leading-tight ${
-              isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-            }`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            {t('name')}
-          </motion.h1>
-
           <motion.div
-            className="mb-6 sm:mb-8 space-y-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            className="group relative"
+            whileHover={reduced ? undefined : { y: -6 }}
+            transition={{ duration: 0.45, ease }}
           >
-            <a
-              href="https://www.iii.u-tokyo.ac.jp/"
-              className={`transition-colors block text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
-                isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('school')}
-            </a>
-            <div className="flex items-center gap-2 flex-wrap">
-              <a
-                href="https://ishiguro-lab.org/"
-                className={`transition-colors text-base sm:text-lg font-medium outline-none rounded-lg px-2 py-1 inline-block ${
-                  isDark ? 'text-[#F5F5F7] hover:text-[#2997FF]' : 'text-[#1D1D1F] hover:text-[#0071E3]'
-                }`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('Lab')}
-              </a>
-              <span className="text-base sm:text-lg text-[#86868B]">
-                {t('roll')}
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-          >
-            {socialLinks.map((social, index) => {
-              const defaultHover = isDark ? 'group-hover:text-[#2997FF]' : 'group-hover:text-[#0071E3]';
-              const iconHoverClass = social.hoverColorClass ?? defaultHover;
-              const patternIndex = Math.min(
-                Math.max(0, socialAnimationIndex),
-                SOCIAL_ICON_ANIMATION_PATTERNS.length - 1
-              );
-              const pattern =
-                SOCIAL_ICON_ANIMATION_PATTERNS[patternIndex] ?? DEFAULT_SOCIAL_ANIMATION_PATTERN;
-              const staggerDelay = (pattern.transition.delay ?? 0) + index * 0.08;
-              return (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  className={`group p-3 sm:p-4 rounded-xl transition-all duration-300 outline-none ${
-                    isDark
-                      ? 'bg-[#1D1D1F] hover:bg-[#333336] text-[#86868B]'
-                      : 'bg-[#F5F5F7] hover:bg-[#E8E8ED] text-[#86868B]'
-                  }`}
-                  initial={pattern.initial}
-                  animate={pattern.animate}
-                  transition={{ duration: pattern.transition.duration, delay: 1.3 + staggerDelay }}
-                  whileHover={pattern.whileHover}
-                  whileTap={pattern.whileTap}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit ${social.url.split('/').pop() || social.url} profile`}
-                >
-                  <social.icon className={`text-lg sm:text-xl transition-colors duration-300 ${iconHoverClass}`} />
-                </motion.a>
-              );
-            })}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="space-y-6"
-          >
-            <div className={`rounded-2xl p-4 sm:p-6 ${
-              isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
-            }`}>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {statementTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base outline-none ${
-                      activeTab === tab.id
-                        ? isDark
-                          ? 'bg-[#2997FF] text-white shadow-lg'
-                          : 'bg-[#0071E3] text-white shadow-lg'
-                        : isDark
-                          ? 'bg-[#2C2C2E] text-[#86868B] hover:text-[#F5F5F7]'
-                          : 'bg-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className={`text-sm sm:text-base lg:text-lg leading-relaxed max-h-96 overflow-y-auto ${
-                  isDark ? 'text-[#86868B]' : 'text-[#86868B]'
-                }`}
-              >
-                {statementTabs[activeTab]?.content.split('\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 last:mb-0">
-                    {paragraph}
-                  </p>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Research Interests */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.7 }}
-              className={`rounded-2xl p-4 sm:p-6 ${
-                isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
-              }`}
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-x-8 -bottom-5 top-[60%] -z-10 rounded-[50%] blur-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isDark ? 0.8 : 0.85 }}
+              transition={reduced ? { duration: 0 } : { delay: 0.7, duration: 1.1, ease }}
+              style={{
+                background: isDark
+                  ? 'radial-gradient(ellipse at center, rgba(184,160,74,0.2), transparent 68%)'
+                  : 'radial-gradient(ellipse at center, rgba(138,116,40,0.16), transparent 68%)',
+              }}
+            />
+
+            <motion.div
+              className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem]"
+              style={{ boxShadow: restShadow }}
+              whileHover={reduced ? undefined : { boxShadow: hoverShadow }}
+              transition={{ duration: 0.45, ease }}
             >
-              <h3 className={`text-lg sm:text-xl font-semibold mb-4 ${
-                isDark ? 'text-[#2997FF]' : 'text-[#0071E3]'
-              }`}>
-                {t('interests')}
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {interests.map((interest, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.02, x: 4 }}
-                    className={`p-3 rounded-lg transition-all duration-300 ${
-                      isDark ? 'bg-[#2C2C2E] hover:bg-[#333336]' : 'bg-[#E8E8ED] hover:bg-[#D2D2D7]'
-                    }`}
-                  >
-                    <span className={`text-sm sm:text-base ${
-                      isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
-                    }`}>
-                      {interest}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
+              <Image
+                src="/images/myface.jpg"
+                alt={t('profileAlt')}
+                fill
+                sizes="(max-width: 1024px) 24rem, 36vw"
+                className="object-cover object-[center_18%]"
+                priority
+              />
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-[inherit]"
+                initial={{ opacity: reduced ? 0 : 0.55 }}
+                animate={{ opacity: 0 }}
+                transition={reduced ? { duration: 0 } : { duration: 1.35, delay: 0.15, ease }}
+                style={{
+                  background: isDark
+                    ? 'linear-gradient(160deg, rgba(212,192,122,0.35), transparent 55%)'
+                    : 'linear-gradient(160deg, rgba(247,244,239,0.7), transparent 55%)',
+                }}
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{
+                  boxShadow: isDark
+                    ? 'inset 0 0 0 1px rgba(212,192,122,0.24)'
+                    : 'inset 0 0 0 1px rgba(138,116,40,0.2)',
+                }}
+              />
             </motion.div>
           </motion.div>
         </motion.div>
+
+        <div className="min-w-0 flex-1">
+          <EnchantedText
+            key={`roll-${roll}`}
+            as="p"
+            text={roll}
+            delay={0.22}
+            reduced={reduced}
+            className={`mb-3 text-xs font-medium tracking-[0.18em] uppercase ${muted}`}
+          />
+
+          <EnchantedText
+            key={`name-${name}`}
+            as="h1"
+            text={name}
+            delay={0.34}
+            reduced={reduced}
+            className={`mb-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl ${ink}`}
+          />
+
+          <div className={`mb-8 space-y-1.5 text-base sm:text-lg ${body}`}>
+            <EnchantedText
+              key={`school-${school}`}
+              as="a"
+              text={school}
+              delay={0.52}
+              reduced={reduced}
+              href="https://www.iii.u-tokyo.ac.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`block outline-none transition-colors duration-300 ${goldHover}`}
+            />
+            <EnchantedText
+              key={`lab-${lab}`}
+              as="a"
+              text={lab}
+              delay={0.68}
+              reduced={reduced}
+              href="https://ishiguro-lab.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-block outline-none transition-colors duration-300 ${goldHover}`}
+            />
+          </div>
+
+          <SocialDock links={socialLinks} reduced={reduced} />
+
+          <div className={`mb-9 border-t pt-8 ${softBorder}`}>
+            <EnchantedText
+              key={`theme-${t('statementTab1')}`}
+              as="p"
+              text={t('statementTab1')}
+              delay={1.12}
+              reduced={reduced}
+              className={`mb-4 text-xs font-medium tracking-[0.16em] uppercase ${muted}`}
+            />
+            <div className={`max-w-2xl space-y-4 text-sm leading-relaxed sm:text-[0.975rem] ${body}`}>
+              {statementParagraphs.map((paragraph) => (
+                <EnchantedPassage
+                  key={paragraph.slice(0, 24)}
+                  text={paragraph}
+                  delay={1.18}
+                  reduced={reduced}
+                  isDark={isDark}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <EnchantedText
+              key={`interests-label-${t('interests')}`}
+              as="p"
+              text={t('interests')}
+              delay={3.35}
+              reduced={reduced}
+              className={`mb-3 text-xs font-medium tracking-[0.16em] uppercase ${muted}`}
+            />
+            <p className={`text-sm leading-relaxed sm:text-base ${ink}`}>
+              {interests.map((interest, index) => (
+                <span key={interest}>
+                  {index > 0 && (
+                    <span aria-hidden="true" className={`mx-2 ${muted}`}>
+                      {' · '}
+                    </span>
+                  )}
+                  <EnchantedText
+                    text={interest}
+                    delay={3.48 + index * 0.1}
+                    reduced={reduced}
+                  />
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
       </div>
     </section>
-  );
+  )
 }
 
 export function HomeSection() {
-  return <DefaultHome />;
+  return <DefaultHome />
 }

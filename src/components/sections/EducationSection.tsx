@@ -44,21 +44,25 @@ export function EducationSection() {
   ]
 
   return (
-    <section id="education" className="py-24 md:py-32 lg:py-40 relative">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section id="education" className="world-library relative py-24 md:py-32 lg:py-40">
+      <div className="container mx-auto max-w-4xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14 md:mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
-            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${
+            isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+          }`}>
+            Path
+          </p>
+          <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl ${
+            isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
           }`}>
             Education
           </h2>
-          <div className={`w-24 h-0.5 mx-auto ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
 
         <motion.div
@@ -77,40 +81,42 @@ export function EducationSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 pb-8 border-b ${
-                isDark ? 'border-[#333336]' : 'border-[#D2D2D7]'
+              <div className={`flex flex-col gap-4 border-b pb-8 md:flex-row md:items-baseline md:gap-8 ${
+                isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
               }`}>
                 <motion.div
                   className="flex-shrink-0 md:w-44"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <span className="text-sm font-light text-[#86868B]">
+                  <span className={`text-sm font-light ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                     {edu.period}
                   </span>
                 </motion.div>
                 <div className="flex-1">
                   <p className={`text-base leading-relaxed ${
-                    isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                    isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
                   }`}>
                     {t(edu.institutionKey)}
                   </p>
-                  <p className="text-sm text-[#86868B] mt-1">
+                  <p className={`mt-1 text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                     {t(edu.departmentKey)}
                   </p>
                   {edu.noteKey && (
-                    <p className="text-sm mt-1 text-[#86868B]">
+                    <p className={`mt-1 text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                       {t(edu.noteKey)}
                     </p>
                   )}
                   {edu.note2Key && (
-                    <p className="text-sm mt-1 text-[#86868B]">
+                    <p className={`mt-1 text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                       {edu.note2LinkUrl ? (
                         <a
                           href={edu.note2LinkUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#86868B] hover:underline underline-offset-2"
+                          className={`underline-offset-2 hover:underline ${
+                            isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
+                          }`}
                         >
                           {t(edu.note2Key)}
                         </a>

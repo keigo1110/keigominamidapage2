@@ -255,6 +255,7 @@ export const ja = {
     personalTrackLabel: 'パーソナル',
     socialTrackLabel: 'ソーシャル',
     communityTrackLabel: 'コミュニティ',
+    experienceTracksAria: '経歴の三つの軌跡',
     currentLabel: '現在',
     currentSubtitle: '今動いているフォーカス',
     currentLogLabel: 'アクティビティログ',

@@ -4,8 +4,9 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { FormEvent, PointerEvent as ReactPointerEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Loader2, MapPin, Send, Sparkles, X } from 'lucide-react'
+import { MapPin, Send, X } from 'lucide-react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import type { Language } from '../../translations'
@@ -22,6 +23,21 @@ import { useAgentGuide } from './useAgentGuide'
 import { useAgentPosition } from './useAgentPosition'
 import type { AgentCoordinates } from './useAgentPosition'
 import { usePrefersReducedMotion } from './usePrefersReducedMotion'
+import { ROTA_CHARACTER_IMAGE, rotaProfile } from '../../data/rota'
+import { chatPresets, localizePresetText } from './content/chatPresets'
+
+function BreathMark({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`enchant-breathe inline-flex items-center gap-1 ${className ?? ''}`}
+    >
+      <span className="h-1 w-1 rounded-full bg-current" />
+      <span className="h-1 w-1 rounded-full bg-current" />
+      <span className="h-1 w-1 rounded-full bg-current" />
+    </span>
+  )
+}
 
 interface LocalizedLabels {
   guideName: string
@@ -33,6 +49,8 @@ interface LocalizedLabels {
   chatPlaceholder: string
   send: string
   sending: string
+  greeting: string
+  suggestedQuestions: string
   idleHint: string
   chatError: string
   dataUseNotice: string
@@ -49,6 +67,8 @@ const localizedLabels = {
     chatPlaceholder: 'Ask ROTA a question',
     send: 'Send',
     sending: 'Thinking',
+    greeting: "Hey. I'm ROTA. Ask about Keigo, this site, the research — whatever you're curious about.",
+    suggestedQuestions: 'Suggested questions',
     idleHint: 'Tap me for a guide',
     chatError: 'ROTA could not answer right now. Please try again later.',
     dataUseNotice: 'Chats may be used to improve ROTA.',
@@ -63,6 +83,8 @@ const localizedLabels = {
     chatPlaceholder: 'ROTAに質問する',
     send: '送信',
     sending: '考え中',
+    greeting: 'はじめまして。ROTAだよ。桂吾のことでも、このサイトのことでも、気になったところから聞いてみて。',
+    suggestedQuestions: 'よくある質問',
     idleHint: 'タップで案内するよ',
     chatError: '今は ROTA がうまく返答できませんでした。少し後でもう一度試してください。',
     dataUseNotice: '会話は ROTA の改善に使用します。',
@@ -80,6 +102,7 @@ interface AgentChatMessage {
   role: AgentChatRole
   content: string
   status?: 'error'
+  kind?: 'greeting' | 'preset'
 }
 
 interface AgentChatRequestMessage {
@@ -96,8 +119,10 @@ interface AgentChatApiResponse {
 const CHAT_HISTORY_LIMIT = 8
 const CHAT_INPUT_MAX_LENGTH = 420
 const CHAT_RESPONSE_ANIMATION_MS = 920
-const PANEL_WIDTH_PX = 336
-const PANEL_MAX_HEIGHT_PX = 448
+const INTRO_THINK_MS = 1000
+const PRESET_THINK_MS = 720
+const PANEL_WIDTH_PX = 360
+const PANEL_MAX_HEIGHT_PX = 520
 const IDLE_HINT_INITIAL_DELAY_MS = 4200
 const IDLE_HINT_VISIBLE_MS = 4200
 const IDLE_HINT_MIN_DELAY_MS = 18000
@@ -268,8 +293,10 @@ function mapAgentAnimation(
   isReacting: boolean,
   reactionAnimation: SpriteAnimationName | null,
   isChatSending: boolean,
+  isIntroThinking: boolean,
 ): SpriteAnimationName {
   if (isWalking) return 'walk'
+  if (isIntroThinking) return 'think'
   if (reactionAnimation) return reactionAnimation
   if (isReacting) return 'wave'
   if (isChatSending) return 'talk'
@@ -320,6 +347,9 @@ export function PortfolioAgent() {
   const chatMessageIdRef = useRef(0)
   const chatScrollRef = useRef<HTMLDivElement | null>(null)
   const dragClickGuardTimerRef = useRef<number | null>(null)
+  const introTimerRef = useRef<number | null>(null)
+  const presetTimerRef = useRef<number | null>(null)
+  const greetingTextRef = useRef(localizedLabels[language].greeting)
   const dragSessionRef = useRef<{
     pointerId: number
     startX: number
@@ -338,6 +368,7 @@ export function PortfolioAgent() {
   const [chatMessages, setChatMessages] = useState<AgentChatMessage[]>([])
   const [chatInput, setChatInput] = useState('')
   const [isChatSending, setIsChatSending] = useState(false)
+  const [isIntroThinking, setIsIntroThinking] = useState(false)
   const {
     position,
     facing,
@@ -357,6 +388,7 @@ export function PortfolioAgent() {
   })
 
   const labels = localizedLabels[language]
+  greetingTextRef.current = labels.greeting
   const recommendedGuide = useMemo(
     () => recommendedGuideId
       ? allGuides.find((candidateGuide) => candidateGuide.id === recommendedGuideId) ?? null
@@ -377,6 +409,7 @@ export function PortfolioAgent() {
     isReacting,
     characterReactionAnimation,
     isChatSending,
+    isIntroThinking,
   )
   const activeFacing = dragFacing ?? facing
   const displayedPosition = {
@@ -393,6 +426,14 @@ export function PortfolioAgent() {
       if (dragClickGuardTimerRef.current !== null) {
         window.clearTimeout(dragClickGuardTimerRef.current)
       }
+
+      if (introTimerRef.current !== null) {
+        window.clearTimeout(introTimerRef.current)
+      }
+
+      if (presetTimerRef.current !== null) {
+        window.clearTimeout(presetTimerRef.current)
+      }
     }
   }, [])
 
@@ -403,7 +444,7 @@ export function PortfolioAgent() {
     if (!chatScrollElement) return
 
     chatScrollElement.scrollTop = chatScrollElement.scrollHeight
-  }, [chatMessages, isChatSending, isOpen])
+  }, [chatMessages, isChatSending, isIntroThinking, isOpen])
 
   useEffect(() => {
     setRecommendedGuideId(null)
@@ -463,6 +504,72 @@ export function PortfolioAgent() {
     }, prefersReducedMotion ? 240 : CHAT_RESPONSE_ANIMATION_MS)
   }, [prefersReducedMotion])
 
+  useEffect(() => {
+    if (!isOpen) {
+      if (introTimerRef.current !== null) {
+        window.clearTimeout(introTimerRef.current)
+        introTimerRef.current = null
+      }
+      setIsIntroThinking(false)
+      return
+    }
+
+    if (chatMessages.length > 0 || introTimerRef.current !== null) return
+
+    if (prefersReducedMotion) {
+      setChatMessages((currentMessages) => {
+        if (currentMessages.length > 0) return currentMessages
+        return [
+          {
+            id: createChatMessageId(),
+            role: 'assistant',
+            content: greetingTextRef.current,
+            kind: 'greeting',
+          },
+        ]
+      })
+      return
+    }
+
+    setIsIntroThinking(true)
+    introTimerRef.current = window.setTimeout(() => {
+      introTimerRef.current = null
+      setChatMessages((currentMessages) => {
+        if (currentMessages.length > 0) return currentMessages
+        return [
+          {
+            id: createChatMessageId(),
+            role: 'assistant',
+            content: greetingTextRef.current,
+            kind: 'greeting',
+          },
+        ]
+      })
+      setIsIntroThinking(false)
+      triggerChatResponseAnimation()
+    }, INTRO_THINK_MS)
+  }, [
+    chatMessages.length,
+    createChatMessageId,
+    isOpen,
+    prefersReducedMotion,
+    triggerChatResponseAnimation,
+  ])
+
+  useEffect(() => {
+    setChatMessages((currentMessages) => {
+      if (
+        currentMessages.length !== 1
+        || currentMessages[0]?.kind !== 'greeting'
+        || currentMessages[0].content === labels.greeting
+      ) {
+        return currentMessages
+      }
+
+      return [{ ...currentMessages[0], content: labels.greeting }]
+    })
+  }, [labels.greeting])
+
   const triggerCharacterReaction = useCallback(() => {
     if (characterReactionTimerRef.current !== null) {
       window.clearTimeout(characterReactionTimerRef.current)
@@ -484,6 +591,12 @@ export function PortfolioAgent() {
     const content = rawContent.trim()
 
     if (!content || isChatSending) return
+
+    if (introTimerRef.current !== null) {
+      window.clearTimeout(introTimerRef.current)
+      introTimerRef.current = null
+    }
+    setIsIntroThinking(false)
 
     const userMessage: AgentChatMessage = {
       id: createChatMessageId(),
@@ -567,6 +680,59 @@ export function PortfolioAgent() {
     triggerChatResponseAnimation,
   ])
 
+  const playPreset = useCallback((presetId: string) => {
+    const preset = chatPresets.find((candidate) => candidate.id === presetId)
+    if (!preset || isChatSending) return
+
+    if (introTimerRef.current !== null) {
+      window.clearTimeout(introTimerRef.current)
+      introTimerRef.current = null
+    }
+    setIsIntroThinking(false)
+
+    if (presetTimerRef.current !== null) {
+      window.clearTimeout(presetTimerRef.current)
+      presetTimerRef.current = null
+    }
+
+    const question = localizePresetText(preset.question, language)
+    const answer = localizePresetText(preset.answer, language)
+    const userMessage: AgentChatMessage = {
+      id: createChatMessageId(),
+      role: 'user',
+      content: question,
+      kind: 'preset',
+    }
+
+    setChatMessages((currentMessages) => [...currentMessages, userMessage])
+    setChatInput('')
+    setIsOpen(true)
+    setIsChatSending(true)
+
+    const delay = prefersReducedMotion ? 0 : PRESET_THINK_MS
+    presetTimerRef.current = window.setTimeout(() => {
+      presetTimerRef.current = null
+      setChatMessages((currentMessages) => [
+        ...currentMessages,
+        {
+          id: createChatMessageId(),
+          role: 'assistant',
+          content: answer,
+          kind: 'preset',
+        },
+      ])
+      setRecommendedGuideId(preset.guideId ?? null)
+      triggerChatResponseAnimation()
+      setIsChatSending(false)
+    }, delay)
+  }, [
+    createChatMessageId,
+    isChatSending,
+    language,
+    prefersReducedMotion,
+    triggerChatResponseAnimation,
+  ])
+
   const handleChatSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     void sendChatMessage(chatInput)
@@ -593,9 +759,11 @@ export function PortfolioAgent() {
     }
 
     setIsIdleHintVisible(false)
-    triggerCharacterReaction()
     setIsOpen(true)
-  }, [triggerCharacterReaction])
+    if (chatMessages.length > 0) {
+      triggerCharacterReaction()
+    }
+  }, [chatMessages.length, triggerCharacterReaction])
 
   const resetDragState = useCallback(() => {
     dragSessionRef.current = null
@@ -691,66 +859,97 @@ export function PortfolioAgent() {
 
   const shellClassName = isOpen ? 'z-40' : 'z-30'
   const panelClassName = isDark
-    ? 'border-white/10 bg-black/90 text-[#F5F5F7] shadow-black/40'
-    : 'border-black/10 bg-white/95 text-[#1D1D1F] shadow-black/20'
-  const secondaryTextClassName = 'text-[#86868B]'
-  const dividerClassName = isDark ? 'border-white/10' : 'border-black/10'
+    ? 'border-[#2A2724] bg-[#0C0B0A]/92 text-[#F2EFE9] shadow-black/40'
+    : 'border-[#E4DFD6] bg-[#F7F4EF]/96 text-[#1C1916] shadow-black/15'
+  const secondaryTextClassName = isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+  const dividerClassName = isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
   const panelTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { duration: 0.22, ease: 'easeOut' }
+    : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }
   const travelTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { type: 'spring' as const, stiffness: 260, damping: 26, mass: 0.8 }
+    : { type: 'spring' as const, stiffness: 240, damping: 28, mass: 0.85 }
+  const accentClass = isDark
+    ? 'bg-[#B8A04A]/12 text-[#D4C07A] hover:bg-[#B8A04A]/20'
+    : 'bg-[#8A7428]/08 text-[#8A7428] hover:bg-[#8A7428]/14'
   const panelContent = (
-    <div className="flex max-h-[inherit] min-h-0 flex-col overflow-hidden">
-      <div className="flex min-h-0 flex-1 flex-col gap-3 px-3 pb-3 pt-3">
-        <div
-          className={`relative rounded-[8px] border px-3 pb-3 pt-3 ${
-            isDark ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-black/[0.03]'
-          }`}
-        >
-          <button
-            type="button"
+    <div className="flex h-full min-h-0 flex-col overflow-hidden">
+      <div className={`flex items-center gap-2 border-b px-3 py-2.5 ${dividerClassName}`}>
+        <Image
+          src={ROTA_CHARACTER_IMAGE}
+          alt=""
+          width={28}
+          height={28}
+          className="h-7 w-7 shrink-0 object-contain"
+        />
+        <p className={`shrink-0 text-sm font-semibold leading-none tracking-normal ${
+          isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
+        }`}>
+          {rotaProfile.name}
+        </p>
+        {pathname !== '/rota' && (
+          <Link
+            href="/rota"
+            prefetch
             onClick={() => {
               setIsOpen(false)
             }}
-            className={`absolute right-1.5 top-1.5 rounded-[8px] p-1.5 transition-colors ${
-              isDark ? 'hover:bg-white/10' : 'hover:bg-black/5'
+            className={`ml-0.5 inline-flex min-h-7 shrink-0 items-center whitespace-nowrap rounded-full px-2.5 text-[11px] font-medium tracking-normal transition-colors ${
+              isDark
+                ? 'bg-white/[0.07] text-[#D4C07A] hover:bg-white/[0.12]'
+                : 'bg-black/[0.05] text-[#8A7428] hover:bg-black/[0.08]'
             }`}
-            aria-label={labels.close}
-            aria-controls={panelId}
           >
-            <X aria-hidden="true" className="h-3.5 w-3.5" />
-          </button>
-          <p className={`pr-7 text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
+            {labels.aboutRota}
+          </Link>
+        )}
+        <button
+          type="button"
+          onClick={() => {
+            setIsOpen(false)
+          }}
+          className={`ml-auto rounded-[8px] p-1.5 transition-colors ${
+            isDark ? 'hover:bg-white/10' : 'hover:bg-black/5'
+          }`}
+          aria-label={labels.close}
+          aria-controls={panelId}
+        >
+          <X aria-hidden="true" className="h-3.5 w-3.5" />
+        </button>
+      </div>
+
+      <div className="flex min-h-0 flex-1 flex-col gap-3 px-3 pb-3 pt-3">
+        <div
+          className={`relative shrink-0 border-l px-3 py-1 ${
+            isDark ? 'border-[#B8A04A]/35' : 'border-[#8A7428]/30'
+          }`}
+        >
+          <p className={`text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
             {guideDisplayMessage}
           </p>
           {shouldShowGuideCta && (
             <button
               type="button"
               onClick={handleNavigateToTarget}
-              className={`mt-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${
-                isDark
-                  ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
-                  : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
-              }`}
+              className={`mt-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${accentClass}`}
             >
               <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
-              <span>{labels.navigate}</span>
+              <span>
+                {activeGuide.targetRoute === '/rota' ? labels.aboutRota : labels.navigate}
+              </span>
             </button>
           )}
         </div>
 
-        {(chatMessages.length > 0 || isChatSending) && (
-          <div
-            ref={chatScrollRef}
-            className={`min-h-0 overflow-y-auto rounded-[8px] border px-2 py-2 ${
-              isMobile ? 'max-h-[42dvh]' : 'max-h-[min(16rem,38vh)]'
-            } ${isDark ? 'border-white/10 bg-white/[0.04]' : 'border-black/10 bg-black/[0.03]'}`}
-            aria-label={labels.chatPlaceholder}
-            aria-live="polite"
-          >
-            {chatMessages.map((message) => {
+        <div
+          ref={chatScrollRef}
+          className={`min-h-0 flex-1 overflow-y-auto rounded-[10px] border px-2 py-2 ${
+            isDark ? 'border-[#2A2724] bg-white/[0.03]' : 'border-[#E4DFD6] bg-black/[0.02]'
+          }`}
+          aria-label={labels.chatPlaceholder}
+          aria-live="polite"
+        >
+          {chatMessages.map((message) => {
               const isUserMessage = message.role === 'user'
 
               return (
@@ -759,18 +958,18 @@ export function PortfolioAgent() {
                   className={`mb-2 flex last:mb-0 ${isUserMessage ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[88%] rounded-[8px] px-2.5 py-2 text-xs leading-relaxed tracking-normal md:max-w-[86%] ${
+                    className={`max-w-[88%] rounded-[10px] px-2.5 py-2 text-xs leading-relaxed tracking-normal md:max-w-[86%] ${
                       isUserMessage
                         ? isDark
-                          ? 'bg-[#2997FF]/25 text-[#F5F5F7]'
-                          : 'bg-[#0071E3]/10 text-[#1D1D1F]'
+                          ? 'bg-[#B8A04A]/15 text-[#F2EFE9]'
+                          : 'bg-[#8A7428]/08 text-[#1C1916]'
                         : message.status === 'error'
                           ? isDark
                             ? 'bg-red-500/15 text-red-100'
                             : 'bg-red-500/10 text-red-700'
                           : isDark
-                            ? 'bg-white/10 text-[#F5F5F7]'
-                            : 'bg-white text-[#1D1D1F]'
+                            ? 'bg-[#161412] text-[#F2EFE9]'
+                            : 'bg-white/80 text-[#1C1916]'
                     }`}
                   >
                     {!isUserMessage && (
@@ -784,33 +983,37 @@ export function PortfolioAgent() {
               )
             })}
 
-            {isChatSending && (
-              <div className="flex items-center gap-2 text-xs tracking-normal text-[#86868B]">
-                <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
+            {(isChatSending || isIntroThinking) && (
+              <div className={`flex items-center gap-2.5 text-xs tracking-normal ${secondaryTextClassName}`}>
+                <BreathMark />
                 <span>{labels.sending}</span>
               </div>
             )}
-          </div>
-        )}
+        </div>
       </div>
 
       <div className={`border-t px-3 py-2.5 ${dividerClassName}`}>
-        {pathname !== '/rota' && (
-          <Link
-            href="/rota"
-            prefetch
-            onClick={() => {
-              setIsOpen(false)
-            }}
-            className={`mb-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${
-              isDark
-                ? 'bg-white/10 text-[#F5F5F7] hover:bg-white/15'
-                : 'bg-black/5 text-[#1D1D1F] hover:bg-black/[0.08]'
-            }`}
-          >
-            <Sparkles aria-hidden="true" className="h-3.5 w-3.5" />
-            <span>{labels.aboutRota}</span>
-          </Link>
+        {!isIntroThinking && (
+          <div className="mb-2.5">
+            <p className="sr-only">{labels.suggestedQuestions}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {chatPresets.map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  disabled={isChatSending}
+                  onClick={() => playPreset(preset.id)}
+                  className={`rounded-full border px-2.5 py-1 text-[11px] font-medium tracking-normal transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${
+                    isDark
+                      ? 'border-white/10 bg-white/[0.04] text-[#D8D2C8] hover:border-[#B8A04A]/40 hover:text-[#F2EFE9]'
+                      : 'border-[#E4DFD6] bg-black/[0.03] text-[#4A453C] hover:border-[#8A7428]/35 hover:text-[#1C1916]'
+                  }`}
+                >
+                  {localizePresetText(preset.label, language)}
+                </button>
+              ))}
+            </div>
+          </div>
         )}
         <form className="flex items-center gap-2" onSubmit={handleChatSubmit}>
           <label className="sr-only" htmlFor={`${panelId}-chat-input`}>
@@ -826,24 +1029,20 @@ export function PortfolioAgent() {
             maxLength={CHAT_INPUT_MAX_LENGTH}
             disabled={isChatSending}
             placeholder={labels.chatPlaceholder}
-            className={`min-h-12 min-w-0 flex-1 rounded-[8px] border px-3 py-2 text-base tracking-normal outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60 md:min-h-0 md:text-sm ${
+            className={`min-h-12 min-w-0 flex-1 rounded-[10px] border px-3 py-2 text-base tracking-normal outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-60 md:min-h-0 md:text-sm ${
               isDark
-                ? 'border-white/10 bg-white/10 text-[#F5F5F7] placeholder:text-[#86868B] focus:border-[#2997FF]'
-                : 'border-black/10 bg-white text-[#1D1D1F] placeholder:text-[#86868B] focus:border-[#0071E3]'
+                ? 'border-[#2A2724] bg-[#161412] text-[#F2EFE9] placeholder:text-[#9A958C] focus:border-[#B8A04A]/70'
+                : 'border-[#E4DFD6] bg-white/70 text-[#1C1916] placeholder:text-[#7A756C] focus:border-[#8A7428]/70'
             }`}
           />
           <button
             type="submit"
             disabled={!chatInput.trim() || isChatSending}
             aria-label={labels.send}
-            className={`inline-flex min-h-12 min-w-12 items-center justify-center rounded-[8px] transition-colors disabled:cursor-not-allowed disabled:opacity-45 md:min-h-11 md:min-w-11 ${
-              isDark
-                ? 'bg-[#2997FF]/20 text-[#2997FF] hover:bg-[#2997FF]/30'
-                : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
-            }`}
+            className={`inline-flex min-h-12 min-w-12 items-center justify-center rounded-[10px] transition-colors disabled:cursor-not-allowed disabled:opacity-45 md:min-h-11 md:min-w-11 ${accentClass}`}
           >
             {isChatSending ? (
-              <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
+              <BreathMark />
             ) : (
               <Send aria-hidden="true" className="h-4 w-4" />
             )}
@@ -870,7 +1069,7 @@ export function PortfolioAgent() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
             transition={panelTransition}
-            className={`pointer-events-auto fixed inset-x-2 bottom-[calc(0.5rem_+_env(safe-area-inset-bottom))] z-50 max-h-[calc(100dvh_-_1rem_-_env(safe-area-inset-top)_-_env(safe-area-inset-bottom))] overflow-hidden rounded-[12px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
+            className={`pointer-events-auto fixed inset-x-2 bottom-[calc(0.5rem_+_env(safe-area-inset-bottom))] z-50 flex h-[min(36rem,calc(100dvh_-_6.5rem_-_env(safe-area-inset-top)_-_env(safe-area-inset-bottom)))] flex-col overflow-hidden rounded-[12px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
           >
             {panelContent}
           </motion.section>
@@ -898,16 +1097,16 @@ export function PortfolioAgent() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 4, scale: 0.98 }}
               transition={panelTransition}
-              className={`pointer-events-none absolute bottom-[calc(100%-0.25rem)] right-1 max-w-[11rem] rounded-[8px] border px-3 py-2 text-xs font-semibold leading-snug tracking-normal shadow-lg backdrop-blur-xl ${
+              className={`pointer-events-none absolute bottom-[calc(100%-0.25rem)] right-1 max-w-[11rem] rounded-[10px] border px-3 py-2 text-xs font-semibold leading-snug tracking-normal shadow-lg backdrop-blur-xl ${
                 isDark
-                  ? 'border-white/10 bg-black/85 text-[#F5F5F7]'
-                  : 'border-black/10 bg-white/95 text-[#1D1D1F]'
+                  ? 'border-[#2A2724] bg-[#0C0B0A]/90 text-[#F2EFE9]'
+                  : 'border-[#E4DFD6] bg-[#F7F4EF]/95 text-[#1C1916]'
               }`}
             >
               <span>{labels.idleHint}</span>
               <span
                 className={`absolute -bottom-1 right-6 h-2 w-2 rotate-45 border-b border-r ${
-                  isDark ? 'border-white/10 bg-black/85' : 'border-black/10 bg-white/95'
+                  isDark ? 'border-[#2A2724] bg-[#0C0B0A]/90' : 'border-[#E4DFD6] bg-[#F7F4EF]/95'
                 }`}
               />
             </motion.div>
@@ -926,7 +1125,7 @@ export function PortfolioAgent() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98 }}
               transition={panelTransition}
-              className={`pointer-events-auto absolute bottom-[calc(100%+0.75rem)] right-0 w-[min(21rem,calc(100vw-1.5rem))] max-h-[min(28rem,70vh)] overflow-hidden rounded-[8px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
+              className={`pointer-events-auto absolute bottom-[calc(100%+0.75rem)] right-0 flex h-[min(32rem,calc(100dvh-8.5rem))] w-[min(22.5rem,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-[12px] border shadow-2xl backdrop-blur-xl ${panelClassName}`}
             >
               {panelContent}
             </motion.section>

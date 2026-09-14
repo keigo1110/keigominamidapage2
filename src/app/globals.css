@@ -22,15 +22,15 @@ body {
   box-shadow: none;
 }
 
-/* Focus styles only for keyboard navigation */
+/* Focus: gold enchantment, not SaaS blue pills */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 3px solid #0071E3;
+  outline: 2px solid #8A7428;
   outline-offset: 2px;
-  box-shadow: 0 0 0 6px rgba(0, 113, 227, 0.15);
+  box-shadow: 0 0 0 5px rgba(138, 116, 40, 0.14);
 }
 
 .dark button:focus-visible,
@@ -38,8 +38,8 @@ select:focus-visible {
 .dark input:focus-visible,
 .dark textarea:focus-visible,
 .dark select:focus-visible {
-  outline: 3px solid #2997FF;
-  box-shadow: 0 0 0 6px rgba(41, 151, 255, 0.15);
+  outline: 2px solid #B8A04A;
+  box-shadow: 0 0 0 5px rgba(184, 160, 74, 0.18);
 }
 
 /* Skip link styles */
@@ -66,7 +66,7 @@ select:focus-visible {
   white-space: normal;
 }
 
-/* Theme classes for manual override */
+/* Theme classes for manual override — tokens follow .light / .dark, not OS alone */
 .light {
   color-scheme: light;
 }
@@ -77,26 +77,36 @@ select:focus-visible {
 
 @layer base {
   :root {
-    /* Apple Light Mode */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 11%;
-    --card: 240 5% 96%;
-    --card-foreground: 0 0% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
-    --primary: 211 100% 44%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 0 0% 11%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 0 0% 53%;
-    --accent: 211 100% 44%;
-    --accent-foreground: 0 0% 100%;
+    /* Warm paper — Apple material, enchanted temperature */
+    --background: 36 28% 97%;
+    --foreground: 30 10% 10%;
+    --card: 36 22% 94%;
+    --card-foreground: 30 10% 10%;
+    --popover: 36 28% 97%;
+    --popover-foreground: 30 10% 10%;
+    /* Link blue demoted; gold is the enchantment accent */
+    --primary: 42 48% 35%;
+    --primary-foreground: 40 30% 98%;
+    --secondary: 36 18% 93%;
+    --secondary-foreground: 30 10% 10%;
+    --muted: 36 14% 92%;
+    --muted-foreground: 30 6% 42%;
+    --accent: 42 48% 35%;
+    --accent-foreground: 40 30% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 83%;
-    --input: 240 4% 83%;
-    --ring: 211 100% 44%;
+    --border: 34 14% 84%;
+    --input: 34 14% 84%;
+    --ring: 42 48% 35%;
+    --link: 211 100% 40%;
+    --enchant: 42 48% 35%;
+    --enchant-soft: 42 40% 48%;
+    --ink: #1c1916;
+    --paper: #f7f4ef;
+    --paper-deep: #efe9e0;
+    --night: #0c0b0a;
+    --gold: #8a7428;
+    --gold-bright: #b8a04a;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -105,27 +115,68 @@ select:focus-visible {
     --radius: 0.75rem;
   }
 
+  /* Explicit light tokens so OS dark preference cannot paint light mode dark */
+  .light {
+    --background: 36 28% 97%;
+    --foreground: 30 10% 10%;
+    --card: 36 22% 94%;
+    --card-foreground: 30 10% 10%;
+    --popover: 36 28% 97%;
+    --popover-foreground: 30 10% 10%;
+    --primary: 42 48% 35%;
+    --primary-foreground: 40 30% 98%;
+    --secondary: 36 18% 93%;
+    --secondary-foreground: 30 10% 10%;
+    --muted: 36 14% 92%;
+    --muted-foreground: 30 8% 32%;
+    --accent: 42 48% 35%;
+    --accent-foreground: 40 30% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 34 14% 78%;
+    --input: 34 14% 78%;
+    --ring: 42 48% 35%;
+    --link: 211 100% 40%;
+    --enchant: 42 48% 35%;
+    --enchant-soft: 42 40% 48%;
+    --ink: #1c1916;
+    --paper: #f7f4ef;
+    --paper-deep: #efe9e0;
+    --night: #0c0b0a;
+    --gold: #8a7428;
+    --gold-bright: #b8a04a;
+  }
+
   .dark {
-    /* Apple Dark Mode */
-    --background: 0 0% 0%;
-    --foreground: 240 5% 97%;
-    --card: 0 0% 11%;
-    --card-foreground: 240 5% 97%;
-    --popover: 0 0% 0%;
-    --popover-foreground: 240 5% 97%;
-    --primary: 210 100% 57%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 11%;
-    --secondary-foreground: 240 5% 97%;
-    --muted: 0 0% 11%;
-    --muted-foreground: 0 0% 53%;
-    --accent: 210 100% 57%;
-    --accent-foreground: 0 0% 100%;
+    /* Warm night */
+    --background: 30 8% 5%;
+    --foreground: 36 20% 94%;
+    --card: 30 8% 9%;
+    --card-foreground: 36 20% 94%;
+    --popover: 30 8% 5%;
+    --popover-foreground: 36 20% 94%;
+    --primary: 42 42% 58%;
+    --primary-foreground: 30 10% 8%;
+    --secondary: 30 8% 11%;
+    --secondary-foreground: 36 20% 94%;
+    --muted: 30 6% 12%;
+    --muted-foreground: 30 8% 58%;
+    --accent: 42 42% 58%;
+    --accent-foreground: 30 10% 8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 210 100% 57%;
+    --border: 30 6% 18%;
+    --input: 30 6% 18%;
+    --ring: 42 42% 58%;
+    --link: 210 100% 62%;
+    --enchant: 42 42% 58%;
+    --enchant-soft: 42 36% 68%;
+    --ink: #f2efe9;
+    --paper: #0c0b0a;
+    --paper-deep: #161412;
+    --night: #0c0b0a;
+    --gold: #b8a04a;
+    --gold-bright: #d4c07a;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -143,9 +194,27 @@ select:focus-visible {
   }
 }
 
-/* Minimal scrollbar */
+/* Magical scrollbar — a quiet gold filament, brighter only while moving */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(138, 116, 40, 0.28) transparent;
+}
+
+html.is-scrolling {
+  scrollbar-color: rgba(138, 116, 40, 0.55) transparent;
+}
+
+html.dark {
+  scrollbar-color: rgba(184, 160, 74, 0.28) transparent;
+}
+
+html.dark.is-scrolling {
+  scrollbar-color: rgba(212, 192, 122, 0.58) transparent;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -153,22 +222,82 @@ select:focus-visible {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(134, 134, 139, 0.3);
-  border-radius: 4px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(138, 116, 40, 0.18) 12%,
+    rgba(138, 116, 40, 0.42) 50%,
+    rgba(138, 116, 40, 0.18) 88%,
+    transparent 100%
+  );
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(134, 134, 139, 0.5);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(138, 116, 40, 0.32) 12%,
+    rgba(138, 116, 40, 0.62) 50%,
+    rgba(138, 116, 40, 0.32) 88%,
+    transparent 100%
+  );
 }
 
-/* Enhanced selection styles */
+.dark ::-webkit-scrollbar-thumb,
+html.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(184, 160, 74, 0.16) 12%,
+    rgba(184, 160, 74, 0.46) 50%,
+    rgba(184, 160, 74, 0.16) 88%,
+    transparent 100%
+  );
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(212, 192, 122, 0.28) 12%,
+    rgba(212, 192, 122, 0.62) 50%,
+    rgba(212, 192, 122, 0.28) 88%,
+    transparent 100%
+  );
+}
+
+html.is-scrolling::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(138, 116, 40, 0.35) 10%,
+    rgba(184, 160, 74, 0.7) 50%,
+    rgba(138, 116, 40, 0.35) 90%,
+    transparent 100%
+  );
+}
+
+html.dark.is-scrolling::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(184, 160, 74, 0.32) 10%,
+    rgba(212, 192, 122, 0.78) 50%,
+    rgba(184, 160, 74, 0.32) 90%,
+    transparent 100%
+  );
+}
+
+/* Enhanced selection styles — soft gold */
 ::selection {
-  background: rgba(0, 113, 227, 0.25);
+  background: rgba(138, 116, 40, 0.22);
   color: inherit;
 }
 
 .dark ::selection {
-  background: rgba(41, 151, 255, 0.3);
+  background: rgba(184, 160, 74, 0.28);
   color: inherit;
 }
 
@@ -178,13 +307,116 @@ select:focus-visible {
 }
 
 :focus-visible {
-  outline: 3px solid #0071E3;
+  outline: 2px solid #8A7428;
   outline-offset: 2px;
 }
 
 .dark :focus-visible {
-  outline: 3px solid #2997FF;
+  outline: 2px solid #B8A04A;
   outline-offset: 2px;
+}
+
+/* Ambient world light — used sparingly on home / section rooms */
+.world-ambient {
+  background:
+    radial-gradient(ellipse 70% 50% at 12% 18%, rgba(184, 160, 74, 0.045), transparent 58%),
+    radial-gradient(ellipse 55% 40% at 88% 78%, rgba(138, 116, 40, 0.025), transparent 52%),
+    #f7f4ef;
+}
+
+.dark .world-ambient {
+  background:
+    radial-gradient(ellipse 75% 50% at 18% 18%, rgba(184, 160, 74, 0.08), transparent 55%),
+    radial-gradient(ellipse 65% 45% at 88% 78%, rgba(212, 192, 122, 0.04), transparent 50%),
+    #0c0b0a;
+}
+
+.world-library {
+  background: #f7f4ef;
+}
+
+.dark .world-library {
+  background: #0c0b0a;
+}
+
+.world-play {
+  background:
+    radial-gradient(ellipse 60% 45% at 70% 15%, rgba(184, 160, 74, 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(120, 90, 50, 0.05), transparent 45%),
+    #f7f4ef;
+}
+
+.dark .world-play {
+  background:
+    radial-gradient(ellipse 60% 45% at 70% 15%, rgba(212, 192, 122, 0.07), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(184, 160, 74, 0.04), transparent 45%),
+    #0c0b0a;
+}
+
+.world-civic {
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 22%, rgba(184, 160, 74, 0.08), transparent 58%),
+    linear-gradient(180deg, #f7f4ef 0%, #efe9e0 100%);
+}
+
+.dark .world-civic {
+  background:
+    radial-gradient(ellipse 58% 42% at 50% 22%, rgba(212, 192, 122, 0.07), transparent 58%),
+    linear-gradient(180deg, #0c0b0a 0%, #161412 100%);
+}
+
+@keyframes enchant-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-bloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+}
+
+.hero-bloom {
+  animation: hero-bloom 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bloom {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+.enchant-breathe > span {
+  animation: enchant-breathe 1.4s ease-in-out infinite;
+}
+
+.enchant-breathe > span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.enchant-breathe > span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enchant-breathe > span {
+    animation: none;
+    opacity: 0.7;
+  }
 }
 
 /* Image optimization - only for non-fill images */
@@ -197,7 +429,47 @@ img[data-loading="true"] {
   transform: scale(0.95);
 }
 
-/* Performance optimizations */
+.nav-liquid-shell {
+  background: rgba(12, 11, 10, 0.48);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.nav-liquid-glass {
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 36%,
+      rgba(212, 192, 122, 0.12) 100%
+    );
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(184, 160, 74, 0.14),
+    0 8px 22px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.nav-liquid-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0 18% auto;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+}
 .will-change-transform {
   will-change: transform;
 }
@@ -277,13 +549,8 @@ img[data-loading="true"] {
   }
 }
 
-/* Dark mode specific improvements */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 0 0% 0%;
-    --foreground: 240 5% 97%;
-  }
-}
+/* Theme is class-driven (.light / .dark). Do not override :root from OS preference —
+   that made light mode paint dark backgrounds under dark ink. */
 
 /* Enhanced loading states */
 .loading-shimmer {

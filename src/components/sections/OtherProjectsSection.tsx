@@ -179,21 +179,25 @@ export function OtherProjectsSection() {
   }
 
   return (
-    <section id="otherProjects" className="py-24 md:py-32 lg:py-40 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="otherProjects" className="world-play relative py-24 md:py-32 lg:py-40">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14 md:mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
-            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${
+            isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+          }`}>
+            Personal
+          </p>
+          <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl ${
+            isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
           }`}>
             {t('otherProjects')}
           </h2>
-          <div className={`w-24 h-0.5 mx-auto mb-6 ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
 
         {/* View Mode Toggle */}
@@ -201,11 +205,11 @@ export function OtherProjectsSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-12 flex justify-start"
         >
-          <div className={`flex rounded-full p-1 ${
-            isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
+          <div className={`flex rounded-lg p-1 ${
+            isDark ? 'bg-[#161412]' : 'bg-[#EFE9E0]'
           }`}>
             {[
               { mode: 'minimal' as ViewMode, icon: Maximize2, label: 'Minimal view' },
@@ -215,14 +219,14 @@ export function OtherProjectsSection() {
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
-                className={`p-2.5 rounded-full transition-all duration-300 ${
+                className={`rounded-md p-2.5 transition-all duration-300 ${
                   viewMode === mode
                     ? isDark
-                      ? 'bg-[#2997FF] text-white shadow-lg'
-                      : 'bg-[#0071E3] text-white shadow-lg'
+                      ? 'bg-[#B8A04A]/20 text-[#D4C07A]'
+                      : 'bg-[#8A7428]/12 text-[#8A7428]'
                     : isDark
-                      ? 'text-[#86868B] hover:text-[#F5F5F7]'
-                      : 'text-[#86868B] hover:text-[#1D1D1F]'
+                      ? 'text-[#9A958C] hover:text-[#F2EFE9]'
+                      : 'text-[#7A756C] hover:text-[#1C1916]'
                 }`}
                 aria-label={label}
               >
@@ -265,7 +269,7 @@ export function OtherProjectsSection() {
                   >
                     <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                       <div
-                        className="relative overflow-hidden rounded-2xl cursor-pointer"
+                        className="relative cursor-pointer overflow-hidden rounded-sm"
                         style={{ aspectRatio: project.aspectRatio }}
                         onClick={() => setSelectedProject(index)}
                       >
@@ -273,38 +277,38 @@ export function OtherProjectsSection() {
                           src={project.image}
                           alt={project.title}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                           sizes="(max-width: 768px) 100vw, 50vw"
                           loading="lazy"
                         />
                         <motion.div
-                          className="absolute bottom-6 right-6 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: hoveredIndex === index ? 1 : 0, scale: hoveredIndex === index ? 1 : 0.8 }}
+                          className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-[#F7F4EF]/92 shadow-lg"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: hoveredIndex === index ? 1 : 0, scale: hoveredIndex === index ? 1 : 0.9 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <ZoomIn className="w-5 h-5 text-[#1D1D1F]" />
+                          <ZoomIn className="h-5 w-5 text-[#1C1916]" />
                         </motion.div>
                       </div>
                     </div>
 
                     <div className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} space-y-6`}>
                       <div>
-                        <h3 className={`text-3xl font-light mb-4 ${
-                          isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                        <h3 className={`mb-4 text-3xl font-light ${
+                          isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
                         }`}>
                           {project.title}
                         </h3>
-                        <p className="text-base leading-relaxed text-[#86868B]">
+                        <p className={`text-base leading-relaxed ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                           {project.description}
                         </p>
                       </div>
 
                       <motion.button
                         onClick={() => setSelectedProject(index)}
-                        whileHover={{ x: 5 }}
+                        whileHover={{ x: 4 }}
                         className={`inline-flex items-center gap-2 text-sm font-light transition-colors ${
-                          isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'
+                          isDark ? 'text-[#D4C07A] hover:text-[#B8A04A]' : 'text-[#8A7428] hover:text-[#6F5C1F]'
                         }`}
                       >
                         {t('viewFullDetails')}
@@ -320,33 +324,33 @@ export function OtherProjectsSection() {
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className={`relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-500 ${
-                    isDark ? 'bg-[#1D1D1F]' : 'bg-[#F5F5F7]'
+                  <div className={`relative overflow-hidden rounded-sm transition-all duration-500 ${
+                    isDark ? 'bg-[#161412]' : 'bg-[#EFE9E0]'
                   }`}>
                     <div className="relative overflow-hidden" style={{ aspectRatio: project.aspectRatio }}>
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                         sizes="(max-width: 768px) 100vw, 50vw"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                       <motion.div
                         className="absolute inset-0 flex flex-col justify-end p-6"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <h3 className="text-white text-xl font-light mb-2">{project.title}</h3>
-                        <p className="text-white/80 text-sm font-light line-clamp-2">{project.description}</p>
+                        <h3 className="mb-2 text-xl font-light text-white">{project.title}</h3>
+                        <p className="line-clamp-2 text-sm font-light text-white/80">{project.description}</p>
                       </motion.div>
                     </div>
                     {viewMode === 'grid' && (
                       <div className="p-5">
-                        <h3 className={`text-lg font-light mb-1 ${
-                          isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                        <h3 className={`mb-1 text-lg font-light ${
+                          isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
                         }`}>
                           {project.title}
                         </h3>
@@ -374,36 +378,36 @@ export function OtherProjectsSection() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative max-w-5xl w-full max-h-[90vh] overflow-hidden rounded-2xl"
+                className="relative max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-sm"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className={`overflow-y-auto max-h-[90vh] ${isDark ? 'bg-[#1D1D1F]' : 'bg-white'}`}>
-                  <div className={`sticky top-0 z-10 flex items-center justify-between p-6 border-b backdrop-blur-md ${
-                    isDark ? 'border-[#333336] bg-[#1D1D1F]/90' : 'border-[#D2D2D7] bg-white/90'
+                <div className={`max-h-[90vh] overflow-y-auto ${isDark ? 'bg-[#0C0B0A]' : 'bg-[#F7F4EF]'}`}>
+                  <div className={`sticky top-0 z-10 flex items-center justify-between border-b p-6 backdrop-blur-md ${
+                    isDark ? 'border-[#2A2724] bg-[#0C0B0A]/90' : 'border-[#E4DFD6] bg-[#F7F4EF]/90'
                   }`}>
                     <div className="flex items-center gap-4">
-                      <h3 className={`text-2xl font-light ${isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'}`}>
+                      <h3 className={`text-2xl font-light ${isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'}`}>
                         {projects[selectedProject]?.title}
                       </h3>
-                      <span className="text-sm text-[#86868B]">
+                      <span className={`text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                         {selectedProject + 1} / {projects.length}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setIsAutoPlay(!isAutoPlay)}
-                        className={`p-2.5 rounded-full transition-colors ${
+                        className={`rounded-full p-2.5 transition-colors ${
                           isAutoPlay
-                            ? isDark ? 'bg-[#2997FF] text-white' : 'bg-[#0071E3] text-white'
-                            : isDark ? 'bg-[#2C2C2E] text-[#86868B] hover:text-[#F5F5F7]' : 'bg-[#F5F5F7] text-[#86868B] hover:text-[#1D1D1F]'
+                            ? isDark ? 'bg-[#B8A04A]/25 text-[#D4C07A]' : 'bg-[#8A7428]/15 text-[#8A7428]'
+                            : isDark ? 'bg-[#161412] text-[#9A958C] hover:text-[#F2EFE9]' : 'bg-[#EFE9E0] text-[#7A756C] hover:text-[#1C1916]'
                         }`}
                       >
                         {isAutoPlay ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                       </button>
                       <button
                         onClick={() => setSelectedProject(null)}
-                        className={`p-2.5 rounded-full transition-colors ${
-                          isDark ? 'text-[#86868B] hover:text-[#F5F5F7] hover:bg-[#2C2C2E]' : 'text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#F5F5F7]'
+                        className={`rounded-full p-2.5 transition-colors ${
+                          isDark ? 'text-[#9A958C] hover:bg-[#161412] hover:text-[#F2EFE9]' : 'text-[#7A756C] hover:bg-[#EFE9E0] hover:text-[#1C1916]'
                         }`}
                       >
                         <X className="w-6 h-6" />
@@ -411,11 +415,11 @@ export function OtherProjectsSection() {
                     </div>
                   </div>
 
-                  <div className="grid lg:grid-cols-2 gap-8 p-6">
+                  <div className="grid gap-8 p-6 lg:grid-cols-2">
                     <div className="relative">
                       <div
-                        className={`relative overflow-hidden rounded-xl ${
-                          isDark ? 'bg-[#2C2C2E]' : 'bg-[#F5F5F7]'
+                        className={`relative overflow-hidden rounded-sm ${
+                          isDark ? 'bg-[#161412]' : 'bg-[#EFE9E0]'
                         }`}
                         style={{ aspectRatio: projects[selectedProject]?.aspectRatio || '16/9' }}
                       >
@@ -429,13 +433,13 @@ export function OtherProjectsSection() {
                       </div>
                       <button
                         onClick={() => navigateProject('prev')}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white transition-colors hover:bg-black/70"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button
                         onClick={() => navigateProject('next')}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white transition-colors hover:bg-black/70"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
@@ -443,16 +447,16 @@ export function OtherProjectsSection() {
 
                     <div className="space-y-8">
                       <div>
-                        <h4 className={`text-lg font-light mb-4 ${isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'}`}>
+                        <h4 className={`mb-4 text-lg font-light ${isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'}`}>
                           {t('aboutThisWork')}
                         </h4>
-                        <p className="text-[#86868B] leading-relaxed text-lg font-light">
+                        <p className={`text-lg font-light leading-relaxed ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                           {projects[selectedProject]?.description}
                         </p>
                       </div>
                       {projects[selectedProject]?.links && projects[selectedProject].links.length > 0 && (
                         <div>
-                          <h5 className="font-medium mb-3 text-sm text-[#86868B]">{t('relatedLinks')}</h5>
+                          <h5 className={`mb-3 text-sm font-medium ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>{t('relatedLinks')}</h5>
                           <div className="flex flex-wrap gap-3">
                             {projects[selectedProject].links.map((link, idx) => (
                               <motion.a
@@ -460,12 +464,12 @@ export function OtherProjectsSection() {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`inline-flex items-center gap-2 px-5 py-3 rounded-full font-light transition-colors ${
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.99 }}
+                                className={`inline-flex items-center gap-2 rounded-lg px-5 py-3 font-light transition-colors ${
                                   isDark
-                                    ? 'bg-[#2997FF] text-white hover:bg-[#2997FF]/90'
-                                    : 'bg-[#0071E3] text-white hover:bg-[#0071E3]/90'
+                                    ? 'bg-[#B8A04A]/18 text-[#D4C07A] hover:bg-[#B8A04A]/28'
+                                    : 'bg-[#8A7428]/12 text-[#8A7428] hover:bg-[#8A7428]/18'
                                 }`}
                               >
                                 <ExternalLink className="w-4 h-4" />

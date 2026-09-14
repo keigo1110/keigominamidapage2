@@ -10,21 +10,25 @@ export function PublicationsSection() {
   const { language } = useTranslation()
 
   return (
-    <section id="publications" className="py-24 md:py-32 lg:py-40 relative">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section id="publications" className="world-library relative py-24 md:py-32 lg:py-40">
+      <div className="container mx-auto max-w-4xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14 md:mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-semibold mb-6 tracking-tight ${
-            isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${
+            isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+          }`}>
+            Library
+          </p>
+          <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl ${
+            isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
           }`}>
             Publications
           </h2>
-          <div className={`w-24 h-0.5 mx-auto ${isDark ? 'bg-[#333336]' : 'bg-[#D2D2D7]'}`} />
         </motion.div>
 
         <motion.div
@@ -48,31 +52,31 @@ export function PublicationsSection() {
                 transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.4) }}
                 className="group"
               >
-                <div className={`flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 pb-8 border-b ${
-                  isDark ? 'border-[#333336]' : 'border-[#D2D2D7]'
+                <div className={`flex flex-col gap-4 border-b pb-8 md:flex-row md:items-baseline md:gap-8 ${
+                  isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
                 }`}>
                   <motion.div
                     className="flex-shrink-0"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.25 }}
                   >
-                    <span className="text-sm font-light text-[#86868B]">
+                    <span className={`text-sm font-light ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                       {pub.date}
                     </span>
                   </motion.div>
                   <div className="flex-1">
-                    <p className="text-sm mb-2 text-[#86868B]">
+                    <p className={`mb-2 text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                       {resolveLocalized(pub.authors, language).map((author, i) => (
                         <span key={`${pub.id}-${author.name}`}>
                           {i > 0 && ', '}
-                          <span className={author.highlight ? (isDark ? 'text-[#F5F5F7] font-medium' : 'text-[#1D1D1F] font-medium') : ''}>
+                          <span className={author.highlight ? (isDark ? 'font-medium text-[#F2EFE9]' : 'font-medium text-[#1C1916]') : ''}>
                             {author.name}
                           </span>
                         </span>
                       ))}
                     </p>
-                    <p className={`text-base leading-relaxed mb-2 ${
-                      isDark ? 'text-[#F5F5F7]' : 'text-[#1D1D1F]'
+                    <p className={`mb-2 text-base leading-relaxed ${
+                      isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
                     }`}>
                       {pub.url ? (
                         <a
@@ -80,7 +84,7 @@ export function PublicationsSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`transition-colors ${
-                            isDark ? 'hover:text-[#2997FF]' : 'hover:text-[#0071E3]'
+                            isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
                           }`}
                         >
                           {title}
@@ -89,7 +93,7 @@ export function PublicationsSection() {
                         title
                       )}
                     </p>
-                    <p className="text-sm text-[#86868B]">
+                    <p className={`text-sm ${isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}`}>
                       {venue}, {location}
                       {pub.arxivUrl ? (
                         <>
@@ -99,7 +103,7 @@ export function PublicationsSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`transition-colors ${
-                              isDark ? 'hover:text-[#2997FF]' : 'hover:text-[#0071E3]'
+                              isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
                             }`}
                           >
                             arXiv

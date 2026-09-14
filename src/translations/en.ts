@@ -255,6 +255,7 @@ In the future where informatization progresses, what we face is whether to be sw
     personalTrackLabel: 'Personal',
     socialTrackLabel: 'Social',
     communityTrackLabel: 'Community',
+    experienceTracksAria: 'Three tracks of experience',
     currentLabel: 'Current',
     currentSubtitle: 'Active focus at the surface',
     currentLogLabel: 'Activity Log',

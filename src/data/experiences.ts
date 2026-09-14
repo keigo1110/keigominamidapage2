@@ -1,5 +1,5 @@
 import { Experience, ProcessedExperience, Skill } from '../types/experience'
-import { TranslationKey } from '../translations'
+import { TranslationKey, Language } from '../translations'
 
 // === 経歴データ設定 ===
 interface ExperienceConfig {
@@ -123,7 +123,7 @@ const EXPERIENCE_DATA: Experience[] = [
     location: "東京, 日本",
     period: {
       start: { year: 2025, month: 5, day: 12 },
-      end: { year: 2025, month: 12, day: 31 }
+      end: { year: 2026, month: 12, day: 31 }
     },
     color: '#3B82F6',
     gradient: {
@@ -194,7 +194,7 @@ const EXPERIENCE_DATA: Experience[] = [
     location: "東京, 日本",
     period: {
       start: { year: 2024, month: 5, day: 1 },
-      end: { year: 2025, month: 12, day: 31 }
+      end: { year: 2026, month: 12, day: 31 }
     },
     color: '#1E40AF',
     gradient: {
@@ -204,7 +204,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'ongoing',
     priority: 'critical',
     category: 'startup',
-    track: 'community',
+    track: 'social',
     tags: ['ハードウェア', 'ソフトウェア', 'IoT', 'プロダクト開発'],
 
     description: "革新的なIoTデバイスの開発プロジェクト。ハードウェアとソフトウェアを統合した包括的なソリューション",
@@ -276,7 +276,7 @@ const EXPERIENCE_DATA: Experience[] = [
     status: 'completed',
     priority: 'high',
     category: 'exhibition',
-    track: 'community',
+    track: 'social',
     links: [
       { text: "", url: 'https://www.iiiexhibition.com/', type: 'website', primary: true },
       { text: "", url: 'https://iii-exhibition-2024-web.vercel.app/', type: 'demo', primary: false }
@@ -367,13 +367,9 @@ const EXPERIENCE_DATA: Experience[] = [
 
 // === シンプルなユーティリティ関数 ===
 export const DateUtils = {
-    createDate(year: number, month: number, day: number = 1): Date {
-    // タイムゾーンの影響を受けない、ローカル時間での日付作成
-    const date = new Date(year, month - 1, day, 0, 0, 0, 0)
-    return date
+  createDate(year: number, month: number, day: number = 1): Date {
+    return new Date(year, month - 1, day, 0, 0, 0, 0)
   },
-
-
 
   calculateDurationInMonths(start: Date, end: Date): number {
     const yearDiff = end.getFullYear() - start.getFullYear()
@@ -395,24 +391,45 @@ export const DateUtils = {
     const elapsed = now.getTime() - start.getTime()
     return Math.min(100, Math.max(0, (elapsed / total) * 100))
   },
+}
 
-  isOngoing(end: Date): boolean {
-    const now = new Date()
-    return end > now
-  },
+function formatExperiencePeriod(start: Date, end: Date, isOngoing: boolean, language: Language) {
+  const isEnglish = language === 'en'
+  const monthNames = {
+    en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    ja: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+  } as const
+  const dateTo = isEnglish ? ' - ' : '〜'
 
-
-
-  getRelativeTimePhrase(start: Date, end: Date): string {
-    const now = new Date()
-    if (now < start) {
-      return '予定'
-    } else if (now > end) {
-      return '完了'
-    } else {
-      return '進行中'
-    }
+  const formatMonth = (date: Date) => {
+    const monthName = monthNames[isEnglish ? 'en' : 'ja'][date.getMonth()]
+    if (isEnglish) return `${monthName} ${date.getFullYear()}`
+    return `${date.getFullYear()}年${monthName}月`
   }
+
+  const formatDateWithDay = (date: Date) => {
+    const monthName = monthNames[isEnglish ? 'en' : 'ja'][date.getMonth()]
+    if (isEnglish) return `${monthName} ${date.getDate()}, ${date.getFullYear()}`
+    return `${date.getFullYear()}年${monthName}月${date.getDate()}日`
+  }
+
+  if (isOngoing) {
+    return `${formatMonth(start)}${dateTo}`
+  }
+
+  if (
+    start.getFullYear() === end.getFullYear() &&
+    start.getMonth() === end.getMonth() &&
+    start.getDate() === end.getDate()
+  ) {
+    return formatDateWithDay(start)
+  }
+
+  if (start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth()) {
+    return formatMonth(start)
+  }
+
+  return `${formatMonth(start)}${dateTo}${formatMonth(end)}`
 }
 
 // === 翻訳マッピング ===
@@ -455,7 +472,10 @@ const TRANSLATION_MAPPING = {
 } as const
 
 // === メインデータ処理関数 ===
-export function getExperiences(t: (key: TranslationKey) => string): ProcessedExperience[] {
+export function getExperiences(
+  t: (key: TranslationKey) => string,
+  language: Language = 'ja'
+): ProcessedExperience[] {
   return EXPERIENCE_DATA
     .map(experience => {
       const mapping = TRANSLATION_MAPPING[experience.id as keyof typeof TRANSLATION_MAPPING]
@@ -472,18 +492,11 @@ export function getExperiences(t: (key: TranslationKey) => string): ProcessedExp
         experience.period.end.day
       )
 
-      // 期間計算
       const totalMonths = DateUtils.calculateDurationInMonths(startDate, endDate)
       const years = Math.floor(totalMonths / 12)
       const months = totalMonths % 12
+      const isOngoing = experience.status === 'ongoing'
 
-      // 現在アクティブかどうか
-      const isActive = DateUtils.isCurrentlyActive(startDate, endDate)
-
-      // 進捗計算
-      const progressPercentage = DateUtils.getProgress(startDate, endDate)
-
-      // 検索可能テキスト生成
       const searchableText = [
         experience.title,
         experience.position,
@@ -495,18 +508,13 @@ export function getExperiences(t: (key: TranslationKey) => string): ProcessedExp
         ...(experience.skills?.map(s => s.name) || [])
       ].filter(Boolean).join(' ').toLowerCase()
 
-      // プライマリスキル抽出
       const primarySkills = experience.skills?.filter(s => s.primary).map(s => s.name) || []
 
       const processedExperience: ProcessedExperience = {
         ...experience,
-
-        // 翻訳されたフィールド
         title: mapping ? t(mapping.title as TranslationKey) : experience.title,
         position: mapping ? t(mapping.position as TranslationKey) : experience.position,
-
-        // 計算されたフィールド
-        displayDate: '', // useExperienceDataフックで動的に設定
+        displayDate: formatExperiencePeriod(startDate, endDate, isOngoing, language),
         startDate,
         endDate,
         duration: {
@@ -514,18 +522,12 @@ export function getExperiences(t: (key: TranslationKey) => string): ProcessedExp
           months,
           totalMonths
         },
-
-        // 表示用フィールド
         displayOrder: config?.displayOrder || 999,
-        isActive,
-        progressPercentage,
-
-        // 検索とフィルタリング
+        isActive: isOngoing || DateUtils.isCurrentlyActive(startDate, endDate),
+        progressPercentage: DateUtils.getProgress(startDate, endDate),
         searchableText,
         primarySkills,
         impactLevel: config?.impactLevel || 'supporting',
-
-        // リンク処理
         links: experience.links.map((link, index) => ({
           ...link,
           text: mapping && mapping.links[index]
@@ -536,23 +538,5 @@ export function getExperiences(t: (key: TranslationKey) => string): ProcessedExp
 
       return processedExperience
     })
-    .sort((a, b) => a.displayOrder - b.displayOrder) // 表示順でソート
-}
-
-// === カテゴリ別フィルタリング関数 ===
-export function getExperiencesByCategory(
-  t: (key: TranslationKey) => string,
-  category?: string
-): ProcessedExperience[] {
-  const allExperiences = getExperiences(t)
-  return category
-    ? allExperiences.filter(exp => exp.category === category)
-    : allExperiences
-}
-
-// === 重要度別フィルタリング関数 ===
-export function getHighlightedExperiences(
-  t: (key: TranslationKey) => string
-): ProcessedExperience[] {
-  return getExperiences(t).filter(exp => exp.featured === true)
+    .sort((a, b) => a.displayOrder - b.displayOrder)
 }

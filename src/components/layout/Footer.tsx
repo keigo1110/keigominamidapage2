@@ -7,20 +7,20 @@ export function Footer() {
   const { isDark } = useTheme();
 
   return (
-    <footer className={`py-12 border-t ${
-      isDark ? 'bg-black border-[#333336]' : 'bg-white border-[#D2D2D7]'
+    <footer className={`border-t py-12 ${
+      isDark ? 'border-[#2A2724] bg-[#0C0B0A]' : 'border-[#E4DFD6] bg-[#F7F4EF]'
     }`}>
       <motion.div
-        className="text-center mb-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        className="mb-6 text-center"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
         <a
           href="mailto:keigo-minamida@g.ecc.u-tokyo.ac.jp"
           className={`inline-block text-xl font-semibold transition-colors ${
-            isDark ? 'text-[#2997FF] hover:text-[#2997FF]/80' : 'text-[#0071E3] hover:text-[#0071E3]/80'
+            isDark ? 'text-[#D4C07A] hover:text-[#B8A04A]' : 'text-[#8A7428] hover:text-[#6F5C1F]'
           }`}
         >
           mkeigo1110@gmail.com
@@ -30,10 +30,10 @@ export function Footer() {
         className="container mx-auto px-4 text-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        <p className="text-[#86868B]">
+        <p className={isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'}>
           &copy; {new Date().getFullYear()} Keigo Minamida.
           <span className="ml-2">
             Created on the shoulders of history.
