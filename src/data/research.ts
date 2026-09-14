@@ -236,11 +236,17 @@ const researchWorks: ResearchWork[] = [
     id: 'recertif',
     cardTitle: 'Recertif',
     publicationTitle:
-      '作業環境を評価するためのヒトとロボットの協調作業空間におけるロボットの個体特定と物体認識の統合システム',
-    authors: [
-      { name: '南田桂吾', highlight: true },
-      { name: '大坪義一' },
-    ],
+      '作業環境を評価するためのヒトとロボットの協働作業空間におけるロボットの個体特定と物体認識の統合システム',
+    authors: {
+      ja: [
+        { name: '南田桂吾 / Keigo Minamida', highlight: true },
+        { name: '大坪義一 / Yoshikazu Ohtsubo' },
+      ],
+      en: [
+        { name: 'Keigo Minamida / 南田桂吾', highlight: true },
+        { name: 'Yoshikazu Ohtsubo / 大坪義一' },
+      ],
+    },
     venue: '第24回計測自動制御学会システムインテグレーション部門講演会',
     cardVenue: 'SI2023',
     location: '新潟',
@@ -265,12 +271,24 @@ const researchWorks: ResearchWork[] = [
     id: 'fstl',
     cardTitle: 'FSTL - Forest Segmentation & Trimming Learning',
     publicationTitle: '世界モデルにおける未知の環境への転移',
-    authors: [
-      { name: '藤崎勇哉' },
-      { name: '南田桂吾', highlight: true },
-      { name: '土方祥平' },
-      { name: '澤野千賀 et al.' },
-    ],
+    authors: {
+      ja: [
+        { name: '藤崎勇哉' },
+        { name: '南田桂吾 / Keigo Minamida', highlight: true },
+        { name: '土方祥平 / Syohei Hijikata' },
+        { name: '澤野千賀' },
+        { name: '熊谷亘 / Wataru Kumagai' },
+        { name: '松尾豊 / Yutaka Matsuo' },
+      ],
+      en: [
+        { name: '藤崎勇哉' },
+        { name: 'Keigo Minamida / 南田桂吾', highlight: true },
+        { name: 'Syohei Hijikata / 土方祥平' },
+        { name: '澤野千賀' },
+        { name: 'Wataru Kumagai / 熊谷亘' },
+        { name: 'Yutaka Matsuo / 松尾豊' },
+      ],
+    },
     venue: '2023年度人工知能学会全国大会（第37回）',
     cardVenue: 'JSAI 2023',
     location: '福岡',
@@ -336,9 +354,12 @@ export function toScholarlyArticles(personId: string) {
         : { '@type': 'Person' as const, name: author.name }
     )
 
+    const siteUrl = personId.endsWith('#person') ? personId.slice(0, -'#person'.length) : `${personId}/`
+
     return [
       {
         '@type': 'ScholarlyArticle' as const,
+        '@id': `${siteUrl}#paper-${publication.id}`,
         name: publication.jsonLd.name ?? englishTitle,
         description: publication.jsonLd.description,
         author: authors.length === 1 ? authors[0] : authors,

@@ -1,4 +1,5 @@
 import { RefinedStartupSection } from '@/components/sections/RefinedStartupSection'
+import { StartupStructuredData } from '@/components/StructuredData'
 import type { Metadata } from 'next'
 
 const BASE_URL = 'https://keigominamida.com'
@@ -25,5 +26,10 @@ export const metadata: Metadata = {
 }
 
 export default function StartupPage() {
-  return <RefinedStartupSection />;
+  return (
+    <>
+      <StartupStructuredData />
+      <RefinedStartupSection />
+    </>
+  );
 }

@@ -1,6 +1,6 @@
 import { TranslationProvider } from '../contexts/TranslationContext'
 import { ThemeProvider } from '../contexts/ThemeContext'
-import { StructuredData } from '../components/StructuredData'
+import { SiteIdentityStructuredData } from '../components/StructuredData'
 import { Navigation } from '../components/layout/Navigation'
 import { Footer } from '../components/layout/Footer'
 import { PortfolioAgent } from '../components/portfolio-agent/PortfolioAgent'
@@ -183,7 +183,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
         {/* Structured Data */}
-        <StructuredData />
+        <SiteIdentityStructuredData />
 
         {/* Additional performance hints */}
         <link

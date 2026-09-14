@@ -13,7 +13,7 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const OPENAI_RESPONSES_API_URL = 'https://api.openai.com/v1/responses'
-const DEFAULT_MODEL = 'gpt-5.4-mini'
+const DEFAULT_MODEL = 'gpt-5.6-luna'
 const MAX_MESSAGES = 12
 const MAX_MESSAGE_CHARACTERS = 1200
 const MAX_TOTAL_CHARACTERS = 6000

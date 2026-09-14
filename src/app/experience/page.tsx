@@ -2,6 +2,7 @@ import { PublicationsSection } from '@/components/sections/PublicationsSection'
 import { AwardsSection } from '@/components/sections/AwardsSection'
 import { EducationSection } from '@/components/sections/EducationSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { ExperienceStructuredData } from '@/components/StructuredData'
 import type { Metadata } from 'next'
 
 const BASE_URL = 'https://keigominamida.com'
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <>
+      <ExperienceStructuredData />
       <PublicationsSection />
       <AwardsSection />
       <EducationSection />

@@ -1,5 +1,6 @@
 import { ArtworkSection } from '@/components/sections/ArtworkSection'
 import { OtherProjectsSection } from '@/components/sections/OtherProjectsSection'
+import { ArtworkStructuredData } from '@/components/StructuredData'
 import type { Metadata } from 'next'
 
 const BASE_URL = 'https://keigominamida.com'
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 export default function ArtworkPage() {
   return (
     <>
+      <ArtworkStructuredData />
       <ArtworkSection />
       <OtherProjectsSection />
     </>

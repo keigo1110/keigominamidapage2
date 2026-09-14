@@ -1,4 +1,5 @@
 import { RotaSection } from '@/components/sections/RotaSection'
+import { RotaStructuredData } from '@/components/StructuredData'
 import type { Metadata } from 'next'
 
 const BASE_URL = 'https://keigominamida.com'
@@ -43,5 +44,10 @@ export const metadata: Metadata = {
 }
 
 export default function RotaPage() {
-  return <RotaSection />
+  return (
+    <>
+      <RotaStructuredData />
+      <RotaSection />
+    </>
+  )
 }
