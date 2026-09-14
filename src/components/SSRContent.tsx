@@ -150,10 +150,12 @@ export function SSRContent() {
       <section>
         <h2>{en.experience}</h2>
         <ul>
+          <li>{en.experience7} - {en.experience7Description} ({en.experience7Date})</li>
           <li>{en.experience1} - {en.experience1Description} ({en.experience1Date})</li>
           <li>{en.experience2} - {en.experience2Description} ({en.experience2Date})</li>
           <li>{en.experience3} - {en.experience3Description} ({en.experience3Date})</li>
           <li>{en.experience4} - {en.experience4Description} ({en.experience4Date})</li>
+          <li>{en.experience8} - {en.experience8Description} ({en.experience8Date})</li>
           <li>{en.experience5} - {en.experience5Description} ({en.experience5Date})</li>
           <li>{en.experience6} - {en.experience6Description} ({en.experience6Date})</li>
         </ul>

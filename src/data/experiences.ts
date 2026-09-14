@@ -19,6 +19,14 @@ interface ExperienceConfig {
 
 // === 設定オブジェクト ===
 const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
+  'zuhan-henshubu': {
+    displayOrder: 0,
+    category: 'research',
+    importance: 'high',
+    priority: 'high',
+    impactLevel: 'significant',
+    featured: true
+  },
   '1000ya-future': {
     displayOrder: 1,
     category: 'research',
@@ -36,15 +44,23 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     featured: true
   },
   'iii-exhibition': {
-    displayOrder: 3,
+    displayOrder: 4,
     category: 'exhibition',
     importance: 'high',
     priority: 'high',
     impactLevel: 'significant',
     featured: true
   },
+  'shu-57': {
+    displayOrder: 3,
+    category: 'education',
+    importance: 'medium',
+    priority: 'medium',
+    impactLevel: 'moderate',
+    featured: false
+  },
   '1000ya-2024': {
-    displayOrder: 4,
+    displayOrder: 5,
     category: 'research',
     importance: 'medium',
     priority: 'medium',
@@ -52,7 +68,7 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     featured: false
   },
   'ha-project': {
-    displayOrder: 5,
+    displayOrder: 6,
     category: 'education',
     importance: 'medium',
     priority: 'medium',
@@ -60,7 +76,7 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     featured: false
   },
   'shu-project': {
-    displayOrder: 6,
+    displayOrder: 7,
     category: 'education',
     importance: 'medium',
     priority: 'low',
@@ -186,6 +202,30 @@ const EXPERIENCE_DATA: Experience[] = [
     draft: false
   },
   {
+    id: 'zuhan-henshubu',
+    logo: "",
+    title: "",
+    position: "",
+    organization: "イシス編集学校",
+    period: {
+      start: { year: 2026, month: 2, day: 1 },
+      end: { year: 2026, month: 12, day: 31 }
+    },
+    color: '#3B82F6',
+    status: 'ongoing',
+    priority: 'high',
+    category: 'research',
+    track: 'community',
+    links: [
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda16/', type: 'publication', primary: true },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda15/', type: 'publication', primary: false },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda14/', type: 'publication', primary: false },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda13/', type: 'publication', primary: false },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda11/', type: 'publication', primary: false },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda10/', type: 'publication', primary: false }
+    ]
+  },
+  {
     id: '4ZIGEN',
     logo: "/images/4ZIGEN.png",
     title: "",
@@ -280,6 +320,25 @@ const EXPERIENCE_DATA: Experience[] = [
     links: [
       { text: "", url: 'https://www.iiiexhibition.com/', type: 'website', primary: true },
       { text: "", url: 'https://iii-exhibition-2024-web.vercel.app/', type: 'demo', primary: false }
+    ]
+  },
+  {
+    id: 'shu-57',
+    logo: "/images/shu.png",
+    title: "",
+    position: "",
+    organization: "イシス編集学校",
+    period: {
+      start: { year: 2026, month: 5, day: 11 },
+      end: { year: 2026, month: 9, day: 30 }
+    },
+    color: '#1E3A8A',
+    status: 'completed',
+    priority: 'medium',
+    category: 'education',
+    track: 'community',
+    links: [
+      { text: "", url: 'https://edist.ne.jp/just/kankaishiki_90kanmon/', type: 'publication', primary: true }
     ]
   },
   {
@@ -439,6 +498,18 @@ const TRANSLATION_MAPPING = {
     position: 'experience5Description',
     links: ['experience5Link1']
   },
+  'zuhan-henshubu': {
+    title: 'experience8',
+    position: 'experience8Description',
+    links: [
+      'experience8Link6',
+      'experience8Link5',
+      'experience8Link4',
+      'experience8Link3',
+      'experience8Link2',
+      'experience8Link1'
+    ]
+  },
   '4ZIGEN': {
     title: 'experience6',
     position: 'experience6Description',
@@ -448,6 +519,11 @@ const TRANSLATION_MAPPING = {
     title: 'experience1',
     position: 'experience1Description',
     links: ['experience1Link1', 'experience1Link2']
+  },
+  'shu-57': {
+    title: 'experience7',
+    position: 'experience7Description',
+    links: ['experience7Link1']
   },
   '1000ya-2024': {
     title: 'experience2',

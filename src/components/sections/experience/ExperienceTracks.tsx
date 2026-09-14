@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import { ProcessedExperience } from '../../../types/experience'
 import { useTranslation } from '../../../contexts/TranslationContext'
@@ -13,12 +13,69 @@ interface ExperienceTracksProps {
 
 type TrackId = 'personal' | 'social' | 'community'
 
+const LINK_PREVIEW_COUNT = 3
+const LINK_EXPAND_STEP = 5
+
 function sortByRecency(items: ProcessedExperience[]) {
   return [...items].sort((a, b) => {
     if (a.status === 'ongoing' && b.status !== 'ongoing') return -1
     if (a.status !== 'ongoing' && b.status === 'ongoing') return 1
     return b.startDate.getTime() - a.startDate.getTime()
   })
+}
+
+function ExpandingLinks({
+  experienceId,
+  links,
+  isDark,
+}: {
+  experienceId: string
+  links: ProcessedExperience['links']
+  isDark: boolean
+}) {
+  const { t } = useTranslation()
+  const [visibleCount, setVisibleCount] = useState(
+    Math.min(LINK_PREVIEW_COUNT, links.length)
+  )
+  const visibleLinks = links.slice(0, visibleCount)
+  const hasMore = visibleCount < links.length
+
+  return (
+    <div className="mt-2">
+      <ul className={`space-y-1 text-sm leading-relaxed ${
+        isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
+      }`}>
+        {visibleLinks.map((link) => (
+          <li key={`${experienceId}-${link.url}`}>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`transition-colors ${
+                isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
+              }`}
+            >
+              {link.text || link.url}
+            </a>
+          </li>
+        ))}
+      </ul>
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => {
+            setVisibleCount((count) => Math.min(count + LINK_EXPAND_STEP, links.length))
+          }}
+          aria-expanded={visibleCount > LINK_PREVIEW_COUNT}
+          className={`mt-2 text-sm transition-colors ${
+            isDark ? 'text-[#D4C07A] hover:text-[#F2EFE9]' : 'text-[#8A7428] hover:text-[#1C1916]'
+          }`}
+        >
+          {t('experienceShowMore')}
+        </button>
+      )}
+    </div>
+  )
 }
 
 function dateTimeValue(experience: ProcessedExperience) {
@@ -93,24 +150,11 @@ function ExperienceEntry({
             </p>
           )}
           {experience.links.length > 0 && (
-            <ul className={`mt-2 space-y-1 text-sm leading-relaxed ${
-              isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
-            }`}>
-              {experience.links.map((link) => (
-                <li key={`${experience.id}-${link.url}`}>
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`transition-colors ${
-                      isDark ? 'hover:text-[#D4C07A]' : 'hover:text-[#8A7428]'
-                    }`}
-                  >
-                    {link.text || link.url}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <ExpandingLinks
+              experienceId={experience.id}
+              links={experience.links}
+              isDark={isDark}
+            />
           )}
         </div>
       </div>
