@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { FormEvent, PointerEvent as ReactPointerEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -346,6 +346,7 @@ export function PortfolioAgent() {
   const characterReactionIndexRef = useRef(0)
   const chatMessageIdRef = useRef(0)
   const chatScrollRef = useRef<HTMLDivElement | null>(null)
+  const stickToLatestRef = useRef(true)
   const dragClickGuardTimerRef = useRef<number | null>(null)
   const introTimerRef = useRef<number | null>(null)
   const presetTimerRef = useRef<number | null>(null)
@@ -402,6 +403,30 @@ export function PortfolioAgent() {
     () => createGuideDisplayMessage(activeGuide, language, isChatRecommendedGuide),
     [activeGuide, isChatRecommendedGuide, language],
   )
+  const hasUserMessage = chatMessages.some((message) => message.role === 'user')
+  const showPageGuide = !hasUserMessage && chatInput.trim().length === 0
+
+  const scrollChatToLatest = useCallback((behavior: ScrollBehavior = 'auto') => {
+    const chatScrollElement = chatScrollRef.current
+    if (!chatScrollElement) return
+
+    chatScrollElement.scrollTo({
+      top: chatScrollElement.scrollHeight,
+      behavior,
+    })
+  }, [])
+
+  const handleChatScroll = useCallback(() => {
+    const chatScrollElement = chatScrollRef.current
+    if (!chatScrollElement) return
+
+    const distanceFromBottom = (
+      chatScrollElement.scrollHeight
+      - chatScrollElement.scrollTop
+      - chatScrollElement.clientHeight
+    )
+    stickToLatestRef.current = distanceFromBottom < 56
+  }, [])
   const activeAnimation = mapAgentAnimation(
     activeGuide.animation,
     isOpen,
@@ -437,14 +462,28 @@ export function PortfolioAgent() {
     }
   }, [])
 
-  useEffect(() => {
-    if (!isOpen) return
+  useLayoutEffect(() => {
+    if (!isOpen || !stickToLatestRef.current) return
 
-    const chatScrollElement = chatScrollRef.current
-    if (!chatScrollElement) return
+    const frame = window.requestAnimationFrame(() => {
+      scrollChatToLatest('auto')
+    })
+    const follow = window.setTimeout(() => {
+      if (stickToLatestRef.current) scrollChatToLatest('auto')
+    }, 320)
 
-    chatScrollElement.scrollTop = chatScrollElement.scrollHeight
-  }, [chatMessages, isChatSending, isIntroThinking, isOpen])
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.clearTimeout(follow)
+    }
+  }, [
+    chatMessages,
+    isChatSending,
+    isIntroThinking,
+    isOpen,
+    scrollChatToLatest,
+    showPageGuide,
+  ])
 
   useEffect(() => {
     setRecommendedGuideId(null)
@@ -592,6 +631,8 @@ export function PortfolioAgent() {
 
     if (!content || isChatSending) return
 
+    stickToLatestRef.current = true
+
     if (introTimerRef.current !== null) {
       window.clearTimeout(introTimerRef.current)
       introTimerRef.current = null
@@ -684,6 +725,8 @@ export function PortfolioAgent() {
     const preset = chatPresets.find((candidate) => candidate.id === presetId)
     if (!preset || isChatSending) return
 
+    stickToLatestRef.current = true
+
     if (introTimerRef.current !== null) {
       window.clearTimeout(introTimerRef.current)
       introTimerRef.current = null
@@ -759,6 +802,7 @@ export function PortfolioAgent() {
     }
 
     setIsIdleHintVisible(false)
+    stickToLatestRef.current = true
     setIsOpen(true)
     if (chatMessages.length > 0) {
       triggerCharacterReaction()
@@ -919,31 +963,58 @@ export function PortfolioAgent() {
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col gap-3 px-3 pb-3 pt-3">
-        <div
-          className={`relative shrink-0 border-l px-3 py-1 ${
-            isDark ? 'border-[#B8A04A]/35' : 'border-[#8A7428]/30'
-          }`}
-        >
-          <p className={`text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
-            {guideDisplayMessage}
-          </p>
-          {shouldShowGuideCta && (
-            <button
-              type="button"
-              onClick={handleNavigateToTarget}
-              className={`mt-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${accentClass}`}
+        <AnimatePresence initial={false}>
+          {showPageGuide && (
+            <motion.div
+              key="page-guide"
+              initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+              transition={panelTransition}
+              className="shrink-0 overflow-hidden"
             >
-              <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
-              <span>
-                {activeGuide.targetRoute === '/rota' ? labels.aboutRota : labels.navigate}
-              </span>
-            </button>
+              <div
+                className={`relative border-l px-3 py-1 ${
+                  isDark ? 'border-[#B8A04A]/35' : 'border-[#8A7428]/30'
+                }`}
+              >
+                <p className={`text-sm leading-relaxed tracking-normal ${secondaryTextClassName}`}>
+                  {guideDisplayMessage}
+                </p>
+                {shouldShowGuideCta && (
+                  <button
+                    type="button"
+                    onClick={handleNavigateToTarget}
+                    className={`mt-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${accentClass}`}
+                  >
+                    <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
+                    <span>
+                      {activeGuide.targetRoute === '/rota' ? labels.aboutRota : labels.navigate}
+                    </span>
+                  </button>
+                )}
+              </div>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
+
+        {!showPageGuide && shouldShowGuideCta && (
+          <button
+            type="button"
+            onClick={handleNavigateToTarget}
+            className={`inline-flex min-h-8 w-fit shrink-0 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${accentClass}`}
+          >
+            <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
+            <span>
+              {activeGuide.targetRoute === '/rota' ? labels.aboutRota : labels.navigate}
+            </span>
+          </button>
+        )}
 
         <div
           ref={chatScrollRef}
-          className={`min-h-0 flex-1 overflow-y-auto rounded-[10px] border px-2 py-2 ${
+          onScroll={handleChatScroll}
+          className={`min-h-0 flex-1 overflow-y-auto overflow-x-hidden rounded-[10px] border px-2 py-2 ${
             isDark ? 'border-[#2A2724] bg-white/[0.03]' : 'border-[#E4DFD6] bg-black/[0.02]'
           }`}
           aria-label={labels.chatPlaceholder}
@@ -989,6 +1060,7 @@ export function PortfolioAgent() {
                 <span>{labels.sending}</span>
               </div>
             )}
+            <div aria-hidden="true" className="h-px w-full" />
         </div>
       </div>
 

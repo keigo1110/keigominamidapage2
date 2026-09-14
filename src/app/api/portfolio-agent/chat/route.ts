@@ -7,6 +7,7 @@ import {
 } from '@/components/portfolio-agent/agentContent'
 import { PORTFOLIO_AGENT_MAX_OUTPUT_TOKENS } from '@/components/portfolio-agent/content/agentPersona'
 import { buildPortfolioAgentPrompt } from '@/components/portfolio-agent/content/chatPrompt'
+import { buildRetrievalQuery } from '@/components/portfolio-agent/content/retrieval'
 import { logRotaConversationToSlack } from '@/components/portfolio-agent/server/slackReviewLogger'
 
 export const runtime = 'nodejs'
@@ -226,7 +227,12 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
       body: JSON.stringify({
         model,
-        instructions: buildPortfolioAgentPrompt({ language, guide, latestUserMessage }),
+        instructions: buildPortfolioAgentPrompt({
+          language,
+          guide,
+          latestUserMessage,
+          retrievalQuery: buildRetrievalQuery(messages),
+        }),
         input,
         max_output_tokens: PORTFOLIO_AGENT_MAX_OUTPUT_TOKENS,
         text: {

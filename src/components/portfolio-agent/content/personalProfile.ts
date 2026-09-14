@@ -1,3 +1,4 @@
+import { includesKeyword, normalizeQuery, scoreKeywordOverlap } from './retrieval'
 import type { Language } from '../../../translations'
 
 type LocalizedText = Record<Language, string>
@@ -602,28 +603,14 @@ function formatLines(lines: readonly string[]): string {
   return lines.map((line) => `- ${line}`).join('\n')
 }
 
-function normalizeQuery(query: string): string {
-  return query.toLowerCase().replace(/\s+/g, ' ').trim()
-}
-
-function includesKeyword(query: string, keyword: string): boolean {
-  return query.includes(keyword.toLowerCase())
-}
-
-function tokenizeSearchText(value: string): string[] {
-  return value
-    .toLowerCase()
-    .split(/[\s,./:;()[\]'"!?、。・「」『』（）]+/)
-    .map((token) => token.trim())
-    .filter((token) => token.length >= 2)
-}
-
-function isPersonalProfileQuestion(query: string, language: Language): boolean {
+function isPersonalProfileQuestion(query: string): boolean {
   const normalizedQuery = normalizeQuery(query)
 
   if (!normalizedQuery) return false
 
-  return personalQuestionKeywords[language].some((keyword) => includesKeyword(normalizedQuery, keyword))
+  return (['en', 'ja'] as const).some((language) => (
+    personalQuestionKeywords[language].some((keyword) => includesKeyword(normalizedQuery, keyword))
+  ))
 }
 
 function scorePersonalProfileEntry(
@@ -647,20 +634,14 @@ function scorePersonalProfileEntry(
     ...entry.keywords.en,
     ...entry.tags,
   ]
-  const directKeywordScore = directKeywords.reduce((score, keyword) => {
-    return includesKeyword(query, keyword) ? score + 6 : score
-  }, 0)
-  const tokenScore = tokenizeSearchText(searchableText).reduce((score, token) => {
-    return query.includes(token) ? score + 1 : score
-  }, 0)
 
-  return directKeywordScore + tokenScore
+  return scoreKeywordOverlap(query, directKeywords, searchableText)
 }
 
 function selectPersonalProfileEntries(query: string, language: Language): readonly PersonalProfileEntry[] {
   const normalizedQuery = normalizeQuery(query)
 
-  if (!isPersonalProfileQuestion(normalizedQuery, language)) {
+  if (!isPersonalProfileQuestion(normalizedQuery)) {
     return []
   }
 
@@ -681,7 +662,7 @@ function selectPersonalProfileEntries(query: string, language: Language): readon
 }
 
 export function formatPersonalProfileContext(language: Language, latestUserMessage: string): string {
-  const isPersonalQuestion = isPersonalProfileQuestion(latestUserMessage, language)
+  const isPersonalQuestion = isPersonalProfileQuestion(latestUserMessage)
   const entries = selectPersonalProfileEntries(latestUserMessage, language)
   const retrievalStatus = isPersonalQuestion
     ? entries.length > 0
