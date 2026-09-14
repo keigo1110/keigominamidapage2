@@ -54,6 +54,11 @@ export const ja = {
     department: '近畿大学 理工学部 機械工学科 卒業',
 
     // 研究プロジェクト
+    agencyPerceptionDescription: 'ヒューマノイドの遠隔操作において、人間かAIか区別できるのか？',
+    warpingWorkspaceDescription: '歪んだ空間でテレオペレーションをする',
+    scopeGsTitle: 'SCOPE-GS：Gaussian Splattingによる動的環境の視点考慮型オンライン空間構築・更新システム',
+    scopeGsVenue: '空間メディアコンファレンス2026',
+    scopeGsDescription: '動的な環境における3D GSの逐次更新',
     augmentedLeapDescription: '人間の跳躍を推力で拡張する',
     IGSDescription: '現実世界の変化に適応して徐々に3D再構築するためのシステム',
     recertifDescription: 'ロボットの作業状況をロボットの方を向くだけで確認可能なシステム',
@@ -98,6 +103,7 @@ export const ja = {
     wakabarMainSite: 'コーポレートサイト',
     wakabarTourSite: 'セルフツアー',
     wakabarAppSite: 'アプリを試す',
+    wakabarAppStoreBadgeAlt: 'App Storeからダウンロード',
     audioWarningSystem: '音声警告システム',
     audioWarningDescription: '危険地点に近づくと、自動的に音声で注意を促します',
     realtimeTracking: '危険地点データ基盤',

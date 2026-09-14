@@ -42,8 +42,8 @@ export const profileHighlights = [
       ja: '研究',
     },
     summary: {
-      en: 'His research connects HCI, augmented humans, robotics, and 3D reconstruction, including Incremental Gaussian Splatting and Augmented Leap.',
-      ja: 'HCI、人間拡張、ロボティクス、3D再構成を接続し、Incremental Gaussian Splatting や Augmented Leap などに取り組んでいます。',
+      en: 'His research connects HCI, augmented humans, robotics, and 3D reconstruction, including Incremental Gaussian Splatting, SCOPE-GS, Augmented Leap, Warping the Workspace, and agency perception in humanoid teleoperation.',
+      ja: 'HCI、人間拡張、ロボティクス、3D再構成を接続し、Incremental Gaussian Splatting、SCOPE-GS、Augmented Leap、Warping the Workspace、ヒューマノイド遠隔操作におけるエージェンシー知覚などに取り組んでいます。',
     },
     route: '/',
     hash: 'projects',
@@ -69,8 +69,8 @@ export const profileHighlights = [
       ja: 'スタートアップ',
     },
     summary: {
-      en: 'Through Wakabar, he applies IoT and location-based systems to bicycle safety, working toward fewer everyday traffic risks.',
-      ja: 'Wakabar では、IoT と位置情報を使って自転車事故を減らすためのプロダクト開発に取り組んでいます。',
+      en: 'Through Wakabar, he applies IoT and location-based systems to bicycle safety, working toward fewer everyday traffic risks. The iOS app is available on the App Store.',
+      ja: 'Wakabar では、IoT と位置情報を使って自転車事故を減らすためのプロダクト開発に取り組んでいます。iOSアプリは App Store で公開されています。',
     },
     route: '/startup',
     tags: ['Wakabar', 'IoT', 'Bicycle Safety'],

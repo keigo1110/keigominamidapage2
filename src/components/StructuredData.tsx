@@ -128,6 +128,7 @@ export function StructuredData() {
     name: 'Wakabar Co., Ltd.',
     description: 'Supporting safe behavior while cycling using IoT technology',
     url: 'https://wakabar-cycle.com/',
+    sameAs: ['https://apps.apple.com/jp/app/wakabar/id6759553729'],
     founder: { '@id': `${BASE}/#person` },
     foundingDate: '2023',
     mission: 'Zero traffic accidents on bicycles using IoT',
@@ -135,6 +136,57 @@ export function StructuredData() {
   }
 
   const researchWorksSchema = [
+    {
+      '@type': 'ScholarlyArticle',
+      name: 'Can People Distinguish Human and AI Agency in Humanoid Teleoperation? A Preliminary Study of Agency Perception',
+      description:
+        'A preliminary study of whether people can distinguish human and AI agency in humanoid teleoperation',
+      author: [
+        { '@type': 'Person', name: 'Xiang Li' },
+        { '@type': 'Person', name: 'Koya Dendo' },
+        { '@id': `${BASE}/#person` },
+        { '@type': 'Person', name: 'Yuto Nakamura' },
+        { '@type': 'Person', name: 'Per Ola Kristensson' },
+        { '@type': 'Person', name: 'Jun Rekimoto' },
+      ],
+      publisher: "UIST Adjunct '26",
+      url: 'https://doi.org/10.1145/3830397.3841874',
+      datePublished: '2026',
+      about: ['Human-Computer Interaction', 'Teleoperation', 'Humanoid Robots', 'Agency Perception'],
+    },
+    {
+      '@type': 'ScholarlyArticle',
+      name: 'Warping the Workspace: Expanding Visual Access with Adjustable Reach Mapping for Humanoid Teleoperation',
+      description:
+        'Teleoperation in a warped space with adjustable reach mapping for humanoid robots',
+      author: [
+        { '@id': `${BASE}/#person` },
+        { '@type': 'Person', name: 'Koya Dendo' },
+        { '@type': 'Person', name: 'Yuto Nakamura' },
+        { '@type': 'Person', name: 'Jun Rekimoto' },
+      ],
+      publisher: "UIST Adjunct '26",
+      url: 'https://doi.org/10.1145/3830397.3841893',
+      datePublished: '2026',
+      about: ['Human-Computer Interaction', 'Teleoperation', 'Humanoid Robots', 'Spatial Mapping'],
+    },
+    {
+      '@type': 'ScholarlyArticle',
+      name: 'SCOPE-GS: Spatial Construction and Viewpoint-aware Online Updating system for Dynamic Environments via Gaussian Splatting',
+      description:
+        'Online sequential updates of 3D Gaussian Splatting in dynamic environments',
+      author: [
+        { '@type': 'Person', name: 'Taiyo Ozaki' },
+        { '@id': `${BASE}/#person` },
+        { '@type': 'Person', name: 'Keiko Nakamoto' },
+        { '@type': 'Person', name: 'Tsubasa Ichikawa' },
+        { '@type': 'Person', name: 'Jun Rekimoto' },
+      ],
+      publisher: 'Spatial Media Conference 2026',
+      url: 'https://www.ite.or.jp/ken/paper/20260730vAPu/',
+      datePublished: '2026',
+      about: ['Gaussian Splatting', '3D Reconstruction', 'Dynamic Environments'],
+    },
     {
       '@type': 'ScholarlyArticle',
       name: 'Augmented Leap: Human Jump Augmentation through Wearable Apparent Reduced Gravity',

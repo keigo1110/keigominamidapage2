@@ -1,7 +1,7 @@
 import type { Language } from '../../../translations'
 import type { profileHighlights } from '../../../data/profile'
 
-export const KNOWN_AGENT_ROUTES = ['/', '/artwork', '/startup', '/experience'] as const
+export const KNOWN_AGENT_ROUTES = ['/', '/artwork', '/startup', '/experience', '/rota'] as const
 export type AgentKnownRoute = (typeof KNOWN_AGENT_ROUTES)[number]
 export type AgentRoute = AgentKnownRoute
 
@@ -15,6 +15,7 @@ export const AGENT_SECTION_IDS = [
   'awards',
   'education',
   'experience',
+  'rota',
 ] as const
 export type AgentSectionId = (typeof AGENT_SECTION_IDS)[number]
 

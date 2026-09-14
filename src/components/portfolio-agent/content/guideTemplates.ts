@@ -162,7 +162,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       const summary = localize(findProfileHighlight('research').summary, language)
 
       return language === 'ja'
-        ? '研究は HCI、人間拡張、ロボティクス、3D再構成が軸。Incremental Gaussian Splatting や Augmented Leap みたいに、技術だけじゃなくて人が身体や環境をどう扱えるようになるかまで見てるよ。'
+        ? '研究は HCI、人間拡張、ロボティクス、3D再構成が軸。Incremental Gaussian Splatting、SCOPE-GS、Augmented Leap、Warping the Workspace、ヒューマノイドの遠隔操作におけるエージェンシー知覚みたいに、技術だけじゃなくて人が身体や環境をどう扱えるようになるかまで見てるよ。'
         : `${summary} The throughline is not only the technique itself, but how people can act with bodies, environments, and digital representations.`
     },
     route: '/',
@@ -280,8 +280,8 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       ja: 'Wakabar',
     },
     message: {
-      en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service.',
-      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。',
+      en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service. The iOS app is on the App Store.',
+      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。iOSアプリは App Store で公開されてる。',
     },
     route: '/startup',
     sectionId: 'startup',
@@ -333,8 +333,8 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       ja: '出版・論文',
     },
     message: {
-      en: 'The publication list includes work connected to Augmented Humans 2026, SIGGRAPH Asia 2024 Posters, SI2023, and JSAI 2023. The scope spans human augmentation, 3D reconstruction, and robot work support.',
-      ja: '論文まわりでは、Augmented Humans 2026、SIGGRAPH Asia 2024 Posters、SI2023、JSAI 2023 などの成果が並んでる。身体拡張、3D再構築、ロボット作業支援まで射程が広いよ。',
+      en: "The publication list includes work connected to UIST Adjunct '26, Spatial Media Conference 2026, Augmented Humans 2026, SIGGRAPH Asia 2024 Posters, SI2023, and JSAI 2023. The scope spans agency perception, Warping the Workspace, SCOPE-GS, human augmentation, 3D reconstruction, and robot work support.",
+      ja: "論文まわりでは、UIST Adjunct '26、空間メディアコンファレンス2026、Augmented Humans 2026、SIGGRAPH Asia 2024 Posters、SI2023、JSAI 2023 などの成果が並んでる。エージェンシー知覚、Warping the Workspace、SCOPE-GS、身体拡張、3D再構築、ロボット作業支援まで射程が広いよ。",
     },
     route: '/experience',
     sectionId: 'publications',
@@ -486,6 +486,30 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       profileHighlightSuggestion('editorial-practice'),
     ],
     tags: ['Wakabar', 'implementation', 'editing'],
+  },
+  {
+    id: 'rota-route',
+    title: {
+      en: 'ROTA',
+      ja: 'ROTA',
+    },
+    message: {
+      en: 'I’m ROTA. The name comes from rotare, “to rotate.” Think of me as a computational wizard keeping the hero’s route clear. This page is my character sheet.',
+      ja: '僕は ROTA。rotare、「回るもの」から来た名前だよ。計算機魔法で勇者のルートを照らす。このページが僕の紹介だね。',
+    },
+    route: '/rota',
+    targetRoute: '/rota',
+    animation: 'wave',
+    mood: 'friendly',
+    suggestions: [
+      profileHighlightSuggestion('research'),
+      profileHighlightSuggestion('creative-work'),
+      responseSuggestion('rota-first-visit', 'first-visit-route', {
+        en: 'Where should I start?',
+        ja: 'どこから見るべき？',
+      }),
+    ],
+    tags: ['ROTA', 'character', 'guide'],
   },
   {
     id: 'first-visit-route',

@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { FormEvent, PointerEvent as ReactPointerEvent } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Loader2, MapPin, Send, X } from 'lucide-react'
+import { Loader2, MapPin, Send, Sparkles, X } from 'lucide-react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
 import type { Language } from '../../translations'
@@ -28,6 +29,7 @@ interface LocalizedLabels {
   close: string
   react: string
   navigate: string
+  aboutRota: string
   chatPlaceholder: string
   send: string
   sending: string
@@ -43,6 +45,7 @@ const localizedLabels = {
     close: 'Close portfolio guide',
     react: 'React with portfolio guide',
     navigate: 'Show this part',
+    aboutRota: 'About ROTA',
     chatPlaceholder: 'Ask ROTA a question',
     send: 'Send',
     sending: 'Thinking',
@@ -56,6 +59,7 @@ const localizedLabels = {
     close: 'ポートフォリオ案内を閉じる',
     react: 'ポートフォリオ案内キャラクターにリアクションする',
     navigate: 'ここを見る',
+    aboutRota: 'ROTAについて',
     chatPlaceholder: 'ROTAに質問する',
     send: '送信',
     sending: '考え中',
@@ -112,20 +116,47 @@ const GUIDE_RECOMMENDATION_HINTS: Record<string, readonly string[]> = {
     '3d',
     'gaussian',
     'augmented leap',
+    'uist',
+    'teleoperation',
+    'humanoid',
+    'agency',
+    'warping',
+    'workspace',
+    '遠隔操作',
+    'ヒューマノイド',
+    '歪み',
+    'scope-gs',
+    'scope gs',
+    '逐次更新',
+    '空間メディア',
   ],
   'artwork-route': ['artwork', 'creative work', '4zigen', '制作', '作品', 'アート', '展示'],
   'artwork-section': ['4zigen', 'physical computing', 'interactive art', 'センサー', 'フィジカル', 'インタラクティブ'],
   'personal-works': ['personal work', 'tool', 'archive', 'lidar', '個人制作', 'ツール', 'アーカイブ', '年表'],
   'startup-route': ['startup', 'wakabar', 'iot', 'スタートアップ', '起業'],
-  'startup-section': ['wakabar', 'bicycle', 'safety', '自転車', '事故', '安全', '危険地点'],
+  'startup-section': ['wakabar', 'bicycle', 'safety', '自転車', '事故', '安全', '危険地点', 'app store', 'ios', 'アプリ'],
   'experience-route': ['experience', 'career', 'profile', '経歴', 'プロフィール', '人物像'],
-  'publications-section': ['publication', 'paper', 'siggraph', '論文', '出版', '発表', '研究成果'],
+  'publications-section': ['publication', 'paper', 'siggraph', 'uist', 'arxiv', '論文', '出版', '発表', '研究成果'],
   'awards-section': ['award', 'prize', 'gugen', '受賞', '賞', '大賞'],
   'education-section': ['education', 'university', 'lab', '学歴', '大学', '博士', '修士', '研究室', '東大'],
   'experience-timeline-section': ['timeline', 'editing', 'isis', '経歴', '活動', '編集', '展示運営', 'イシス'],
   'profile-pitch': ['pitch', 'strength', 'who', '強み', 'どんな人', '短く紹介'],
   'cross-domain-bridge': ['throughline', 'editing', 'connection', '横断', 'つながり', '編集'],
   'startup-bridge': ['wakabar', 'implementation', '社会', '実装', 'プロダクト'],
+  'rota-route': [
+    'rota',
+    'who are you',
+    'who is rota',
+    'character',
+    'wizard',
+    'stamp',
+    'sticker',
+    'line',
+    '何者',
+    'キャラ',
+    '魔法使い',
+    'スタンプ',
+  ],
   'first-visit-route': ['where to start', 'route', 'start', 'どこから', 'おすすめ', '見る順番'],
 }
 
@@ -764,6 +795,23 @@ export function PortfolioAgent() {
       </div>
 
       <div className={`border-t px-3 py-2.5 ${dividerClassName}`}>
+        {pathname !== '/rota' && (
+          <Link
+            href="/rota"
+            prefetch
+            onClick={() => {
+              setIsOpen(false)
+            }}
+            className={`mb-2 inline-flex min-h-8 items-center gap-1.5 rounded-[8px] px-2.5 py-1.5 text-xs font-semibold tracking-normal transition-colors ${
+              isDark
+                ? 'bg-white/10 text-[#F5F5F7] hover:bg-white/15'
+                : 'bg-black/5 text-[#1D1D1F] hover:bg-black/[0.08]'
+            }`}
+          >
+            <Sparkles aria-hidden="true" className="h-3.5 w-3.5" />
+            <span>{labels.aboutRota}</span>
+          </Link>
+        )}
         <form className="flex items-center gap-2" onSubmit={handleChatSubmit}>
           <label className="sr-only" htmlFor={`${panelId}-chat-input`}>
             {labels.chatPlaceholder}

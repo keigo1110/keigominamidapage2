@@ -30,5 +30,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/rota`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ]
 }

@@ -54,6 +54,11 @@ In the future where informatization progresses, what we face is whether to be sw
     department: 'Bachelor of Engineering, Mechanical Engineering, Kindai University',
 
     // Research Projects
+    agencyPerceptionDescription: 'Can people distinguish human from AI in humanoid teleoperation?',
+    warpingWorkspaceDescription: 'Teleoperation in a warped space.',
+    scopeGsTitle: 'SCOPE-GS: Spatial Construction and Viewpoint-aware Online Updating system for Dynamic Environments via Gaussian Splatting',
+    scopeGsVenue: 'Spatial Media Conference 2026',
+    scopeGsDescription: 'Online sequential updates of 3D Gaussian Splatting in dynamic environments.',
     augmentedLeapDescription: 'Augmenting human jumps with thrust',
     IGSDescription: 'System for gradual 3D reconstruction from monocular camera adapting to real-world changes',
     recertifDescription: 'System that enables checking robot work status by simply looking towards the robot',
@@ -98,6 +103,7 @@ In the future where informatization progresses, what we face is whether to be sw
     wakabarMainSite: 'Corporate Site',
     wakabarTourSite: 'Self-guided Tour',
     wakabarAppSite: 'Try the App',
+    wakabarAppStoreBadgeAlt: 'Download on the App Store',
     audioWarningSystem: 'Voice Alert System',
     audioWarningDescription: 'Automatically provides voice alerts when approaching high-risk areas',
     realtimeTracking: 'Hazard Zone Database',

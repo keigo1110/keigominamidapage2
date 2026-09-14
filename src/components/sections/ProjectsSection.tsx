@@ -12,6 +12,58 @@ export function ProjectsSection() {
 
   const researchProjects = [
     {
+      title: "Can People Distinguish Human and AI Agency in Humanoid Teleoperation?",
+      description: t('agencyPerceptionDescription'),
+      image: "/images/can_uist2026poster.png",
+      venue: "UIST Adjunct '26",
+      date: "2026.11",
+      links: [
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://doi.org/10.1145/3830397.3841874'
+        },
+        {
+          type: 'arxiv',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'arXiv',
+          url: 'https://arxiv.org/abs/2609.06434'
+        }
+      ]
+    },
+    {
+      title: "Warping the Workspace",
+      description: t('warpingWorkspaceDescription'),
+      image: "/images/zoomable_uist2026poster.jpg",
+      venue: "UIST Adjunct '26",
+      date: "2026.11",
+      links: [
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://doi.org/10.1145/3830397.3841893'
+        }
+      ]
+    },
+    {
+      title: "SCOPE-GS",
+      description: t('scopeGsDescription'),
+      image: "/images/rota/portrait-bw.png",
+      imageMuted: true,
+      venue: t('scopeGsVenue'),
+      date: "2026.07",
+      links: [
+        {
+          type: 'paper',
+          icon: <FileText className="w-3.5 h-3.5" />,
+          text: 'Paper',
+          url: 'https://www.ite.or.jp/ken/paper/20260730vAPu/'
+        }
+      ]
+    },
+    {
       title: "Augmented Leap",
       description: t('augmentedLeapDescription'),
       image: "/images/augmented-leap.png",
@@ -122,21 +174,27 @@ export function ProjectsSection() {
               }`}
             >
               <div className="flex flex-col md:flex-row">
-                <div className={`md:w-1/3 overflow-hidden ${
-                  isDark ? 'bg-black/30' : 'bg-white/70'
-                }`}>
-                  <div className="relative min-h-[200px] aspect-video md:h-full md:min-h-[280px] md:aspect-auto">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
+                {project.image && (
+                  <div className={`md:w-1/3 overflow-hidden ${
+                    isDark ? 'bg-black/30' : 'bg-white/70'
+                  }`}>
+                    <div className="relative min-h-[200px] aspect-video md:h-full md:min-h-[280px] md:aspect-auto">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className={
+                          'imageMuted' in project && project.imageMuted
+                            ? 'object-contain p-16 md:p-20 opacity-20 pointer-events-none'
+                            : 'object-contain p-3 transition-transform duration-500 group-hover:scale-[1.02]'
+                        }
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <div className="md:w-2/3 p-6 md:p-8">
+                <div className={`${project.image ? 'md:w-2/3' : 'w-full'} p-6 md:p-8`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className={`text-xl md:text-2xl font-medium mb-2 ${
@@ -163,25 +221,46 @@ export function ProjectsSection() {
                   </p>
 
                   <div className="flex flex-wrap gap-3">
-                    {project.links.map((link) => (
-                      <motion.a
-                        key={link.text}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
-                          isDark
-                            ? 'bg-[#2997FF]/10 text-[#2997FF] hover:bg-[#2997FF]/20'
-                            : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
-                        }`}
-                      >
-                        {link.icon}
-                        <span>{link.text}</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </motion.a>
-                    ))}
+                    {project.links.map((link) => {
+                      const isComingSoon = !link.url || link.url === '#'
+                      const linkClassName = `inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                        isDark
+                          ? 'bg-[#2997FF]/10 text-[#2997FF] hover:bg-[#2997FF]/20'
+                          : 'bg-[#0071E3]/10 text-[#0071E3] hover:bg-[#0071E3]/20'
+                      }`
+
+                      if (isComingSoon) {
+                        return (
+                          <span
+                            key={link.text}
+                            className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg cursor-default opacity-70 ${
+                              isDark
+                                ? 'bg-[#2997FF]/10 text-[#2997FF]'
+                                : 'bg-[#0071E3]/10 text-[#0071E3]'
+                            }`}
+                          >
+                            {link.icon}
+                            <span>{link.text}</span>
+                          </span>
+                        )
+                      }
+
+                      return (
+                        <motion.a
+                          key={link.text}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={linkClassName}
+                        >
+                          {link.icon}
+                          <span>{link.text}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </motion.a>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

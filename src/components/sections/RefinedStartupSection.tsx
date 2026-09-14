@@ -6,9 +6,20 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { MapPin, BarChart3, GraduationCap, ExternalLink, Play } from 'lucide-react'
 import Image from 'next/image'
 
+const APP_STORE_URL = 'https://apps.apple.com/jp/app/wakabar/id6759553729'
+
 export function RefinedStartupSection() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const { isDark } = useTheme()
+
+  const appStoreBadgeSrc = isDark
+    ? language === 'ja'
+      ? '/images/badges/app-store-ja-white.svg'
+      : '/images/badges/app-store-en-white.svg'
+    : language === 'ja'
+      ? '/images/badges/app-store-ja-black.svg'
+      : '/images/badges/app-store-en-black.svg'
+  const appStoreBadgeAlt = t('wakabarAppStoreBadgeAlt')
 
   const coreFeatures = [
     {
@@ -158,6 +169,20 @@ export function RefinedStartupSection() {
                   </div>
 
                   <div className="space-y-3">
+                    <a
+                      href={APP_STORE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex"
+                      aria-label={appStoreBadgeAlt}
+                    >
+                      <img
+                        src={appStoreBadgeSrc}
+                        alt={appStoreBadgeAlt}
+                        height={40}
+                        className="h-10 w-auto"
+                      />
+                    </a>
                     {wakabarSites.map((site, index) => (
                       <motion.a
                         key={index}

@@ -2,20 +2,95 @@
 
 import { motion } from 'framer-motion'
 import { useTheme } from '../../contexts/ThemeContext'
+import { useTranslation } from '../../contexts/TranslationContext'
+import type { Language } from '../../translations'
+
+interface Author {
+  name: string
+  highlight?: boolean
+}
 
 interface Publication {
-  authors: { name: string; highlight?: boolean }[]
-  title: string
-  venue: string
-  location: string
+  authors: Author[] | Record<Language, Author[]>
+  title: string | Record<Language, string>
+  venue: string | Record<Language, string>
+  location: string | Record<Language, string>
   date: string
   url?: string
 }
 
+function localizePublication<T>(value: T | Record<Language, T>, language: Language): T {
+  if (value && typeof value === 'object' && !Array.isArray(value) && 'en' in value && 'ja' in value) {
+    return value[language]
+  }
+  return value as T
+}
+
 export function PublicationsSection() {
   const { isDark } = useTheme()
+  const { language } = useTranslation()
 
   const publications: Publication[] = [
+    {
+      authors: [
+        { name: 'Xiang Li' },
+        { name: 'Koya Dendo' },
+        { name: 'Keigo Minamida', highlight: true },
+        { name: 'Yuto Nakamura' },
+        { name: 'Per Ola Kristensson' },
+        { name: 'Jun Rekimoto' },
+      ],
+      title: 'Can People Distinguish Human and AI Agency in Humanoid Teleoperation? A Preliminary Study of Agency Perception.',
+      venue: "UIST Adjunct '26",
+      location: 'Detroit, MI, USA',
+      date: '2026.11',
+      url: 'https://doi.org/10.1145/3830397.3841874',
+    },
+    {
+      authors: [
+        { name: 'Keigo Minamida', highlight: true },
+        { name: 'Koya Dendo' },
+        { name: 'Yuto Nakamura' },
+        { name: 'Jun Rekimoto' },
+      ],
+      title: 'Warping the Workspace: Expanding Visual Access with Adjustable Reach Mapping for Humanoid Teleoperation.',
+      venue: "UIST Adjunct '26",
+      location: 'Detroit, MI, USA',
+      date: '2026.11',
+      url: 'https://doi.org/10.1145/3830397.3841893',
+    },
+    {
+      authors: {
+        en: [
+          { name: 'Taiyo Ozaki' },
+          { name: 'Keigo Minamida', highlight: true },
+          { name: 'Keiko Nakamoto' },
+          { name: 'Tsubasa Ichikawa' },
+          { name: 'Jun Rekimoto' },
+        ],
+        ja: [
+          { name: '尾崎大耀' },
+          { name: '南田桂吾', highlight: true },
+          { name: '中本啓子' },
+          { name: '市川翼' },
+          { name: '暦本純一' },
+        ],
+      },
+      title: {
+        en: 'SCOPE-GS: Spatial Construction and Viewpoint-aware Online Updating system for Dynamic Environments via Gaussian Splatting.',
+        ja: 'SCOPE-GS：Gaussian Splattingによる動的環境の視点考慮型オンライン空間構築・更新システム',
+      },
+      venue: {
+        en: 'Spatial Media Conference 2026',
+        ja: '空間メディアコンファレンス2026',
+      },
+      location: {
+        en: 'Tokyo, Japan',
+        ja: '東京',
+      },
+      date: '2026.07',
+      url: 'https://www.ite.or.jp/ken/paper/20260730vAPu/',
+    },
     {
       authors: [
         { name: 'Yuto Nakamura' },
@@ -114,7 +189,7 @@ export function PublicationsSection() {
                 </motion.div>
                 <div className="flex-1">
                   <p className={`text-sm mb-2 text-[#86868B]`}>
-                    {pub.authors.map((author, i) => (
+                    {localizePublication(pub.authors, language).map((author, i) => (
                       <span key={i}>
                         {i > 0 && ', '}
                         <span className={author.highlight ? (isDark ? 'text-[#F5F5F7] font-medium' : 'text-[#1D1D1F] font-medium') : ''}>
@@ -135,14 +210,14 @@ export function PublicationsSection() {
                           isDark ? 'hover:text-[#2997FF]' : 'hover:text-[#0071E3]'
                         }`}
                       >
-                        {pub.title}
+                        {localizePublication(pub.title, language)}
                       </a>
                     ) : (
-                      pub.title
+                      localizePublication(pub.title, language)
                     )}
                   </p>
                   <p className="text-sm text-[#86868B]">
-                    {pub.venue}, {pub.location}
+                    {localizePublication(pub.venue, language)}, {localizePublication(pub.location, language)}
                   </p>
                 </div>
               </div>
