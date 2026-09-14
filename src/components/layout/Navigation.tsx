@@ -237,19 +237,21 @@ export function Navigation() {
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-[max(0.7rem,env(safe-area-inset-top))] sm:px-5">
         <nav
-          className="nav-liquid-shell pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 md:w-fit md:gap-6"
+          className="nav-liquid-shell pointer-events-auto mx-auto flex w-full max-w-5xl flex-nowrap items-center justify-between gap-2 rounded-full px-2.5 py-2 sm:gap-3 sm:px-4 sm:py-2.5 md:w-fit md:gap-6"
           role="navigation"
           aria-label="Main navigation"
         >
           <Link
             href="/"
-            className="rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-[#F2EFE9] outline-none sm:text-xl"
+            className="inline-flex h-8 shrink-0 items-center rounded-full px-2 text-base font-semibold leading-none tracking-tight text-[#F2EFE9] outline-none sm:px-2.5 sm:text-lg md:text-xl"
             aria-label="Go to home page"
           >
-            {t('name')}
+            <span className="translate-y-[0.06em] whitespace-nowrap">
+              {t('name')}
+            </span>
           </Link>
 
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <DesktopNavGlass pathname={pathname} reduced={reduced} />
             <LanguageSwitch />
 

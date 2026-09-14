@@ -10,7 +10,6 @@ import {
 } from 'framer-motion'
 import type { SocialLink } from '../types'
 
-const SLOT = 44
 const PEAK_SCALE = 1.72
 const MAG_DISTANCE = 118
 const ease = [0.22, 1, 0.36, 1] as const
@@ -60,10 +59,8 @@ function DockIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Visit ${label} profile`}
-      className="relative flex shrink-0 items-end justify-center outline-none will-change-transform"
+      className="relative flex h-8 min-w-0 flex-1 items-end justify-center outline-none will-change-transform sm:h-11 sm:w-11 sm:flex-none"
       style={{
-        width: SLOT,
-        height: SLOT,
         scale: reduced ? 1 : scale,
         transformOrigin: 'bottom center',
       }}
@@ -78,7 +75,7 @@ function DockIcon({
       }}
     >
       <social.icon
-        className={`h-6 w-6 transition-colors duration-200 sm:h-7 sm:w-7 ${
+        className={`h-5 w-5 transition-colors duration-200 sm:h-7 sm:w-7 ${
           isHot ? social.accentClass ?? 'text-[#D4C07A]' : 'text-[#A39E94]'
         }`}
       />
@@ -98,14 +95,14 @@ export function SocialDock({
 
   return (
     <div
-      className="mb-10 flex h-[4.75rem] items-end overflow-visible"
+      className="mb-10 flex h-14 w-full max-w-lg items-end overflow-visible sm:h-[4.75rem] sm:max-w-none"
       onMouseMove={(event) => mouseX.set(event.clientX)}
       onMouseLeave={() => {
         mouseX.set(Number.POSITIVE_INFINITY)
         setHotUrl(null)
       }}
     >
-      <div className="flex items-end">
+      <div className="flex w-full items-end justify-between sm:w-auto sm:justify-start">
         {links.map((social, index) => (
           <DockIcon
             key={social.url}

@@ -185,7 +185,7 @@ export function ArtworkSection() {
 
   return (
     <section id="artwork" className="world-play relative py-24 md:py-32 lg:py-40">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

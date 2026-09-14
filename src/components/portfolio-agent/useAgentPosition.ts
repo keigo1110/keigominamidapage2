@@ -56,7 +56,7 @@ interface ResolvedPositionOptions {
 }
 
 const DEFAULT_DESKTOP_SIZE = 112
-const DEFAULT_MOBILE_SIZE = 88
+const DEFAULT_MOBILE_SIZE = 68
 const DEFAULT_BUBBLE_WIDTH = 320
 const DEFAULT_BUBBLE_HEIGHT = 230
 const BUBBLE_GAP = 12

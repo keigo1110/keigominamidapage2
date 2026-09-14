@@ -30,8 +30,8 @@ export function ProjectsSection() {
   const ink = isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
   const muted = isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
   const linkClass = isDark
-    ? 'text-[#F2EFE9] underline decoration-[#2A2724]/80 underline-offset-4 transition-colors duration-300 hover:text-[#D4C07A] hover:decoration-[#D4C07A]'
-    : 'text-[#1C1916] underline decoration-[#E4DFD6] underline-offset-4 transition-colors duration-300 hover:text-[#8A7428] hover:decoration-[#8A7428]'
+    ? 'inline-flex cursor-pointer items-center rounded-sm border border-[#B8A04A]/40 px-2.5 py-1 text-sm text-[#D4C07A] transition-colors duration-300 hover:border-[#D4C07A] hover:bg-[#B8A04A]/10 hover:text-[#F2EFE9]'
+    : 'inline-flex cursor-pointer items-center rounded-sm border border-[#8A7428]/35 px-2.5 py-1 text-sm text-[#8A7428] transition-colors duration-300 hover:border-[#8A7428] hover:bg-[#8A7428]/10 hover:text-[#1C1916]'
 
   return (
     <section id="projects" className="relative py-20 md:py-28 lg:py-32">
@@ -121,6 +121,7 @@ export function ProjectsSection() {
                         t={t}
                         linkClass={linkClass}
                         muted={muted}
+                        isDark={isDark}
                       />
                     </div>
                   </div>
@@ -143,6 +144,7 @@ export function ProjectsSection() {
                       t={t}
                       linkClass={linkClass}
                       muted={muted}
+                      isDark={isDark}
                     />
                   </div>
                 )}
@@ -257,22 +259,30 @@ function ProjectLinks({
   t,
   linkClass,
   muted,
+  isDark,
 }: {
   projectTitle: string
   links: typeof researchProjects[number]['links']
   t: ReturnType<typeof useTranslation>['t']
   linkClass: string
   muted: string
+  isDark: boolean
 }) {
   return (
-    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+    <div className="mt-5 flex flex-wrap items-center gap-2">
       {links.map((link) => {
         const comingSoon = isComingSoonLink(link)
         const label = researchLinkLabel(link.type, t, comingSoon)
 
         if (comingSoon) {
           return (
-            <span key={link.type} aria-disabled="true" className={muted}>
+            <span
+              key={link.type}
+              aria-disabled="true"
+              className={`inline-flex items-center rounded-sm border border-dashed px-2.5 py-1 text-sm ${muted} ${
+                isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
+              }`}
+            >
               {label}
             </span>
           )
