@@ -16,6 +16,7 @@ import { LanguageSwitch } from '../LanguageSwitch'
 import { usePrefersReducedMotion } from '../portfolio-agent/usePrefersReducedMotion'
 import { NAV_ITEMS, type NavItem } from '../../types'
 import type { TranslationKey } from '../../translations'
+import { localizedPath, pathnameWithoutLocale } from '@/lib/locale'
 
 const glassSpring = {
   type: 'spring' as const,
@@ -25,8 +26,9 @@ const glassSpring = {
 }
 
 function isItemActive(pathname: string, href: string) {
-  if (href === '/') return pathname === '/'
-  return pathname === href || pathname.startsWith(`${href}/`)
+  const current = pathnameWithoutLocale(pathname)
+  if (href === '/') return current === '/'
+  return current === href || current.startsWith(`${href}/`)
 }
 
 interface GlassBox {
@@ -57,7 +59,7 @@ function DesktopNavGlass({
   pathname: string
   reduced: boolean
 }) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const listRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
   const [pill, setPill] = useState<GlassBox | null>(null)
@@ -107,7 +109,7 @@ function DesktopNavGlass({
       {NAV_ITEMS.map((item) => (
         <Link
           key={item.key}
-          href={item.href}
+          href={localizedPath(item.href, language)}
           ref={(node) => {
             if (node) itemRefs.current.set(item.key, node)
             else itemRefs.current.delete(item.key)
@@ -135,7 +137,7 @@ function MobileNavGlass({
   reduced: boolean
   onNavigate: () => void
 }) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const listRef = useRef<HTMLElement>(null)
   const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map())
   const [pill, setPill] = useState<GlassBox | null>(null)
@@ -174,7 +176,7 @@ function MobileNavGlass({
       {NAV_ITEMS.map((item: NavItem) => (
         <Link
           key={item.key}
-          href={item.href}
+          href={localizedPath(item.href, language)}
           ref={(node) => {
             if (node) itemRefs.current.set(item.key, node)
             else itemRefs.current.delete(item.key)
@@ -195,7 +197,7 @@ function MobileNavGlass({
 }
 
 export function Navigation() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const pathname = usePathname()
   const reduced = usePrefersReducedMotion()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -242,7 +244,7 @@ export function Navigation() {
           aria-label="Main navigation"
         >
           <Link
-            href="/"
+            href={localizedPath('/', language)}
             className="inline-flex h-8 shrink-0 items-center rounded-full px-2 text-base font-semibold leading-none tracking-tight text-[#F2EFE9] outline-none sm:px-2.5 sm:text-lg md:text-xl"
             aria-label="Go to home page"
           >

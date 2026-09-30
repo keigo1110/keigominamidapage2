@@ -10,6 +10,7 @@ import { ScrollEnchantment } from '../components/ScrollEnchantment'
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const geist = localFont({
@@ -35,11 +36,17 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const headerList = await headers()
+  const locale = headerList.get('x-locale') === 'ja' ? 'ja' : 'en'
+
+  return {
   metadataBase: new URL('https://keigominamida.com'),
   title: {
-    default: 'Keigo Minamida | HCI Researcher & Creative Technologist',
-    template: '%s | Keigo Minamida',
+    default: locale === 'ja'
+      ? '南田桂吾 | HCI研究者・クリエイティブテクノロジスト'
+      : 'Keigo Minamida | HCI Researcher & Creative Technologist',
+    template: locale === 'ja' ? '%s | 南田桂吾' : '%s | Keigo Minamida',
   },
   description: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
   keywords: [
@@ -123,6 +130,17 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    languages: {
+      en: "/",
+      ja: "/ja",
+      "x-default": "/",
+    },
+    types: {
+      "text/plain": [
+        { url: "/llms.txt", title: "LLM site summary" },
+        { url: "/llms-full.txt", title: "LLM site summary, full" },
+      ],
+    },
   },
   icons: {
     icon: [
@@ -150,15 +168,19 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#0C0B0A",
     "msapplication-config": "/browserconfig.xml",
   },
-};
+  }
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const headerList = await headers()
+  const locale = headerList.get('x-locale') === 'ja' ? 'ja' : 'en'
+
   return (
-    <html lang="en" className={`${geist.variable} dark`} suppressHydrationWarning>
+    <html lang={locale} className={`${geist.variable} dark`} suppressHydrationWarning>
       <head>
         {/* Theme flash prevention */}
         <script

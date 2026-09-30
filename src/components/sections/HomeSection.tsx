@@ -146,7 +146,8 @@ function EnchantedText({
       : {}
 
   return (
-    <Tag className={className} aria-label={text} {...extra}>
+    <Tag className={className} {...extra}>
+      <span className="sr-only">{text}</span>
       {units.map((unit, index) => {
         const space = /^\s+$/.test(unit)
         return (

@@ -1,4 +1,5 @@
 import { localize, profileHighlights } from '../../data/profile'
+import { pathnameWithoutLocale } from '@/lib/locale'
 import type { Language } from '../../translations'
 import { agentGuideTemplates } from './content/guideTemplates'
 import {
@@ -78,9 +79,10 @@ export function normalizeAgentRoute(pathname: string | null | undefined): AgentK
 
   const [withoutQuery = '/'] = pathname.split('?')
   const [withoutHash = withoutQuery] = withoutQuery.split('#')
-  const normalizedPath = withoutHash.endsWith('/') && withoutHash !== '/'
-    ? withoutHash.slice(0, -1)
-    : withoutHash
+  const withoutLocale = pathnameWithoutLocale(withoutHash)
+  const normalizedPath = withoutLocale.endsWith('/') && withoutLocale !== '/'
+    ? withoutLocale.slice(0, -1)
+    : withoutLocale
 
   if (isKnownRoute(normalizedPath)) return normalizedPath
 

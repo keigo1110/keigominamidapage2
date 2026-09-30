@@ -16,6 +16,13 @@ import {
   WAKABAR_CORPORATE_URL,
 } from '@/data/wakabar'
 import { JsonLd } from './JsonLd'
+import { localizedPath, type Locale } from '@/lib/locale'
+import { getRequestLocale } from '@/lib/requestLocale'
+
+function absoluteLocalized(path: string, locale: Locale) {
+  const localized = localizedPath(path, locale)
+  return localized === '/' ? `${SITE_URL}/` : `${SITE_URL}${localized}`
+}
 
 function breadcrumb(items: { name: string; path: string }[]) {
   return {
@@ -36,6 +43,7 @@ function webPage(options: {
   name: string
   description: string
   image?: string
+  locale: Locale
 }) {
   return {
     '@type': 'WebPage' as const,
@@ -49,7 +57,7 @@ function webPage(options: {
       '@type': 'ImageObject' as const,
       url: options.image ?? `${SITE_URL}/images/myface.jpg`,
     },
-    inLanguage: ['en', 'ja'],
+    inLanguage: options.locale,
   }
 }
 
@@ -61,7 +69,7 @@ const personSchema = {
   url: `${SITE_URL}/`,
   image: `${SITE_URL}/images/myface.jpg`,
   description:
-    'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar.',
+    'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar. 南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生で、HCI・人間拡張・コンピュータビジョンを専門とする。',
   jobTitle: ['Doctoral Student', 'Researcher', 'Entrepreneur', 'Software Developer'],
   affiliation: {
     '@type': 'Organization',
@@ -161,21 +169,30 @@ export function SiteIdentityStructuredData() {
   return <JsonLd graph={[personSchema, websiteSchema, organizationSchema]} />
 }
 
-export function HomeStructuredData() {
+export async function HomeStructuredData() {
+  const locale = await getRequestLocale()
+  const home = absoluteLocalized('/', locale)
+  const name = locale === 'ja'
+    ? '南田桂吾 | HCI研究者・クリエイティブテクノロジスト'
+    : 'Keigo Minamida | HCI Researcher & Creative Technologist'
+
   return (
     <JsonLd
       graph={[
         webPage({
-          id: `${SITE_URL}/#webpage`,
-          url: `${SITE_URL}/`,
-          name: 'Keigo Minamida | HCI Researcher & Creative Technologist',
+          id: `${home}#webpage`,
+          url: home,
+          name,
           description:
-            'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
+            locale === 'ja'
+              ? '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ Wakabar に取り組む。'
+              : 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
+          locale,
         }),
-        breadcrumb([{ name: 'Home', path: `${SITE_URL}/` }]),
+        breadcrumb([{ name: locale === 'ja' ? 'ホーム' : 'Home', path: home }]),
         {
           '@type': 'FAQPage',
-          '@id': `${SITE_URL}/#faq`,
+          '@id': `${home}#faq`,
           mainEntity: [
             {
               '@type': 'Question',
@@ -193,6 +210,22 @@ export function HomeStructuredData() {
                 text: 'Keigo Minamida researches Human-Computer Interaction (HCI), Augmented Humans, and Computer Vision. His work includes humanoid teleoperation (agency perception and Warping the Workspace), 3D reconstruction (SCOPE-GS and Incremental Gaussian Splatting), human-robot interaction (Recertif), and real-world sensing for interactive systems.',
               },
             },
+            {
+              '@type': 'Question',
+              name: '南田桂吾とは誰ですか？',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: '南田桂吾（Keigo Minamida）は、東京大学大学院 学際情報学府・石黒研究室の博士課程学生です。専門はHCI（ヒューマン・コンピュータ・インタラクション）、人間拡張、コンピュータビジョン。研究者、起業家、ソフトウェア開発者でもあります。UIST Adjunct 2026、空間メディアコンファレンス2026、Augmented Humans 2026、SIGGRAPH Asia 2024で発表し、自転車安全のIoTスタートアップ Wakabar と、4ZIGENでのインタラクティブ作品（GUGEN2024 大賞）に取り組んでいます。',
+              },
+            },
+            {
+              '@type': 'Question',
+              name: '南田桂吾の研究テーマは何ですか？',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: '南田桂吾は、HCI、人間拡張、コンピュータビジョンを研究しています。ヒューマノイド遠隔操作（エージェンシー知覚、Warping the Workspace）、3D再構成（SCOPE-GS、Incremental Gaussian Splatting）、人とロボットの協働（Recertif）などに取り組んでいます。ライフテーマは「ソフトウェアとしての編集化」です。',
+              },
+            },
           ],
         },
         ...scholarlyArticles,
@@ -201,20 +234,27 @@ export function HomeStructuredData() {
   )
 }
 
-export function StartupStructuredData() {
+export async function StartupStructuredData() {
+  const locale = await getRequestLocale()
+  const home = absoluteLocalized('/', locale)
+  const page = absoluteLocalized('/startup', locale)
+
   return (
     <JsonLd
       graph={[
         webPage({
-          id: `${SITE_URL}/startup#webpage`,
-          url: `${SITE_URL}/startup`,
-          name: 'Startup | Keigo Minamida',
+          id: `${page}#webpage`,
+          url: page,
+          name: locale === 'ja' ? 'スタートアップ | 南田桂吾' : 'Startup | Keigo Minamida',
           description:
-            'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. The iOS app is on the App Store.',
+            locale === 'ja'
+              ? 'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐiOSアプリ。'
+              : 'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. The iOS app is on the App Store.',
+          locale,
         }),
         breadcrumb([
-          { name: 'Home', path: `${SITE_URL}/` },
-          { name: 'Startup', path: `${SITE_URL}/startup` },
+          { name: locale === 'ja' ? 'ホーム' : 'Home', path: home },
+          { name: locale === 'ja' ? 'スタートアップ' : 'Startup', path: page },
         ]),
         {
           '@type': 'SoftwareApplication',
@@ -237,20 +277,27 @@ export function StartupStructuredData() {
   )
 }
 
-export function ExperienceStructuredData() {
+export async function ExperienceStructuredData() {
+  const locale = await getRequestLocale()
+  const home = absoluteLocalized('/', locale)
+  const page = absoluteLocalized('/experience', locale)
+
   return (
     <JsonLd
       graph={[
         webPage({
-          id: `${SITE_URL}/experience#webpage`,
-          url: `${SITE_URL}/experience`,
-          name: 'Experience | Keigo Minamida',
+          id: `${page}#webpage`,
+          url: page,
+          name: locale === 'ja' ? '経歴 | 南田桂吾' : 'Experience | Keigo Minamida',
           description:
-            'Publications, awards, education, and professional experience of Keigo Minamida.',
+            locale === 'ja'
+              ? '南田桂吾の論文、受賞、学歴、経歴。'
+              : 'Publications, awards, education, and professional experience of Keigo Minamida.',
+          locale,
         }),
         breadcrumb([
-          { name: 'Home', path: `${SITE_URL}/` },
-          { name: 'Experience', path: `${SITE_URL}/experience` },
+          { name: locale === 'ja' ? 'ホーム' : 'Home', path: home },
+          { name: locale === 'ja' ? '経歴' : 'Experience', path: page },
         ]),
         ...scholarlyArticles,
       ]}
@@ -258,20 +305,27 @@ export function ExperienceStructuredData() {
   )
 }
 
-export function ArtworkStructuredData() {
+export async function ArtworkStructuredData() {
+  const locale = await getRequestLocale()
+  const home = absoluteLocalized('/', locale)
+  const page = absoluteLocalized('/artwork', locale)
+
   return (
     <JsonLd
       graph={[
         webPage({
-          id: `${SITE_URL}/artwork#webpage`,
-          url: `${SITE_URL}/artwork`,
-          name: 'Artwork | Keigo Minamida',
+          id: `${page}#webpage`,
+          url: page,
+          name: locale === 'ja' ? '制作 | 南田桂吾' : 'Artwork | Keigo Minamida',
           description:
-            'Team and personal creative projects by Keigo Minamida: 4ZIGEN interactive art, installations, and personal works.',
+            locale === 'ja'
+              ? '南田桂吾と4ZIGENのインタラクティブ作品、および個人制作。'
+              : 'Team and personal creative projects by Keigo Minamida: 4ZIGEN interactive art, installations, and personal works.',
+          locale,
         }),
         breadcrumb([
-          { name: 'Home', path: `${SITE_URL}/` },
-          { name: 'Artwork', path: `${SITE_URL}/artwork` },
+          { name: locale === 'ja' ? 'ホーム' : 'Home', path: home },
+          { name: locale === 'ja' ? '制作' : 'Artwork', path: page },
         ]),
         ...creativeWorksSchema,
       ]}
@@ -279,20 +333,25 @@ export function ArtworkStructuredData() {
   )
 }
 
-export function RotaStructuredData() {
+export async function RotaStructuredData() {
+  const locale = await getRequestLocale()
+  const home = absoluteLocalized('/', locale)
+  const page = absoluteLocalized('/rota', locale)
+
   return (
     <JsonLd
       graph={[
         webPage({
-          id: `${SITE_URL}/rota#webpage`,
-          url: `${SITE_URL}/rota`,
+          id: `${page}#webpage`,
+          url: page,
           name: 'ROTA | Keigo Minamida',
-          description: rotaProfile.lead.en,
+          description: rotaProfile.lead[locale],
           image: `${SITE_URL}${ROTA_CHARACTER_IMAGE}`,
+          locale,
         }),
         breadcrumb([
-          { name: 'Home', path: `${SITE_URL}/` },
-          { name: 'ROTA', path: `${SITE_URL}/rota` },
+          { name: locale === 'ja' ? 'ホーム' : 'Home', path: home },
+          { name: 'ROTA', path: page },
         ]),
         {
           '@type': 'CreativeWork',

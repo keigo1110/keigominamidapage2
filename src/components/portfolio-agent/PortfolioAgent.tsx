@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { MapPin, Send, X } from 'lucide-react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useTranslation } from '../../contexts/TranslationContext'
+import { localeFromPathname, localizedPath, pathnameWithoutLocale } from '@/lib/locale'
 import type { Language } from '../../translations'
 import {
   getAllAgentGuides,
@@ -782,9 +783,9 @@ export function PortfolioAgent() {
   }, [chatInput, sendChatMessage])
 
   const navigateTo = useCallback((route: AgentKnownRoute, hash?: AgentSectionId) => {
-    const targetHref = buildHref(route, hash)
+    const targetHref = localizedPath(buildHref(route, hash), localeFromPathname(pathname))
 
-    if (pathname === route && hash) {
+    if (pathnameWithoutLocale(pathname) === route && hash) {
       document.getElementById(hash)?.scrollIntoView({
         behavior: prefersReducedMotion ? 'auto' : 'smooth',
         block: 'start',
@@ -931,9 +932,9 @@ export function PortfolioAgent() {
         }`}>
           {rotaProfile.name}
         </p>
-        {pathname !== '/rota' && (
+        {pathnameWithoutLocale(pathname) !== '/rota' && (
           <Link
-            href="/rota"
+            href={localizedPath('/rota', localeFromPathname(pathname))}
             prefetch
             onClick={() => {
               setIsOpen(false)
