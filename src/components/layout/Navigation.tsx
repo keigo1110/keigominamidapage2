@@ -9,7 +9,8 @@ import {
 } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { ModalDialog } from '../ModalDialog'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { useTranslation } from '../../contexts/TranslationContext'
 import { LanguageSwitch } from '../LanguageSwitch'
@@ -202,7 +203,7 @@ export function Navigation() {
   const reduced = usePrefersReducedMotion()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleMenu = () => setIsMenuOpen((open) => !open)
 
   useEffect(() => {
     const handleResize = () => {
@@ -213,26 +214,6 @@ export function Navigation() {
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [isMenuOpen])
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false)
-      }
-    }
-
-    if (isMenuOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
   }, [isMenuOpen])
 
   return (
@@ -272,31 +253,33 @@ export function Navigation() {
         </nav>
       </header>
 
-      <AnimatePresence>
+      <ModalDialog
+        open={isMenuOpen}
+        onDismiss={() => setIsMenuOpen(false)}
+        labelledBy="mobile-menu-title"
+        id="mobile-menu"
+      >
         {isMenuOpen && (
-          <>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
-              onClick={() => setIsMenuOpen(false)}
-              aria-hidden="true"
-            />
-
-            <motion.div
-              id="mobile-menu"
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="nav-liquid-shell fixed left-3 right-3 top-[4.75rem] z-50 rounded-[1.5rem] md:hidden"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="mobile-menu-title"
             >
               <div className="p-5">
-                <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
+                <h2 id="mobile-menu-title" className="sr-only">{language === 'ja' ? 'ナビゲーションメニュー' : 'Navigation Menu'}</h2>
+                <div className="mb-2 flex justify-end">
+                  <button
+                    type="button"
+                    data-dialog-close
+                    onClick={() => setIsMenuOpen(false)}
+                    aria-label={language === 'ja' ? 'メニューを閉じる' : 'Close menu'}
+                    className="rounded-full p-3 text-[#F2EFE9]"
+                  >
+                    <FaTimes size={16} />
+                  </button>
+                </div>
                 <MobileNavGlass
                   pathname={pathname}
                   reduced={reduced}
@@ -304,9 +287,8 @@ export function Navigation() {
                 />
               </div>
             </motion.div>
-          </>
         )}
-      </AnimatePresence>
+      </ModalDialog>
     </>
   )
 }

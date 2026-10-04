@@ -205,12 +205,6 @@ export default async function RootLayout({
         <SiteIdentityStructuredData />
 
         {/* Additional performance hints */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/agent/portfolio-agent-spritesheet.webp"
-          type="image/webp"
-        />
         <link rel="prefetch" href="/images/myface.jpg" />
         <meta name="format-detection" content="telephone=no" />
       </head>

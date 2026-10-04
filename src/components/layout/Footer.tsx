@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTheme } from '../../contexts/ThemeContext'
+import { CONTACT_EMAIL } from '../../data/site'
 
 export function Footer() {
   const { isDark } = useTheme();
@@ -18,12 +19,12 @@ export function Footer() {
         viewport={{ once: true }}
       >
         <a
-          href="mailto:keigo-minamida@g.ecc.u-tokyo.ac.jp"
+          href={`mailto:${CONTACT_EMAIL}`}
           className={`inline-block text-xl font-semibold transition-colors ${
             isDark ? 'text-[#D4C07A] hover:text-[#B8A04A]' : 'text-[#8A7428] hover:text-[#6F5C1F]'
           }`}
         >
-          mkeigo1110@gmail.com
+          {CONTACT_EMAIL}
         </a>
       </motion.div>
       <motion.div

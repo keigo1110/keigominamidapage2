@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+.site-dialog {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100dvh;
+  max-height: none;
+  padding: 1rem;
+  border: 0;
+  background: transparent;
+  color: #F2EFE9;
+  overflow: hidden;
+}
+
+.site-dialog[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
