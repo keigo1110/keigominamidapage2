@@ -43,9 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
   metadataBase: new URL('https://keigominamida.com'),
   title: {
-    default: locale === 'ja'
-      ? '南田桂吾 | HCI研究者・クリエイティブテクノロジスト'
-      : 'Keigo Minamida | HCI Researcher & Creative Technologist',
+    default: locale === 'ja' ? '南田桂吾' : 'Keigo Minamida',
     template: locale === 'ja' ? '%s | 南田桂吾' : '%s | Keigo Minamida',
   },
   description: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
@@ -84,7 +82,7 @@ export async function generateMetadata(): Promise<Metadata> {
     type: "website",
     locale: "en_US",
     alternateLocale: ["ja_JP"],
-    title: "Keigo Minamida | HCI Researcher & Creative Technologist",
+    title: "Keigo Minamida",
     description: "Keigo Minamida (南田桂吾) — Doctoral student at The University of Tokyo. Research in HCI, Augmented Humans, and Computer Vision. Portfolio of projects and creative works.",
     siteName: "Keigo Minamida Portfolio",
     url: "https://keigominamida.com/",
@@ -107,7 +105,7 @@ export async function generateMetadata(): Promise<Metadata> {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keigo Minamida | HCI Researcher & Creative Technologist",
+    title: "Keigo Minamida",
     description: "Researcher at The University of Tokyo. HCI, Augmented Humans, Computer Vision. Portfolio and projects.",
     creator: "@keigominamida",
     site: "@keigominamida",

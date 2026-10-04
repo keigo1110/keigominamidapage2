@@ -186,6 +186,8 @@ export const ja = {
     experience7Description: '師範代',
     experience7Date: '2026年5月 - 2026年9月',
     experience7Link1: '教室名：東西ハラオチ教室',
+    experience7Link2: '先達文庫『普遍の鍵　ルルスからライプニッツにいたる記憶術と結合論理学』　パオロ・ロッシ／ちくま学芸文庫',
+    experience7Link3: '師範代メッセージ',
     experience8: '図版編集部',
     experience8Description: '図版構成',
     experience8Date: '2026年2月 -',

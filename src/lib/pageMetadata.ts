@@ -9,12 +9,12 @@ const pages = {
   home: {
     path: '/',
     en: {
-      title: 'Keigo Minamida | HCI Researcher & Creative Technologist',
+      title: 'Keigo Minamida',
       description:
         'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
     },
     ja: {
-      title: '南田桂吾 | HCI研究者・クリエイティブテクノロジスト',
+      title: '南田桂吾',
       description:
         '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ Wakabar に取り組む。',
     },

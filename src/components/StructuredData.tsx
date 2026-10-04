@@ -173,9 +173,7 @@ export function SiteIdentityStructuredData() {
 export async function HomeStructuredData() {
   const locale = await getRequestLocale()
   const home = absoluteLocalized('/', locale)
-  const name = locale === 'ja'
-    ? '南田桂吾 | HCI研究者・クリエイティブテクノロジスト'
-    : 'Keigo Minamida | HCI Researcher & Creative Technologist'
+  const name = locale === 'ja' ? '南田桂吾' : 'Keigo Minamida'
 
   return (
     <JsonLd

@@ -338,7 +338,9 @@ const EXPERIENCE_DATA: Experience[] = [
     category: 'education',
     track: 'community',
     links: [
-      { text: "", url: 'https://edist.ne.jp/just/kankaishiki_90kanmon/', type: 'publication', primary: true }
+      { text: "", url: 'https://edist.ne.jp/just/kankaishiki_90kanmon/', type: 'publication', primary: true },
+      { text: "", url: 'https://edist.ne.jp/list/92kanmon_57shu_sendatsubunko/', type: 'publication', primary: false },
+      { text: "", url: 'https://edist.ne.jp/zest/92kanmon-57shu-shihandai-message/', type: 'publication', primary: false }
     ]
   },
   {
@@ -523,7 +525,7 @@ const TRANSLATION_MAPPING = {
   'shu-57': {
     title: 'experience7',
     position: 'experience7Description',
-    links: ['experience7Link1']
+    links: ['experience7Link1', 'experience7Link2', 'experience7Link3']
   },
   '1000ya-2024': {
     title: 'experience2',

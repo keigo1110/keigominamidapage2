@@ -186,6 +186,8 @@ In the future where informatization progresses, what we face is whether to be sw
     experience7Description: 'Editorial Instructor',
     experience7Date: 'May 2026 - September 2026',
     experience7Link1: 'Class: Tozai Haraochi Classroom',
+    experience7Link2: 'Sendatsu Bunko: Paolo Rossi, The Universal Key — The Art of Memory and Combinatory Logic from Lull to Leibniz (Chikuma Gakugei Bunko)',
+    experience7Link3: 'Instructor Message',
     experience8: 'Illustration Editorial Desk',
     experience8Description: 'Diagram composition',
     experience8Date: 'February 2026 -',
