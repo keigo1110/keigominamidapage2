@@ -6,6 +6,7 @@ import {
   WAKABAR_APP_STORE_URL,
   WAKABAR_APP_URL,
   WAKABAR_CORPORATE_URL,
+  WAKABAR_PLAY_STORE_URL,
 } from '@/data/wakabar'
 import { en } from '@/translations/en'
 import { ja } from '@/translations/ja'
@@ -23,7 +24,7 @@ const pages = [
   },
   {
     path: '/startup',
-    en: 'Wakabar, a bicycle-safety startup. The iOS app alerts riders before they reach dangerous locations.',
+    en: 'Wakabar, a bicycle-safety startup. The iOS and Android apps alert riders before they reach dangerous locations.',
     ja: '自転車事故を防ぐスタートアップ Wakabar。危険地点を事前に知らせる iOS アプリ。',
   },
   {
@@ -160,6 +161,7 @@ ${ja.wakabarDescription}
 ${en.startupMissionDescription}
 
 - App Store: ${WAKABAR_APP_STORE_URL}
+- Google Play: ${WAKABAR_PLAY_STORE_URL}
 - App site: ${WAKABAR_APP_URL}
 - Corporate site: ${WAKABAR_CORPORATE_URL}
 

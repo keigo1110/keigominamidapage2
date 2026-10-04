@@ -14,6 +14,7 @@ import {
   WAKABAR_APP_STORE_URL,
   WAKABAR_APP_URL,
   WAKABAR_CORPORATE_URL,
+  WAKABAR_PLAY_STORE_URL,
 } from '@/data/wakabar'
 import { JsonLd } from './JsonLd'
 import { localizedPath, type Locale } from '@/lib/locale'
@@ -133,7 +134,7 @@ const organizationSchema = {
   name: 'Wakabar Co., Ltd.',
   description: 'Supporting safe behavior while cycling using IoT technology',
   url: WAKABAR_CORPORATE_URL,
-  sameAs: [WAKABAR_APP_STORE_URL, WAKABAR_APP_URL],
+  sameAs: [WAKABAR_APP_STORE_URL, WAKABAR_PLAY_STORE_URL, WAKABAR_APP_URL],
   founder: { '@id': PERSON_ID },
   foundingDate: '2023',
   knowsAbout: ['IoT', 'Bicycle Safety', 'Traffic Safety'],
@@ -248,8 +249,8 @@ export async function StartupStructuredData() {
           name: locale === 'ja' ? 'スタートアップ | 南田桂吾' : 'Startup | Keigo Minamida',
           description:
             locale === 'ja'
-              ? 'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐiOSアプリ。'
-              : 'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. The iOS app is on the App Store.',
+              ? 'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐアプリ。App Store と Google Play で公開。'
+              : 'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. The apps are on the App Store and Google Play.',
           locale,
         }),
         breadcrumb([
@@ -265,6 +266,22 @@ export async function StartupStructuredData() {
           description: 'Preventing bicycle accidents by alerting users to dangerous locations in advance',
           url: WAKABAR_APP_STORE_URL,
           downloadUrl: WAKABAR_APP_STORE_URL,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'JPY',
+          },
+          author: { '@id': ORGANIZATION_ID },
+        },
+        {
+          '@type': 'SoftwareApplication',
+          '@id': `${SITE_URL}/startup#android-app`,
+          name: 'Wakabar',
+          operatingSystem: 'Android',
+          applicationCategory: 'LifestyleApplication',
+          description: 'Preventing bicycle accidents by alerting users to dangerous locations in advance',
+          url: WAKABAR_PLAY_STORE_URL,
+          downloadUrl: WAKABAR_PLAY_STORE_URL,
           offers: {
             '@type': 'Offer',
             price: '0',

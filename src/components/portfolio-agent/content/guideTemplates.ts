@@ -280,8 +280,8 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       ja: 'Wakabar',
     },
     message: {
-      en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service. The iOS app is on the App Store.',
-      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。iOSアプリは App Store で公開されてる。',
+      en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service. The iOS app is on the App Store, and the Android app is on Google Play.',
+      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。iOSアプリは App Store、Androidアプリは Google Play で公開されてる。',
     },
     route: '/startup',
     sectionId: 'startup',

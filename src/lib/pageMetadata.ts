@@ -37,12 +37,12 @@ const pages = {
     en: {
       title: 'Startup',
       description:
-        'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. Partner with local governments. The iOS app is on the App Store.',
+        'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. Partner with local governments. The apps are on the App Store and Google Play.',
     },
     ja: {
       title: 'スタートアップ',
       description:
-        'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐiOSアプリ。',
+        'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐアプリ。App Store と Google Play で公開。',
     },
   },
   experience: {

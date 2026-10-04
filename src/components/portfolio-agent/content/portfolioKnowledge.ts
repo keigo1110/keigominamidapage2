@@ -9,6 +9,7 @@ import {
   WAKABAR_APP_STORE_URL,
   WAKABAR_APP_URL,
   WAKABAR_CORPORATE_URL,
+  WAKABAR_PLAY_STORE_URL,
 } from '../../../data/wakabar'
 import {
   translations,
@@ -205,8 +206,8 @@ function buildStaticEntries(): KnowledgeEntry[] {
       route: '/startup',
       title: both('Companyname'),
       summary: {
-        en: `${text('en', 'Companyname')} is Keigo’s startup for location-based bicycle accident prevention. ${text('en', 'wakabarDescription')} iOS app: ${WAKABAR_APP_STORE_URL}. App site: ${WAKABAR_APP_URL}. Corporate: ${WAKABAR_CORPORATE_URL}.`,
-        ja: `${text('ja', 'Companyname')} は、位置情報で自転車事故を防ぐ桂吾のスタートアップ。${text('ja', 'wakabarDescription')} iOSアプリ: ${WAKABAR_APP_STORE_URL}。アプリサイト: ${WAKABAR_APP_URL}。コーポレート: ${WAKABAR_CORPORATE_URL}。`,
+        en: `${text('en', 'Companyname')} is Keigo’s startup for location-based bicycle accident prevention. ${text('en', 'wakabarDescription')} iOS app: ${WAKABAR_APP_STORE_URL}. Android app: ${WAKABAR_PLAY_STORE_URL}. App site: ${WAKABAR_APP_URL}. Corporate: ${WAKABAR_CORPORATE_URL}.`,
+        ja: `${text('ja', 'Companyname')} は、位置情報で自転車事故を防ぐ桂吾のスタートアップ。${text('ja', 'wakabarDescription')} iOSアプリ: ${WAKABAR_APP_STORE_URL}。Androidアプリ: ${WAKABAR_PLAY_STORE_URL}。アプリサイト: ${WAKABAR_APP_URL}。コーポレート: ${WAKABAR_CORPORATE_URL}。`,
       },
       keywords: ['wakabar', 'startup', 'bicycle', 'iot', 'app store', 'スタートアップ', '自転車', '事故', 'アプリ', 'ワカバ'],
     },

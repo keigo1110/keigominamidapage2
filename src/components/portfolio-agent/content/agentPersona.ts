@@ -129,8 +129,8 @@ export const portfolioAgentPersona = {
         ja: 'Wakabarのアプリある？',
       },
       assistant: {
-        en: 'Yes. The iOS app is on the App Store. /startup has the badge and the rest of Wakabar.',
-        ja: 'あるよ。iOSアプリが App Store に出てる。/startup から飛べる。',
+        en: 'Yes. The iOS app is on the App Store, and the Android app is on Google Play. /startup has both badges.',
+        ja: 'あるよ。iOSは App Store、Androidは Google Play。/startup から飛べる。',
       },
     },
   ],

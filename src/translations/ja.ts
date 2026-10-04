@@ -103,6 +103,7 @@ export const ja = {
     wakabarTourSite: 'セルフツアー',
     wakabarAppSite: 'アプリを試す',
     wakabarAppStoreBadgeAlt: 'App Storeからダウンロード',
+    wakabarPlayStoreBadgeAlt: 'Google Playで手に入れよう',
     audioWarningSystem: '音声警告システム',
     audioWarningDescription: '危険地点に近づくと、自動的に音声で注意を促します',
     realtimeTracking: '危険地点データ基盤',

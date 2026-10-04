@@ -103,6 +103,7 @@ In the future where informatization progresses, what we face is whether to be sw
     wakabarTourSite: 'Self-guided Tour',
     wakabarAppSite: 'Try the App',
     wakabarAppStoreBadgeAlt: 'Download on the App Store',
+    wakabarPlayStoreBadgeAlt: 'Get it on Google Play',
     audioWarningSystem: 'Voice Alert System',
     audioWarningDescription: 'Automatically provides voice alerts when approaching high-risk areas',
     realtimeTracking: 'Hazard Zone Database',

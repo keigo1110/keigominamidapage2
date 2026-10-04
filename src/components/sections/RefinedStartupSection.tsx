@@ -8,6 +8,7 @@ import {
   WAKABAR_APP_STORE_URL,
   WAKABAR_APP_URL,
   WAKABAR_CORPORATE_URL,
+  WAKABAR_PLAY_STORE_URL,
   WAKABAR_TOUR_URL,
 } from '../../data/wakabar'
 
@@ -45,6 +46,13 @@ export function RefinedStartupSection() {
     ? { width: 109, height: 40 }
     : { width: 120, height: 40 }
   const appStoreBadgeAlt = t('wakabarAppStoreBadgeAlt')
+  const playStoreBadgeSrc = language === 'ja'
+    ? '/images/badges/google-play-ja.png'
+    : '/images/badges/google-play-en.png'
+  const playStoreBadgeSize = language === 'ja'
+    ? { width: 135, height: 52 }
+    : { width: 154, height: 60 }
+  const playStoreBadgeAlt = t('wakabarPlayStoreBadgeAlt')
 
   const coreFeatures = [
     {
@@ -180,22 +188,40 @@ export function RefinedStartupSection() {
           transition={{ duration: 0.7, delay: 0.08, ease }}
           className="mt-8 space-y-8 sm:mt-10"
         >
-          <a
-            href={WAKABAR_APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-fit"
-            aria-label={appStoreBadgeAlt}
-          >
-            <Image
-              src={appStoreBadgeSrc}
-              alt=""
-              width={appStoreBadgeSize.width}
-              height={appStoreBadgeSize.height}
-              style={{ width: 'auto', height: 'auto' }}
-              unoptimized
-            />
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={WAKABAR_APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit"
+              aria-label={appStoreBadgeAlt}
+            >
+              <Image
+                src={appStoreBadgeSrc}
+                alt=""
+                width={appStoreBadgeSize.width}
+                height={appStoreBadgeSize.height}
+                style={{ width: 'auto', height: 'auto' }}
+                unoptimized
+              />
+            </a>
+            <a
+              href={WAKABAR_PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit"
+              aria-label={playStoreBadgeAlt}
+            >
+              <Image
+                src={playStoreBadgeSrc}
+                alt=""
+                width={playStoreBadgeSize.width}
+                height={playStoreBadgeSize.height}
+                style={{ width: playStoreBadgeSize.width, height: playStoreBadgeSize.height }}
+                unoptimized
+              />
+            </a>
+          </div>
 
           <nav aria-label="Wakabar" className="grid gap-5 sm:grid-cols-3 sm:gap-8">
             {wakabarSites.map((site) => (
