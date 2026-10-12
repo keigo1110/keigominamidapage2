@@ -35,6 +35,22 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     impactLevel: 'transformative',
     featured: true
   },
+  'wakabar': {
+    displayOrder: 4,
+    category: 'startup',
+    importance: 'high',
+    priority: 'high',
+    impactLevel: 'significant',
+    featured: true
+  },
+  'sony-csl': {
+    displayOrder: 2,
+    category: 'research',
+    importance: 'high',
+    priority: 'high',
+    impactLevel: 'significant',
+    featured: true
+  },
   '4ZIGEN': {
     displayOrder: 2,
     category: 'startup',
@@ -42,6 +58,14 @@ const EXPERIENCE_CONFIGS: Record<string, ExperienceConfig> = {
     priority: 'critical',
     impactLevel: 'significant',
     featured: true
+  },
+  'kindai-robot': {
+    displayOrder: 8,
+    category: 'education',
+    importance: 'medium',
+    priority: 'medium',
+    impactLevel: 'moderate',
+    featured: false
   },
   'iii-exhibition': {
     displayOrder: 4,
@@ -217,13 +241,48 @@ const EXPERIENCE_DATA: Experience[] = [
     category: 'research',
     track: 'community',
     links: [
-      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda16/', type: 'publication', primary: true },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda17/', type: 'publication', primary: true },
+      { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda16/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda15/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda14/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda13/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda11/', type: 'publication', primary: false },
       { text: "", url: 'https://edist.ne.jp/mast/ichiro_tsuda10/', type: 'publication', primary: false }
     ]
+  },
+  {
+    id: 'wakabar',
+    logo: '/images/wakabar.png',
+    title: '',
+    position: '',
+    organization: 'wakabar株式会社',
+    period: {
+      start: { year: 2023, month: 10, day: 1 },
+      end: { year: 2026, month: 12, day: 31 }
+    },
+    color: '#1E40AF',
+    status: 'ongoing',
+    priority: 'high',
+    category: 'startup',
+    track: 'social',
+    links: []
+  },
+  {
+    id: 'sony-csl',
+    logo: '/images/sony-csl.png',
+    title: '',
+    position: '',
+    organization: 'Sony Computer Science Laboratories',
+    period: {
+      start: { year: 2026, month: 6, day: 1 },
+      end: { year: 2026, month: 12, day: 31 }
+    },
+    color: '#1E40AF',
+    status: 'ongoing',
+    priority: 'high',
+    category: 'research',
+    track: 'social',
+    links: []
   },
   {
     id: '4ZIGEN',
@@ -302,6 +361,23 @@ const EXPERIENCE_DATA: Experience[] = [
 
     featured: true,
     draft: false
+  },
+  {
+    id: 'kindai-robot',
+    logo: '',
+    title: '',
+    position: '',
+    organization: '近畿大学ロボット研究会',
+    period: {
+      start: { year: 2021, month: 4, day: 1 },
+      end: { year: 2024, month: 3, day: 31 }
+    },
+    color: '#2563EB',
+    status: 'completed',
+    priority: 'medium',
+    category: 'education',
+    track: 'social',
+    links: []
   },
   {
     id: 'iii-exhibition',
@@ -504,6 +580,7 @@ const TRANSLATION_MAPPING = {
     title: 'experience8',
     position: 'experience8Description',
     links: [
+      'experience8Link7',
       'experience8Link6',
       'experience8Link5',
       'experience8Link4',
@@ -512,10 +589,25 @@ const TRANSLATION_MAPPING = {
       'experience8Link1'
     ]
   },
+  'wakabar': {
+    title: 'experience10',
+    position: 'experience10Description',
+    links: []
+  },
+  'sony-csl': {
+    title: 'experience9',
+    position: 'experience9Description',
+    links: []
+  },
   '4ZIGEN': {
     title: 'experience6',
     position: 'experience6Description',
     links: ['experience6Link1']
+  },
+  'kindai-robot': {
+    title: 'experience11',
+    position: 'experience11Description',
+    links: []
   },
   'iii-exhibition': {
     title: 'experience1',
