@@ -69,11 +69,11 @@ export const profileHighlights = [
       ja: 'スタートアップ',
     },
     summary: {
-      en: 'Through Wakabar, he applies IoT and location-based systems to bicycle safety, working toward fewer everyday traffic risks. The apps are on the App Store and Google Play.',
-      ja: 'Wakabar では、IoT と位置情報を使って自転車事故を減らすためのプロダクト開発に取り組んでいます。アプリは App Store と Google Play で公開されています。',
+      en: 'Through wakabar, he applies IoT and location-based systems to bicycle safety, working toward fewer everyday traffic risks. The apps are on the App Store and Google Play.',
+      ja: 'wakabar では、IoT と位置情報を使って自転車事故を減らすためのプロダクト開発に取り組んでいます。アプリは App Store と Google Play で公開されています。',
     },
     route: '/startup',
-    tags: ['Wakabar', 'IoT', 'Bicycle Safety'],
+    tags: ['wakabar', 'IoT', 'Bicycle Safety'],
   },
   {
     id: 'editorial-practice',

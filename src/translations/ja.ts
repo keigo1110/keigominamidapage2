@@ -92,8 +92,8 @@ export const ja = {
     createdBy: '制作',
 
     // スタートアップ
-    Companyname: 'Wakabar株式会社',
-    wakabarDescription: '事前に危険な地点を知らせて自転車事故を防止する',
+    Companyname: 'wakabar株式会社',
+    wakabarDescription: '自転車と音声ガイドで街をめぐるセルフツアーと、危険地点を知らせる安全支援',
     startupMissionDescription: '位置情報を活用し自転車事故をゼロにする',
     achivement1: '守山市をはじめ複数の自治体とパートナー提携',
     achivement2: 'IoTデバイスとアプリの連携による実証実験を実施',
@@ -269,9 +269,9 @@ export const ja = {
     mainSite: 'おすすめ',
     corporateSiteDescription: '会社概要・サービス詳細',
     selfTourDescription: 'セルフツアー・体験',
-    applicationDescription: 'Wakabarアプリを体験する',
+    applicationDescription: 'wakabarアプリを体験する',
     serviceDemo: 'サービスデモ',
-    serviceDemoVideoTitle: 'Wakabar サービスデモ動画',
+    serviceDemoVideoTitle: 'wakabar サービスデモ動画',
     coreServices: '主要サービス・機能',
 
     // ProfessionalExperienceSection

@@ -70,7 +70,7 @@ const personSchema = {
   url: `${SITE_URL}/`,
   image: `${SITE_URL}/images/myface.jpg`,
   description:
-    'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including Wakabar. 南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生で、HCI・人間拡張・コンピュータビジョンを専門とする。',
+    'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and creator of interactive art and IoT solutions including wakabar. 南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生で、HCI・人間拡張・コンピュータビジョンを専門とする。',
   jobTitle: ['Doctoral Student', 'Researcher', 'Entrepreneur', 'Software Developer'],
   affiliation: {
     '@type': 'Organization',
@@ -131,7 +131,7 @@ const websiteSchema = {
 const organizationSchema = {
   '@type': 'Organization',
   '@id': ORGANIZATION_ID,
-  name: 'Wakabar Co., Ltd.',
+  name: 'wakabar Co., Ltd.',
   description: 'Supporting safe behavior while cycling using IoT technology',
   url: WAKABAR_CORPORATE_URL,
   sameAs: [WAKABAR_APP_STORE_URL, WAKABAR_PLAY_STORE_URL, WAKABAR_APP_URL],
@@ -184,7 +184,7 @@ export async function HomeStructuredData() {
           name,
           description:
             locale === 'ja'
-              ? '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ Wakabar に取り組む。'
+              ? '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ wakabar に取り組む。'
               : 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo specializing in HCI, Augmented Humans, and Computer Vision. Researcher, entrepreneur, and creator of interactive art and IoT solutions.',
           locale,
         }),
@@ -198,7 +198,7 @@ export async function HomeStructuredData() {
               name: 'Who is Keigo Minamida?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo (Ishiguro Laboratory) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at UIST Adjunct 2026, Spatial Media Conference 2026, Augmented Humans 2026, and SIGGRAPH Asia 2024, works on Wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
+                text: 'Keigo Minamida (南田桂吾) is a doctoral student at The University of Tokyo (Ishiguro Laboratory) specializing in Human-Computer Interaction, Augmented Humans, and Computer Vision. He is a researcher, entrepreneur, and software developer. He has published at UIST Adjunct 2026, Spatial Media Conference 2026, Augmented Humans 2026, and SIGGRAPH Asia 2024, works on wakabar (bicycle safety IoT), and creates interactive art with the 4ZIGEN team (GUGEN2024 Grand Prize).',
               },
             },
             {
@@ -214,7 +214,7 @@ export async function HomeStructuredData() {
               name: '南田桂吾とは誰ですか？',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: '南田桂吾（Keigo Minamida）は、東京大学大学院 学際情報学府・石黒研究室の博士課程学生です。専門はHCI（ヒューマン・コンピュータ・インタラクション）、人間拡張、コンピュータビジョン。研究者、起業家、ソフトウェア開発者でもあります。UIST Adjunct 2026、空間メディアコンファレンス2026、Augmented Humans 2026、SIGGRAPH Asia 2024で発表し、自転車安全のIoTスタートアップ Wakabar と、4ZIGENでのインタラクティブ作品（GUGEN2024 大賞）に取り組んでいます。',
+                text: '南田桂吾（Keigo Minamida）は、東京大学大学院 学際情報学府・石黒研究室の博士課程学生です。専門はHCI（ヒューマン・コンピュータ・インタラクション）、人間拡張、コンピュータビジョン。研究者、起業家、ソフトウェア開発者でもあります。UIST Adjunct 2026、空間メディアコンファレンス2026、Augmented Humans 2026、SIGGRAPH Asia 2024で発表し、自転車安全のIoTスタートアップ wakabar と、4ZIGENでのインタラクティブ作品（GUGEN2024 大賞）に取り組んでいます。',
               },
             },
             {
@@ -247,8 +247,8 @@ export async function StartupStructuredData() {
           name: locale === 'ja' ? 'スタートアップ | 南田桂吾' : 'Startup | Keigo Minamida',
           description:
             locale === 'ja'
-              ? 'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐアプリ。App Store と Google Play で公開。'
-              : 'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. The apps are on the App Store and Google Play.',
+              ? 'wakabarは南田桂吾が取り組む、音声ガイド付きセルフツアーと自転車安全のスタートアップ。Web・iOS・Androidで公開。'
+              : 'wakabar by Keigo Minamida: self-guided cycling tours with location-based audio guides and cycling safety support. Available on the web, iOS and Android.',
           locale,
         }),
         breadcrumb([
@@ -258,10 +258,10 @@ export async function StartupStructuredData() {
         {
           '@type': 'SoftwareApplication',
           '@id': `${SITE_URL}/startup#app`,
-          name: 'Wakabar',
+          name: 'wakabar',
           operatingSystem: 'iOS',
           applicationCategory: 'LifestyleApplication',
-          description: 'Preventing bicycle accidents by alerting users to dangerous locations in advance',
+          description: 'Self-guided cycling tours with location-based audio guides, hazard maps and safety alerts',
           url: WAKABAR_APP_STORE_URL,
           downloadUrl: WAKABAR_APP_STORE_URL,
           offers: {
@@ -274,10 +274,10 @@ export async function StartupStructuredData() {
         {
           '@type': 'SoftwareApplication',
           '@id': `${SITE_URL}/startup#android-app`,
-          name: 'Wakabar',
+          name: 'wakabar',
           operatingSystem: 'Android',
           applicationCategory: 'LifestyleApplication',
-          description: 'Preventing bicycle accidents by alerting users to dangerous locations in advance',
+          description: 'Self-guided cycling tours with location-based audio guides, hazard maps and safety alerts',
           url: WAKABAR_PLAY_STORE_URL,
           downloadUrl: WAKABAR_PLAY_STORE_URL,
           offers: {

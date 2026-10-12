@@ -1,290 +1,215 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useTranslation } from '../../contexts/TranslationContext'
-import { useTheme } from '../../contexts/ThemeContext'
+import { useState } from 'react'
 import Image from 'next/image'
+import { ArrowDown, ArrowRight, ArrowUpRight, Globe2, Play, X } from 'lucide-react'
+import { useTranslation } from '../../contexts/TranslationContext'
+import { ModalDialog } from '../ModalDialog'
 import {
   WAKABAR_APP_STORE_URL,
   WAKABAR_APP_URL,
   WAKABAR_CORPORATE_URL,
+  WAKABAR_PAGE_CONTENT,
   WAKABAR_PLAY_STORE_URL,
+  WAKABAR_SCREENSHOTS,
   WAKABAR_TOUR_URL,
 } from '../../data/wakabar'
+import styles from './RefinedStartupSection.module.css'
 
-const ease = [0.22, 1, 0.36, 1] as const
+type ScreenshotKey = keyof typeof WAKABAR_SCREENSHOTS
+
+function ScreenshotButton({
+  screen, label, action, className = '', sizes, priority = false, onOpen,
+}: {
+  screen: ScreenshotKey
+  label: string
+  action: string
+  className?: string
+  sizes: string
+  priority?: boolean
+  onOpen: (screen: ScreenshotKey) => void
+}) {
+  return (
+    <button
+      type="button"
+      className={`${styles.screenButton} ${className}`}
+      onClick={() => onOpen(screen)}
+      aria-label={`${action}: ${label}`}
+      aria-haspopup="dialog"
+    >
+      <Image
+        {...WAKABAR_SCREENSHOTS[screen]} alt={label} sizes={sizes} priority={priority}
+        unoptimized={screen === 'hazards' || screen === 'hazardDirection'}
+      />
+    </button>
+  )
+}
 
 export function RefinedStartupSection() {
   const { t, language } = useTranslation()
-  const { isDark } = useTheme()
-
-  const ink = isDark ? 'text-[#F2EFE9]' : 'text-[#1C1916]'
-  const muted = isDark ? 'text-[#9A958C]' : 'text-[#7A756C]'
-  const gold = isDark ? 'text-[#D4C07A]' : 'text-[#8A7428]'
-  const linkClass = isDark
-    ? 'text-[#F2EFE9] underline decoration-[#2A2724]/80 underline-offset-4 transition-colors duration-300 hover:text-[#D4C07A] hover:decoration-[#D4C07A]'
-    : 'text-[#1C1916] underline decoration-[#E4DFD6] underline-offset-4 transition-colors duration-300 hover:text-[#8A7428] hover:decoration-[#8A7428]'
-
-  const restShadow = isDark
-    ? '0 22px 48px rgba(0,0,0,0.5), 0 6px 16px rgba(0,0,0,0.3), 0 0 0 1px rgba(184,160,74,0.1)'
-    : '0 26px 56px rgba(28,25,22,0.14), 0 8px 18px rgba(28,25,22,0.07), 0 0 0 1px rgba(138,116,40,0.08)'
-  const hoverShadow = isDark
-    ? '0 32px 64px rgba(0,0,0,0.58), 0 10px 22px rgba(0,0,0,0.34), 0 0 0 1px rgba(184,160,74,0.18)'
-    : '0 34px 68px rgba(28,25,22,0.18), 0 12px 24px rgba(28,25,22,0.09), 0 0 0 1px rgba(138,116,40,0.14)'
-  const markShadow = isDark
-    ? '0 12px 28px rgba(0,0,0,0.4), 0 0 0 1px rgba(184,160,74,0.1)'
-    : '0 14px 32px rgba(28,25,22,0.12), 0 0 0 1px rgba(138,116,40,0.08)'
-
-  const appStoreBadgeSrc = isDark
-    ? language === 'ja'
-      ? '/images/badges/app-store-ja-white.svg'
-      : '/images/badges/app-store-en-white.svg'
-    : language === 'ja'
-      ? '/images/badges/app-store-ja-black.svg'
-      : '/images/badges/app-store-en-black.svg'
-  const appStoreBadgeSize = language === 'ja'
-    ? { width: 109, height: 40 }
-    : { width: 120, height: 40 }
-  const appStoreBadgeAlt = t('wakabarAppStoreBadgeAlt')
-  const playStoreBadgeSrc = language === 'ja'
-    ? '/images/badges/google-play-ja.png'
-    : '/images/badges/google-play-en.png'
-  const playStoreBadgeSize = language === 'ja'
-    ? { width: 135, height: 52 }
-    : { width: 154, height: 60 }
-  const playStoreBadgeAlt = t('wakabarPlayStoreBadgeAlt')
-
-  const coreFeatures = [
-    {
-      title: t('audioWarningSystem'),
-      description: t('audioWarningDescription'),
-    },
-    {
-      title: t('realtimeTracking'),
-      description: t('realtimeTrackingDescription'),
-    },
-    {
-      title: t('dataAnalysis'),
-      description: t('dataAnalysisDescription'),
-    },
-    {
-      title: t('safetyEducation'),
-      description: t('safetyEducationDescription'),
-    },
-  ]
-
-  const wakabarSites = [
-    {
-      name: t('wakabarAppSite'),
-      url: WAKABAR_APP_URL,
-      description: t('applicationDescription'),
-    },
-    {
-      name: t('wakabarTourSite'),
-      url: WAKABAR_TOUR_URL,
-      description: t('selfTourDescription'),
-    },
-    {
-      name: t('wakabarMainSite'),
-      url: WAKABAR_CORPORATE_URL,
-      description: t('corporateSiteDescription'),
-    },
-  ]
+  const copy = WAKABAR_PAGE_CONTENT[language]
+  const [activeScreen, setActiveScreen] = useState<ScreenshotKey | null>(null)
+  const closePreview = () => setActiveScreen(null)
 
   return (
-    <section id="startup" className="world-civic relative overflow-hidden py-24 md:py-32 lg:py-40">
-      <div className="container relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
-        <motion.header
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease }}
-          className="max-w-3xl"
-        >
-          <p className={`mb-2 text-xs font-medium uppercase tracking-[0.18em] ${muted}`}>
-            Startup
-          </p>
-
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div
-              className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[1rem] sm:h-16 sm:w-16"
-              style={{ boxShadow: markShadow }}
-            >
-              <Image
-                src="/images/wakabar.png"
-                alt=""
-                width={64}
-                height={64}
-                className="h-full w-full object-cover"
-              />
+    <section id="startup" className={styles.page}>
+      <div className={styles.container}>
+        <header className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <div className={styles.brand}>
+              <Image src="/images/wakabar.png" alt="" width={36} height={36} />
+              <span>wakabar</span>
             </div>
-            <div className="min-w-0">
-              <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl ${ink}`}>
-                {t('Companyname')}
-              </h2>
-              <p className={`mt-1.5 text-sm font-medium sm:text-base ${gold}`}>
-                {t('locationBasedAccidentPrevention')}
-              </p>
-            </div>
-          </div>
-
-          <p className={`mt-8 text-xl font-light leading-snug tracking-tight sm:text-2xl ${ink}`}>
-            {t('bicycleAccidentPrevention')}
-          </p>
-          <p className={`mt-3 text-base font-light leading-relaxed sm:text-lg ${muted}`}>
-            {t('wakabarDescription')}
-          </p>
-        </motion.header>
-
-        <motion.figure
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-8% 0px' }}
-          transition={{ duration: 0.75, delay: 0.06, ease }}
-          className="mt-12 md:mt-16"
-          aria-label={t('serviceDemoVideoTitle')}
-        >
-          <div className="group relative">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -inset-x-8 -bottom-5 top-[55%] -z-10 rounded-[50%] opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-              style={{
-                background: isDark
-                  ? 'radial-gradient(ellipse at center, rgba(184,160,74,0.2), transparent 68%)'
-                  : 'radial-gradient(ellipse at center, rgba(138,116,40,0.16), transparent 68%)',
-              }}
-            />
-
-            <motion.div
-              className="relative aspect-video overflow-hidden rounded-[1.25rem]"
-              style={{ boxShadow: restShadow }}
-              whileHover={{ boxShadow: hoverShadow }}
-              transition={{ duration: 0.45, ease }}
-            >
-              <iframe
-                src="https://www.youtube.com/embed/C9rNbZwhLqE"
-                title={t('serviceDemoVideoTitle')}
-                className="h-full w-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  boxShadow: isDark
-                    ? 'inset 0 0 0 1px rgba(212,192,122,0.22)'
-                    : 'inset 0 0 0 1px rgba(138,116,40,0.18)',
-                }}
-              />
-            </motion.div>
-          </div>
-        </motion.figure>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.08, ease }}
-          className="mt-8 space-y-8 sm:mt-10"
-        >
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={WAKABAR_APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit"
-              aria-label={appStoreBadgeAlt}
-            >
-              <Image
-                src={appStoreBadgeSrc}
-                alt=""
-                width={appStoreBadgeSize.width}
-                height={appStoreBadgeSize.height}
-                style={{ width: 'auto', height: 'auto' }}
-                unoptimized
-              />
-            </a>
-            <a
-              href={WAKABAR_PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-fit"
-              aria-label={playStoreBadgeAlt}
-            >
-              <Image
-                src={playStoreBadgeSrc}
-                alt=""
-                width={playStoreBadgeSize.width}
-                height={playStoreBadgeSize.height}
-                style={{ width: playStoreBadgeSize.width, height: playStoreBadgeSize.height }}
-                unoptimized
-              />
-            </a>
-          </div>
-
-          <nav aria-label="Wakabar" className="grid gap-5 sm:grid-cols-3 sm:gap-8">
-            {wakabarSites.map((site) => (
-              <a
-                key={site.url}
-                href={site.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group min-w-0"
-              >
-                <span className={linkClass}>{site.name}</span>
-                <span className={`mt-1 block text-sm leading-relaxed ${muted}`}>
-                  {site.description}
-                </span>
+            <h1 className={styles.headline}>
+              <span>{copy.headline[0]}</span>
+              <span className={styles.accent}>{copy.headline[1]}</span>
+            </h1>
+            <div className={styles.heroActions}>
+              <a href={WAKABAR_TOUR_URL} target="_blank" rel="noopener noreferrer" className={styles.primaryLink}>
+                {copy.explore}<ArrowUpRight size={21} aria-hidden="true" />
               </a>
+              <a href="#wakabar-safety" className={styles.textLink}>
+                {copy.safetyLink}<ArrowDown size={18} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <figure className={styles.heroFigure}>
+            <div className={styles.tourStage}>
+              <ScreenshotButton
+                screen="tours" label={copy.screenshots.tours} action={copy.enlarge}
+                className={styles.tourList} sizes="(min-width: 1536px) 800px, (min-width: 1024px) 55vw, (min-width: 768px) 44vw, 88vw"
+                priority onOpen={setActiveScreen}
+              />
+              <ScreenshotButton
+                screen="tourDetail" label={copy.screenshots.tourDetail} action={copy.enlarge}
+                className={styles.tourPhone} sizes="(min-width: 1024px) 240px, (min-width: 768px) 190px, 172px"
+                onOpen={setActiveScreen}
+              />
+            </div>
+          </figure>
+        </header>
+
+        <section className={styles.tours} aria-labelledby="wakabar-tours-title">
+          <div className={styles.tourHeading}>
+            <p className={styles.sectionLabel}>01 / SELF-GUIDED TOURS</p>
+            <div>
+              <h2 id="wakabar-tours-title" className={styles.sectionTitle}>{copy.tourTitle}</h2>
+              <p className={styles.sectionIntro}>{copy.tourIntro}</p>
+            </div>
+          </div>
+          <ol className={styles.steps}>
+            {copy.tourSteps.map((step, index) => (
+              <li key={step.title}>
+                <span className={styles.stepNumber} aria-hidden="true">0{index + 1}</span>
+                <div><h3>{step.title}</h3><p>{step.description}</p></div>
+              </li>
             ))}
-          </nav>
-        </motion.div>
+          </ol>
+          <p className={styles.tourClosing} lang="en">Every ride, a new discovery.</p>
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
-          className={`mt-16 border-t pt-10 md:mt-20 ${
-            isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'
-          }`}
-        >
-          <p className={`text-xs font-medium uppercase tracking-[0.18em] ${muted}`}>
-            {t('startupMission')}
-          </p>
-          <p className={`mt-3 max-w-2xl text-lg font-light leading-relaxed sm:text-xl ${ink}`}>
-            {t('startupMissionDescription')}
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.12, ease }}
-          className="mt-16 md:mt-20"
-        >
-          <h3 className={`text-2xl font-semibold tracking-tight sm:text-3xl ${ink}`}>
-            {t('coreServices')}
-          </h3>
-          <div className="mt-8 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-            {coreFeatures.map((feature) => (
-              <div
-                key={feature.title}
-                className={`border-t pt-5 ${isDark ? 'border-[#2A2724]' : 'border-[#E4DFD6]'}`}
-              >
-                <h4 className={`text-base font-semibold sm:text-lg ${ink}`}>
-                  {feature.title}
-                </h4>
-                <p className={`mt-2 text-sm leading-relaxed sm:text-base ${muted}`}>
-                  {feature.description}
-                </p>
-              </div>
+        <section id="wakabar-safety" className={styles.safety} aria-labelledby="wakabar-safety-title">
+          <p className={styles.sectionLabel}>02 / SAFETY</p>
+          <div className={styles.safetyHeading}>
+            <h2 id="wakabar-safety-title" className={`${styles.safetyTitle} ${styles.accent}`}>
+              {copy.safetyTitle}
+            </h2>
+            <div className={styles.safetyLinks}>
+              <a href={WAKABAR_CORPORATE_URL} target="_blank" rel="noopener noreferrer" className={styles.textLink}>
+                {copy.safetyMore}<ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+              <a href="https://www.youtube.com/watch?v=C9rNbZwhLqE" target="_blank" rel="noopener noreferrer" className={styles.demoLink}>
+                <Play size={14} aria-hidden="true" />{copy.demo}
+              </a>
+            </div>
+          </div>
+          <div className={styles.safetyGrid}>
+            {(['hazards', 'hazardDirection'] as const).map((screen, index) => (
+              <article key={screen} className={styles.safetyCard}>
+                <div className={styles.safetyCardHeading}>
+                  <span className={styles.safetyCardNumber} aria-hidden="true">0{index + 1}</span>
+                  <div><h3>{copy.safetyViews[screen].title}</h3><p>{copy.safetyViews[screen].description}</p></div>
+                </div>
+                <ScreenshotButton
+                  screen={screen} label={copy.screenshots[screen]} action={copy.enlarge}
+                  className={styles.hazardMap}
+                  sizes={screen === 'hazards'
+                    ? '(min-width: 1440px) 850px, (min-width: 768px) 60vw, 90vw'
+                    : '(min-width: 1440px) 500px, (min-width: 768px) 36vw, 90vw'}
+                  onOpen={setActiveScreen}
+                />
+              </article>
             ))}
           </div>
-        </motion.div>
+        </section>
+
+        <section className={styles.engineering} aria-labelledby="wakabar-engineering-title">
+          <div className={styles.engineeringHeading}>
+            <p className={styles.sectionLabel}>03 / ENGINEERING</p>
+            <div>
+              <h2 id="wakabar-engineering-title" className={`${styles.sectionTitle} ${styles.engineeringTitle}`}>
+                {copy.engineeringTitle.map((line, index) => <span key={line}>{index > 0 && language === 'en' ? ' ' : ''}{line}</span>)}
+              </h2>
+            </div>
+          </div>
+          <ol className={styles.signalFlow}>
+            {copy.engineeringSteps.map((step, index) => (
+              <li key={step.title}>
+                <span className={styles.signalNumber}>0{index + 1}</span>
+                <div><h3>{step.title}</h3><p>{step.description}</p></div>
+                {index < copy.engineeringSteps.length - 1 ? <ArrowRight size={20} aria-hidden="true" /> : null}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className={styles.download} aria-labelledby="wakabar-download-title">
+          <div>
+            <h2 id="wakabar-download-title" className={styles.sectionTitle}>{copy.appTitle}</h2>
+          </div>
+          <div className={styles.downloadActions}>
+            <div className={styles.storeBadges}>
+              <a href={WAKABAR_APP_URL} target="_blank" rel="noopener noreferrer" className={styles.webBadge} aria-label={copy.browser}>
+                <Globe2 size={29} strokeWidth={1.6} aria-hidden="true" />
+                <span><small>{copy.webBadgeTop}</small><strong>{copy.webBadgeAction}</strong></span>
+              </a>
+              <a href={WAKABAR_APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t('wakabarAppStoreBadgeAlt')}>
+                <Image
+                  src={`/images/badges/app-store-${language}-black.svg`} alt={t('wakabarAppStoreBadgeAlt')}
+                  width={language === 'ja' ? 109 : 120} height={40} style={{ width: 'auto', height: 46 }} unoptimized
+                />
+              </a>
+              <a href={WAKABAR_PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t('wakabarPlayStoreBadgeAlt')}>
+                <Image
+                  src={`/images/badges/google-play-${language}.png`} alt={t('wakabarPlayStoreBadgeAlt')}
+                  width={language === 'ja' ? 135 : 154} height={language === 'ja' ? 52 : 60} style={{ width: 'auto', height: 60 }} unoptimized
+                />
+              </a>
+            </div>
+          </div>
+          <a href={WAKABAR_CORPORATE_URL} target="_blank" rel="noopener noreferrer" className={`${styles.textLink} ${styles.companyLink}`}>
+            {copy.company}<ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        </section>
       </div>
+
+      <ModalDialog open={activeScreen !== null} onDismiss={closePreview} labelledBy="wakabar-screen-title">
+        {activeScreen !== null ? (
+          <div className={styles.preview}>
+            <div className={styles.previewHeader}>
+              <h2 id="wakabar-screen-title">{copy.screenshots[activeScreen]}</h2>
+              <button type="button" onClick={closePreview} data-dialog-close aria-label={copy.close}>
+                <X size={22} aria-hidden="true" />
+              </button>
+            </div>
+            <Image
+              {...WAKABAR_SCREENSHOTS[activeScreen]} alt={copy.screenshots[activeScreen]}
+              className={styles.previewImage} sizes={activeScreen === 'tours' ? '90vw' : '60vw'}
+              unoptimized={activeScreen === 'hazards' || activeScreen === 'hazardDirection'}
+            />
+          </div>
+        ) : null}
+      </ModalDialog>
     </section>
   )
 }

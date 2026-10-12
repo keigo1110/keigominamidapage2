@@ -37,8 +37,8 @@ export const chatPresets = [
       en: 'What do you recommend?',
     },
     answer: {
-      ja: 'まず研究から見るのがいいよ。桂吾の芯が見えるし、そのあと制作や Wakabar を見ると、実装で世界を動かそうとしてる感じがつながる。',
-      en: 'Start with the research. That shows Keigo’s core, and the making and Wakabar make more sense right after.',
+      ja: 'まず研究から見るのがいいよ。桂吾の芯が見えるし、そのあと制作や wakabar を見ると、実装で世界を動かそうとしてる感じがつながる。',
+      en: 'Start with the research. That shows Keigo’s core, and the making and wakabar make more sense right after.',
     },
     guideId: 'first-visit-route',
   },

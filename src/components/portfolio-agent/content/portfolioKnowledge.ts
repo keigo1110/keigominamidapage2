@@ -195,8 +195,8 @@ function buildStaticEntries(): KnowledgeEntry[] {
       route: '/',
       title: { en: 'Where to start', ja: 'まず見る場所' },
       summary: {
-        en: 'Start with research on the home page, then artwork (4ZIGEN) and Wakabar. Experience shows editorial school, 4ZIGEN, and community work.',
-        ja: 'まずはホームの研究、次に制作（4ZIGEN）と Wakabar。経歴を見ると編集学校、4ZIGEN、コミュニティの仕事がつながる。',
+        en: 'Start with research on the home page, then artwork (4ZIGEN) and wakabar. Experience shows editorial school, 4ZIGEN, and community work.',
+        ja: 'まずはホームの研究、次に制作（4ZIGEN）と wakabar。経歴を見ると編集学校、4ZIGEN、コミュニティの仕事がつながる。',
       },
       keywords: ['recommend', 'start', 'where', 'first', 'おすすめ', 'どこから', '案内', '見る'],
     },
@@ -265,7 +265,7 @@ function formatCatalog(language: Language): string {
     `Research: ${research}`,
     `Artwork: ${artwork}`,
     `Experience: ${experience}`,
-    `Startup: Wakabar`,
+    `Startup: wakabar`,
     `Character: ROTA (/rota)`,
   ].join('\n')
 }

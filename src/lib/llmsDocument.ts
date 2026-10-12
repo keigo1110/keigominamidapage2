@@ -24,8 +24,8 @@ const pages = [
   },
   {
     path: '/startup',
-    en: 'Wakabar, a bicycle-safety startup. The iOS and Android apps alert riders before they reach dangerous locations.',
-    ja: '自転車事故を防ぐスタートアップ Wakabar。危険地点を事前に知らせる iOS アプリ。',
+    en: 'wakabar, a startup for self-guided cycling tours and cycling safety. Available on the web, iOS and Android, with location-based audio guides and hazard alerts.',
+    ja: 'セルフガイドサイクリングツアーと自転車安全に取り組む wakabar。Web・iOS・Androidで、位置に応じた音声ガイドと危険地点の警告を提供。',
   },
   {
     path: '/experience',
@@ -153,7 +153,7 @@ ${en.oProject8Description}
 ${ja.oProject8Description}
 https://keigo1110.github.io/kAIgi-download/
 
-## Wakabar
+## wakabar
 
 ${en.Companyname}
 ${en.wakabarDescription}

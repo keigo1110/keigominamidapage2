@@ -16,7 +16,7 @@ const pages = {
     ja: {
       title: '南田桂吾',
       description:
-        '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ Wakabar に取り組む。',
+        '南田桂吾は東京大学大学院 学際情報学府・石黒研究室の博士課程学生。HCI、人間拡張、コンピュータビジョンを研究し、インタラクティブ作品と自転車安全のスタートアップ wakabar に取り組む。',
     },
   },
   artwork: {
@@ -37,12 +37,12 @@ const pages = {
     en: {
       title: 'Startup',
       description:
-        'Wakabar — bicycle safety startup by Keigo Minamida. IoT and location-based alerts to prevent accidents. Partner with local governments. The apps are on the App Store and Google Play.',
+        'wakabar by Keigo Minamida: discover local stories through self-guided cycling tours and location-based audio guides, supported by our work on cycling safety. Available in your browser, on iOS and on Android.',
     },
     ja: {
       title: 'スタートアップ',
       description:
-        'Wakabarは南田桂吾が取り組む自転車安全のスタートアップ。危険地点を事前に知らせて事故を防ぐアプリ。App Store と Google Play で公開。',
+        'wakabarは南田桂吾が取り組むスタートアップ。自転車と音声ガイドで街の物語をめぐるセルフツアーと、危険地点の地図・音声警告による安全への取り組みを紹介。Web・iOS・Androidで公開。',
     },
   },
   experience: {

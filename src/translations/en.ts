@@ -92,13 +92,13 @@ In the future where informatization progresses, what we face is whether to be sw
     createdBy: 'Created by',
 
     // Startup
-    Companyname: 'Wakabar Co., Ltd.',
-    wakabarDescription: 'Preventing bicycle accidents by alerting users to dangerous locations in advance',
+    Companyname: 'wakabar Co., Ltd.',
+    wakabarDescription: 'Self-guided cycling tours with location-based audio guides, supported by hazard maps and safety alerts',
     startupMissionDescription: 'Achieving zero bicycle accidents through location-based technology',
     achivement1: 'Strategic partnerships with multiple local governments including Moriyama City',
     achivement2: 'Conducting proof-of-concept experiments with integrated IoT devices and mobile applications',
 
-    // Wakabar Platform Features
+    // wakabar Platform Features
     wakabarMainSite: 'Corporate Site',
     wakabarTourSite: 'Self-guided Tour',
     wakabarAppSite: 'Try the App',
@@ -269,9 +269,9 @@ In the future where informatization progresses, what we face is whether to be sw
     mainSite: 'Recommended',
     corporateSiteDescription: 'Company overview & service details',
     selfTourDescription: 'Self tour & experience',
-    applicationDescription: 'Experience the Wakabar app',
+    applicationDescription: 'Experience the wakabar app',
     serviceDemo: 'Service Demo',
-    serviceDemoVideoTitle: 'Wakabar Service Demo Video',
+    serviceDemoVideoTitle: 'wakabar Service Demo Video',
     coreServices: 'Core Services & Features',
 
     // ProfessionalExperienceSection

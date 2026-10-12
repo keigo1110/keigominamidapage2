@@ -67,7 +67,7 @@ export async function generateMetadata(): Promise<Metadata> {
     "portfolio",
     "SIGGRAPH Asia",
     "Gaussian Splatting",
-    "Wakabar",
+    "wakabar",
     "UIST",
     "ROTA",
     "4ZIGEN",

@@ -89,8 +89,8 @@ export const portfolioAgentPersona = {
         ja: '桂吾さんって何がすごいの？',
       },
       assistant: {
-        en: 'He is good at turning research into things people can actually experience. HCI, human augmentation, making, and Wakabar all connect through that same instinct.',
-        ja: '研究を研究で終わらせず、触れる体験やプロダクトまで持っていけるところだね。HCI、人間拡張、制作、Wakabar がちゃんと一本につながってる。',
+        en: 'He is good at turning research into things people can actually experience. HCI, human augmentation, making, and wakabar all connect through that same instinct.',
+        ja: '研究を研究で終わらせず、触れる体験やプロダクトまで持っていけるところだね。HCI、人間拡張、制作、wakabar がちゃんと一本につながってる。',
       },
     },
     {
@@ -99,8 +99,8 @@ export const portfolioAgentPersona = {
         ja: 'どこから見ればいい？',
       },
       assistant: {
-        en: 'Start with the research projects. That shows Keigo’s core axis, and the creative work and Wakabar make more sense right after.',
-        ja: 'まず研究から見るのがいいよ。桂吾の芯が見えるし、そのあと制作や Wakabar を見ると、実装で世界を動かそうとしてる感じがつながる。',
+        en: 'Start with the research projects. That shows Keigo’s core axis, and the creative work and wakabar make more sense right after.',
+        ja: 'まず研究から見るのがいいよ。桂吾の芯が見えるし、そのあと制作や wakabar を見ると、実装で世界を動かそうとしてる感じがつながる。',
       },
     },
     {
@@ -125,8 +125,8 @@ export const portfolioAgentPersona = {
     },
     {
       user: {
-        en: 'Does Wakabar have an app?',
-        ja: 'Wakabarのアプリある？',
+        en: 'Does wakabar have an app?',
+        ja: 'wakabarのアプリある？',
       },
       assistant: {
         en: 'Yes. The iOS app is on the App Store, and the Android app is on Google Play. /startup has both badges.',

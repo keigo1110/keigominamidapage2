@@ -21,8 +21,8 @@ const highlightSuggestionLabels: Record<ProfileHighlightId, LocalizedAgentText> 
     ja: '制作を見る',
   },
   startup: {
-    en: 'See Wakabar',
-    ja: 'Wakabarを見る',
+    en: 'See wakabar',
+    ja: 'wakabarを見る',
   },
   'editorial-practice': {
     en: 'See the editorial practice',
@@ -99,8 +99,8 @@ const crossDomainMessage: AgentText = (language: Language) => {
 }
 
 const firstVisitMessage: AgentText = (language: Language) => language === 'ja'
-  ? '初めてなら、まず研究プロジェクトで技術の軸を見て、次に 4ZIGEN と Wakabar に進むのがいいよ。最後に経歴を見ると、編集実践とのつながりまで見えてくる。'
-  : 'For a first visit, start with the research projects, then move to 4ZIGEN and Wakabar. The experience page makes the editorial background easier to connect afterward.'
+  ? '初めてなら、まず研究プロジェクトで技術の軸を見て、次に 4ZIGEN と wakabar に進むのがいいよ。最後に経歴を見ると、編集実践とのつながりまで見えてくる。'
+  : 'For a first visit, start with the research projects, then move to 4ZIGEN and wakabar. The experience page makes the editorial background easier to connect afterward.'
 
 // 編集したい案内文はこの配列を中心に変更してください。
 // `message`, `title`, `suggestions[].label` は `ja` と `en` の両方を用意できます。
@@ -255,7 +255,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
     id: 'startup-route',
     title: (language) => localize(findProfileHighlight('startup').title, language),
     message: (language) => language === 'ja'
-      ? 'Wakabar では、IoT と位置情報で自転車事故を減らすプロダクトに取り組んでるよ。研究や制作で培った実装力を、日常の安全へ接続してる感じだね。'
+      ? 'wakabar では、IoT と位置情報で自転車事故を減らすプロダクトに取り組んでるよ。研究や制作で培った実装力を、日常の安全へ接続してる感じだね。'
       : localize(findProfileHighlight('startup').summary, language),
     route: '/startup',
     targetRoute: '/startup',
@@ -267,21 +267,21 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       profileHighlightSuggestion('creative-work'),
       profileHighlightSuggestion('research'),
       responseSuggestion('startup-why-fit', 'startup-bridge', {
-        en: 'Why does Wakabar fit him?',
-        ja: 'なぜWakabarに向いている？',
+        en: 'Why does wakabar fit him?',
+        ja: 'なぜwakabarに向いている？',
       }),
     ],
-    tags: ['Wakabar', 'startup', 'IoT'],
+    tags: ['wakabar', 'startup', 'IoT'],
   },
   {
     id: 'startup-section',
     title: {
-      en: 'Wakabar',
-      ja: 'Wakabar',
+      en: 'wakabar',
+      ja: 'wakabar',
     },
     message: {
-      en: 'Wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service. The iOS app is on the App Store, and the Android app is on Google Play.',
-      ja: 'Wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。iOSアプリは App Store、Androidアプリは Google Play で公開されてる。',
+      en: 'wakabar is a product for preventing bicycle accidents by warning riders about dangerous locations in advance. It brings IoT, location data, ride history, and safety education into a practical everyday service. The iOS app is on the App Store, and the Android app is on Google Play.',
+      ja: 'wakabar は、危険地点を事前に知らせて自転車事故を防ぐプロダクト。IoT、位置情報、走行データ、安全教育を、日常で使える形にまとめてるよ。iOSアプリは App Store、Androidアプリは Google Play で公開されてる。',
     },
     route: '/startup',
     sectionId: 'startup',
@@ -298,7 +298,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
         ja: '強みとの関係を知る',
       }),
     ],
-    tags: ['Wakabar', 'bicycle safety', 'IoT'],
+    tags: ['wakabar', 'bicycle safety', 'IoT'],
   },
   {
     id: 'experience-route',
@@ -467,12 +467,12 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
   {
     id: 'startup-bridge',
     title: {
-      en: 'Why Wakabar fits',
-      ja: 'Wakabarとの相性',
+      en: 'Why wakabar fits',
+      ja: 'wakabarとの相性',
     },
     message: {
-      en: 'Wakabar fits because it turns technology into a usable service in everyday settings. It uses implementation skill around sensors and location data, while also relying on an editorial eye for how risks and riding experiences are communicated.',
-      ja: 'Wakabar は、技術を社会の現場で使える形にする活動。センサーや位置情報を扱う実装力に加えて、危険地点や走行体験をどう伝えるかという編集的な視点が活きてるよ。',
+      en: 'wakabar fits because it turns technology into a usable service in everyday settings. It uses implementation skill around sensors and location data, while also relying on an editorial eye for how risks and riding experiences are communicated.',
+      ja: 'wakabar は、技術を社会の現場で使える形にする活動。センサーや位置情報を扱う実装力に加えて、危険地点や走行体験をどう伝えるかという編集的な視点が活きてるよ。',
     },
     route: '/startup',
     targetRoute: '/startup',
@@ -485,7 +485,7 @@ export const agentGuideTemplates: readonly AgentGuideTemplate[] = [
       profileHighlightSuggestion('creative-work'),
       profileHighlightSuggestion('editorial-practice'),
     ],
-    tags: ['Wakabar', 'implementation', 'editing'],
+    tags: ['wakabar', 'implementation', 'editing'],
   },
   {
     id: 'rota-route',
